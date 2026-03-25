@@ -104,7 +104,7 @@ export function LandingPage() {
               <div className="space-y-6">
                 <div className="flex items-center justify-between border-b border-white/10 pb-5">
                   <div className="space-y-3">
-                    <BrandLogo compact />
+                    <BrandLogo compact className="w-[360px] sm:w-[460px]" />
                     <p className="text-xl font-semibold text-white">
                       {content.hero.dashboardTitle}
                     </p>
