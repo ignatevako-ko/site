@@ -10,7 +10,7 @@ export function SiteFooter({ content }: SiteFooterProps) {
     <footer className="border-t border-white/10 bg-slate-950">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.3fr_0.7fr] lg:px-10">
         <div className="space-y-4">
-          <BrandLogo className="w-[280px] sm:w-[340px]" />
+          <BrandLogo />
           <p className="max-w-xl text-sm leading-7 text-slate-400">
             {content.footer.text}
           </p>
