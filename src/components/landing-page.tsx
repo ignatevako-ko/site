@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteContent, type Language } from "@/data/site-content";
 
-const languageStorageKey = "do-marketing-language";
+const defaultLanguage: Language = "ru";
 
 function renderHighlightedText(text: string) {
   return text.split(/(\*[^*]+\*)/g).map((part, index) => {
@@ -40,16 +40,7 @@ function SectionHeading({
 }
 
 export function LandingPage() {
-  const [language, setLanguage] = useState<Language>(() => {
-    if (typeof window === "undefined") {
-      return "en";
-    }
-
-    const savedLanguage = window.localStorage.getItem(languageStorageKey);
-    return savedLanguage === "en" || savedLanguage === "et" || savedLanguage === "ru"
-      ? savedLanguage
-      : "en";
-  });
+  const [language, setLanguage] = useState<Language>(defaultLanguage);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -57,7 +48,6 @@ export function LandingPage() {
 
   const handleLanguageChange = (nextLanguage: Language) => {
     setLanguage(nextLanguage);
-    window.localStorage.setItem(languageStorageKey, nextLanguage);
     document.documentElement.lang = nextLanguage;
   };
 
