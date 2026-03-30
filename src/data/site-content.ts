@@ -474,19 +474,19 @@ export const siteContent: Record<Language, SiteDictionary> = {
       { href: "#contacts", label: "Контакты" },
     ],
     hero: {
-      eyebrow: "Осознанный маркетинг, который приводит к результатам",
-      title: "Таргетированная реклама Facebook и Instagram",
-      description:
-        "Приводим клиентов и подписчиков. Работаем на результат",
-      primaryCta: "Запланировать созвон",
+      eyebrow: "Делаем осознанный маркетинг. Приводим к результатам",
+      title:
+        "Приводим *целевых клиентов* через *таргетированную рекламу* FB и Inst пока конкуренты спят",
+      description: "",
+      primaryCta: "Начать диалог",
       secondaryCta: "Посмотреть кейсы",
       dashboardTitle: "Центр управления ростом",
       dashboardStatus: "Активно",
       dashboardChartLabel: "Обзор результатов",
       dashboardChartStatus: "Live",
       stats: [
-        { value: "1523%", label: "Максимальная окупаемость" },
-        { value: "500", label: "Лидов в месяц" },
+        { value: "2923%", label: "Максимальная окупаемость" },
+        { value: "578", label: "Лидов в месяц" },
         { value: "30.23", label: "Лучший ROAS" },
       ],
     },

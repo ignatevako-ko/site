@@ -8,6 +8,20 @@ import { siteContent, type Language } from "@/data/site-content";
 
 const languageStorageKey = "do-marketing-language";
 
+function renderHighlightedText(text: string) {
+  return text.split(/(\*[^*]+\*)/g).map((part, index) => {
+    if (part.startsWith("*") && part.endsWith("*")) {
+      return (
+        <strong key={`${part}-${index}`} className="font-medium text-white">
+          {part.slice(1, -1)}
+        </strong>
+      );
+    }
+
+    return <span key={`${part}-${index}`}>{part}</span>;
+  });
+}
+
 function SectionHeading({
   title,
   description,
@@ -75,11 +89,13 @@ export function LandingPage() {
 
             <div className="space-y-6">
               <h1 className="max-w-3xl text-[2rem] font-light tracking-[-0.05em] text-white sm:text-[2.5rem] lg:text-[4.5rem]">
-                {content.hero.title}
+                {renderHighlightedText(content.hero.title)}
               </h1>
-              <p className="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-                {content.hero.description}
-              </p>
+              {content.hero.description ? (
+                <p className="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+                  {content.hero.description}
+                </p>
+              ) : null}
             </div>
 
             <div className="flex flex-col gap-4 sm:flex-row">
