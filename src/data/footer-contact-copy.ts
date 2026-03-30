@@ -23,9 +23,8 @@ export type FooterContactCopy = {
 export const footerContactCopy: Record<Language, FooterContactCopy> = {
   en: {
     sectionLabel: "Contacts",
-    title: "Ready for more inbound leads? Write to us.",
-    description:
-      "Leave a short brief and we will get back with a clear acquisition strategy and next steps.",
+    title: "Ready for more inbound leads?\nWrite to us.",
+    description: "",
     labels: {
       email: "Email",
       phone: "Phone",
@@ -44,30 +43,28 @@ export const footerContactCopy: Record<Language, FooterContactCopy> = {
   },
   et: {
     sectionLabel: "Kontakt",
-    title: "Kas oled valmis rohkemateks päringuteks? Kirjuta meile.",
-    description:
-      "Jäta lühike kirjeldus ja vastame selge kliendihanke strateegia ning järgmiste sammudega.",
+    title: "Kas oled valmis rohkemateks paringuteks?\nKirjuta meile.",
+    description: "",
     labels: {
       email: "Email",
       phone: "Telefon",
-      brief: "Kirjelda oma äri, eesmärke ja soovitud tulemust",
+      brief: "Kirjelda oma ari, eesmarke ja soovitud tulemust",
     },
     placeholders: {
       email: "hello@example.com",
       phone: "+372000000",
       brief:
-        "Kirjelda oma äri, ülesandeid ja soovitud tulemust - pakume selge kliendihanke strateegia.",
+        "Kirjelda oma ari, ulesandeid ja soovitud tulemust - pakume selge kliendihanke strateegia.",
     },
-    submit: "Saada päring",
-    success: "Päring saadetud. Võtame peagi ühendust.",
-    error: "Vormi saatmine ebaõnnestus. Proovi palun uuesti.",
+    submit: "Saada paring",
+    success: "Paring saadetud. Votame peagi uhendust.",
+    error: "Vormi saatmine ebaonnestus. Proovi palun uuesti.",
     contactLabel: "Otsesed kontaktid",
   },
   ru: {
     sectionLabel: "Контакты",
-    title: "Готовы к росту заявок? Напишите нам",
-    description:
-      "Оставьте короткий бриф, и мы вернемся с понятной стратегией привлечения клиентов и следующим шагом.",
+    title: "Готовы к росту заявок?\nНапишите нам",
+    description: "",
     labels: {
       email: "Email",
       phone: "Телефон",

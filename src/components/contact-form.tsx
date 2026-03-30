@@ -63,12 +63,14 @@ export function ContactForm({ language }: ContactFormProps) {
         <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">
           {copy.sectionLabel}
         </p>
-        <h2 className="max-w-lg text-3xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
+        <h2 className="max-w-lg whitespace-pre-line text-3xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
           {copy.title}
         </h2>
-        <p className="max-w-xl text-base leading-8 text-slate-300">
-          {copy.description}
-        </p>
+        {copy.description ? (
+          <p className="max-w-xl text-base leading-8 text-slate-300">
+            {copy.description}
+          </p>
+        ) : null}
       </div>
 
       <div className="space-y-4">
@@ -77,6 +79,7 @@ export function ContactForm({ language }: ContactFormProps) {
             <span className="text-sm text-slate-500">{copy.labels.email}</span>
             <input
               type="email"
+              required
               value={formState.email}
               onChange={handleChange("email")}
               placeholder={copy.placeholders.email}
@@ -88,6 +91,7 @@ export function ContactForm({ language }: ContactFormProps) {
             <span className="text-sm text-slate-500">{copy.labels.phone}</span>
             <input
               type="tel"
+              required
               value={formState.phone}
               onChange={handleChange("phone")}
               placeholder={copy.placeholders.phone}
@@ -96,7 +100,7 @@ export function ContactForm({ language }: ContactFormProps) {
           </label>
 
           <label className="rounded-[1.5rem] border border-white/10 bg-slate-900/80 p-5 sm:col-span-2">
-            <span className="text-sm text-slate-500">{copy.labels.brief}</span>
+            <span className="sr-only">{copy.labels.brief}</span>
             <textarea
               value={formState.brief}
               onChange={handleChange("brief")}

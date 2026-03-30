@@ -12,9 +12,9 @@ export async function POST(request: Request) {
     const phone = body.phone?.trim() || "";
     const brief = body.brief?.trim() || "";
 
-    if (!brief || (!email && !phone)) {
+    if (!email || !phone) {
       return Response.json(
-        { error: "Email or phone and brief are required." },
+        { error: "Email and phone are required." },
         { status: 400 },
       );
     }
