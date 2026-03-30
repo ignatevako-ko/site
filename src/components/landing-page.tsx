@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
 
 const defaultLanguage: Language = "ru";
+
 const caseBackgrounds = [
   "from-[#14192f] via-[#1c2342] to-[#3b1d52]",
   "from-[#1a172d] via-[#2a2042] to-[#4b2a5d]",
@@ -19,16 +20,36 @@ const caseBackgrounds = [
 const serviceOfferCopy: Record<
   Language,
   {
+    includesLabel: string;
+    includes: string[];
     priceLabel: string;
-    fromLabel: string;
+    budgetLabel: string;
+    budgetValue: string;
+    pricingNote: string;
     additionalLabel: string;
     items: string[];
     cta: string;
   }
 > = {
   en: {
-    priceLabel: "Service pricing",
-    fromLabel: "from",
+    includesLabel: "What's included",
+    includes: [
+      "Niche and competitor analysis",
+      "Campaign strategy",
+      "Ad account setup",
+      "Ad structure creation",
+      "Audience setup",
+      "Ad copywriting",
+      "Creative production or filming guidance",
+      "Campaign launch",
+      "A/B testing",
+      "Campaign optimization",
+    ],
+    priceLabel: "Price: 489€",
+    budgetLabel: "Recommended ad budget:",
+    budgetValue: "from 300€",
+    pricingNote:
+      "For budgets from 1000€, an extra +2% of the monthly ad budget is added to the service fee.",
     additionalLabel: "Additional services",
     items: [
       "Consultation",
@@ -40,8 +61,24 @@ const serviceOfferCopy: Record<
     cta: "Start a conversation",
   },
   et: {
-    priceLabel: "Teenuse hind",
-    fromLabel: "alates",
+    includesLabel: "Mis sisaldub",
+    includes: [
+      "Niši ja konkurentide analüüs",
+      "Reklaamikampaania strateegia",
+      "Reklaamikonto seadistamine",
+      "Reklaamistruktuuri loomine",
+      "Sihtgruppide seadistamine",
+      "Reklaamtekstide kirjutamine",
+      "Loovlahenduste loomine või võtte soovitused",
+      "Reklaami käivitamine",
+      "A/B testimine",
+      "Reklaamikampaaniate optimeerimine",
+    ],
+    priceLabel: "Hind: 489€",
+    budgetLabel: "Soovitatav reklaamieelarve:",
+    budgetValue: "alates 300€",
+    pricingNote:
+      "Kui eelarve algab 1000€-st, lisandub teenuse hinnale +2% kuisest reklaamieelarvest.",
     additionalLabel: "Lisateenused",
     items: [
       "Konsultatsioon",
@@ -53,8 +90,24 @@ const serviceOfferCopy: Record<
     cta: "Alusta vestlust",
   },
   ru: {
-    priceLabel: "Стоимость услуг",
-    fromLabel: "от",
+    includesLabel: "Что входит",
+    includes: [
+      "анализ ниши и конкурентов",
+      "стратегия рекламной кампании",
+      "настройка рекламного кабинета",
+      "создание структуры рекламы",
+      "настройка аудиторий",
+      "написание текстов объявлений",
+      "создание креативов или рекомендации по съемке",
+      "запуск рекламы",
+      "а/б тестирование",
+      "оптимизация рекламных кампаний",
+    ],
+    priceLabel: "Стоимость: 489€",
+    budgetLabel: "Рекомендуемый рекламный бюджет:",
+    budgetValue: "от 300€",
+    pricingNote:
+      "При бюджете от 1000€ к стоимости добавляется +2% от месячного бюджета.",
     additionalLabel: "Дополнительные услуги",
     items: [
       "Консультация",
@@ -284,11 +337,7 @@ export function LandingPage() {
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
             {content.cases.map((item, index) => (
-              <CaseCard
-                key={item.title}
-                item={item}
-                index={index}
-              />
+              <CaseCard key={item.title} item={item} index={index} />
             ))}
           </div>
         </section>
@@ -298,36 +347,61 @@ export function LandingPage() {
             title={content.sections.services}
             description={content.sectionLead.services}
           />
-          <div className="glass-shell relative mt-10 overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_top_left,rgba(255,224,196,0.08),transparent_16%),radial-gradient(circle_at_bottom_right,rgba(167,139,250,0.14),transparent_22%),linear-gradient(135deg,rgba(12,18,42,0.92),rgba(16,20,42,0.84),rgba(32,22,51,0.88))] p-8 text-white shadow-[0_40px_120px_rgba(7,10,24,0.32)] sm:p-10 lg:p-12">
-            <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_18%_24%,rgba(255,255,255,0.05)_0,rgba(255,255,255,0.05)_64px,transparent_64px),radial-gradient(circle_at_82%_28%,rgba(167,139,250,0.08)_0,rgba(167,139,250,0.08)_54px,transparent_54px),linear-gradient(130deg,transparent,rgba(255,255,255,0.04),transparent)]" />
+          <div className="mt-10 space-y-6">
+            <div className="glass-shell relative overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_top_left,rgba(255,224,196,0.08),transparent_16%),radial-gradient(circle_at_bottom_right,rgba(167,139,250,0.14),transparent_22%),linear-gradient(135deg,rgba(12,18,42,0.92),rgba(16,20,42,0.84),rgba(32,22,51,0.88))] p-8 text-white shadow-[0_40px_120px_rgba(7,10,24,0.32)] sm:p-10 lg:p-12">
+              <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_18%_24%,rgba(255,255,255,0.05)_0,rgba(255,255,255,0.05)_64px,transparent_64px),radial-gradient(circle_at_82%_28%,rgba(167,139,250,0.08)_0,rgba(167,139,250,0.08)_54px,transparent_54px),linear-gradient(130deg,transparent,rgba(255,255,255,0.04),transparent)]" />
 
-            <div className="relative grid gap-10 lg:grid-cols-[0.95fr_auto_1.05fr] lg:items-center">
-              <div className="space-y-8">
-                <div className="space-y-3">
+              <div className="relative grid gap-10 lg:grid-cols-[1.15fr_auto_0.85fr] lg:items-start">
+                <div className="space-y-6">
                   <p className="text-lg font-medium tracking-[-0.03em] text-slate-200">
-                    {serviceOffer.priceLabel}
+                    {serviceOffer.includesLabel}
                   </p>
-                  <div className="flex items-end gap-3">
-                    <span className="pb-2 text-2xl font-medium text-violet-200/85">
-                      {serviceOffer.fromLabel}
-                    </span>
-                    <span className="bg-gradient-to-r from-white via-violet-100 to-fuchsia-200 bg-clip-text text-6xl font-light leading-none tracking-[-0.06em] text-transparent sm:text-7xl">
-                      489€
-                    </span>
+
+                  <div className="grid gap-3">
+                    {serviceOffer.includes.map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.04] px-4 py-3 text-sm text-slate-100"
+                      >
+                        <span className="mt-0.5 text-violet-300">✔</span>
+                        <span>{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                <a
-                  href="#contacts"
-                  className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-8 text-base font-semibold text-slate-950 transition hover:bg-violet-300"
-                >
-                  {serviceOffer.cta}
-                </a>
+                <div className="hidden h-full w-px bg-white/10 lg:block" />
+
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <p className="text-xl font-medium tracking-[-0.03em] text-slate-100">
+                      {serviceOffer.priceLabel}
+                    </p>
+                    <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.05] p-5">
+                      <p className="text-sm uppercase tracking-[0.22em] text-slate-400">
+                        {serviceOffer.budgetLabel}
+                      </p>
+                      <p className="mt-3 text-3xl font-light tracking-[-0.05em] text-white">
+                        {serviceOffer.budgetValue}
+                      </p>
+                    </div>
+                    <p className="max-w-sm text-xs leading-6 text-slate-400">
+                      {serviceOffer.pricingNote}
+                    </p>
+                  </div>
+
+                  <a
+                    href="#contacts"
+                    className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-8 text-base font-semibold text-slate-950 transition hover:bg-violet-300"
+                  >
+                    {serviceOffer.cta}
+                  </a>
+                </div>
               </div>
+            </div>
 
-              <div className="hidden h-full w-px bg-white/10 lg:block" />
-
-              <div className="space-y-7">
+            <div className="glass-shell rounded-[2rem] bg-[linear-gradient(135deg,rgba(12,18,42,0.76),rgba(16,20,42,0.7),rgba(32,22,51,0.74))] p-8 sm:p-10">
+              <div className="space-y-6">
                 <p className="text-lg font-medium tracking-[-0.03em] text-slate-200">
                   {serviceOffer.additionalLabel}
                 </p>
@@ -397,7 +471,6 @@ export function LandingPage() {
             </div>
           </div>
         </section>
-
       </main>
 
       <SiteFooter content={content} language={language} />
