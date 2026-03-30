@@ -8,6 +8,9 @@ type SiteFooterProps = {
 };
 
 export function SiteFooter({ content, language }: SiteFooterProps) {
+  const telegramUrl = "https://t.me/ignateva_ko";
+  const instagramUrl = "https://www.instagram.com/do.market.ng/";
+
   return (
     <footer id="contacts" className="border-t border-white/10 bg-slate-950">
       <div className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:pt-20">
@@ -16,59 +19,125 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
         </div>
       </div>
 
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
+      <div className="mx-auto grid w-full max-w-7xl gap-12 px-6 py-12 lg:grid-cols-[1.05fr_0.4fr_0.75fr] lg:px-10">
         <div className="space-y-4">
           <BrandLogo />
           <p className="max-w-xl text-sm leading-7 text-slate-400">
             {content.footer.text}
           </p>
+
+          <div className="flex items-center gap-3 pt-2">
+            <a
+              href={telegramUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Telegram"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:border-violet-300/40 hover:bg-violet-300/10 hover:text-white"
+            >
+              <TelegramIcon />
+            </a>
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:border-violet-300/40 hover:bg-violet-300/10 hover:text-white"
+            >
+              <InstagramIcon />
+            </a>
+          </div>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[0.45fr_0.55fr]">
-          <div className="space-y-3">
-            {content.footer.links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="block text-sm text-slate-300 transition hover:text-violet-300"
-              >
-                {link.label}
-              </a>
-            ))}
+        <nav className="space-y-3 self-start">
+          {content.footer.links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="block text-sm text-slate-300 transition hover:text-violet-300"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          <div className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-[0.24em] text-slate-500">
+              {content.contacts.labels.email}
+            </p>
+            <a
+              href={`mailto:${content.contacts.email}`}
+              className="text-base text-white transition hover:text-violet-300"
+            >
+              {content.contacts.email}
+            </a>
           </div>
 
-          <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
-            <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
-              {content.sections.contacts}
+          <div className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-[0.24em] text-slate-500">
+              {content.contacts.labels.phone}
             </p>
-            <div className="mt-4 grid gap-5 sm:grid-cols-3">
-              <div>
-                <p className="text-sm text-slate-500">{content.contacts.labels.email}</p>
-                <a
-                  href={`mailto:${content.contacts.email}`}
-                  className="mt-2 block text-white"
-                >
-                  {content.contacts.email}
-                </a>
-              </div>
-              <div>
-                <p className="text-sm text-slate-500">{content.contacts.labels.phone}</p>
-                <a href={`tel:${content.contacts.phone}`} className="mt-2 block text-white">
-                  {content.contacts.phone}
-                </a>
-              </div>
-              <div>
-                <p className="text-sm text-slate-500">{content.contacts.labels.company}</p>
-                <p className="mt-2 text-white">{content.contacts.company}</p>
-              </div>
-            </div>
+            <a
+              href={`tel:${content.contacts.phone}`}
+              className="text-base text-white transition hover:text-violet-300"
+            >
+              {content.contacts.phone}
+            </a>
+          </div>
+
+          <div className="space-y-2 sm:col-span-2 lg:col-span-1 xl:col-span-2">
+            <p className="text-xs font-medium uppercase tracking-[0.24em] text-slate-500">
+              {content.contacts.labels.company}
+            </p>
+            <p className="max-w-sm text-base leading-8 text-white">{content.contacts.company}</p>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto flex w-full max-w-7xl justify-end px-6 pb-10 lg:px-10">
-        <p className="text-sm text-slate-500">{content.footer.copyright}</p>
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 border-t border-white/10 px-6 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between lg:px-10">
+        <p>{content.footer.copyright}</p>
+        <div className="flex items-center gap-4 text-xs uppercase tracking-[0.24em] text-slate-600">
+          <span>{content.sections.contacts}</span>
+          <span className="h-1 w-1 rounded-full bg-slate-700" />
+          <span>Telegram</span>
+          <span className="h-1 w-1 rounded-full bg-slate-700" />
+          <span>Instagram</span>
+        </div>
       </div>
     </footer>
+  );
+}
+
+function TelegramIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-5 w-5 fill-none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 4L3 11.53l6.22 2.18L17 7l-5.65 7.17v5.83l3.14-3.42L19.5 20 21 4Z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-5 w-5 fill-none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+      <circle cx="12" cy="12" r="4.25" />
+      <circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
   );
 }
