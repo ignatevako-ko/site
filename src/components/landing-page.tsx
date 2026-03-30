@@ -298,21 +298,20 @@ export function LandingPage() {
             title={content.sections.services}
             description={content.sectionLead.services}
           />
-          <div className="relative mt-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.94),rgba(245,247,255,0.92))] p-8 text-slate-950 shadow-[0_40px_120px_rgba(7,10,24,0.26)] sm:p-10 lg:p-12">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.08),transparent_18%),radial-gradient(circle_at_bottom_right,rgba(167,139,250,0.12),transparent_24%),linear-gradient(120deg,transparent_0%,rgba(99,102,241,0.04)_100%)]" />
-            <div className="absolute inset-0 opacity-60 [background-image:radial-gradient(circle_at_20%_25%,rgba(99,102,241,0.05)_0,rgba(99,102,241,0.05)_64px,transparent_64px),radial-gradient(circle_at_80%_30%,rgba(99,102,241,0.04)_0,rgba(99,102,241,0.04)_54px,transparent_54px),linear-gradient(130deg,transparent,rgba(255,255,255,0.45),transparent)]" />
+          <div className="glass-shell relative mt-10 overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_top_left,rgba(255,224,196,0.08),transparent_16%),radial-gradient(circle_at_bottom_right,rgba(167,139,250,0.14),transparent_22%),linear-gradient(135deg,rgba(12,18,42,0.92),rgba(16,20,42,0.84),rgba(32,22,51,0.88))] p-8 text-white shadow-[0_40px_120px_rgba(7,10,24,0.32)] sm:p-10 lg:p-12">
+            <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_18%_24%,rgba(255,255,255,0.05)_0,rgba(255,255,255,0.05)_64px,transparent_64px),radial-gradient(circle_at_82%_28%,rgba(167,139,250,0.08)_0,rgba(167,139,250,0.08)_54px,transparent_54px),linear-gradient(130deg,transparent,rgba(255,255,255,0.04),transparent)]" />
 
             <div className="relative grid gap-10 lg:grid-cols-[0.95fr_auto_1.05fr] lg:items-center">
               <div className="space-y-8">
                 <div className="space-y-3">
-                  <p className="text-xl font-medium tracking-[-0.03em] text-slate-900/90">
+                  <p className="text-lg font-medium tracking-[-0.03em] text-slate-200">
                     {serviceOffer.priceLabel}
                   </p>
                   <div className="flex items-end gap-3">
-                    <span className="pb-2 text-2xl font-medium text-indigo-700/90">
+                    <span className="pb-2 text-2xl font-medium text-violet-200/85">
                       {serviceOffer.fromLabel}
                     </span>
-                    <span className="text-6xl font-light leading-none tracking-[-0.06em] text-indigo-700 sm:text-7xl">
+                    <span className="bg-gradient-to-r from-white via-violet-100 to-fuchsia-200 bg-clip-text text-6xl font-light leading-none tracking-[-0.06em] text-transparent sm:text-7xl">
                       489€
                     </span>
                   </div>
@@ -320,16 +319,16 @@ export function LandingPage() {
 
                 <a
                   href="#contacts"
-                  className="inline-flex min-h-14 items-center justify-center rounded-full bg-indigo-600 px-8 text-base font-semibold text-white transition hover:bg-indigo-500"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-8 text-base font-semibold text-slate-950 transition hover:bg-violet-300"
                 >
                   {serviceOffer.cta}
                 </a>
               </div>
 
-              <div className="hidden h-full w-px bg-indigo-200/80 lg:block" />
+              <div className="hidden h-full w-px bg-white/10 lg:block" />
 
               <div className="space-y-7">
-                <p className="text-xl font-medium tracking-[-0.03em] text-slate-900/90">
+                <p className="text-lg font-medium tracking-[-0.03em] text-slate-200">
                   {serviceOffer.additionalLabel}
                 </p>
 
@@ -337,7 +336,7 @@ export function LandingPage() {
                   {serviceOffer.items.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full bg-indigo-100 px-5 py-2.5 text-sm font-medium text-indigo-900"
+                      className="rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-sm font-medium text-slate-100"
                     >
                       {item}
                     </span>
@@ -346,7 +345,7 @@ export function LandingPage() {
 
                 <a
                   href="#contacts"
-                  className="inline-flex min-h-14 items-center justify-center rounded-full border border-indigo-500 bg-white/60 px-8 text-base font-semibold text-indigo-700 transition hover:bg-white"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/16 bg-white/6 px-8 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
                 >
                   {serviceOffer.cta}
                 </a>
