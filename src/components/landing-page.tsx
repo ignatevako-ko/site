@@ -16,6 +16,54 @@ const caseBackgrounds = [
   "from-[#1d1730] via-[#31214b] to-[#5b2d54]",
 ] as const;
 
+const serviceOfferCopy: Record<
+  Language,
+  {
+    priceLabel: string;
+    fromLabel: string;
+    additionalLabel: string;
+    items: string[];
+    cta: string;
+  }
+> = {
+  en: {
+    priceLabel: "Service pricing",
+    fromLabel: "from",
+    additionalLabel: "Additional services",
+    items: [
+      "Consultation",
+      "Marketing audit",
+      "Google ads",
+      "SEO optimization",
+    ],
+    cta: "Start a conversation",
+  },
+  et: {
+    priceLabel: "Teenuse hind",
+    fromLabel: "alates",
+    additionalLabel: "Lisateenused",
+    items: [
+      "Konsultatsioon",
+      "Turundusaudit",
+      "Google reklaam",
+      "SEO optimeerimine",
+    ],
+    cta: "Alusta vestlust",
+  },
+  ru: {
+    priceLabel: "Стоимость услуг",
+    fromLabel: "от",
+    additionalLabel: "Дополнительные услуги",
+    items: [
+      "Консультация",
+      "Аудит маркетинга",
+      "Реклама Google",
+      "SEO оптимизация",
+    ],
+    cta: "Оставить заявку",
+  },
+};
+
 function renderHighlightedText(text: string) {
   return text.split(/(\*[^*]+\*)/g).map((part, index) => {
     if (part.startsWith("*") && part.endsWith("*")) {
@@ -117,6 +165,7 @@ export function LandingPage() {
   };
 
   const content = siteContent[language];
+  const serviceOffer = serviceOfferCopy[language];
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
@@ -246,31 +295,60 @@ export function LandingPage() {
             title={content.sections.services}
             description={content.sectionLead.services}
           />
-          <div className="mt-10 grid gap-6 xl:grid-cols-3">
-            {content.services.map((service) => (
-              <article
-                key={service.title}
-                className="rounded-[1.75rem] border border-white/10 bg-slate-900/70 p-6"
-              >
-                <div className="mb-6 h-px w-full bg-gradient-to-r from-violet-300/90 to-transparent" />
-                <h3 className="text-2xl font-light tracking-[-0.04em] text-white">
-                  {service.title}
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-slate-400">
-                  {service.description}
+          <div className="relative mt-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.94),rgba(245,247,255,0.92))] p-8 text-slate-950 shadow-[0_40px_120px_rgba(7,10,24,0.26)] sm:p-10 lg:p-12">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.08),transparent_18%),radial-gradient(circle_at_bottom_right,rgba(167,139,250,0.12),transparent_24%),linear-gradient(120deg,transparent_0%,rgba(99,102,241,0.04)_100%)]" />
+            <div className="absolute inset-0 opacity-60 [background-image:radial-gradient(circle_at_20%_25%,rgba(99,102,241,0.05)_0,rgba(99,102,241,0.05)_64px,transparent_64px),radial-gradient(circle_at_80%_30%,rgba(99,102,241,0.04)_0,rgba(99,102,241,0.04)_54px,transparent_54px),linear-gradient(130deg,transparent,rgba(255,255,255,0.45),transparent)]" />
+
+            <div className="relative grid gap-10 lg:grid-cols-[0.95fr_auto_1.05fr] lg:items-center">
+              <div className="space-y-8">
+                <div className="space-y-3">
+                  <p className="text-xl font-medium tracking-[-0.03em] text-slate-900/90">
+                    {serviceOffer.priceLabel}
+                  </p>
+                  <div className="flex items-end gap-3">
+                    <span className="pb-2 text-2xl font-medium text-indigo-700/90">
+                      {serviceOffer.fromLabel}
+                    </span>
+                    <span className="text-6xl font-light leading-none tracking-[-0.06em] text-indigo-700 sm:text-7xl">
+                      489€
+                    </span>
+                  </div>
+                </div>
+
+                <a
+                  href="#contacts"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full bg-indigo-600 px-8 text-base font-semibold text-white transition hover:bg-indigo-500"
+                >
+                  {serviceOffer.cta}
+                </a>
+              </div>
+
+              <div className="hidden h-full w-px bg-indigo-200/80 lg:block" />
+
+              <div className="space-y-7">
+                <p className="text-xl font-medium tracking-[-0.03em] text-slate-900/90">
+                  {serviceOffer.additionalLabel}
                 </p>
-                <div className="mt-8 space-y-3">
-                  {service.features.map((feature) => (
-                    <div
-                      key={feature}
-                      className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200"
+
+                <div className="flex flex-wrap gap-3">
+                  {serviceOffer.items.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full bg-indigo-100 px-5 py-2.5 text-sm font-medium text-indigo-900"
                     >
-                      {feature}
-                    </div>
+                      {item}
+                    </span>
                   ))}
                 </div>
-              </article>
-            ))}
+
+                <a
+                  href="#contacts"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full border border-indigo-500 bg-white/60 px-8 text-base font-semibold text-indigo-700 transition hover:bg-white"
+                >
+                  {serviceOffer.cta}
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
