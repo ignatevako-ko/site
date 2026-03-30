@@ -4,9 +4,17 @@ import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/brand-logo";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { siteContent, type Language } from "@/data/site-content";
+import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
 
 const defaultLanguage: Language = "ru";
+const caseBackgrounds = [
+  "from-[#14192f] via-[#1c2342] to-[#3b1d52]",
+  "from-[#1a172d] via-[#2a2042] to-[#4b2a5d]",
+  "from-[#131b34] via-[#1d2947] to-[#304e6c]",
+  "from-[#17162d] via-[#2a1e43] to-[#443661]",
+  "from-[#171f38] via-[#203057] to-[#22536b]",
+  "from-[#1d1730] via-[#31214b] to-[#5b2d54]",
+] as const;
 
 function renderHighlightedText(text: string) {
   return text.split(/(\*[^*]+\*)/g).map((part, index) => {
@@ -34,8 +42,65 @@ function SectionHeading({
       <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">
         {title}
       </p>
-      <p className="text-base leading-7 text-slate-400 sm:text-lg">{description}</p>
+      {description ? (
+        <p className="text-base leading-7 text-slate-400 sm:text-lg">{description}</p>
+      ) : null}
     </div>
+  );
+}
+
+function CaseCard({
+  item,
+  index,
+}: {
+  item: CaseStudy;
+  index: number;
+}) {
+  const palette = caseBackgrounds[index % caseBackgrounds.length];
+  const categoryParts = item.category.split("/").map((part) => part.trim());
+
+  return (
+    <article
+      className={`group overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] transition hover:-translate-y-1 hover:border-violet-300/35 ${
+        index === 0 ? "xl:col-span-2" : ""
+      }`}
+    >
+      <div
+        className={`relative min-h-[19rem] bg-gradient-to-br ${palette} p-6 sm:min-h-[21rem] sm:p-7`}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.22),transparent_28%),linear-gradient(180deg,rgba(2,6,23,0.05),rgba(2,6,23,0.78))]" />
+        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:56px_56px]" />
+
+        <div className="relative flex h-full flex-col justify-between gap-8">
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full border border-white/20 bg-white/12 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/95">
+              Кейc
+            </span>
+            {categoryParts.map((part) => (
+              <span
+                key={part}
+                className="rounded-full border border-white/16 bg-slate-950/20 px-3 py-1 text-[0.7rem] font-medium text-white/78"
+              >
+                {part}
+              </span>
+            ))}
+          </div>
+
+          <div className="max-w-2xl space-y-4">
+            <h3 className="text-3xl font-light tracking-[-0.05em] text-white sm:text-[2.2rem]">
+              {item.title}
+            </h3>
+            <div className="inline-flex max-w-full rounded-[1.25rem] border border-white/18 bg-slate-950/28 px-4 py-3 text-base font-semibold text-white shadow-[0_18px_50px_rgba(2,6,23,0.28)] backdrop-blur-sm">
+              {item.result}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10 bg-slate-950/55 p-6 sm:p-7">
+        <p className="max-w-3xl text-sm leading-7 text-slate-300">{item.summary}</p>
+      </div>
+    </article>
   );
 }
 
@@ -82,7 +147,7 @@ export function LandingPage() {
                 {renderHighlightedText(content.hero.title)}
               </h1>
               {content.hero.description ? (
-                <p className="max-w-2xl text-base font-light leading-7 text-slate-300 sm:text-lg">
+                <p className="max-w-2xl text-lg font-medium uppercase tracking-[0.22em] text-violet-200/95 sm:text-xl">
                   {content.hero.description}
                 </p>
               ) : null}
@@ -166,20 +231,12 @@ export function LandingPage() {
             description={content.sectionLead.cases}
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
-            {content.cases.map((item) => (
-              <article
+            {content.cases.map((item, index) => (
+              <CaseCard
                 key={item.title}
-                className="group rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1 hover:border-violet-300/40 hover:bg-white/7"
-              >
-                <p className="text-xs uppercase tracking-[0.24em] text-violet-300">
-                  {item.category}
-                </p>
-                <h3 className="mt-5 text-2xl font-light tracking-[-0.04em] text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-slate-400">{item.summary}</p>
-                <p className="mt-8 text-sm font-semibold text-white">{item.result}</p>
-              </article>
+                item={item}
+                index={index}
+              />
             ))}
           </div>
         </section>

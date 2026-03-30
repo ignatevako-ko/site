@@ -263,8 +263,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
       contacts: "Contacts",
     },
     sectionLead: {
-      cases:
-        "Real portfolio projects adapted into the visual language of the site, with the same premium and structured presentation.",
+      cases: "",
       services:
         "A compact service stack built around paid traffic, creative production and performance optimization.",
       clients:
@@ -379,8 +378,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
       contacts: "Kontakt",
     },
     sectionLead: {
-      cases:
-        "Päris portfoolioprojektid on tõstetud saidi stiili sisse, säilitades sama premium ja korrastatud esituse.",
+      cases: "",
       services:
         "Kompaktne teenuste süsteem, mis ühendab tasulise liikluse, loovlahendused ja tulemusoptimeerimise.",
       clients:
@@ -496,8 +494,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
       contacts: "Контакты",
     },
     sectionLead: {
-      cases:
-        "Реальные проекты из портфолио встроены в визуальный стиль сайта и оформлены в той же премиальной и чистой подаче.",
+      cases: "",
       services:
         "Компактная система услуг, которая объединяет paid traffic, креатив и performance-оптимизацию.",
       clients:
