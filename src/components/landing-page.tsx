@@ -78,11 +78,11 @@ export function LandingPage() {
             </div>
 
             <div className="space-y-6">
-              <h1 className="max-w-3xl text-[2rem] font-light tracking-[-0.05em] text-white sm:text-[2.5rem] lg:text-[4.5rem]">
+              <h1 className="max-w-3xl text-[1.85rem] font-light tracking-[-0.05em] text-white sm:text-[2.25rem] lg:text-[3.75rem]">
                 {renderHighlightedText(content.hero.title)}
               </h1>
               {content.hero.description ? (
-                <p className="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+                <p className="max-w-2xl text-base font-light leading-7 text-slate-300 sm:text-lg">
                   {content.hero.description}
                 </p>
               ) : null}

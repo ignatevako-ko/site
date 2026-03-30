@@ -241,9 +241,8 @@ export const siteContent: Record<Language, SiteDictionary> = {
     ],
     hero: {
       eyebrow: "Conscious marketing with measurable results",
-      title: "We build marketing systems that guide brands to real growth.",
-      description:
-        "Strategy, performance media and creative execution for brands that want clarity, momentum and predictable outcomes.",
+      title: "We bring *qualified clients* through *targeted ads* on FB and Inst",
+      description: "while your competitors are still asleep",
       primaryCta: "Book a strategy call",
       secondaryCta: "Explore cases",
       dashboardTitle: "Growth command center",
@@ -358,9 +357,8 @@ export const siteContent: Record<Language, SiteDictionary> = {
     ],
     hero: {
       eyebrow: "Teadlik turundus, mis viib tulemusteni",
-      title: "Loome turundussüsteeme, mis viivad brändid reaalse kasvuni.",
-      description:
-        "Strateegia, tulemusturundus ja loovteostus brändidele, kes soovivad selgust, hoogu ja prognoositavaid tulemusi.",
+      title: "Toome *sihtkliendid* kohale *FB ja Insti suunatud reklaamiga*",
+      description: "samal ajal kui konkurendid alles magavad",
       primaryCta: "Broneeri strateegiakõne",
       secondaryCta: "Vaata töid",
       dashboardTitle: "Kasvu juhtimiskeskus",
@@ -476,8 +474,8 @@ export const siteContent: Record<Language, SiteDictionary> = {
     hero: {
       eyebrow: "Делаем осознанный маркетинг. Приводим к результатам",
       title:
-        "Приводим *целевых клиентов* через *таргетированную рекламу* FB и Inst пока конкуренты спят",
-      description: "",
+        "Приводим *целевых клиентов* через *таргетированную рекламу* FB и Inst",
+      description: "Пока конкуренты спят",
       primaryCta: "Начать диалог",
       secondaryCta: "Посмотреть кейсы",
       dashboardTitle: "Центр управления ростом",
