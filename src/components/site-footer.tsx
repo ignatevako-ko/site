@@ -23,23 +23,7 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
         <div className="space-y-4">
           <BrandLogo />
 
-          <p className="text-sm text-slate-500">Все права защищены</p>
-        </div>
-
-        <div className="space-y-5 self-start">
-          <nav className="space-y-3">
-            {content.footer.links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="block text-sm text-slate-300 transition hover:text-violet-300"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 pt-2">
             <a
               href={telegramUrl}
               target="_blank"
@@ -59,6 +43,20 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
               <InstagramIcon />
             </a>
           </div>
+        </div>
+
+        <div className="space-y-5 self-start">
+          <nav className="space-y-3">
+            {content.footer.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="block text-sm text-slate-300 transition hover:text-violet-300"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
         <div className="grid content-start gap-6 sm:grid-cols-2">
