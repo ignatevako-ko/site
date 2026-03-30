@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import { footerContactCopy } from "@/data/footer-contact-copy";
-import type { ContactContent, Language } from "@/data/site-content";
+import type { Language } from "@/data/site-content";
 
 type ContactFormProps = {
   language: Language;
-  contacts: ContactContent;
 };
 
 type FormState = {
@@ -21,7 +20,7 @@ const initialState: FormState = {
   brief: "",
 };
 
-export function ContactForm({ language, contacts }: ContactFormProps) {
+export function ContactForm({ language }: ContactFormProps) {
   const copy = footerContactCopy[language];
   const [formState, setFormState] = useState<FormState>(initialState);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
@@ -115,30 +114,6 @@ export function ContactForm({ language, contacts }: ContactFormProps) {
             {status === "loading" ? "..." : copy.submit}
           </button>
         </form>
-
-        <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
-          <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
-            {copy.contactLabel}
-          </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3">
-            <div>
-              <p className="text-sm text-slate-500">{contacts.labels.email}</p>
-              <a href={`mailto:${contacts.email}`} className="mt-2 block text-white">
-                {contacts.email}
-              </a>
-            </div>
-            <div>
-              <p className="text-sm text-slate-500">{contacts.labels.phone}</p>
-              <a href={`tel:${contacts.phone}`} className="mt-2 block text-white">
-                {contacts.phone}
-              </a>
-            </div>
-            <div>
-              <p className="text-sm text-slate-500">{contacts.labels.company}</p>
-              <p className="mt-2 text-white">{contacts.company}</p>
-            </div>
-          </div>
-        </div>
 
         {status === "success" ? (
           <p className="text-sm text-emerald-300">{copy.success}</p>
