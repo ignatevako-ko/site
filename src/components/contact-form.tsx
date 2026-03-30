@@ -63,7 +63,7 @@ export function ContactForm({ language }: ContactFormProps) {
         <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">
           {copy.sectionLabel}
         </p>
-        <h2 className="max-w-lg whitespace-pre-line text-3xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
+        <h2 className="max-w-lg whitespace-pre-line text-3xl font-light tracking-[-0.05em] text-white sm:text-5xl">
           {copy.title}
         </h2>
         {copy.description ? (

@@ -168,7 +168,9 @@ export function LandingPage() {
                 <p className="text-xs uppercase tracking-[0.24em] text-violet-300">
                   {item.category}
                 </p>
-                <h3 className="mt-5 text-2xl font-semibold text-white">{item.title}</h3>
+                <h3 className="mt-5 text-2xl font-light tracking-[-0.04em] text-white">
+                  {item.title}
+                </h3>
                 <p className="mt-4 text-sm leading-7 text-slate-400">{item.summary}</p>
                 <p className="mt-8 text-sm font-semibold text-white">{item.result}</p>
               </article>
@@ -188,7 +190,9 @@ export function LandingPage() {
                 className="rounded-[1.75rem] border border-white/10 bg-slate-900/70 p-6"
               >
                 <div className="mb-6 h-px w-full bg-gradient-to-r from-violet-300/90 to-transparent" />
-                <h3 className="text-2xl font-semibold text-white">{service.title}</h3>
+                <h3 className="text-2xl font-light tracking-[-0.04em] text-white">
+                  {service.title}
+                </h3>
                 <p className="mt-4 text-sm leading-7 text-slate-400">
                   {service.description}
                 </p>
@@ -231,7 +235,7 @@ export function LandingPage() {
               description={content.sectionLead.about}
             />
             <div className="space-y-6">
-              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
+              <h2 className="text-3xl font-light tracking-[-0.05em] text-white sm:text-4xl">
                 {content.about.title}
               </h2>
               <p className="text-base leading-8 text-slate-300">
