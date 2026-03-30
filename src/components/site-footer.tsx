@@ -22,9 +22,6 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
       <div className="mx-auto grid w-full max-w-7xl gap-12 px-6 py-12 lg:grid-cols-[1.05fr_0.4fr_0.75fr] lg:px-10">
         <div className="space-y-4">
           <BrandLogo />
-          <p className="max-w-xl text-sm leading-7 text-slate-400">
-            {content.footer.text}
-          </p>
 
           <div className="flex items-center gap-3 pt-2">
             <a
@@ -60,7 +57,7 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
           ))}
         </nav>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+        <div className="grid content-start gap-6 sm:grid-cols-2">
           <div className="space-y-2">
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-slate-500">
               {content.contacts.labels.email}
@@ -85,24 +82,20 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
             </a>
           </div>
 
-          <div className="space-y-2 sm:col-span-2 lg:col-span-1 xl:col-span-2">
+          <div className="space-y-2 sm:col-span-2">
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-slate-500">
               {content.contacts.labels.company}
             </p>
-            <p className="max-w-sm text-base leading-8 text-white">{content.contacts.company}</p>
+            <div className="max-w-sm text-base leading-8 text-white">
+              <p>OÜ Turundusagendid</p>
+              <p>Reg.number 16881379</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 border-t border-white/10 px-6 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between lg:px-10">
+      <div className="mx-auto flex w-full max-w-7xl border-t border-white/10 px-6 py-6 text-sm text-slate-500 lg:px-10">
         <p>{content.footer.copyright}</p>
-        <div className="flex items-center gap-4 text-xs uppercase tracking-[0.24em] text-slate-600">
-          <span>{content.sections.contacts}</span>
-          <span className="h-1 w-1 rounded-full bg-slate-700" />
-          <span>Telegram</span>
-          <span className="h-1 w-1 rounded-full bg-slate-700" />
-          <span>Instagram</span>
-        </div>
       </div>
     </footer>
   );
