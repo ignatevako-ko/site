@@ -23,7 +23,23 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
         <div className="space-y-4">
           <BrandLogo />
 
-          <div className="flex items-center gap-3 pt-2">
+          <p className="text-sm text-slate-500">Все права защищены</p>
+        </div>
+
+        <div className="space-y-5 self-start">
+          <nav className="space-y-3">
+            {content.footer.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="block text-sm text-slate-300 transition hover:text-violet-300"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
             <a
               href={telegramUrl}
               target="_blank"
@@ -44,18 +60,6 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
             </a>
           </div>
         </div>
-
-        <nav className="space-y-3 self-start">
-          {content.footer.links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="block text-sm text-slate-300 transition hover:text-violet-300"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
 
         <div className="grid content-start gap-6 sm:grid-cols-2">
           <div className="space-y-2">
@@ -86,7 +90,7 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-slate-500">
               {content.contacts.labels.company}
             </p>
-            <div className="max-w-sm text-base leading-8 text-white">
+            <div className="max-w-sm space-y-1 text-base leading-6 text-white">
               <p>OÜ Turundusagendid</p>
               <p>Reg.number 16881379</p>
             </div>
