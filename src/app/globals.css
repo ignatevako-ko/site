@@ -18,16 +18,20 @@
 
 html {
   background:
-    radial-gradient(circle at top, rgba(167, 139, 250, 0.09), transparent 28%),
-    radial-gradient(circle at left top, rgba(255, 216, 181, 0.08), transparent 22%),
-    radial-gradient(circle at right bottom, rgba(255, 228, 196, 0.08), transparent 18%),
-    linear-gradient(180deg, #020617 0%, #020817 50%, #020617 100%);
+    radial-gradient(circle at 12% 0%, rgba(255, 214, 170, 0.13), transparent 20%),
+    radial-gradient(circle at 50% 8%, rgba(167, 139, 250, 0.16), transparent 28%),
+    radial-gradient(circle at 100% 68%, rgba(244, 114, 182, 0.08), transparent 22%),
+    linear-gradient(180deg, #030617 0%, #050a1f 42%, #06081a 100%);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-manrope), sans-serif;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.015)),
+    radial-gradient(circle at top, rgba(167, 139, 250, 0.06), transparent 24%),
+    radial-gradient(circle at left bottom, rgba(255, 226, 196, 0.05), transparent 20%);
 }
 
 a,
@@ -51,6 +55,15 @@ button {
   background-position: center;
   background-size: 72px 72px;
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), transparent 85%);
+}
+
+.glass-shell {
+  background: linear-gradient(180deg, rgba(10, 16, 39, 0.82), rgba(8, 12, 28, 0.72));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 60px rgba(2, 6, 23, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
 }
 
 h1,

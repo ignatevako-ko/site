@@ -16,8 +16,8 @@ export function SiteHeader({
   onLanguageChange,
 }: SiteHeaderProps) {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
+    <header className="sticky top-0 z-50 px-4 pt-4 lg:px-6">
+      <div className="glass-shell mx-auto flex w-full max-w-7xl items-center justify-between gap-6 rounded-full px-6 py-4 lg:px-8">
         <a href="#" aria-label="Do.Marketing home">
           <BrandLogo compact />
         </a>

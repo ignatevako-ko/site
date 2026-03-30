@@ -14,7 +14,7 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
   return (
     <footer id="contacts" className="border-t border-white/10 bg-slate-950">
       <div className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:pt-20">
-        <div className="rounded-[2rem] border border-violet-400/20 bg-gradient-to-br from-violet-400/10 via-white/5 to-fuchsia-500/10 p-8 lg:p-12">
+        <div className="glass-shell rounded-[2rem] bg-[radial-gradient(circle_at_top_left,rgba(255,224,196,0.08),transparent_18%),linear-gradient(135deg,rgba(167,139,250,0.12),rgba(255,255,255,0.04),rgba(236,72,153,0.08))] p-8 lg:p-12">
           <ContactForm language={language} />
         </div>
       </div>

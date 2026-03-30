@@ -33,6 +33,7 @@ const serviceOfferCopy: Record<
     items: [
       "Consultation",
       "Marketing audit",
+      "SMM",
       "Google ads",
       "SEO optimization",
     ],
@@ -45,6 +46,7 @@ const serviceOfferCopy: Record<
     items: [
       "Konsultatsioon",
       "Turundusaudit",
+      "SMM",
       "Google reklaam",
       "SEO optimeerimine",
     ],
@@ -57,6 +59,7 @@ const serviceOfferCopy: Record<
     items: [
       "Консультация",
       "Аудит маркетинга",
+      "SMM",
       "Реклама Google",
       "SEO оптимизация",
     ],
@@ -170,11 +173,11 @@ export function LandingPage() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-6rem] top-[-3rem] h-[18rem] w-[18rem] rounded-full bg-amber-200/18 blur-3xl" />
-        <div className="absolute left-1/2 top-0 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-violet-400/12 blur-3xl" />
-        <div className="absolute right-[-9rem] top-44 h-[24rem] w-[24rem] rounded-full bg-rose-200/16 blur-3xl" />
-        <div className="absolute bottom-[-10rem] left-[-6rem] h-[22rem] w-[22rem] rounded-full bg-violet-200/12 blur-3xl" />
-        <div className="absolute bottom-[-8rem] right-[-6rem] h-[18rem] w-[18rem] rounded-full bg-amber-100/20 blur-3xl" />
+        <div className="absolute left-[-6rem] top-[-3rem] h-[20rem] w-[20rem] rounded-full bg-amber-200/20 blur-3xl" />
+        <div className="absolute left-1/2 top-0 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-violet-400/12 blur-3xl" />
+        <div className="absolute right-[-9rem] top-32 h-[26rem] w-[26rem] rounded-full bg-fuchsia-200/12 blur-3xl" />
+        <div className="absolute bottom-[-10rem] left-[-6rem] h-[24rem] w-[24rem] rounded-full bg-violet-200/10 blur-3xl" />
+        <div className="absolute bottom-[-8rem] right-[-6rem] h-[20rem] w-[20rem] rounded-full bg-amber-100/16 blur-3xl" />
         <div className="grid-overlay absolute inset-0 opacity-40" />
       </div>
 
@@ -219,8 +222,8 @@ export function LandingPage() {
           </div>
 
           <div className="relative">
-            <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-violet-400/20 via-transparent to-fuchsia-500/20 blur-2xl" />
-            <div className="relative rounded-[2rem] border border-white/10 bg-white/6 p-6 shadow-2xl shadow-violet-500/10 backdrop-blur-xl sm:p-8">
+            <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-violet-400/24 via-transparent to-fuchsia-500/24 blur-2xl" />
+            <div className="glass-shell relative rounded-[2rem] bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_24%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 sm:p-8">
               <div className="space-y-6">
                 <div className="flex items-center justify-between border-b border-white/10 pb-5">
                   <div className="space-y-3">
