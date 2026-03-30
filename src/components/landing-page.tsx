@@ -251,71 +251,9 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="contacts" className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10 lg:pb-24">
-          <div className="grid gap-8 rounded-[2rem] border border-violet-400/20 bg-gradient-to-br from-violet-400/10 via-white/5 to-fuchsia-500/10 p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
-            <div className="space-y-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">
-                {content.sections.contacts}
-              </p>
-              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
-                {content.contacts.title}
-              </h2>
-              <p className="text-base leading-8 text-slate-300">
-                {content.contacts.description}
-              </p>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-[1.5rem] border border-white/10 bg-slate-900/80 p-5">
-                <p className="text-sm text-slate-500">
-                  {content.contacts.labels.email}
-                </p>
-                <a
-                  href={`mailto:${content.contacts.email}`}
-                  className="mt-3 block text-lg font-medium text-white"
-                >
-                  {content.contacts.email}
-                </a>
-              </div>
-              <div className="rounded-[1.5rem] border border-white/10 bg-slate-900/80 p-5">
-                <p className="text-sm text-slate-500">
-                  {content.contacts.labels.phone}
-                </p>
-                <a
-                  href={`tel:${content.contacts.phone}`}
-                  className="mt-3 block text-lg font-medium text-white"
-                >
-                  {content.contacts.phone}
-                </a>
-              </div>
-              <div className="rounded-[1.5rem] border border-white/10 bg-slate-900/80 p-5 sm:col-span-2">
-                <p className="text-sm text-slate-500">
-                  {content.contacts.labels.address}
-                </p>
-                <p className="mt-3 text-lg font-medium text-white">
-                  {content.contacts.address}
-                </p>
-              </div>
-              <div className="rounded-[1.5rem] border border-white/10 bg-slate-900/80 p-5 sm:col-span-2">
-                <p className="text-sm text-slate-500">
-                  {content.contacts.labels.company}
-                </p>
-                <p className="mt-3 text-lg font-medium text-white">
-                  {content.contacts.company}
-                </p>
-              </div>
-              <a
-                href={`mailto:${content.contacts.email}`}
-                className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-7 text-sm font-semibold text-slate-950 transition hover:bg-violet-300 sm:col-span-2"
-              >
-                {content.contacts.cta}
-              </a>
-            </div>
-          </div>
-        </section>
       </main>
 
-      <SiteFooter content={content} />
+      <SiteFooter content={content} language={language} />
     </div>
   );
 }

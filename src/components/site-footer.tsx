@@ -1,13 +1,21 @@
+import { ContactForm } from "@/components/contact-form";
+import type { Language, SiteDictionary } from "@/data/site-content";
 import { BrandLogo } from "@/components/brand-logo";
-import type { SiteDictionary } from "@/data/site-content";
 
 type SiteFooterProps = {
   content: SiteDictionary;
+  language: Language;
 };
 
-export function SiteFooter({ content }: SiteFooterProps) {
+export function SiteFooter({ content, language }: SiteFooterProps) {
   return (
-    <footer className="border-t border-white/10 bg-slate-950">
+    <footer id="contacts" className="border-t border-white/10 bg-slate-950">
+      <div className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:pt-20">
+        <div className="rounded-[2rem] border border-violet-400/20 bg-gradient-to-br from-violet-400/10 via-white/5 to-fuchsia-500/10 p-8 lg:p-12">
+          <ContactForm language={language} contacts={content.contacts} />
+        </div>
+      </div>
+
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.3fr_0.7fr] lg:px-10">
         <div className="space-y-4">
           <BrandLogo />
