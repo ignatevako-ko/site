@@ -118,6 +118,19 @@ function SectionHeading({
   );
 }
 
+function BackgroundGlow({
+  className,
+}: {
+  className: string;
+}) {
+  return (
+    <div
+      aria-hidden="true"
+      className={`pointer-events-none absolute rounded-full blur-3xl ${className}`}
+    />
+  );
+}
+
 function CaseCard({ item, index }: { item: CaseStudy; index: number }) {
   const palette = caseBackgrounds[index % caseBackgrounds.length];
   const categoryParts = item.category.split("/").map((part) => part.trim());
@@ -283,7 +296,9 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="cases" className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="cases" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+          <BackgroundGlow className="left-[-8rem] top-20 h-[22rem] w-[22rem] bg-violet-300/10" />
+          <BackgroundGlow className="right-[-10rem] bottom-8 h-[26rem] w-[26rem] bg-fuchsia-300/9" />
           <SectionHeading
             title={content.sections.cases}
             description={content.sectionLead.cases}
@@ -304,12 +319,15 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="services" className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="services" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+          <BackgroundGlow className="left-[8%] top-4 h-[24rem] w-[24rem] bg-amber-100/9" />
+          <BackgroundGlow className="right-[-7rem] top-28 h-[25rem] w-[25rem] bg-violet-400/12" />
           <SectionHeading
             title={content.sections.services}
             description={content.sectionLead.services}
           />
-          <div className="mt-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(12,18,42,0.92),rgba(16,20,42,0.84),rgba(32,22,51,0.88))] p-8 shadow-[0_40px_120px_rgba(7,10,24,0.32)] sm:p-10 lg:p-12">
+          <div className="relative mt-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(12,18,42,0.92),rgba(16,20,42,0.84),rgba(32,22,51,0.88))] p-8 shadow-[0_40px_120px_rgba(7,10,24,0.32)] sm:p-10 lg:p-12">
+            <BackgroundGlow className="right-8 top-[-8rem] h-[20rem] w-[20rem] bg-fuchsia-300/10" />
             <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start">
               <div className="space-y-8">
                 <h3 className="text-[1.75rem] font-medium tracking-[0.08em] text-white sm:text-[2.2rem]">
@@ -379,7 +397,9 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="clients" className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="clients" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+          <BackgroundGlow className="left-[-6rem] bottom-2 h-[22rem] w-[22rem] bg-cyan-200/8" />
+          <BackgroundGlow className="right-[16%] top-10 h-[18rem] w-[18rem] bg-violet-300/8" />
           <SectionHeading
             title={content.sections.clients}
             description={content.sectionLead.clients}
@@ -402,8 +422,10 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="about" className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
-          <div className="grid gap-8 rounded-[2rem] border border-white/10 bg-white/5 p-8 lg:grid-cols-[0.95fr_1.05fr] lg:p-12">
+        <section id="about" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+          <BackgroundGlow className="left-[24%] top-[-3rem] h-[22rem] w-[22rem] bg-amber-100/10" />
+          <BackgroundGlow className="right-[-9rem] bottom-[-4rem] h-[26rem] w-[26rem] bg-fuchsia-300/9" />
+          <div className="relative grid gap-8 rounded-[2rem] border border-white/10 bg-white/5 p-8 lg:grid-cols-[0.95fr_1.05fr] lg:p-12">
             <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-900">
               <Image
                 src="/images/about-portrait.jpg"
@@ -445,7 +467,9 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="testimonials" className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="testimonials" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+          <BackgroundGlow className="left-[-10rem] top-10 h-[26rem] w-[26rem] bg-violet-300/10" />
+          <BackgroundGlow className="right-[-7rem] bottom-0 h-[22rem] w-[22rem] bg-amber-100/9" />
           <SectionHeading
             title={content.sections.testimonials}
             description={content.sectionLead.testimonials}
