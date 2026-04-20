@@ -85,13 +85,6 @@ const testimonialCopy: Record<Language, Array<{ name: string; role: string; imag
   ],
 };
 
-const lightPlateClientLogos = new Set([
-  "Cruise Craft",
-  "Iluproff",
-  "Eho Clinic",
-  "Bliss Dental Clinic",
-]);
-
 function renderHighlightedText(text: string) {
   return text.split(/(\*[^*]+\*)/g).map((part, index) => {
     if (part.startsWith("*") && part.endsWith("*")) {
@@ -412,35 +405,20 @@ export function LandingPage() {
             description={content.sectionLead.clients}
           />
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-7">
-            {content.clients.map((client) => {
-              const hasLightPlate = lightPlateClientLogos.has(client.name);
-              const isSkyAutokool = client.name === "Sky Autokool";
-
-              return (
-                <div
-                  key={client.name}
-                  className="flex min-h-28 items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4"
-                >
-                  <div
-                    className={`flex items-center justify-center ${
-                      hasLightPlate
-                        ? "rounded-xl bg-white px-5 py-3 shadow-[0_16px_38px_rgba(2,6,23,0.16)]"
-                        : ""
-                    }`}
-                  >
-                    <Image
-                      src={client.src}
-                      alt={client.name}
-                      width={isSkyAutokool ? 170 : 140}
-                      height={isSkyAutokool ? 120 : 56}
-                      className={`h-auto w-auto object-contain ${
-                        isSkyAutokool ? "max-h-[4.6rem]" : "max-h-12"
-                      } ${hasLightPlate ? "opacity-100" : "opacity-90"}`}
-                    />
-                  </div>
-                </div>
-              );
-            })}
+            {content.clients.map((client) => (
+              <div
+                key={client.name}
+                className="flex min-h-28 items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4"
+              >
+                <Image
+                  src={client.src}
+                  alt={client.name}
+                  width={140}
+                  height={56}
+                  className="h-auto max-h-12 w-auto object-contain opacity-90"
+                />
+              </div>
+            ))}
           </div>
         </section>
 
