@@ -1,6 +1,6 @@
+import { BrandLogo } from "@/components/brand-logo";
 import { ContactForm } from "@/components/contact-form";
 import type { Language, SiteDictionary } from "@/data/site-content";
-import { BrandLogo } from "@/components/brand-logo";
 
 type SiteFooterProps = {
   content: SiteDictionary;

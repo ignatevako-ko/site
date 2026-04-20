@@ -4,21 +4,32 @@ export type LeadPayload = {
   email?: string;
   phone?: string;
   brief: string;
+  source?: string;
+  language?: string;
+  pageUrl?: string;
+  referrer?: string;
+  utm?: Record<string, string>;
 };
 
 function formatTelegramMessage(payload: LeadPayload) {
   return [
     "<b>New lead from Do.Marketing</b>",
     "",
+    `<b>Source:</b> ${payload.source || "-"}`,
+    `<b>Language:</b> ${payload.language || "-"}`,
     `<b>Email:</b> ${payload.email || "-"}`,
     `<b>Phone:</b> ${payload.phone || "-"}`,
-    `<b>Brief:</b> ${payload.brief}`,
+    `<b>Brief:</b> ${payload.brief || "-"}`,
+    `<b>Page:</b> ${payload.pageUrl || "-"}`,
+    `<b>Referrer:</b> ${payload.referrer || "-"}`,
+    `<b>UTM:</b> ${(payload.utm && Object.entries(payload.utm).filter(([, value]) => value).map(([key, value]) => `${key}=${value}`).join(", ")) || "-"}`,
   ].join("\n");
 }
 
 export async function sendToTelegram(payload: LeadPayload) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
+  const threadId = process.env.TELEGRAM_THREAD_ID;
 
   if (!botToken || !chatId) {
     return false;
@@ -33,6 +44,7 @@ export async function sendToTelegram(payload: LeadPayload) {
       chat_id: chatId,
       text: formatTelegramMessage(payload),
       parse_mode: "HTML",
+      ...(threadId ? { message_thread_id: Number(threadId) } : {}),
     }),
   });
 
@@ -63,10 +75,21 @@ export async function appendToGoogleSheets(payload: LeadPayload) {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: `${sheetName}!A:D`,
+    range: `${sheetName}!A:J`,
     valueInputOption: "USER_ENTERED",
     requestBody: {
-      values: [[new Date().toISOString(), payload.email || "", payload.phone || "", payload.brief]],
+      values: [[
+        new Date().toISOString(),
+        payload.source || "",
+        payload.language || "",
+        payload.email || "",
+        payload.phone || "",
+        payload.brief || "",
+        payload.pageUrl || "",
+        payload.referrer || "",
+        payload.utm?.utm_source || "",
+        [payload.utm?.utm_medium || "", payload.utm?.utm_campaign || "", payload.utm?.utm_content || "", payload.utm?.utm_term || ""].filter(Boolean).join(" | "),
+      ]],
     },
   });
 

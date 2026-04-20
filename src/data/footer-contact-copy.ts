@@ -22,7 +22,7 @@ export type FooterContactCopy = {
 
 export const footerContactCopy: Record<Language, FooterContactCopy> = {
   en: {
-    sectionLabel: "Contacts",
+    sectionLabel: "",
     title: "Ready for more inbound leads?\nWrite to us.",
     description: "",
     labels: {
@@ -34,35 +34,35 @@ export const footerContactCopy: Record<Language, FooterContactCopy> = {
       email: "hello@example.com",
       phone: "+372000000",
       brief:
-        "Describe your business, goals and desired result - we will propose a clear customer acquisition strategy.",
+        "Describe your business, goals and desired result — we will propose a clear customer acquisition strategy.",
     },
-    submit: "Send request",
+    submit: "Start a conversation",
     success: "Request sent. We will contact you soon.",
     error: "Could not send the form right now. Please try again shortly.",
     contactLabel: "Direct contacts",
   },
   et: {
-    sectionLabel: "Kontakt",
-    title: "Kas oled valmis rohkemateks paringuteks?\nKirjuta meile.",
+    sectionLabel: "",
+    title: "Kas oled valmis rohkemateks päringuteks?\nKirjuta meile.",
     description: "",
     labels: {
       email: "Email",
       phone: "Telefon",
-      brief: "Kirjelda oma ari, eesmarke ja soovitud tulemust",
+      brief: "Kirjelda oma äri, eesmärke ja soovitud tulemust",
     },
     placeholders: {
       email: "hello@example.com",
       phone: "+372000000",
       brief:
-        "Kirjelda oma ari, ulesandeid ja soovitud tulemust - pakume selge kliendihanke strateegia.",
+        "Kirjelda oma äri, eesmärke ja soovitud tulemust — pakume selge kliendihanke strateegia.",
     },
-    submit: "Saada paring",
-    success: "Paring saadetud. Votame peagi uhendust.",
-    error: "Vormi saatmine ebaonnestus. Proovi palun uuesti.",
+    submit: "Alusta vestlust",
+    success: "Päring saadetud. Võtame peagi ühendust.",
+    error: "Vormi saatmine ebaõnnestus. Proovi palun uuesti.",
     contactLabel: "Otsesed kontaktid",
   },
   ru: {
-    sectionLabel: "Контакты",
+    sectionLabel: "",
     title: "Готовы к росту заявок?\nНапишите нам",
     description: "",
     labels: {
@@ -74,7 +74,7 @@ export const footerContactCopy: Record<Language, FooterContactCopy> = {
       email: "hello@example.com",
       phone: "+372000000",
       brief:
-        "Опишите ваш бизнес, задачи и желаемый результат — предложим понятную стратегию привлечения клиентов",
+        "Опишите ваш бизнес, задачи и желаемый результат — предложим понятную стратегию привлечения клиентов.",
     },
     submit: "Начать диалог",
     success: "Заявка отправлена. Скоро свяжемся с вами.",

@@ -1,0 +1,117 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { BrandLogo } from "@/components/brand-logo";
+import { siteContent, type CaseStudy } from "@/data/site-content";
+
+export const metadata: Metadata = {
+  title: "Кейсы | Do.Marketing",
+  description: "Кейсы Do.Marketing: результаты рекламных кампаний и привлечения заявок.",
+};
+
+const caseBackgrounds = [
+  "from-[#14192f] via-[#1c2342] to-[#3b1d52]",
+  "from-[#1a172d] via-[#2a2042] to-[#4b2a5d]",
+  "from-[#131b34] via-[#1d2947] to-[#304e6c]",
+  "from-[#17162d] via-[#2a1e43] to-[#443661]",
+  "from-[#171f38] via-[#203057] to-[#22536b]",
+  "from-[#1d1730] via-[#31214b] to-[#5b2d54]",
+] as const;
+
+function CaseCard({ item, index }: { item: CaseStudy; index: number }) {
+  const palette = caseBackgrounds[index % caseBackgrounds.length];
+  const categoryParts = item.category.split("/").map((part) => part.trim());
+
+  return (
+    <article
+      className={`group overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/[0.04] transition hover:-translate-y-1 hover:border-violet-300/35 ${
+        index === 0 || index === 5 ? "xl:col-span-2" : ""
+      }`}
+    >
+      <div
+        className={`relative min-h-[17rem] bg-gradient-to-br ${palette} p-5 sm:min-h-[18.5rem] sm:p-6`}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.22),transparent_28%),linear-gradient(180deg,rgba(2,6,23,0.05),rgba(2,6,23,0.78))]" />
+        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:56px_56px]" />
+
+        <div className="relative flex h-full flex-col justify-between gap-8">
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full border border-white/20 bg-white/12 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/95">
+              Кейс
+            </span>
+            {categoryParts.map((part) => (
+              <span
+                key={part}
+                className="rounded-full border border-white/16 bg-slate-950/20 px-3 py-1 text-[0.7rem] font-medium text-white/78"
+              >
+                {part}
+              </span>
+            ))}
+          </div>
+
+          <div className="max-w-2xl space-y-4">
+            <h3 className="text-[28px] font-extralight tracking-[-0.04em] text-white sm:text-[2.075rem]">
+              {item.title}
+            </h3>
+            <div className="inline-flex max-w-full rounded-[1.25rem] border border-white/18 bg-slate-950/28 px-4 py-3 text-base font-semibold text-white shadow-[0_18px_50px_rgba(2,6,23,0.28)] backdrop-blur-sm">
+              {item.result}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10 bg-slate-950/55 p-5 sm:p-6">
+        <p className="max-w-3xl text-sm leading-7 text-slate-300">{item.summary}</p>
+      </div>
+    </article>
+  );
+}
+
+export default function CasesPage() {
+  const content = siteContent.ru;
+
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[-6rem] top-[-3rem] h-[20rem] w-[20rem] rounded-full bg-amber-200/20 blur-3xl" />
+        <div className="absolute left-1/2 top-0 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-violet-400/12 blur-3xl" />
+        <div className="absolute right-[-9rem] top-32 h-[26rem] w-[26rem] rounded-full bg-fuchsia-200/12 blur-3xl" />
+        <div className="grid-overlay absolute inset-0 opacity-40" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-10 lg:px-10 lg:py-14">
+        <header className="glass-shell flex flex-wrap items-center justify-between gap-5 rounded-full px-5 py-4 lg:px-8">
+          <Link href="/" aria-label="Do.Marketing home">
+            <BrandLogo compact />
+          </Link>
+          <Link
+            href="/"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
+          >
+            На главную
+          </Link>
+        </header>
+
+        <section className="py-16 lg:py-20">
+          <div className="max-w-3xl space-y-5">
+            <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
+              Кейсы
+            </p>
+            <h1 className="text-[42px] font-light leading-none tracking-[-0.06em] text-white sm:text-[64px]">
+              Результаты рекламных кампаний
+            </h1>
+            <p className="text-base leading-8 text-slate-400 sm:text-lg">
+              Здесь собраны те же кейсы, которые представлены на главной странице:
+              заявки, продажи, ROAS и стоимость привлечения клиентов.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
+            {content.cases.map((item, index) => (
+              <CaseCard key={item.title} item={item} index={index} />
+            ))}
+          </div>
+        </section>
+      </div>
+    </main>
+  );
+}

@@ -72,3 +72,29 @@ h3,
 .font-display {
   font-family: var(--font-space-grotesk), sans-serif;
 }
+
+
+.client-marquee {
+  position: relative;
+  width: 100%;
+}
+
+.client-marquee__track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  animation: client-marquee 34s linear infinite;
+}
+
+.client-marquee:hover .client-marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes client-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}

@@ -20,6 +20,18 @@ const initialState: FormState = {
   brief: "",
 };
 
+function trackCompleteRegistration() {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const fbq = (window as Window & {
+    fbq?: (command: string, eventName: string) => void;
+  }).fbq;
+
+  fbq?.("track", "CompleteRegistration");
+}
+
 export function ContactForm({ language }: ContactFormProps) {
   const copy = footerContactCopy[language];
   const [formState, setFormState] = useState<FormState>(initialState);
@@ -50,6 +62,7 @@ export function ContactForm({ language }: ContactFormProps) {
         throw new Error("Lead submission failed");
       }
 
+      trackCompleteRegistration();
       setFormState(initialState);
       setStatus("success");
     } catch {
@@ -113,7 +126,7 @@ export function ContactForm({ language }: ContactFormProps) {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-7 text-sm font-semibold text-slate-950 transition hover:bg-violet-300 disabled:cursor-not-allowed disabled:opacity-70 sm:col-span-2"
+            className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300 disabled:cursor-not-allowed disabled:opacity-70 sm:col-span-2"
           >
             {status === "loading" ? "..." : copy.submit}
           </button>
