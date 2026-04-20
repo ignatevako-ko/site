@@ -404,21 +404,24 @@ export function LandingPage() {
             title={content.sections.clients}
             description={content.sectionLead.clients}
           />
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-7">
-            {content.clients.map((client) => (
-              <div
-                key={client.name}
-                className="flex min-h-28 items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4"
-              >
-                <Image
-                  src={client.src}
-                  alt={client.name}
-                  width={140}
-                  height={56}
-                  className="h-auto max-h-12 w-auto object-contain opacity-90"
-                />
-              </div>
-            ))}
+          <div className="client-marquee relative left-1/2 mt-10 w-screen -translate-x-1/2 overflow-hidden">
+            <div className="client-marquee__track">
+              {[...content.clients, ...content.clients].map((client, index) => (
+                <div
+                  key={`${client.name}-${index}`}
+                  aria-hidden={index >= content.clients.length}
+                  className="flex min-h-28 w-[13rem] flex-none items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 sm:w-[14rem]"
+                >
+                  <Image
+                    src={client.src}
+                    alt={index >= content.clients.length ? "" : client.name}
+                    width={140}
+                    height={56}
+                    className="h-auto max-h-12 w-auto object-contain opacity-90"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
