@@ -50,12 +50,25 @@ export function ContactForm({ language }: ContactFormProps) {
     setStatus("loading");
 
     try {
+      const url = new URL(window.location.href);
+      const utm = Object.fromEntries(
+        ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]
+          .map((key) => [key, url.searchParams.get(key) || ""]),
+      );
+
       const response = await fetch("/api/lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formState),
+        body: JSON.stringify({
+          ...formState,
+          source: "website_contact_form",
+          language,
+          pageUrl: window.location.href,
+          referrer: document.referrer,
+          utm,
+        }),
       });
 
       if (!response.ok) {
