@@ -419,6 +419,58 @@ export function LandingPage() {
           </div>
         </section>
 
+        <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 lg:px-10">
+          <BackgroundGlow className="left-[-8rem] top-2 h-[22rem] w-[22rem] bg-violet-300/10" />
+          <BackgroundGlow className="right-[-6rem] bottom-0 h-[20rem] w-[20rem] bg-amber-100/10" />
+          <div className="max-w-2xl space-y-4">
+            <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
+              {creativeExamples.title}
+            </p>
+          </div>
+          <div className="mt-8 flex flex-col gap-4 overflow-hidden sm:gap-5">
+            <div className="creative-marquee">
+              <div className="creative-marquee__track creative-marquee__track--left">
+                {[...creativeExamples.items.slice(0, 8), ...creativeExamples.items.slice(0, 8)].map((src, index) => (
+                  <div
+                    key={`top-${src}-${index}`}
+                    aria-hidden={index >= 8}
+                    className="relative w-[11rem] shrink-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/5 shadow-[0_20px_50px_rgba(2,6,23,0.22)] sm:w-[12.5rem] lg:w-[13.5rem]"
+                  >
+                    <div className="relative aspect-square">
+                      <Image
+                        src={src}
+                        alt={index >= 8 ? "" : `${creativeExamples.title} ${index + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="creative-marquee">
+              <div className="creative-marquee__track creative-marquee__track--right">
+                {[...creativeExamples.items.slice(8, 16), ...creativeExamples.items.slice(8, 16)].map((src, index) => (
+                  <div
+                    key={`bottom-${src}-${index}`}
+                    aria-hidden={index >= 8}
+                    className="relative w-[11rem] shrink-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/5 shadow-[0_20px_50px_rgba(2,6,23,0.22)] sm:w-[12.5rem] lg:w-[13.5rem]"
+                  >
+                    <div className="relative aspect-square">
+                      <Image
+                        src={src}
+                        alt={index >= 8 ? "" : `${creativeExamples.title} ${index + 9}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="services" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
           <BackgroundGlow className="left-[8%] top-4 h-[24rem] w-[24rem] bg-amber-100/9" />
           <BackgroundGlow className="right-[-7rem] top-28 h-[25rem] w-[25rem] bg-violet-400/12" />
@@ -526,86 +578,6 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 lg:px-10">
-          <BackgroundGlow className="left-[-8rem] top-2 h-[22rem] w-[22rem] bg-violet-300/10" />
-          <BackgroundGlow className="right-[-6rem] bottom-0 h-[20rem] w-[20rem] bg-amber-100/10" />
-          <div className="max-w-2xl space-y-4">
-            <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
-              {creativeExamples.title}
-            </p>
-          </div>
-          <div className="mt-8 flex flex-col gap-4 overflow-hidden sm:gap-5">
-            <div className="creative-marquee">
-              <div className="creative-marquee__track creative-marquee__track--left">
-                {[...creativeExamples.items.slice(0, 8), ...creativeExamples.items.slice(0, 8)].map((src, index) => (
-                  <div
-                    key={`top-${src}-${index}`}
-                    aria-hidden={index >= 8}
-                    className="relative w-[11rem] shrink-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/5 shadow-[0_20px_50px_rgba(2,6,23,0.22)] sm:w-[12.5rem] lg:w-[13.5rem]"
-                  >
-                    <div className="relative aspect-square">
-                      <Image
-                        src={src}
-                        alt={index >= 8 ? "" : `${creativeExamples.title} ${index + 1}`}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="creative-marquee">
-              <div className="creative-marquee__track creative-marquee__track--right">
-                {[...creativeExamples.items.slice(8, 16), ...creativeExamples.items.slice(8, 16)].map((src, index) => (
-                  <div
-                    key={`bottom-${src}-${index}`}
-                    aria-hidden={index >= 8}
-                    className="relative w-[11rem] shrink-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/5 shadow-[0_20px_50px_rgba(2,6,23,0.22)] sm:w-[12.5rem] lg:w-[13.5rem]"
-                  >
-                    <div className="relative aspect-square">
-                      <Image
-                        src={src}
-                        alt={index >= 8 ? "" : `${creativeExamples.title} ${index + 9}`}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="clients" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
-          <BackgroundGlow className="left-[-6rem] bottom-2 h-[22rem] w-[22rem] bg-cyan-200/8" />
-          <BackgroundGlow className="right-[16%] top-10 h-[18rem] w-[18rem] bg-violet-300/8" />
-          <SectionHeading
-            title={content.sections.clients}
-            description={content.sectionLead.clients}
-          />
-          <div className="client-marquee relative left-1/2 mt-10 w-screen -translate-x-1/2 overflow-hidden">
-            <div className="client-marquee__track">
-              {[...content.clients, ...content.clients].map((client, index) => (
-                <div
-                  key={`${client.name}-${index}`}
-                  aria-hidden={index >= content.clients.length}
-                  className="flex min-h-28 w-[13rem] flex-none items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 sm:w-[14rem]"
-                >
-                  <Image
-                    src={client.src}
-                    alt={index >= content.clients.length ? "" : client.name}
-                    width={140}
-                    height={56}
-                    className="h-auto max-h-12 w-auto object-contain opacity-90"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section id="testimonials" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
           <BackgroundGlow className="left-[-10rem] top-10 h-[26rem] w-[26rem] bg-violet-300/10" />
           <BackgroundGlow className="right-[-7rem] bottom-0 h-[22rem] w-[22rem] bg-amber-100/9" />
@@ -710,6 +682,35 @@ export function LandingPage() {
             </div>
           </div>
         </section>
+
+        <section id="clients" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+          <BackgroundGlow className="left-[-6rem] bottom-2 h-[22rem] w-[22rem] bg-cyan-200/8" />
+          <BackgroundGlow className="right-[16%] top-10 h-[18rem] w-[18rem] bg-violet-300/8" />
+          <SectionHeading
+            title={content.sections.clients}
+            description={content.sectionLead.clients}
+          />
+          <div className="client-marquee relative left-1/2 mt-10 w-screen -translate-x-1/2 overflow-hidden">
+            <div className="client-marquee__track">
+              {[...content.clients, ...content.clients].map((client, index) => (
+                <div
+                  key={`${client.name}-${index}`}
+                  aria-hidden={index >= content.clients.length}
+                  className="flex min-h-28 w-[13rem] flex-none items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 sm:w-[14rem]"
+                >
+                  <Image
+                    src={client.src}
+                    alt={index >= content.clients.length ? "" : client.name}
+                    width={140}
+                    height={56}
+                    className="h-auto max-h-12 w-auto object-contain opacity-90"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="about" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
           <BackgroundGlow className="left-[24%] top-[-3rem] h-[22rem] w-[22rem] bg-amber-100/10" />
           <BackgroundGlow className="right-[-9rem] bottom-[-4rem] h-[26rem] w-[26rem] bg-fuchsia-300/9" />
