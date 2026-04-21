@@ -73,11 +73,12 @@ function CaseCard({
 }) {
   const palette = caseBackgrounds[index % caseBackgrounds.length];
   const categoryParts = item.category.split("/").map((part) => part.trim());
+  const isWideCase = index === 0 || item.category.toLowerCase().includes("psychotherapy");
 
   return (
     <article
       className={`group overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/[0.04] transition hover:-translate-y-1 hover:border-violet-300/35 ${
-        index === 0 || index === 5 ? "xl:col-span-2" : ""
+        isWideCase ? "xl:col-span-2" : ""
       }`}
     >
       <div
@@ -134,6 +135,10 @@ export default function CasesPage() {
 
   const content = siteContent[language];
   const copy = casesPageCopy[language];
+  const casesForGrid =
+    content.cases.length > 6
+      ? [...content.cases.slice(0, 5), content.cases[6], content.cases[5]]
+      : content.cases;
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
@@ -178,7 +183,7 @@ export default function CasesPage() {
           </div>
 
           <div className="mt-12 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
-            {content.cases.map((item, index) => (
+            {casesForGrid.map((item, index) => (
               <CaseCard key={item.title} item={item} index={index} badge={copy.badge} />
             ))}
           </div>
