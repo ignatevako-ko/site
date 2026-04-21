@@ -1,13 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BrandLogo } from "@/components/brand-logo";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
 
 const defaultLanguage: Language = "ru";
+
+const casesUiCopy: Record<Language, { badge: string; more: string }> = {
+  en: { badge: "Case", more: "See more" },
+  et: { badge: "Töö", more: "Vaata veel" },
+  ru: { badge: "Кейс", more: "Смотреть еще" },
+};
 
 const caseBackgrounds = [
   "from-[#14192f] via-[#1c2342] to-[#3b1d52]",
@@ -24,6 +30,7 @@ const pricingByLanguage: Record<
     priceLabel: string;
     budgetBadge: string;
     pricingLabel: string;
+    managementLabel: string;
     prices: Array<{ budget: string; price: string }>;
     additional: string[];
     cta: string;
@@ -33,6 +40,7 @@ const pricingByLanguage: Record<
     priceLabel: "549€",
     budgetBadge: "+ ad budget: from 350€",
     pricingLabel: "Pricing",
+    managementLabel: "MANAGEMENT FEE FOR AD BUDGET",
     prices: [
       { budget: "up to 1000€", price: "549€" },
       { budget: "up to 2000€", price: "670€" },
@@ -45,6 +53,7 @@ const pricingByLanguage: Record<
     priceLabel: "549€",
     budgetBadge: "+ reklaamieelarve: alates 350€",
     pricingLabel: "Hinnad",
+    managementLabel: "HALDUSE HIND REKLAAMIEELARVE KORRAL",
     prices: [
       { budget: "kuni 1000€", price: "549€" },
       { budget: "kuni 2000€", price: "670€" },
@@ -57,6 +66,7 @@ const pricingByLanguage: Record<
     priceLabel: "549€",
     budgetBadge: "+ рекламный бюджет: от 350€",
     pricingLabel: "РАСЦЕНКИ",
+    managementLabel: "СТОИМОСТЬ ВЕДЕНИЯ ПРИ БЮДЖЕТЕ",
     prices: [
       { budget: "до 1000€", price: "549€" },
       { budget: "до 2000€", price: "670€" },
@@ -67,88 +77,106 @@ const pricingByLanguage: Record<
   },
 };
 
-const testimonialCopy: Record<Language, Array<{ name: string; role: string; image: string }>> = {
-  en: [
-    { name: "Alexander", role: "Video review", image: "/images/testimonial-portrait.jpg" },
-    { name: "Artem", role: "Video review", image: "/images/testimonial-2.jpg" },
-    { name: "Elena", role: "Video review", image: "/images/testimonial-3.jpg" },
-  ],
-  et: [
-    { name: "Alexander", role: "Videotagasiside", image: "/images/testimonial-portrait.jpg" },
-    { name: "Artem", role: "Videotagasiside", image: "/images/testimonial-2.jpg" },
-    { name: "Elena", role: "Videotagasiside", image: "/images/testimonial-3.jpg" },
-  ],
-  ru: [
-    { name: "Александр", role: "Видео отзыв", image: "/images/testimonial-portrait.jpg" },
-    { name: "Артем", role: "Видео отзыв", image: "/images/testimonial-2.jpg" },
-    { name: "Елена", role: "Видео отзыв", image: "/images/testimonial-3.jpg" },
-  ],
+const liveTestimonialsCopy: Record<
+  Language,
+  {
+    title: string;
+    items: Array<{ name: string; subtitle: string; quote: string; image: string }>;
+  }
+> = {
+  en: {
+    title: "Live feedback from our clients",
+    items: [
+      {
+        name: "Alexander",
+        subtitle: "Business owner",
+        quote:
+          "We have been working together for a long time. The process is calm, clear and genuinely supportive. Most importantly, advertising started bringing predictable sales instead of chaos.",
+        image: "/images/testimonial-portrait.jpg",
+      },
+      {
+        name: "Artem",
+        subtitle: "Founder",
+        quote:
+          "The team helped structure the offer, clean up campaign logic and focus on the metrics that actually matter. It became easier to make decisions and scale with confidence.",
+        image: "/images/testimonial-2.jpg",
+      },
+      {
+        name: "Elena",
+        subtitle: "Brand owner",
+        quote:
+          "What I value most is the mix of comfort and competence. Communication is easy, reporting is clear and the marketing work feels thoughtful instead of noisy.",
+        image: "/images/testimonial-3.jpg",
+      },
+    ],
+  },
+  et: {
+    title: "Meie klientide päris tagasiside",
+    items: [
+      {
+        name: "Alexander",
+        subtitle: "Ettevõtja",
+        quote:
+          "Oleme koos töötanud juba pikemat aega. Kogu protsess on rahulik, selge ja toetav. Kõige olulisem on see, et reklaam hakkas lõpuks tooma prognoositavat müüki, mitte lihtsalt müra.",
+        image: "/images/testimonial-portrait.jpg",
+      },
+      {
+        name: "Artem",
+        subtitle: "Asutaja",
+        quote:
+          "Meeskond aitas pakkumise struktureerida, kampaania loogika paika saada ja keskenduda numbritele, mis päriselt loevad. Otsuseid on nüüd palju lihtsam teha ja kasvada kindlamalt.",
+        image: "/images/testimonial-2.jpg",
+      },
+      {
+        name: "Elena",
+        subtitle: "Brändi omanik",
+        quote:
+          "Kõige rohkem hindan ma seda, et siin on koos nii mugav suhtlus kui ka päris kompetents. Turundus tundub läbimõeldud, mitte lärmakas.",
+        image: "/images/testimonial-3.jpg",
+      },
+    ],
+  },
+  ru: {
+    title: "Живые отзывы наших клиентов",
+    items: [
+      {
+        name: "Константин",
+        subtitle: "Владелец детской спортивной школы EDU.DO",
+        quote:
+          "С ребятами я работаю уже более трёх лет. Это лучшие ребята! Поверьте, с ними очень комфортно. Они вас всегда услышат и помогут. А самое главное — они увеличили мои продажи. Я им очень благодарен. Ребята действительно знают своё дело.",
+        image: "/images/testimonial-portrait.jpg",
+      },
+      {
+        name: "Петр",
+        subtitle: "Владелец строительной фирмы StenVarg",
+        quote:
+          "Мне нравится, что здесь сочетаются системность, спокойная коммуникация и реальная вовлечённость. Реклама стала понятнее, решения — точнее, а результат наконец-то начал ощущаться в цифрах.",
+        image: "/images/testimonial-2.jpg",
+      },
+      {
+        name: "Светлана",
+        subtitle: "Представитель туристической фирмы Prime Tour",
+        quote:
+          "Для меня ценно, что всё делается без суеты и лишнего шума. Есть стратегия, есть ясность по действиям, и при этом всегда остаётся ощущение, что проектом правда занимаются с вниманием.",
+        image: "/images/testimonial-3.jpg",
+      },
+    ],
+  },
 };
 
-const lightPlateClientLogos = new Set([
-  "Cruise Craft",
-  "Iluproff",
-  "Eho Clinic",
-  "Bliss Dental Clinic",
-]);
-
-type CreativeExample = {
-  type: string;
-  title: string;
-  subtitle: string;
-  metric: string;
-  palette: string;
-};
-
-const creativeSectionCopy: Record<Language, { title: string; description: string }> = {
+const creativeExamplesCopy: Record<Language, { title: string; items: string[] }> = {
   en: {
     title: "Creative examples",
-    description:
-      "A moving gallery of ad formats we test in Meta Ads: offers, social proof, product angles and lead magnets.",
+    items: Array.from({ length: 16 }, (_, index) => `/images/creative-examples/creative-grid-${index + 1}.jpg`),
   },
   et: {
     title: "Loovlahenduste näited",
-    description:
-      "Liikuv galerii Meta Ads formaatidest: pakkumised, tõestus, tootenurgad ja lead magnetid.",
+    items: Array.from({ length: 16 }, (_, index) => `/images/creative-examples/creative-grid-${index + 1}.jpg`),
   },
   ru: {
     title: "Примеры креативов",
-    description:
-      "Две бегущие ленты с форматами, которые мы тестируем в Meta Ads: офферы, доказательства, продуктовые углы и лид-магниты.",
+    items: Array.from({ length: 16 }, (_, index) => `/images/creative-examples/creative-grid-${index + 1}.jpg`),
   },
-};
-
-const creativeExamplesByLanguage: Record<Language, CreativeExample[]> = {
-  en: [
-    { type: "Offer", title: "Trial class this week", subtitle: "Simple entry point for cold traffic", metric: "CPL -42%", palette: "from-violet-300 via-fuchsia-300 to-amber-200" },
-    { type: "Proof", title: "Before / after result", subtitle: "Visual proof for beauty services", metric: "CTR 5.8%", palette: "from-cyan-200 via-sky-300 to-violet-300" },
-    { type: "Carousel", title: "3 reasons to book", subtitle: "Sequential argument for warm leads", metric: "ROAS 12", palette: "from-amber-200 via-orange-300 to-rose-300" },
-    { type: "Lead magnet", title: "Get the checklist", subtitle: "Soft conversion before the sale", metric: "x2 leads", palette: "from-emerald-200 via-teal-300 to-cyan-300" },
-    { type: "UGC", title: "Client story reel", subtitle: "Native video for trust building", metric: "CPA -31%", palette: "from-pink-200 via-violet-300 to-indigo-300" },
-    { type: "Sale", title: "48-hour limited drop", subtitle: "Urgency for e-commerce campaigns", metric: "ROAS 15", palette: "from-lime-200 via-yellow-200 to-orange-300" },
-    { type: "Expert", title: "Founder explains", subtitle: "Authority angle for complex services", metric: "CVR +24%", palette: "from-slate-200 via-blue-200 to-violet-200" },
-    { type: "Quiz", title: "Pick your goal", subtitle: "Interactive route to the right offer", metric: "CPL -28%", palette: "from-fuchsia-200 via-rose-200 to-orange-200" },
-  ],
-  et: [
-    { type: "Pakkumine", title: "Proovitund sel nädalal", subtitle: "Lihtne esimene samm külmale liiklusele", metric: "CPL -42%", palette: "from-violet-300 via-fuchsia-300 to-amber-200" },
-    { type: "Tõestus", title: "Enne / pärast tulemus", subtitle: "Visuaalne tõestus iluteenustele", metric: "CTR 5.8%", palette: "from-cyan-200 via-sky-300 to-violet-300" },
-    { type: "Karussell", title: "3 põhjust broneerida", subtitle: "Järjestatud argument soojale leadile", metric: "ROAS 12", palette: "from-amber-200 via-orange-300 to-rose-300" },
-    { type: "Lead magnet", title: "Küsi checklisti", subtitle: "Pehme konversioon enne müüki", metric: "x2 leadid", palette: "from-emerald-200 via-teal-300 to-cyan-300" },
-    { type: "UGC", title: "Kliendi lugu reelsis", subtitle: "Natiivne video usalduse kasvatamiseks", metric: "CPA -31%", palette: "from-pink-200 via-violet-300 to-indigo-300" },
-    { type: "Müük", title: "48 tunni eripakkumine", subtitle: "Kiire ostuimpulss e-poele", metric: "ROAS 15", palette: "from-lime-200 via-yellow-200 to-orange-300" },
-    { type: "Ekspert", title: "Asutaja selgitab", subtitle: "Autoriteet keerukale teenusele", metric: "CVR +24%", palette: "from-slate-200 via-blue-200 to-violet-200" },
-    { type: "Quiz", title: "Vali oma eesmärk", subtitle: "Interaktiivne tee õige pakkumiseni", metric: "CPL -28%", palette: "from-fuchsia-200 via-rose-200 to-orange-200" },
-  ],
-  ru: [
-    { type: "Оффер", title: "Пробное занятие на этой неделе", subtitle: "Легкий первый шаг для холодной аудитории", metric: "CPL -42%", palette: "from-violet-300 via-fuchsia-300 to-amber-200" },
-    { type: "Доказательство", title: "До / после результата", subtitle: "Визуальный аргумент для beauty-услуг", metric: "CTR 5.8%", palette: "from-cyan-200 via-sky-300 to-violet-300" },
-    { type: "Карусель", title: "3 причины записаться", subtitle: "Последовательная продажа для теплых лидов", metric: "ROAS 12", palette: "from-amber-200 via-orange-300 to-rose-300" },
-    { type: "Лид-магнит", title: "Получить чек-лист", subtitle: "Мягкая конверсия до основной продажи", metric: "x2 лида", palette: "from-emerald-200 via-teal-300 to-cyan-300" },
-    { type: "UGC", title: "История клиента в reels", subtitle: "Нативное видео для доверия", metric: "CPA -31%", palette: "from-pink-200 via-violet-300 to-indigo-300" },
-    { type: "Sale", title: "Дроп только на 48 часов", subtitle: "Срочность для e-commerce кампаний", metric: "ROAS 15", palette: "from-lime-200 via-yellow-200 to-orange-300" },
-    { type: "Экспертность", title: "Основатель объясняет", subtitle: "Авторитетный угол для сложных услуг", metric: "CVR +24%", palette: "from-slate-200 via-blue-200 to-violet-200" },
-    { type: "Quiz", title: "Выберите свою цель", subtitle: "Интерактивный путь к нужному офферу", metric: "CPL -28%", palette: "from-fuchsia-200 via-rose-200 to-orange-200" },
-  ],
 };
 
 function renderHighlightedText(text: string) {
@@ -197,7 +225,7 @@ function BackgroundGlow({
   );
 }
 
-function CaseCard({ item, index }: { item: CaseStudy; index: number }) {
+function CaseCard({ item, index, language }: { item: CaseStudy; index: number; language: Language }) {
   const palette = caseBackgrounds[index % caseBackgrounds.length];
   const categoryParts = item.category.split("/").map((part) => part.trim());
 
@@ -216,7 +244,7 @@ function CaseCard({ item, index }: { item: CaseStudy; index: number }) {
         <div className="relative flex h-full flex-col justify-between gap-8">
           <div className="flex flex-wrap gap-2">
             <span className="rounded-full border border-white/20 bg-white/12 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/95">
-              Кейс
+              {casesUiCopy[language].badge}
             </span>
             {categoryParts.map((part) => (
               <span
@@ -246,34 +274,6 @@ function CaseCard({ item, index }: { item: CaseStudy; index: number }) {
   );
 }
 
-function CreativeCard({ item }: { item: CreativeExample }) {
-  return (
-    <article className="group relative aspect-square w-[15rem] flex-none overflow-hidden rounded-[1.7rem] border border-white/12 bg-slate-950 shadow-[0_28px_80px_rgba(2,6,23,0.34)] sm:w-[18rem] lg:w-[20rem]">
-      <div className={`absolute inset-0 bg-gradient-to-br ${item.palette}`} />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(255,255,255,0.9),transparent_16%),radial-gradient(circle_at_84%_18%,rgba(255,255,255,0.45),transparent_14%),linear-gradient(180deg,rgba(2,6,23,0.04),rgba(2,6,23,0.72))]" />
-      <div className="absolute -bottom-16 -right-16 h-44 w-44 rounded-full border border-white/40 bg-white/12" />
-      <div className="absolute left-5 right-5 top-5 flex items-center justify-between">
-        <span className="rounded-full bg-slate-950/72 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white backdrop-blur">
-          {item.type}
-        </span>
-        <span className="rounded-full bg-white/88 px-3 py-1.5 text-[0.72rem] font-bold text-slate-950">
-          {item.metric}
-        </span>
-      </div>
-
-      <div className="absolute bottom-5 left-5 right-5 rounded-[1.25rem] border border-white/16 bg-slate-950/68 p-4 backdrop-blur-md">
-        <h3 className="text-[1.35rem] font-semibold leading-tight tracking-[-0.04em] text-white sm:text-[1.55rem]">
-          {item.title}
-        </h3>
-        <p className="mt-3 text-sm leading-6 text-slate-200">{item.subtitle}</p>
-      </div>
-
-      <div className="absolute left-6 top-1/2 h-20 w-20 -translate-y-1/2 rounded-[1.4rem] border border-white/24 bg-white/18 backdrop-blur-sm transition duration-500 group-hover:rotate-6 group-hover:scale-105" />
-      <div className="absolute right-8 top-[38%] h-16 w-16 rounded-full border border-white/24 bg-slate-950/18 transition duration-500 group-hover:-rotate-12 group-hover:scale-110" />
-    </article>
-  );
-}
-
 export function LandingPage() {
   const [language, setLanguage] = useState<Language>(defaultLanguage);
 
@@ -283,13 +283,13 @@ export function LandingPage() {
 
   const content = siteContent[language];
   const pricing = pricingByLanguage[language];
-  const testimonials = testimonialCopy[language];
-  const creativeSection = creativeSectionCopy[language];
-  const creativeExamples = creativeExamplesByLanguage[language];
-  const creativeRows = [
-    creativeExamples,
-    [...creativeExamples.slice(4), ...creativeExamples.slice(0, 4)],
-  ];
+  const liveTestimonials = useMemo(() => liveTestimonialsCopy[language], [language]);
+  const creativeExamples = useMemo(() => creativeExamplesCopy[language], [language]);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  useEffect(() => {
+    setActiveTestimonial(0);
+  }, [language]);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
@@ -326,7 +326,7 @@ export function LandingPage() {
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <a
-                href="#contacts"
+                href="/cases"
                 className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300"
               >
                 {content.hero.primaryCta}
@@ -405,7 +405,7 @@ export function LandingPage() {
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
             {content.cases.map((item, index) => (
-              <CaseCard key={item.title} item={item} index={index} />
+              <CaseCard key={item.title} item={item} index={index} language={language} />
             ))}
           </div>
 
@@ -414,40 +414,8 @@ export function LandingPage() {
               href="/cases"
               className="inline-flex items-center justify-center text-[20px] font-extralight text-white underline decoration-white/80 underline-offset-[10px] transition hover:text-white/85 hover:decoration-white"
             >
-              Смотреть еще
+              {casesUiCopy[language].more}
             </a>
-          </div>
-        </section>
-
-        <section id="creatives" className="relative mx-auto w-full max-w-7xl overflow-hidden px-6 py-20 lg:px-10">
-          <BackgroundGlow className="left-[-9rem] top-12 h-[26rem] w-[26rem] bg-fuchsia-300/10" />
-          <BackgroundGlow className="right-[-8rem] bottom-6 h-[24rem] w-[24rem] bg-amber-100/10" />
-          <div className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(9,15,36,0.9),rgba(15,18,42,0.72),rgba(44,30,66,0.78))] py-8 shadow-[0_40px_120px_rgba(2,6,23,0.38)] sm:py-10 lg:py-12">
-            <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:64px_64px]" />
-            <div className="relative px-5 sm:px-8 lg:px-10">
-              <SectionHeading
-                title={creativeSection.title}
-                description={creativeSection.description}
-              />
-            </div>
-
-            <div className="creative-marquee relative mt-10 space-y-4">
-              {creativeRows.map((row, rowIndex) => (
-                <div
-                  key={rowIndex}
-                  className={`creative-marquee__track ${
-                    rowIndex === 1 ? "creative-marquee__track--reverse" : ""
-                  }`}
-                >
-                  {[...row, ...row].map((item, index) => (
-                    <CreativeCard
-                      key={`${item.title}-${rowIndex}-${index}`}
-                      item={item}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -462,47 +430,50 @@ export function LandingPage() {
             <BackgroundGlow className="right-8 top-[-8rem] h-[20rem] w-[20rem] bg-fuchsia-300/10" />
             <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start">
               <div className="space-y-8">
-                <h3 className="text-[1.75rem] font-medium tracking-[0.08em] text-white sm:text-[2.2rem]">
-                  {content.services[0].title}
+                <h3 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-white">
+                  {content.services[0].title.includes("META ADS") ? (
+                    <>
+                      {content.services[0].title.replace("META ADS", "").trim()} {" "}
+                      <span className="text-[21px] tracking-[0.08em]">META ADS</span>
+                    </>
+                  ) : (
+                    content.services[0].title
+                  )}
                 </h3>
 
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
                   {content.services[0].features.map((item) => (
                     <div
                       key={item}
-                      className="flex items-start gap-3 rounded-[1.4rem] border border-white/8 bg-slate-950/20 px-4 py-3 text-slate-100"
+                      className="flex items-start gap-3 text-[20px] font-light text-slate-100"
                     >
-                      <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-violet-300/30 bg-violet-300/10 text-xs text-violet-200">
+                      <span className="mt-[0.35rem] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-violet-300/30 bg-violet-300/10 text-[11px] text-violet-200">
                         ✓
                       </span>
-                      <span className="leading-6">{item}</span>
+                      <span className="leading-[1.45]">{item}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="flex flex-wrap gap-3">
-                  {pricing.additional.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-violet-300/25 bg-violet-300/10 px-5 py-2.5 text-[20px] font-medium text-violet-100"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
+
               </div>
 
               <div className="rounded-[1.9rem] border border-violet-300/18 bg-[linear-gradient(155deg,rgba(167,139,250,0.18),rgba(255,255,255,0.04),rgba(15,23,42,0.35))] p-5 shadow-[0_24px_70px_rgba(76,29,149,0.18)] sm:p-6">
                 <div className="flex min-h-full flex-col items-center text-center">
-                  <p className="mt-0 text-[48px] font-light tracking-[-0.08em] text-white sm:text-[58px]">
-                    {pricing.priceLabel}
-                  </p>
+                  <div className="mt-0 flex items-baseline justify-center gap-2 text-white">
+                    <span className="text-[14px] font-medium uppercase tracking-[0.04em] text-white/70 sm:text-[14px]">
+                      от
+                    </span>
+                    <p className="text-[48px] font-light tracking-[-0.08em] text-white sm:text-[58px]">
+                      {pricing.priceLabel}
+                    </p>
+                  </div>
                   <div className="mt-5 inline-flex items-center justify-center rounded-full border border-violet-300/22 bg-violet-300/10 px-3.5 py-1 text-[13px] font-medium text-violet-100 shadow-[0_12px_40px_rgba(167,139,250,0.12)]">
                     {pricing.budgetBadge}
                   </div>
                   <div className="mt-5 w-full max-w-[19rem] rounded-[1.2rem] border border-white/8 bg-slate-950/22 px-4 py-4 text-left">
-                    <p className="mb-4 text-[14px] uppercase tracking-[0.18em] text-slate-300">
-                      {pricing.pricingLabel}
+                    <p className="mb-4 text-[11px] uppercase tracking-[0.12em] text-slate-300 sm:text-[12px]">
+                      {pricing.managementLabel}
                     </p>
                     <div className="space-y-2">
                       {pricing.prices.map((row) => (
@@ -529,6 +500,84 @@ export function LandingPage() {
           </div>
         </section>
 
+        <section className="mx-auto w-full max-w-7xl px-6 pb-20 lg:px-10">
+          <div className="max-w-2xl space-y-4">
+            <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
+              Дополнительные услуги
+            </p>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {pricing.additional.map((item) => {
+              const href = item === "SMM" ? "/smm" : null;
+
+              const className =
+                "inline-flex items-center rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-[20px] font-light text-slate-100 transition hover:border-violet-300/35 hover:bg-white/10";
+
+              return href ? (
+                <a key={item} href={href} className={className}>
+                  {item}
+                </a>
+              ) : (
+                <span key={item} className={className}>
+                  {item}
+                </span>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 lg:px-10">
+          <BackgroundGlow className="left-[-8rem] top-2 h-[22rem] w-[22rem] bg-violet-300/10" />
+          <BackgroundGlow className="right-[-6rem] bottom-0 h-[20rem] w-[20rem] bg-amber-100/10" />
+          <div className="max-w-2xl space-y-4">
+            <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
+              {creativeExamples.title}
+            </p>
+          </div>
+          <div className="mt-8 flex flex-col gap-4 overflow-hidden sm:gap-5">
+            <div className="creative-marquee">
+              <div className="creative-marquee__track creative-marquee__track--left">
+                {[...creativeExamples.items.slice(0, 8), ...creativeExamples.items.slice(0, 8)].map((src, index) => (
+                  <div
+                    key={`top-${src}-${index}`}
+                    aria-hidden={index >= 8}
+                    className="relative w-[11rem] shrink-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/5 shadow-[0_20px_50px_rgba(2,6,23,0.22)] sm:w-[12.5rem] lg:w-[13.5rem]"
+                  >
+                    <div className="relative aspect-square">
+                      <Image
+                        src={src}
+                        alt={index >= 8 ? "" : `${creativeExamples.title} ${index + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="creative-marquee">
+              <div className="creative-marquee__track creative-marquee__track--right">
+                {[...creativeExamples.items.slice(8, 16), ...creativeExamples.items.slice(8, 16)].map((src, index) => (
+                  <div
+                    key={`bottom-${src}-${index}`}
+                    aria-hidden={index >= 8}
+                    className="relative w-[11rem] shrink-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/5 shadow-[0_20px_50px_rgba(2,6,23,0.22)] sm:w-[12.5rem] lg:w-[13.5rem]"
+                  >
+                    <div className="relative aspect-square">
+                      <Image
+                        src={src}
+                        alt={index >= 8 ? "" : `${creativeExamples.title} ${index + 9}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="clients" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
           <BackgroundGlow className="left-[-6rem] bottom-2 h-[22rem] w-[22rem] bg-cyan-200/8" />
           <BackgroundGlow className="right-[16%] top-10 h-[18rem] w-[18rem] bg-violet-300/8" />
@@ -538,43 +587,142 @@ export function LandingPage() {
           />
           <div className="client-marquee relative left-1/2 mt-10 w-screen -translate-x-1/2 overflow-hidden">
             <div className="client-marquee__track">
-              {[...content.clients, ...content.clients].map((client, index) => {
-                const hasLightPlate = lightPlateClientLogos.has(client.name);
-                const isSkyAutokool = client.name === "Sky Autokool";
-
-                return (
-                  <div
-                    key={`${client.name}-${index}`}
-                    aria-hidden={index >= content.clients.length}
-                    className="flex min-h-28 w-[13rem] flex-none items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 sm:w-[14rem]"
-                  >
-                    <div
-                      className={`flex items-center justify-center ${
-                        hasLightPlate
-                          ? "rounded-xl bg-white px-5 py-3 shadow-[0_16px_38px_rgba(2,6,23,0.16)]"
-                          : ""
-                      }`}
-                    >
-                      <Image
-                        src={client.src}
-                        alt={index >= content.clients.length ? "" : client.name}
-                        width={isSkyAutokool ? 170 : 140}
-                        height={isSkyAutokool ? 120 : 56}
-                        className={`h-auto w-auto object-contain ${
-                          isSkyAutokool ? "max-h-[4.6rem]" : "max-h-12"
-                        } ${hasLightPlate ? "opacity-100" : "opacity-90"}`}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
+              {[...content.clients, ...content.clients].map((client, index) => (
+                <div
+                  key={`${client.name}-${index}`}
+                  aria-hidden={index >= content.clients.length}
+                  className="flex min-h-28 w-[13rem] flex-none items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 sm:w-[14rem]"
+                >
+                  <Image
+                    src={client.src}
+                    alt={index >= content.clients.length ? "" : client.name}
+                    width={140}
+                    height={56}
+                    className="h-auto max-h-12 w-auto object-contain opacity-90"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
+        <section id="testimonials" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+          <BackgroundGlow className="left-[-10rem] top-10 h-[26rem] w-[26rem] bg-violet-300/10" />
+          <BackgroundGlow className="right-[-7rem] bottom-0 h-[22rem] w-[22rem] bg-amber-100/9" />
+          <div className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.85fr] lg:items-center">
+            <div className="max-w-2xl">
+              <h2 className="max-w-xl text-[28px] font-extralight leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.075rem]">
+                {liveTestimonials.title}
+              </h2>
+
+              <div className="mt-10 flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveTestimonial((current) =>
+                      current === 0 ? liveTestimonials.items.length - 1 : current - 1,
+                    )
+                  }
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/7 text-white transition hover:border-violet-300/40 hover:bg-white/10"
+                  aria-label="Previous testimonial"
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveTestimonial((current) =>
+                      current === liveTestimonials.items.length - 1 ? 0 : current + 1,
+                    )
+                  }
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/7 text-white transition hover:border-violet-300/40 hover:bg-white/10"
+                  aria-label="Next testimonial"
+                >
+                  →
+                </button>
+              </div>
+
+              <div className="mt-8 max-w-[36rem]">
+                <p className="text-[20px] font-light leading-[1.45] text-slate-100">
+                  {liveTestimonials.items[activeTestimonial].quote}
+                </p>
+                <div className="mt-8">
+                  <p className="text-lg font-medium text-white">
+                    {liveTestimonials.items[activeTestimonial].name}
+                  </p>
+                  <p className="mt-1 text-sm text-slate-400 sm:text-base">
+                    {liveTestimonials.items[activeTestimonial].subtitle}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8 flex items-center gap-3">
+                {liveTestimonials.items.map((item, index) => (
+                  <button
+                    key={item.name}
+                    type="button"
+                    onClick={() => setActiveTestimonial(index)}
+                    className={`h-3 w-3 rounded-full transition ${
+                      index === activeTestimonial
+                        ? "bg-violet-300 shadow-[0_0_18px_rgba(196,181,253,0.45)]"
+                        : "bg-white/20 hover:bg-white/35"
+                    }`}
+                    aria-label={`Show testimonial ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="relative mx-auto w-full max-w-[23rem] lg:mr-0 lg:-ml-[27px]">
+              <div className="absolute left-4 top-6 h-full w-full rounded-[2rem] bg-violet-300/18 blur-md" />
+              <div className="absolute -right-3 top-4 h-full w-full rounded-[2rem] border border-white/8 bg-white/4" />
+              <article className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-[0_30px_80px_rgba(2,6,23,0.45)]">
+                <div className="relative aspect-[0.66] overflow-hidden">
+                  <Image
+                    src={liveTestimonials.items[activeTestimonial].image}
+                    alt={liveTestimonials.items[activeTestimonial].name}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/10 to-transparent" />
+                  <div className="absolute left-5 top-5 inline-flex rounded-full border border-violet-300/25 bg-violet-300/15 px-3 py-1 text-xs font-medium text-violet-100 backdrop-blur">
+                    Видео отзыв
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button
+                      type="button"
+                      className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-white text-violet-500 shadow-[0_15px_40px_rgba(255,255,255,0.2)] transition hover:scale-[1.03]"
+                      aria-label="Play video review"
+                    >
+                      <span className="ml-1 text-3xl">▶</span>
+                    </button>
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <p className="text-[40px] font-semibold leading-none tracking-[-0.05em] text-white">
+                      {liveTestimonials.items[activeTestimonial].name}
+                    </p>
+                    <p className="mt-2 text-sm text-slate-200/85 sm:text-base">
+                      {liveTestimonials.items[activeTestimonial].subtitle}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
         <section id="about" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
           <BackgroundGlow className="left-[24%] top-[-3rem] h-[22rem] w-[22rem] bg-amber-100/10" />
           <BackgroundGlow className="right-[-9rem] bottom-[-4rem] h-[26rem] w-[26rem] bg-fuchsia-300/9" />
+          <div className="mb-10 max-w-2xl space-y-4">
+            <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
+              {content.sections.about}
+            </p>
+            {content.sectionLead.about ? (
+              <p className="text-base leading-7 text-slate-400 sm:text-lg">
+                {content.sectionLead.about}
+              </p>
+            ) : null}
+          </div>
           <div className="relative grid gap-8 rounded-[2rem] border border-white/10 bg-white/5 p-8 lg:grid-cols-[0.95fr_1.05fr] lg:p-12">
             <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-900">
               <Image
@@ -596,11 +744,7 @@ export function LandingPage() {
             </div>
 
             <div className="space-y-6">
-              <SectionHeading
-                title={content.sections.about}
-                description={content.sectionLead.about}
-              />
-              <h2 className="max-w-xl text-3xl font-light tracking-[-0.05em] text-white sm:text-4xl lg:text-[3.4rem]">
+              <h2 className="max-w-xl text-[28px] font-extralight leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.075rem]">
                 {content.about.title}
               </h2>
               <p className="text-base leading-8 text-slate-300">
@@ -617,46 +761,53 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="testimonials" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
-          <BackgroundGlow className="left-[-10rem] top-10 h-[26rem] w-[26rem] bg-violet-300/10" />
-          <BackgroundGlow className="right-[-7rem] bottom-0 h-[22rem] w-[22rem] bg-amber-100/9" />
-          <SectionHeading
-            title={content.sections.testimonials}
-            description={content.sectionLead.testimonials}
-          />
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {testimonials.map((item) => (
-              <article
-                key={item.name}
-                className="group overflow-hidden rounded-[2rem] border border-white/10 bg-white/5"
-              >
-                <div className="relative aspect-square overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/10 to-transparent" />
-                  <div className="absolute left-6 top-6 inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur">
-                    <span className="ml-1 text-lg text-white">▶</span>
-                  </div>
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <p className="text-xs uppercase tracking-[0.28em] text-slate-300">
-                      {item.role}
-                    </p>
-                    <p className="mt-3 text-2xl font-medium text-white">
-                      {item.name}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
       </main>
 
+      <style jsx global>{`
+        .creative-marquee {
+          width: 100%;
+          overflow: hidden;
+        }
+
+        .creative-marquee__track {
+          display: flex;
+          flex-wrap: nowrap;
+          width: max-content;
+          min-width: max-content;
+          gap: 0.875rem;
+          padding: 0 1rem;
+          will-change: transform;
+        }
+
+        .creative-marquee__track--left {
+          animation: creative-marquee-left 28s linear infinite;
+        }
+
+        .creative-marquee__track--right {
+          animation: creative-marquee-right 28s linear infinite;
+        }
+
+        @media (min-width: 640px) {
+          .creative-marquee__track {
+            gap: 1rem;
+            padding: 0 1.5rem;
+          }
+        }
+
+        .creative-marquee:hover .creative-marquee__track {
+          animation-play-state: paused;
+        }
+
+        @keyframes creative-marquee-left {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+
+        @keyframes creative-marquee-right {
+          from { transform: translateX(-50%); }
+          to { transform: translateX(0); }
+        }
+      `}</style>
       <SiteFooter content={content} language={language} />
     </div>
   );

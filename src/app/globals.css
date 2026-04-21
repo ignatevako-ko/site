@@ -90,69 +90,11 @@ h3,
   animation-play-state: paused;
 }
 
-.creative-marquee {
-  position: relative;
-  width: 100%;
-}
-
-.creative-marquee::before,
-.creative-marquee::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  width: min(12vw, 9rem);
-  height: 100%;
-  pointer-events: none;
-}
-
-.creative-marquee::before {
-  left: 0;
-  background: linear-gradient(90deg, rgba(7, 11, 29, 0.96), transparent);
-}
-
-.creative-marquee::after {
-  right: 0;
-  background: linear-gradient(270deg, rgba(20, 15, 39, 0.96), transparent);
-}
-
-.creative-marquee__track {
-  display: flex;
-  width: max-content;
-  gap: 1rem;
-  padding-inline: 1rem;
-  animation: creative-marquee 42s linear infinite;
-}
-
-.creative-marquee__track--reverse {
-  animation-direction: reverse;
-}
-
-.creative-marquee:hover .creative-marquee__track {
-  animation-play-state: paused;
-}
-
 @keyframes client-marquee {
   from {
     transform: translateX(0);
   }
   to {
     transform: translateX(calc(-50% - 0.5rem));
-  }
-}
-
-@keyframes creative-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(-50% - 0.5rem));
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .client-marquee__track,
-  .creative-marquee__track {
-    animation: none;
   }
 }

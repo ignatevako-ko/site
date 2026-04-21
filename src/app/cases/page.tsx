@@ -1,12 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand-logo";
-import { siteContent, type CaseStudy } from "@/data/site-content";
-
-export const metadata: Metadata = {
-  title: "Кейсы | Do.Marketing",
-  description: "Кейсы Do.Marketing: результаты рекламных кампаний и привлечения заявок.",
-};
+import { PageLanguageSwitcher } from "@/components/page-language-switcher";
+import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
 
 const caseBackgrounds = [
   "from-[#14192f] via-[#1c2342] to-[#3b1d52]",
@@ -17,7 +15,62 @@ const caseBackgrounds = [
   "from-[#1d1730] via-[#31214b] to-[#5b2d54]",
 ] as const;
 
-function CaseCard({ item, index }: { item: CaseStudy; index: number }) {
+const casesPageCopy: Record<
+  Language,
+  {
+    metaTitle: string;
+    metaDescription: string;
+    home: string;
+    section: string;
+    title: string;
+    description: string;
+    badge: string;
+  }
+> = {
+  ru: {
+    metaTitle: "Кейсы | Do.Marketing",
+    metaDescription:
+      "Кейсы Do.Marketing: результаты рекламных кампаний и привлечения заявок.",
+    home: "На главную",
+    section: "Кейсы",
+    title: "Результаты рекламных кампаний",
+    description:
+      "Здесь собраны те же кейсы, которые представлены на главной странице: заявки, продажи, ROAS и стоимость привлечения клиентов.",
+    badge: "Кейс",
+  },
+  en: {
+    metaTitle: "Cases | Do.Marketing",
+    metaDescription:
+      "Do.Marketing case studies: advertising campaign results, leads, sales and ROAS.",
+    home: "Back to home",
+    section: "Cases",
+    title: "Advertising campaign results",
+    description:
+      "Here you can see the same case studies presented on the main page: leads, sales, ROAS and customer acquisition costs.",
+    badge: "Case",
+  },
+  et: {
+    metaTitle: "Tööd | Do.Marketing",
+    metaDescription:
+      "Do.Marketingu tööd: reklaamikampaaniate tulemused, päringud, müük ja ROAS.",
+    home: "Tagasi avalehele",
+    section: "Tööd",
+    title: "Reklaamikampaaniate tulemused",
+    description:
+      "Siia on koondatud samad tööd, mis on näha avalehel: päringud, müük, ROAS ja kliendi hankimise maksumus.",
+    badge: "Töö",
+  },
+};
+
+function CaseCard({
+  item,
+  index,
+  badge,
+}: {
+  item: CaseStudy;
+  index: number;
+  badge: string;
+}) {
   const palette = caseBackgrounds[index % caseBackgrounds.length];
   const categoryParts = item.category.split("/").map((part) => part.trim());
 
@@ -36,7 +89,7 @@ function CaseCard({ item, index }: { item: CaseStudy; index: number }) {
         <div className="relative flex h-full flex-col justify-between gap-8">
           <div className="flex flex-wrap gap-2">
             <span className="rounded-full border border-white/20 bg-white/12 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/95">
-              Кейс
+              {badge}
             </span>
             {categoryParts.map((part) => (
               <span
@@ -67,7 +120,20 @@ function CaseCard({ item, index }: { item: CaseStudy; index: number }) {
 }
 
 export default function CasesPage() {
-  const content = siteContent.ru;
+  const [language, setLanguage] = useState<Language>("ru");
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.title = casesPageCopy[language].metaTitle;
+
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", casesPageCopy[language].metaDescription);
+    }
+  }, [language]);
+
+  const content = siteContent[language];
+  const copy = casesPageCopy[language];
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
@@ -83,31 +149,37 @@ export default function CasesPage() {
           <Link href="/" aria-label="Do.Marketing home">
             <BrandLogo compact />
           </Link>
-          <Link
-            href="/"
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
-          >
-            На главную
-          </Link>
+
+          <div className="flex items-center gap-3">
+            <Link
+              href="/"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
+            >
+              {copy.home}
+            </Link>
+            <PageLanguageSwitcher
+              currentLanguage={language}
+              onChange={setLanguage}
+            />
+          </div>
         </header>
 
         <section className="py-16 lg:py-20">
           <div className="max-w-3xl space-y-5">
             <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
-              Кейсы
+              {copy.section}
             </p>
             <h1 className="text-[42px] font-light leading-none tracking-[-0.06em] text-white sm:text-[64px]">
-              Результаты рекламных кампаний
+              {copy.title}
             </h1>
             <p className="text-base leading-8 text-slate-400 sm:text-lg">
-              Здесь собраны те же кейсы, которые представлены на главной странице:
-              заявки, продажи, ROAS и стоимость привлечения клиентов.
+              {copy.description}
             </p>
           </div>
 
           <div className="mt-12 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
             {content.cases.map((item, index) => (
-              <CaseCard key={item.title} item={item} index={index} />
+              <CaseCard key={item.title} item={item} index={index} badge={copy.badge} />
             ))}
           </div>
         </section>

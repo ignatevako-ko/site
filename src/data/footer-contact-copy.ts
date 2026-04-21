@@ -32,7 +32,7 @@ export const footerContactCopy: Record<Language, FooterContactCopy> = {
     },
     placeholders: {
       email: "hello@example.com",
-      phone: "+372000000",
+      phone: "+372 56789087",
       brief:
         "Describe your business, goals and desired result — we will propose a clear customer acquisition strategy.",
     },
@@ -52,7 +52,7 @@ export const footerContactCopy: Record<Language, FooterContactCopy> = {
     },
     placeholders: {
       email: "hello@example.com",
-      phone: "+372000000",
+      phone: "+372 56789087",
       brief:
         "Kirjelda oma äri, eesmärke ja soovitud tulemust — pakume selge kliendihanke strateegia.",
     },
@@ -72,7 +72,7 @@ export const footerContactCopy: Record<Language, FooterContactCopy> = {
     },
     placeholders: {
       email: "hello@example.com",
-      phone: "+372000000",
+      phone: "+372 56789087",
       brief:
         "Опишите ваш бизнес, задачи и желаемый результат — предложим понятную стратегию привлечения клиентов.",
     },

@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     const email = body.email?.trim() || "";
     const phone = body.phone?.trim() || "";
     const brief = body.brief?.trim() || "";
-    const phonePattern = /^\+?[0-9\s().-]{4,24}$/;
+    const phonePattern = /^\+?[0-9\s().-]{6,20}$/;
 
     if (!email || !phone) {
       return Response.json(
@@ -38,21 +38,19 @@ export async function POST(request: Request) {
       appendToGoogleSheets(payload),
     ]);
 
-    const configured = results.every(
+    const configured = results.some(
       (result) => result.status === "fulfilled" && result.value === true,
     );
 
     if (!configured) {
-      console.error("Lead integrations failed", results);
       return Response.json(
-        { error: "Form integrations failed on the server." },
+        { error: "Form integrations are not configured on the server." },
         { status: 500 },
       );
     }
 
     return Response.json({ ok: true });
-  } catch (error) {
-    console.error("Lead route failed", error);
+  } catch {
     return Response.json({ error: "Unexpected server error." }, { status: 500 });
   }
 }
