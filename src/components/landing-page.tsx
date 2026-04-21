@@ -92,6 +92,65 @@ const lightPlateClientLogos = new Set([
   "Bliss Dental Clinic",
 ]);
 
+type CreativeExample = {
+  type: string;
+  title: string;
+  subtitle: string;
+  metric: string;
+  palette: string;
+};
+
+const creativeSectionCopy: Record<Language, { title: string; description: string }> = {
+  en: {
+    title: "Creative examples",
+    description:
+      "A moving gallery of ad formats we test in Meta Ads: offers, social proof, product angles and lead magnets.",
+  },
+  et: {
+    title: "Loovlahenduste näited",
+    description:
+      "Liikuv galerii Meta Ads formaatidest: pakkumised, tõestus, tootenurgad ja lead magnetid.",
+  },
+  ru: {
+    title: "Примеры креативов",
+    description:
+      "Две бегущие ленты с форматами, которые мы тестируем в Meta Ads: офферы, доказательства, продуктовые углы и лид-магниты.",
+  },
+};
+
+const creativeExamplesByLanguage: Record<Language, CreativeExample[]> = {
+  en: [
+    { type: "Offer", title: "Trial class this week", subtitle: "Simple entry point for cold traffic", metric: "CPL -42%", palette: "from-violet-300 via-fuchsia-300 to-amber-200" },
+    { type: "Proof", title: "Before / after result", subtitle: "Visual proof for beauty services", metric: "CTR 5.8%", palette: "from-cyan-200 via-sky-300 to-violet-300" },
+    { type: "Carousel", title: "3 reasons to book", subtitle: "Sequential argument for warm leads", metric: "ROAS 12", palette: "from-amber-200 via-orange-300 to-rose-300" },
+    { type: "Lead magnet", title: "Get the checklist", subtitle: "Soft conversion before the sale", metric: "x2 leads", palette: "from-emerald-200 via-teal-300 to-cyan-300" },
+    { type: "UGC", title: "Client story reel", subtitle: "Native video for trust building", metric: "CPA -31%", palette: "from-pink-200 via-violet-300 to-indigo-300" },
+    { type: "Sale", title: "48-hour limited drop", subtitle: "Urgency for e-commerce campaigns", metric: "ROAS 15", palette: "from-lime-200 via-yellow-200 to-orange-300" },
+    { type: "Expert", title: "Founder explains", subtitle: "Authority angle for complex services", metric: "CVR +24%", palette: "from-slate-200 via-blue-200 to-violet-200" },
+    { type: "Quiz", title: "Pick your goal", subtitle: "Interactive route to the right offer", metric: "CPL -28%", palette: "from-fuchsia-200 via-rose-200 to-orange-200" },
+  ],
+  et: [
+    { type: "Pakkumine", title: "Proovitund sel nädalal", subtitle: "Lihtne esimene samm külmale liiklusele", metric: "CPL -42%", palette: "from-violet-300 via-fuchsia-300 to-amber-200" },
+    { type: "Tõestus", title: "Enne / pärast tulemus", subtitle: "Visuaalne tõestus iluteenustele", metric: "CTR 5.8%", palette: "from-cyan-200 via-sky-300 to-violet-300" },
+    { type: "Karussell", title: "3 põhjust broneerida", subtitle: "Järjestatud argument soojale leadile", metric: "ROAS 12", palette: "from-amber-200 via-orange-300 to-rose-300" },
+    { type: "Lead magnet", title: "Küsi checklisti", subtitle: "Pehme konversioon enne müüki", metric: "x2 leadid", palette: "from-emerald-200 via-teal-300 to-cyan-300" },
+    { type: "UGC", title: "Kliendi lugu reelsis", subtitle: "Natiivne video usalduse kasvatamiseks", metric: "CPA -31%", palette: "from-pink-200 via-violet-300 to-indigo-300" },
+    { type: "Müük", title: "48 tunni eripakkumine", subtitle: "Kiire ostuimpulss e-poele", metric: "ROAS 15", palette: "from-lime-200 via-yellow-200 to-orange-300" },
+    { type: "Ekspert", title: "Asutaja selgitab", subtitle: "Autoriteet keerukale teenusele", metric: "CVR +24%", palette: "from-slate-200 via-blue-200 to-violet-200" },
+    { type: "Quiz", title: "Vali oma eesmärk", subtitle: "Interaktiivne tee õige pakkumiseni", metric: "CPL -28%", palette: "from-fuchsia-200 via-rose-200 to-orange-200" },
+  ],
+  ru: [
+    { type: "Оффер", title: "Пробное занятие на этой неделе", subtitle: "Легкий первый шаг для холодной аудитории", metric: "CPL -42%", palette: "from-violet-300 via-fuchsia-300 to-amber-200" },
+    { type: "Доказательство", title: "До / после результата", subtitle: "Визуальный аргумент для beauty-услуг", metric: "CTR 5.8%", palette: "from-cyan-200 via-sky-300 to-violet-300" },
+    { type: "Карусель", title: "3 причины записаться", subtitle: "Последовательная продажа для теплых лидов", metric: "ROAS 12", palette: "from-amber-200 via-orange-300 to-rose-300" },
+    { type: "Лид-магнит", title: "Получить чек-лист", subtitle: "Мягкая конверсия до основной продажи", metric: "x2 лида", palette: "from-emerald-200 via-teal-300 to-cyan-300" },
+    { type: "UGC", title: "История клиента в reels", subtitle: "Нативное видео для доверия", metric: "CPA -31%", palette: "from-pink-200 via-violet-300 to-indigo-300" },
+    { type: "Sale", title: "Дроп только на 48 часов", subtitle: "Срочность для e-commerce кампаний", metric: "ROAS 15", palette: "from-lime-200 via-yellow-200 to-orange-300" },
+    { type: "Экспертность", title: "Основатель объясняет", subtitle: "Авторитетный угол для сложных услуг", metric: "CVR +24%", palette: "from-slate-200 via-blue-200 to-violet-200" },
+    { type: "Quiz", title: "Выберите свою цель", subtitle: "Интерактивный путь к нужному офферу", metric: "CPL -28%", palette: "from-fuchsia-200 via-rose-200 to-orange-200" },
+  ],
+};
+
 function renderHighlightedText(text: string) {
   return text.split(/(\*[^*]+\*)/g).map((part, index) => {
     if (part.startsWith("*") && part.endsWith("*")) {
@@ -187,6 +246,34 @@ function CaseCard({ item, index }: { item: CaseStudy; index: number }) {
   );
 }
 
+function CreativeCard({ item }: { item: CreativeExample }) {
+  return (
+    <article className="group relative aspect-square w-[15rem] flex-none overflow-hidden rounded-[1.7rem] border border-white/12 bg-slate-950 shadow-[0_28px_80px_rgba(2,6,23,0.34)] sm:w-[18rem] lg:w-[20rem]">
+      <div className={`absolute inset-0 bg-gradient-to-br ${item.palette}`} />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(255,255,255,0.9),transparent_16%),radial-gradient(circle_at_84%_18%,rgba(255,255,255,0.45),transparent_14%),linear-gradient(180deg,rgba(2,6,23,0.04),rgba(2,6,23,0.72))]" />
+      <div className="absolute -bottom-16 -right-16 h-44 w-44 rounded-full border border-white/40 bg-white/12" />
+      <div className="absolute left-5 right-5 top-5 flex items-center justify-between">
+        <span className="rounded-full bg-slate-950/72 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white backdrop-blur">
+          {item.type}
+        </span>
+        <span className="rounded-full bg-white/88 px-3 py-1.5 text-[0.72rem] font-bold text-slate-950">
+          {item.metric}
+        </span>
+      </div>
+
+      <div className="absolute bottom-5 left-5 right-5 rounded-[1.25rem] border border-white/16 bg-slate-950/68 p-4 backdrop-blur-md">
+        <h3 className="text-[1.35rem] font-semibold leading-tight tracking-[-0.04em] text-white sm:text-[1.55rem]">
+          {item.title}
+        </h3>
+        <p className="mt-3 text-sm leading-6 text-slate-200">{item.subtitle}</p>
+      </div>
+
+      <div className="absolute left-6 top-1/2 h-20 w-20 -translate-y-1/2 rounded-[1.4rem] border border-white/24 bg-white/18 backdrop-blur-sm transition duration-500 group-hover:rotate-6 group-hover:scale-105" />
+      <div className="absolute right-8 top-[38%] h-16 w-16 rounded-full border border-white/24 bg-slate-950/18 transition duration-500 group-hover:-rotate-12 group-hover:scale-110" />
+    </article>
+  );
+}
+
 export function LandingPage() {
   const [language, setLanguage] = useState<Language>(defaultLanguage);
 
@@ -197,6 +284,12 @@ export function LandingPage() {
   const content = siteContent[language];
   const pricing = pricingByLanguage[language];
   const testimonials = testimonialCopy[language];
+  const creativeSection = creativeSectionCopy[language];
+  const creativeExamples = creativeExamplesByLanguage[language];
+  const creativeRows = [
+    creativeExamples,
+    [...creativeExamples.slice(4), ...creativeExamples.slice(0, 4)],
+  ];
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
@@ -323,6 +416,38 @@ export function LandingPage() {
             >
               Смотреть еще
             </a>
+          </div>
+        </section>
+
+        <section id="creatives" className="relative mx-auto w-full max-w-7xl overflow-hidden px-6 py-20 lg:px-10">
+          <BackgroundGlow className="left-[-9rem] top-12 h-[26rem] w-[26rem] bg-fuchsia-300/10" />
+          <BackgroundGlow className="right-[-8rem] bottom-6 h-[24rem] w-[24rem] bg-amber-100/10" />
+          <div className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(9,15,36,0.9),rgba(15,18,42,0.72),rgba(44,30,66,0.78))] py-8 shadow-[0_40px_120px_rgba(2,6,23,0.38)] sm:py-10 lg:py-12">
+            <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:64px_64px]" />
+            <div className="relative px-5 sm:px-8 lg:px-10">
+              <SectionHeading
+                title={creativeSection.title}
+                description={creativeSection.description}
+              />
+            </div>
+
+            <div className="creative-marquee relative mt-10 space-y-4">
+              {creativeRows.map((row, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className={`creative-marquee__track ${
+                    rowIndex === 1 ? "creative-marquee__track--reverse" : ""
+                  }`}
+                >
+                  {[...row, ...row].map((item, index) => (
+                    <CreativeCard
+                      key={`${item.title}-${rowIndex}-${index}`}
+                      item={item}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
