@@ -179,6 +179,13 @@ const creativeExamplesCopy: Record<Language, { title: string; items: string[] }>
   },
 };
 
+const lightPlateClientLogos = new Set([
+  "Cruise Craft",
+  "Iluproff",
+  "Eho Clinic",
+  "Bliss Dental Clinic",
+]);
+
 function renderHighlightedText(text: string) {
   return text.split(/(\*[^*]+\*)/g).map((part, index) => {
     if (part.startsWith("*") && part.endsWith("*")) {
@@ -692,21 +699,36 @@ export function LandingPage() {
           />
           <div className="client-marquee relative left-1/2 mt-10 w-screen -translate-x-1/2 overflow-hidden">
             <div className="client-marquee__track">
-              {[...content.clients, ...content.clients].map((client, index) => (
-                <div
-                  key={`${client.name}-${index}`}
-                  aria-hidden={index >= content.clients.length}
-                  className="flex min-h-28 w-[13rem] flex-none items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 sm:w-[14rem]"
-                >
-                  <Image
-                    src={client.src}
-                    alt={index >= content.clients.length ? "" : client.name}
-                    width={140}
-                    height={56}
-                    className="h-auto max-h-12 w-auto object-contain opacity-90"
-                  />
-                </div>
-              ))}
+              {[...content.clients, ...content.clients].map((client, index) => {
+                const hasLightPlate = lightPlateClientLogos.has(client.name);
+                const isSkyAutokool = client.name === "Sky Autokool";
+
+                return (
+                  <div
+                    key={`${client.name}-${index}`}
+                    aria-hidden={index >= content.clients.length}
+                    className="flex min-h-28 w-[13rem] flex-none items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 sm:w-[14rem]"
+                  >
+                    <div
+                      className={`flex items-center justify-center ${
+                        hasLightPlate
+                          ? "rounded-xl bg-white px-5 py-3 shadow-[0_16px_38px_rgba(2,6,23,0.16)]"
+                          : ""
+                      }`}
+                    >
+                      <Image
+                        src={client.src}
+                        alt={index >= content.clients.length ? "" : client.name}
+                        width={isSkyAutokool ? 170 : 140}
+                        height={isSkyAutokool ? 120 : 56}
+                        className={`h-auto w-auto object-contain ${
+                          isSkyAutokool ? "max-h-[4.6rem]" : "max-h-12"
+                        } ${hasLightPlate ? "opacity-100" : "opacity-90"}`}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

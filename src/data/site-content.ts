@@ -110,7 +110,7 @@ const clientLogos: ClientLogo[] = [
   { name: "Sky Autokool", src: "/images/client-logos/sky-autokool.png" },
   { name: "Prime Tour", src: "/images/client-logos/prime-tour.png" },
   { name: "Iluproff", src: "/images/client-logos/iluproff.png" },
-  { name: "Eho Clinic", src: "/images/client-logos/eho-clinic.png" },
+  { name: "Eho Clinic", src: "/images/client-logos/eho-clinic.svg" },
   { name: "Bliss Dental Clinic", src: "/images/client-logos/bliss-dental-clinic.png" },
   { name: "LeSaar Atelier", src: "/images/client-logos/lesaar.svg" },
   { name: "Arttek", src: "/images/client-logos/arttek.webp" },
