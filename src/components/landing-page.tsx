@@ -226,7 +226,7 @@ export function LandingPage() {
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <a
-                href="/cases"
+                href="#contacts"
                 className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300"
               >
                 {content.hero.primaryCta}
