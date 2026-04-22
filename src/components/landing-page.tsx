@@ -361,6 +361,21 @@ export function LandingPage() {
       <main className="relative z-10">
         <section className="mx-auto grid w-full max-w-7xl gap-14 px-6 pb-20 pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:pb-28 lg:pt-24">
           <div className="space-y-8">
+            <div className="flex flex-wrap items-center gap-3 text-[13px] font-medium text-slate-300 sm:text-sm">
+              <a
+                href={`tel:${content.contacts.phone}`}
+                className="rounded-full border border-white/12 bg-white/5 px-4 py-2 transition hover:border-violet-300/50 hover:text-violet-200"
+              >
+                {content.contacts.phone}
+              </a>
+              <a
+                href={`mailto:${content.contacts.email}`}
+                className="rounded-full border border-white/12 bg-white/5 px-4 py-2 transition hover:border-violet-300/50 hover:text-violet-200"
+              >
+                {content.contacts.email}
+              </a>
+            </div>
+
             <div className="inline-flex rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-violet-200">
               {content.hero.eyebrow}
             </div>
@@ -376,7 +391,7 @@ export function LandingPage() {
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <a
-                href="/cases"
+                href="#contacts"
                 className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300"
               >
                 {content.hero.primaryCta}
