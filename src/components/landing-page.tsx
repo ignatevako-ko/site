@@ -203,13 +203,23 @@ const videoCreativeItems: CreativeGalleryItem[] = [
     kind: "video",
   },
   {
-    src: "/videos/creative-examples/video-04.mp4",
-    alt: "Video creative 4",
+    src: "/videos/creative-examples/video-06.mp4",
+    alt: "Video creative 6",
     kind: "video",
   },
   {
-    src: "/videos/creative-examples/video-05.mp4",
-    alt: "Video creative 5",
+    src: "/videos/creative-examples/video-07.mp4",
+    alt: "Video creative 7",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-08.mp4",
+    alt: "Video creative 8",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-09.mp4",
+    alt: "Video creative 9",
     kind: "video",
   },
 ];
@@ -490,6 +500,7 @@ export function LandingPage() {
           videoItems={videoCreativeItems}
           showMoreLink
           showMoreLabel={creativeExamples.more}
+          duplicateVideoItems={false}
         />
 
         <section id="services" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">

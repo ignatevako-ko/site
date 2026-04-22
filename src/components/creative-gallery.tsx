@@ -19,6 +19,7 @@ type CreativeGalleryProps = {
   showMoreLabel?: string;
   dense?: boolean;
   embedded?: boolean;
+  duplicateVideoItems?: boolean;
 };
 
 function CreativePreview({
@@ -90,8 +91,10 @@ export function CreativeGallery({
   showMoreLabel = "Еще",
   dense = false,
   embedded = false,
+  duplicateVideoItems = true,
 }: CreativeGalleryProps) {
   const [activeItem, setActiveItem] = useState<CreativeGalleryItem | null>(null);
+  const visibleVideoItems = duplicateVideoItems ? [...videoItems, ...videoItems] : videoItems;
 
   useEffect(() => {
     if (!activeItem) {
@@ -143,12 +146,12 @@ export function CreativeGallery({
 
         <div className="creative-marquee">
           <div className="creative-marquee__track creative-marquee__track--right">
-            {[...videoItems, ...videoItems].map((item, index) => (
+            {visibleVideoItems.map((item, index) => (
               <CreativePreview
                 key={`video-${item.src}-${index}`}
                 item={item}
                 index={index}
-                duplicate={index >= videoItems.length}
+                duplicate={duplicateVideoItems && index >= videoItems.length}
                 onOpen={setActiveItem}
               />
             ))}

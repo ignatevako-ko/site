@@ -39,6 +39,26 @@ const videoItems: CreativeGalleryItem[] = [
     alt: "Video creative 5",
     kind: "video",
   },
+  {
+    src: "/videos/creative-examples/video-06.mp4",
+    alt: "Video creative 6",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-07.mp4",
+    alt: "Video creative 7",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-08.mp4",
+    alt: "Video creative 8",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-09.mp4",
+    alt: "Video creative 9",
+    kind: "video",
+  },
 ];
 
 const kreoCopy: Record<
@@ -138,6 +158,7 @@ export function KreoPageContent() {
           videoItems={videoItems}
           dense
           embedded
+          duplicateVideoItems={false}
         />
       </div>
     </main>
