@@ -361,16 +361,16 @@ export function LandingPage() {
       <main className="relative z-10">
         <section className="mx-auto grid w-full max-w-7xl gap-14 px-6 pb-20 pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:pb-28 lg:pt-24">
           <div className="space-y-8">
-            <div className="flex flex-wrap items-center gap-3 text-[13px] font-medium text-slate-300 sm:text-sm">
+            <div className="flex flex-col items-center gap-1 text-center text-[26px] font-medium text-slate-200 sm:flex-row sm:items-center sm:gap-3 sm:text-left sm:text-sm">
               <a
                 href={`tel:${content.contacts.phone}`}
-                className="rounded-full border border-white/12 bg-white/5 px-4 py-2 transition hover:border-violet-300/50 hover:text-violet-200"
+                className="transition hover:text-violet-200 sm:rounded-full sm:border sm:border-white/12 sm:bg-white/5 sm:px-4 sm:py-2 sm:hover:border-violet-300/50"
               >
                 {content.contacts.phone}
               </a>
               <a
                 href={`mailto:${content.contacts.email}`}
-                className="rounded-full border border-white/12 bg-white/5 px-4 py-2 transition hover:border-violet-300/50 hover:text-violet-200"
+                className="transition hover:text-violet-200 sm:rounded-full sm:border sm:border-white/12 sm:bg-white/5 sm:px-4 sm:py-2 sm:hover:border-violet-300/50"
               >
                 {content.contacts.email}
               </a>
