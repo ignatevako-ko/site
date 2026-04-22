@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { BrandLogo } from "@/components/brand-logo";
+import { CreativeGallery, type CreativeGalleryItem } from "@/components/creative-gallery";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
@@ -164,20 +165,54 @@ const liveTestimonialsCopy: Record<
   },
 };
 
-const creativeExamplesCopy: Record<Language, { title: string; items: string[] }> = {
+const creativeExamplesCopy: Record<Language, { title: string; more: string }> = {
   en: {
     title: "Creative examples",
-    items: Array.from({ length: 16 }, (_, index) => `/images/creative-examples/creative-grid-${index + 1}.jpg`),
+    more: "See more",
   },
   et: {
     title: "Loovlahenduste näited",
-    items: Array.from({ length: 16 }, (_, index) => `/images/creative-examples/creative-grid-${index + 1}.jpg`),
+    more: "Vaata veel",
   },
   ru: {
     title: "Примеры креативов",
-    items: Array.from({ length: 16 }, (_, index) => `/images/creative-examples/creative-grid-${index + 1}.jpg`),
+    more: "Смотреть еще",
   },
 };
+
+const staticCreativeItems: CreativeGalleryItem[] = Array.from({ length: 7 }, (_, index) => ({
+  src: `/images/creative-examples/stories/story-${String(index + 1).padStart(2, "0")}.png`,
+  alt: `Static creative ${index + 1}`,
+  kind: "image",
+}));
+
+const videoCreativeItems: CreativeGalleryItem[] = [
+  {
+    src: "/videos/creative-examples/video-01.mp4",
+    alt: "Video creative 1",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-02.mp4",
+    alt: "Video creative 2",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-03.mp4",
+    alt: "Video creative 3",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-04.mp4",
+    alt: "Video creative 4",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-05.mp4",
+    alt: "Video creative 5",
+    kind: "video",
+  },
+];
 
 const lightPlateClientLogos = new Set([
   "Cruise Craft",
@@ -434,57 +469,13 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 lg:px-10">
-          <BackgroundGlow className="left-[-8rem] top-2 h-[22rem] w-[22rem] bg-violet-300/10" />
-          <BackgroundGlow className="right-[-6rem] bottom-0 h-[20rem] w-[20rem] bg-amber-100/10" />
-          <div className="max-w-2xl space-y-4">
-            <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
-              {creativeExamples.title}
-            </p>
-          </div>
-          <div className="mt-8 flex flex-col gap-4 overflow-hidden sm:gap-5">
-            <div className="creative-marquee">
-              <div className="creative-marquee__track creative-marquee__track--left">
-                {[...creativeExamples.items.slice(0, 8), ...creativeExamples.items.slice(0, 8)].map((src, index) => (
-                  <div
-                    key={`top-${src}-${index}`}
-                    aria-hidden={index >= 8}
-                    className="relative w-[11rem] shrink-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/5 shadow-[0_20px_50px_rgba(2,6,23,0.22)] sm:w-[12.5rem] lg:w-[13.5rem]"
-                  >
-                    <div className="relative aspect-square">
-                      <Image
-                        src={src}
-                        alt={index >= 8 ? "" : `${creativeExamples.title} ${index + 1}`}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="creative-marquee">
-              <div className="creative-marquee__track creative-marquee__track--right">
-                {[...creativeExamples.items.slice(8, 16), ...creativeExamples.items.slice(8, 16)].map((src, index) => (
-                  <div
-                    key={`bottom-${src}-${index}`}
-                    aria-hidden={index >= 8}
-                    className="relative w-[11rem] shrink-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/5 shadow-[0_20px_50px_rgba(2,6,23,0.22)] sm:w-[12.5rem] lg:w-[13.5rem]"
-                  >
-                    <div className="relative aspect-square">
-                      <Image
-                        src={src}
-                        alt={index >= 8 ? "" : `${creativeExamples.title} ${index + 9}`}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        <CreativeGallery
+          title={creativeExamples.title}
+          staticItems={staticCreativeItems}
+          videoItems={videoCreativeItems}
+          showMoreLink
+          showMoreLabel={creativeExamples.more}
+        />
 
         <section id="services" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
           <BackgroundGlow className="left-[8%] top-4 h-[24rem] w-[24rem] bg-amber-100/9" />

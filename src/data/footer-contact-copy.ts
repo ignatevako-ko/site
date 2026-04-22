@@ -7,11 +7,13 @@ export type FooterContactCopy = {
   labels: {
     email: string;
     phone: string;
+    website?: string;
     brief: string;
   };
   placeholders: {
     email: string;
     phone: string;
+    website?: string;
     brief: string;
   };
   submit: string;
@@ -28,11 +30,13 @@ export const footerContactCopy: Record<Language, FooterContactCopy> = {
     labels: {
       email: "Email",
       phone: "Phone",
+      website: "Do you have a website?",
       brief: "Describe your business, goals and desired outcome",
     },
     placeholders: {
       email: "hello@example.com",
       phone: "+372 56789087",
+      website: "Yes, website link / no website yet",
       brief:
         "Describe your business, goals and desired result — we will propose a clear customer acquisition strategy.",
     },
@@ -48,11 +52,13 @@ export const footerContactCopy: Record<Language, FooterContactCopy> = {
     labels: {
       email: "Email",
       phone: "Telefon",
+      website: "Kas teil on veebileht?",
       brief: "Kirjelda oma äri, eesmärke ja soovitud tulemust",
     },
     placeholders: {
       email: "hello@example.com",
       phone: "+372 56789087",
+      website: "Jah, veebilehe link / veel ei ole",
       brief:
         "Kirjelda oma äri, eesmärke ja soovitud tulemust — pakume selge kliendihanke strateegia.",
     },

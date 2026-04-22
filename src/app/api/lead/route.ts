@@ -5,6 +5,7 @@ export async function POST(request: Request) {
     const body = (await request.json()) as {
       email?: string;
       phone?: string;
+      website?: string;
       brief?: string;
       source?: string;
       language?: string;
@@ -15,6 +16,7 @@ export async function POST(request: Request) {
 
     const email = body.email?.trim() || "";
     const phone = body.phone?.trim() || "";
+    const website = body.website?.trim() || "";
     const brief = body.brief?.trim() || "";
     const phonePattern = /^\+?[0-9\s().-]{6,20}$/;
 
@@ -32,7 +34,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const payload = { email, phone, brief, source: body.source || "contact_form", language: body.language || "", pageUrl: body.pageUrl || "", referrer: body.referrer || "", utm: body.utm || {} };
+    const payload = { email, phone, website, brief, source: body.source || "contact_form", language: body.language || "", pageUrl: body.pageUrl || "", referrer: body.referrer || "", utm: body.utm || {} };
     const results = await Promise.allSettled([
       sendToTelegram(payload),
       appendToGoogleSheets(payload),

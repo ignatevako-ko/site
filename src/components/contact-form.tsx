@@ -11,12 +11,14 @@ type ContactFormProps = {
 type FormState = {
   email: string;
   phone: string;
+  website: string;
   brief: string;
 };
 
 const initialState: FormState = {
   email: "",
   phone: "",
+  website: "",
   brief: "",
 };
 
@@ -108,6 +110,19 @@ export function ContactForm({ language }: ContactFormProps) {
               value={formState.phone}
               onChange={handleChange("phone")}
               placeholder={copy.placeholders.phone}
+              className="mt-3 w-full bg-transparent text-lg font-medium text-white placeholder:text-white/35 focus:outline-none"
+            />
+          </label>
+
+          <label className="rounded-[1.5rem] border border-white/10 bg-slate-900/80 p-5 sm:col-span-2">
+            <span className="text-sm text-slate-500">
+              {copy.labels.website || "У вас есть сайт?"}
+            </span>
+            <input
+              type="text"
+              value={formState.website}
+              onChange={handleChange("website")}
+              placeholder={copy.placeholders.website || "Да: ссылка на сайт / пока нет"}
               className="mt-3 w-full bg-transparent text-lg font-medium text-white placeholder:text-white/35 focus:outline-none"
             />
           </label>

@@ -3,6 +3,7 @@ import { google } from "googleapis";
 export type LeadPayload = {
   email?: string;
   phone?: string;
+  website?: string;
   brief: string;
   source?: string;
   language?: string;
@@ -19,6 +20,7 @@ function formatTelegramMessage(payload: LeadPayload) {
     `<b>Language:</b> ${payload.language || "-"}`,
     `<b>Email:</b> ${payload.email || "-"}`,
     `<b>Phone:</b> ${payload.phone || "-"}`,
+    `<b>Website:</b> ${payload.website || "-"}`,
     `<b>Brief:</b> ${payload.brief || "-"}`,
     `<b>Page:</b> ${payload.pageUrl || "-"}`,
     `<b>Referrer:</b> ${payload.referrer || "-"}`,
@@ -75,7 +77,7 @@ export async function appendToGoogleSheets(payload: LeadPayload) {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: `${sheetName}!A:J`,
+    range: `${sheetName}!A:K`,
     valueInputOption: "USER_ENTERED",
     requestBody: {
       values: [[
@@ -84,6 +86,7 @@ export async function appendToGoogleSheets(payload: LeadPayload) {
         payload.language || "",
         payload.email || "",
         payload.phone || "",
+        payload.website || "",
         payload.brief || "",
         payload.pageUrl || "",
         payload.referrer || "",
