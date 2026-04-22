@@ -40,6 +40,7 @@ export function ContactForm({ language }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
+  const [errorMessage, setErrorMessage] = useState(copy.error);
 
   const handleChange =
     (field: keyof FormState) =>
@@ -50,24 +51,49 @@ export function ContactForm({ language }: ContactFormProps) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus("loading");
+    setErrorMessage(copy.error);
 
     try {
+      const params =
+        typeof window !== "undefined"
+          ? new URLSearchParams(window.location.search)
+          : new URLSearchParams();
       const response = await fetch("/api/lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formState),
+        body: JSON.stringify({
+          ...formState,
+          source: "contact_form",
+          language,
+          pageUrl: typeof window !== "undefined" ? window.location.href : "",
+          referrer: typeof document !== "undefined" ? document.referrer : "",
+          utm: {
+            utm_source: params.get("utm_source") || "",
+            utm_medium: params.get("utm_medium") || "",
+            utm_campaign: params.get("utm_campaign") || "",
+            utm_content: params.get("utm_content") || "",
+            utm_term: params.get("utm_term") || "",
+          },
+        }),
       });
 
       if (!response.ok) {
-        throw new Error("Lead submission failed");
+        const responseBody = (await response.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        throw new Error(responseBody?.error || copy.error);
       }
 
       trackCompleteRegistration();
       setFormState(initialState);
       setStatus("success");
-    } catch {
+    } catch (error) {
+      if (error instanceof Error && error.message) {
+        console.error(error.message);
+        setErrorMessage(error.message);
+      }
       setStatus("error");
     }
   };
@@ -151,7 +177,7 @@ export function ContactForm({ language }: ContactFormProps) {
           <p className="text-sm text-emerald-300">{copy.success}</p>
         ) : null}
         {status === "error" ? (
-          <p className="text-sm text-rose-300">{copy.error}</p>
+          <p className="text-sm text-rose-300">{errorMessage}</p>
         ) : null}
       </div>
     </div>
