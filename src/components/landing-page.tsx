@@ -500,7 +500,6 @@ export function LandingPage() {
           videoItems={videoCreativeItems}
           showMoreLink
           showMoreLabel={creativeExamples.more}
-          duplicateVideoItems={false}
         />
 
         <section id="services" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
