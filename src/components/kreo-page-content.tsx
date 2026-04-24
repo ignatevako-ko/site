@@ -15,13 +15,13 @@ const staticItems: CreativeGalleryItem[] = Array.from({ length: 7 }, (_, index) 
 
 const videoItems: CreativeGalleryItem[] = [
   {
-    src: "/videos/creative-examples/video-01.mp4",
-    alt: "Video creative 1",
+    src: "/videos/creative-examples/video-06.mp4",
+    alt: "Video creative 6",
     kind: "video",
   },
   {
-    src: "/videos/creative-examples/video-02.mp4",
-    alt: "Video creative 2",
+    src: "/videos/creative-examples/video-10.mp4",
+    alt: "Video creative 10",
     kind: "video",
   },
   {
@@ -30,8 +30,33 @@ const videoItems: CreativeGalleryItem[] = [
     kind: "video",
   },
   {
+    src: "/videos/creative-examples/video-08.mp4",
+    alt: "Video creative 8",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-01.mp4",
+    alt: "Video creative 1",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-11.mp4",
+    alt: "Video creative 11",
+    kind: "video",
+  },
+  {
     src: "/videos/creative-examples/video-04.mp4",
     alt: "Video creative 4",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-02.mp4",
+    alt: "Video creative 2",
+    kind: "video",
+  },
+  {
+    src: "/videos/creative-examples/video-09.mp4",
+    alt: "Video creative 9",
     kind: "video",
   },
   {
@@ -40,23 +65,8 @@ const videoItems: CreativeGalleryItem[] = [
     kind: "video",
   },
   {
-    src: "/videos/creative-examples/video-06.mp4",
-    alt: "Video creative 6",
-    kind: "video",
-  },
-  {
     src: "/videos/creative-examples/video-07.mp4",
     alt: "Video creative 7",
-    kind: "video",
-  },
-  {
-    src: "/videos/creative-examples/video-08.mp4",
-    alt: "Video creative 8",
-    kind: "video",
-  },
-  {
-    src: "/videos/creative-examples/video-09.mp4",
-    alt: "Video creative 9",
     kind: "video",
   },
 ];
@@ -143,7 +153,7 @@ export function KreoPageContent() {
 
         <section className="py-16 lg:py-20">
           <div className="max-w-3xl space-y-5">
-            <h1 className="text-[34px] font-extralight leading-[1.05] tracking-[-0.04em] text-white sm:text-[48px] lg:text-[56px]">
+            <h1 className="text-[28px] font-extralight leading-[1.05] tracking-[-0.04em] text-white sm:text-[2.075rem] lg:text-[56px]">
               {copy.title}
             </h1>
             <p className="max-w-4xl text-base leading-8 text-slate-400 sm:text-lg">
