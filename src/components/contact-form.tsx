@@ -120,7 +120,13 @@ export function ContactForm({ language }: ContactFormProps) {
             <span className="text-sm text-slate-500">{copy.labels.email}</span>
             <input
               type="email"
+              name="email"
               required
+              autoComplete="email"
+              autoCapitalize="none"
+              autoCorrect="off"
+              inputMode="email"
+              enterKeyHint="next"
               value={formState.email}
               onChange={handleChange("email")}
               placeholder={copy.placeholders.email}
@@ -132,7 +138,11 @@ export function ContactForm({ language }: ContactFormProps) {
             <span className="text-sm text-slate-500">{copy.labels.phone}</span>
             <input
               type="tel"
+              name="phone"
               required
+              autoComplete="tel"
+              inputMode="tel"
+              enterKeyHint="next"
               value={formState.phone}
               onChange={handleChange("phone")}
               placeholder={copy.placeholders.phone}
@@ -146,6 +156,12 @@ export function ContactForm({ language }: ContactFormProps) {
             </span>
             <input
               type="text"
+              name="website"
+              autoComplete="url"
+              autoCapitalize="none"
+              autoCorrect="off"
+              inputMode="url"
+              enterKeyHint="next"
               value={formState.website}
               onChange={handleChange("website")}
               placeholder={copy.placeholders.website || "Да: ссылка на сайт / пока нет"}
@@ -156,6 +172,9 @@ export function ContactForm({ language }: ContactFormProps) {
           <label className="rounded-[1.5rem] border border-white/10 bg-slate-900/80 p-5 sm:col-span-2">
             <span className="sr-only">{copy.labels.brief}</span>
             <textarea
+              name="brief"
+              autoComplete="on"
+              enterKeyHint="send"
               value={formState.brief}
               onChange={handleChange("brief")}
               placeholder={copy.placeholders.brief}
