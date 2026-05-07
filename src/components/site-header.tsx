@@ -8,17 +8,21 @@ type SiteHeaderProps = {
   content: SiteDictionary;
   currentLanguage: Language;
   onLanguageChange: (language: Language) => void;
+  homeHref?: string;
+  showLanguageSwitcher?: boolean;
 };
 
 export function SiteHeader({
   content,
   currentLanguage,
   onLanguageChange,
+  homeHref = "#",
+  showLanguageSwitcher = true,
 }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-50 px-4 pt-4 lg:px-6">
       <div className="glass-shell mx-auto flex w-full max-w-7xl items-center justify-between gap-6 rounded-full px-5 py-4 lg:px-8">
-        <a href="#" aria-label="Do.Marketing home">
+        <a href={homeHref} aria-label="Do.Marketing home">
           <BrandLogo compact />
         </a>
 
@@ -50,10 +54,12 @@ export function SiteHeader({
             </a>
           </div>
 
-          <LanguageSwitcher
-            currentLanguage={currentLanguage}
-            onChange={onLanguageChange}
-          />
+          {showLanguageSwitcher ? (
+            <LanguageSwitcher
+              currentLanguage={currentLanguage}
+              onChange={onLanguageChange}
+            />
+          ) : null}
         </div>
       </div>
     </header>

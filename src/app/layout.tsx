@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
+import { ScrollToTopButton } from "@/components/scroll-to-top-button";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -61,6 +62,7 @@ export default function RootLayout({
           />
         </noscript>
         {children}
+        <ScrollToTopButton />
         <Script id="google-tag-manager" strategy="beforeInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
