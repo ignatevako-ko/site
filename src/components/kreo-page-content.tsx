@@ -15,7 +15,15 @@ type CreativeItem = {
 };
 
 const staticItems: CreativeItem[] = [
+  { src: "/images/creative-examples/stories/story-01.png", alt: "Story creative 1", kind: "image" },
+  { src: "/images/creative-examples/stories/story-02.png", alt: "Story creative 2", kind: "image" },
+  { src: "/images/creative-examples/stories/story-03.png", alt: "Story creative 3", kind: "image" },
+  { src: "/images/creative-examples/stories/story-04.png", alt: "Story creative 4", kind: "image" },
+  { src: "/images/creative-examples/stories/story-05.png", alt: "Story creative 5", kind: "image" },
+  { src: "/images/creative-examples/stories/story-06.png", alt: "Story creative 6", kind: "image" },
   { src: "/images/creative-examples/static/static-01-sky-autokool.jpg", alt: "Sky Autokool creative", kind: "image" },
+  { src: "/images/creative-examples/stories/story-07.png", alt: "Story creative 7", kind: "image" },
+  { src: "/images/creative-examples/static/static-17-laager-est.png", alt: "Laager Estonia creative", kind: "image" },
   { src: "/images/creative-examples/static/static-05-eho-clinic-laser.jpg", alt: "EHO Clinic laser creative", kind: "image" },
   { src: "/images/creative-examples/static/static-02-victor-fit-black.jpg", alt: "Victor Fit black creative", kind: "image" },
   { src: "/images/creative-examples/static/static-14-grand-woman-2.jpg", alt: "Grand Woman creative two", kind: "image" },
@@ -34,24 +42,26 @@ const staticItems: CreativeItem[] = [
 ];
 
 const videoItems: CreativeItem[] = [
-  { src: "/videos/creative-examples/video-01.mp4", alt: "Video creative 1", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-01.webp" },
-  { src: "/videos/creative-examples/video-06.mp4", alt: "Video creative 6", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-06.webp" },
+  { src: "/videos/creative-examples/kreo/video-17.mp4", alt: "Video creative 17", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-17.webp" },
+  { src: "/videos/creative-examples/video-03.mp4", alt: "Video creative 3", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-03.webp" },
   { src: "/videos/creative-examples/video-07.mp4", alt: "Video creative 7", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-07.webp" },
   { src: "/videos/creative-examples/video-08.mp4", alt: "Video creative 8", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-08.webp" },
-  { src: "/videos/creative-examples/video-09.mp4", alt: "Video creative 9", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-09.webp" },
-  { src: "/videos/creative-examples/kreo/video-11.mp4", alt: "Video creative 11", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-11.webp" },
-  { src: "/videos/creative-examples/kreo/video-16.mp4", alt: "Video creative 16", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-16.webp" },
-  { src: "/videos/creative-examples/kreo/video-17.mp4", alt: "Video creative 17", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-17.webp" },
-  { src: "/videos/creative-examples/kreo/video-18.mp4", alt: "Video creative 18", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-18.webp" },
-  { src: "/videos/creative-examples/video-02.mp4", alt: "Video creative 2", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-02.webp" },
-  { src: "/videos/creative-examples/video-03.mp4", alt: "Video creative 3", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-03.webp" },
-  { src: "/videos/creative-examples/video-04.mp4", alt: "Video creative 4", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-04.webp" },
-  { src: "/videos/creative-examples/video-05.mp4", alt: "Video creative 5", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-05.webp" },
-  { src: "/videos/creative-examples/kreo/video-10.mp4", alt: "Video creative 10", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-10.webp" },
-  { src: "/videos/creative-examples/kreo/video-12.mp4", alt: "Video creative 12", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-12.webp" },
-  { src: "/videos/creative-examples/kreo/video-13.mp4", alt: "Video creative 13", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-13.webp" },
-  { src: "/videos/creative-examples/kreo/video-14.mp4", alt: "Video creative 14", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-14.webp" },
   { src: "/videos/creative-examples/kreo/video-15.mp4", alt: "Video creative 15", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-15.webp" },
+  { src: "/videos/creative-examples/video-01.mp4", alt: "Video creative 1", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-01.webp" },
+  { src: "/videos/creative-examples/kreo/video-14.mp4", alt: "Video creative 14", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-14.webp" },
+  { src: "/videos/creative-examples/video-06.mp4", alt: "Video creative 6", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-06.webp" },
+  { src: "/videos/creative-examples/kreo/video-19.mp4", alt: "Karate creative", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-19.webp" },
+  { src: "/videos/creative-examples/video-09.mp4", alt: "Video creative 9", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-09.webp" },
+  { src: "/videos/creative-examples/kreo/video-10.mp4", alt: "Video creative 10", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-10.webp" },
+  { src: "/videos/creative-examples/video-04.mp4", alt: "Video creative 4", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-04.webp" },
+  { src: "/videos/creative-examples/kreo/video-16.mp4", alt: "Video creative 16", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-16.webp" },
+  { src: "/videos/creative-examples/video-02.mp4", alt: "Video creative 2", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-02.webp" },
+  { src: "/videos/creative-examples/kreo/video-18.mp4", alt: "Video creative 18", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-18.webp" },
+  { src: "/videos/creative-examples/kreo/video-20.mp4", alt: "Estonian trip voiceover creative", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-20.webp" },
+  { src: "/videos/creative-examples/kreo/video-12.mp4", alt: "Video creative 12", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-12.webp" },
+  { src: "/videos/creative-examples/video-05.mp4", alt: "Video creative 5", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-05.webp" },
+  { src: "/videos/creative-examples/kreo/video-11.mp4", alt: "Video creative 11", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-11.webp" },
+  { src: "/videos/creative-examples/kreo/video-13.mp4", alt: "Video creative 13", kind: "video", poster: "/images/creative-examples/kreo-video-posters/video-13.webp" },
 ];
 
 const copyByLanguage: Record<

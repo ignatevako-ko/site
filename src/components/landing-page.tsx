@@ -200,36 +200,43 @@ const videoCreativeItems: CreativeGalleryItem[] = [
     src: "/videos/creative-examples/video-01.mp4",
     alt: "Video creative 1",
     kind: "video",
+    poster: "/images/creative-examples/kreo-video-posters/video-01.webp",
   },
   {
     src: "/videos/creative-examples/video-02.mp4",
     alt: "Video creative 2",
     kind: "video",
+    poster: "/images/creative-examples/kreo-video-posters/video-02.webp",
   },
   {
     src: "/videos/creative-examples/video-03.mp4",
     alt: "Video creative 3",
     kind: "video",
+    poster: "/images/creative-examples/kreo-video-posters/video-03.webp",
   },
   {
     src: "/videos/creative-examples/video-06.mp4",
     alt: "Video creative 6",
     kind: "video",
+    poster: "/images/creative-examples/kreo-video-posters/video-06.webp",
   },
   {
     src: "/videos/creative-examples/video-07.mp4",
     alt: "Video creative 7",
     kind: "video",
+    poster: "/images/creative-examples/kreo-video-posters/video-07.webp",
   },
   {
     src: "/videos/creative-examples/video-08.mp4",
     alt: "Video creative 8",
     kind: "video",
+    poster: "/images/creative-examples/kreo-video-posters/video-08.webp",
   },
   {
     src: "/videos/creative-examples/video-09.mp4",
     alt: "Video creative 9",
     kind: "video",
+    poster: "/images/creative-examples/kreo-video-posters/video-09.webp",
   },
 ];
 
