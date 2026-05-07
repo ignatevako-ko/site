@@ -492,7 +492,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
     ],
     hero: {
       eyebrow: "Делаем осознанный маркетинг. Приводим к результатам",
-      title: "Приводим *целевых клиентов* через *таргетированную рекламу* FB и Inst",
+      title: "Приводим целевых клиентов через рекламу Meta Ads (Fb, Inst) и Google Ads",
       description: "Пока конкуренты спят",
       primaryCta: "Начать диалог",
       secondaryCta: "Посмотреть кейсы",

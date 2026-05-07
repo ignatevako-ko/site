@@ -272,7 +272,7 @@ export function KreoPageContent() {
             <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
               {copy.eyebrow}
             </p>
-            <h1 className="text-[18px] font-extralight leading-[1.05] tracking-[-0.04em] text-white sm:text-[48px] lg:text-[56px]">
+            <h1 className="text-[28px] font-extralight leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.075rem]">
               {copy.title}
             </h1>
             <p className="max-w-4xl text-base leading-8 text-slate-400 sm:text-lg">

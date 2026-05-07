@@ -82,7 +82,14 @@ const liveTestimonialsCopy: Record<
   Language,
   {
     title: string;
-    items: Array<{ name: string; subtitle: string; quote: string; image: string }>;
+    items: Array<{
+      name: string;
+      subtitle: string;
+      quote: string;
+      image: string;
+      video?: string;
+      poster?: string;
+    }>;
   }
 > = {
   en: {
@@ -141,18 +148,20 @@ const liveTestimonialsCopy: Record<
     title: "Живые отзывы наших клиентов",
     items: [
       {
-        name: "Константин",
-        subtitle: "Владелец детской спортивной школы EDU.DO",
-        quote:
-          "С ребятами я работаю уже более трёх лет. Это лучшие ребята! Поверьте, с ними очень комфортно. Они вас всегда услышат и помогут. А самое главное — они увеличили мои продажи. Я им очень благодарен. Ребята действительно знают своё дело.",
-        image: "/images/testimonial-portrait.jpg",
-      },
-      {
         name: "Петр",
         subtitle: "Владелец строительной фирмы StenVarg",
         quote:
           "Мне нравится, что здесь сочетаются системность, спокойная коммуникация и реальная вовлечённость. Реклама стала понятнее, решения — точнее, а результат наконец-то начал ощущаться в цифрах.",
         image: "/images/testimonial-2.jpg",
+        poster: "/images/testimonial-2.jpg",
+        video: "/videos/testimonials/petr.mp4",
+      },
+      {
+        name: "Константин",
+        subtitle: "Владелец детской спортивной школы EDU.DO",
+        quote:
+          "С ребятами я работаю уже более трёх лет. Это лучшие ребята! Поверьте, с ними очень комфортно. Они вас всегда услышат и помогут. А самое главное — они увеличили мои продажи. Я им очень благодарен. Ребята действительно знают своё дело.",
+        image: "/images/testimonial-portrait.jpg",
       },
       {
         name: "Светлана",
@@ -329,6 +338,11 @@ function CaseCard({ item, index, language }: { item: CaseStudy; index: number; l
 
 export function LandingPage() {
   const [language, setLanguage] = useState<Language>(defaultLanguage);
+  const [activeTestimonialVideo, setActiveTestimonialVideo] = useState<{
+    src: string;
+    poster?: string;
+    name: string;
+  } | null>(null);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -351,6 +365,26 @@ export function LandingPage() {
     setActiveTestimonial(0);
   }, [language]);
 
+  useEffect(() => {
+    if (!activeTestimonialVideo) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveTestimonialVideo(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [activeTestimonialVideo]);
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
       <div className="pointer-events-none absolute inset-0">
@@ -371,16 +405,16 @@ export function LandingPage() {
       <main className="relative z-10">
         <section className="mx-auto grid w-full max-w-7xl gap-14 px-6 pb-20 pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:pb-28 lg:pt-24">
           <div className="space-y-8">
-            <div className="-mt-[25px] flex flex-col items-center gap-1 text-center text-[20px] font-medium text-slate-200 sm:mt-0 sm:flex-row sm:items-center sm:gap-3 sm:text-left sm:text-sm">
+            <div className="-mt-[50px] flex flex-col items-center gap-1 text-center text-[20px] font-extralight text-slate-200 sm:hidden">
               <a
                 href={`tel:${content.contacts.phone}`}
-                className="transition hover:text-violet-200 sm:rounded-full sm:border sm:border-white/12 sm:bg-white/5 sm:px-4 sm:py-2 sm:hover:border-violet-300/50"
+                className="transition hover:text-violet-200"
               >
                 {content.contacts.phone}
               </a>
               <a
                 href={`mailto:${content.contacts.email}`}
-                className="transition hover:text-violet-200 sm:rounded-full sm:border sm:border-white/12 sm:bg-white/5 sm:px-4 sm:py-2 sm:hover:border-violet-300/50"
+                className="transition hover:text-violet-200"
               >
                 {content.contacts.email}
               </a>
@@ -391,7 +425,13 @@ export function LandingPage() {
             </div>
 
             <div className="space-y-6">
-              <h1 className="max-w-3xl text-[27px] font-light tracking-[-0.05em] text-white sm:text-[34px] lg:text-[58px]">
+              <h1
+                className={`max-w-3xl font-light tracking-[-0.05em] text-white ${
+                  language === "ru"
+                    ? "text-[39px] sm:text-[39px] md:text-[46px] lg:text-[58px]"
+                    : "text-[27px] sm:text-[34px] lg:text-[58px]"
+                }`}
+              >
                 {renderHighlightedText(content.hero.title)}
               </h1>
               <p className="max-w-2xl text-lg font-medium uppercase tracking-[0.22em] text-violet-200/95 sm:text-xl">
@@ -699,7 +739,18 @@ export function LandingPage() {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <button
                       type="button"
-                      className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-white text-violet-500 shadow-[0_15px_40px_rgba(255,255,255,0.2)] transition hover:scale-[1.03]"
+                      onClick={() => {
+                        const item = liveTestimonials.items[activeTestimonial];
+                        if (item.video) {
+                          setActiveTestimonialVideo({
+                            src: item.video,
+                            poster: item.poster || item.image,
+                            name: item.name,
+                          });
+                        }
+                      }}
+                      disabled={!liveTestimonials.items[activeTestimonial].video}
+                      className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-white text-violet-500 shadow-[0_15px_40px_rgba(255,255,255,0.2)] transition hover:scale-[1.03] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
                       aria-label="Play video review"
                     >
                       <span className="ml-1 text-3xl">▶</span>
@@ -814,6 +865,37 @@ export function LandingPage() {
         </section>
 
       </main>
+
+      {activeTestimonialVideo ? (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/86 px-5 py-8 backdrop-blur-xl"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setActiveTestimonialVideo(null)}
+        >
+          <button
+            type="button"
+            aria-label="Close testimonial video"
+            className="absolute right-5 top-5 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/10 text-2xl text-white transition hover:bg-white/18"
+            onClick={() => setActiveTestimonialVideo(null)}
+          >
+            ×
+          </button>
+          <div
+            className="relative aspect-[9/16] max-h-[86vh] w-full max-w-[24rem] overflow-hidden rounded-[2rem] border border-white/12 bg-slate-900 shadow-[0_36px_120px_rgba(2,6,23,0.55)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <video
+              src={activeTestimonialVideo.src}
+              poster={activeTestimonialVideo.poster}
+              controls
+              autoPlay
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      ) : null}
 
       <style jsx global>{`
         .creative-marquee {
