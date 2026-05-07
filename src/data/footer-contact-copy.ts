@@ -60,7 +60,7 @@ export const footerContactCopy: Record<Language, FooterContactCopy> = {
       phone: "+372 56789087",
       website: "Jah, veebilehe link / veel ei ole",
       brief:
-        "Kirjelda oma äri, eesmärke ja soovitud tulemust — pakume selget kliendihanke strateegiat.",
+        "Kirjelda oma äri, eesmärke ja soovitud tulemust — pakume selge kliendihanke strateegia.",
     },
     submit: "Alusta vestlust",
     success: "Päring saadetud. Võtame peagi ühendust.",
@@ -69,7 +69,7 @@ export const footerContactCopy: Record<Language, FooterContactCopy> = {
   },
   ru: {
     sectionLabel: "",
-    title: "Готовы к росту заявок?\nНапишите нам.",
+    title: "Готовы к росту заявок?\nНапишите нам",
     description: "",
     labels: {
       email: "Email",

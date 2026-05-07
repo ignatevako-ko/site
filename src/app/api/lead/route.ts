@@ -1,7 +1,5 @@
 import { appendToGoogleSheets, sendToTelegram } from "@/lib/lead-integrations";
 
-export const runtime = "nodejs";
-
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as {
@@ -20,6 +18,7 @@ export async function POST(request: Request) {
     const phone = body.phone?.trim() || "";
     const website = body.website?.trim() || "";
     const brief = body.brief?.trim() || "";
+    const phonePattern = /^\+?[0-9\s().-]{6,20}$/;
 
     if (!email || !phone) {
       return Response.json(
@@ -28,7 +27,7 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!/\d/.test(phone)) {
+    if (!phonePattern.test(phone)) {
       return Response.json(
         { error: "Phone number is invalid." },
         { status: 400 },
@@ -45,15 +44,6 @@ export async function POST(request: Request) {
       (result) => result.status === "fulfilled" && result.value === true,
     );
 
-    results.forEach((result, index) => {
-      if (result.status === "rejected") {
-        console.error(
-          `Lead integration ${index === 0 ? "telegram" : "google_sheets"} failed:`,
-          result.reason,
-        );
-      }
-    });
-
     if (!configured) {
       return Response.json(
         { error: "Form integrations are not configured on the server." },
@@ -62,8 +52,7 @@ export async function POST(request: Request) {
     }
 
     return Response.json({ ok: true });
-  } catch (error) {
-    console.error("Lead API failed:", error);
+  } catch {
     return Response.json({ error: "Unexpected server error." }, { status: 500 });
   }
 }

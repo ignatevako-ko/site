@@ -22,6 +22,20 @@ type CreativeGalleryProps = {
   duplicateVideoItems?: boolean;
 };
 
+function buildMarqueeItems(items: CreativeGalleryItem[], minimumVisibleItems = 16) {
+  if (items.length === 0) {
+    return [];
+  }
+
+  let copies = Math.max(2, Math.ceil(minimumVisibleItems / items.length));
+
+  if (copies % 2 !== 0) {
+    copies += 1;
+  }
+
+  return Array.from({ length: copies }, () => items).flat();
+}
+
 function CreativePreview({
   item,
   index,
@@ -43,15 +57,22 @@ function CreativePreview({
       onClick={() => onOpen(item)}
       className="group relative aspect-[9/16] w-[8.5rem] shrink-0 overflow-hidden rounded-[1.35rem] border border-white/10 bg-white/5 text-left shadow-[0_20px_50px_rgba(2,6,23,0.22)] transition hover:-translate-y-1 hover:border-violet-300/35 sm:w-[10rem] lg:w-[11.25rem]"
     >
-      {isVideo ? (
+      {isVideo && item.poster ? (
+        <Image
+          src={item.poster}
+          alt={duplicate ? "" : item.alt}
+          fill
+          sizes="(min-width: 1024px) 180px, 150px"
+          className="object-cover transition duration-700 group-hover:scale-[1.04]"
+        />
+      ) : isVideo ? (
         <video
           src={item.src}
           poster={item.poster}
           muted
           loop
           playsInline
-          autoPlay
-          preload="metadata"
+          preload="none"
           className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
         />
       ) : (
@@ -94,7 +115,8 @@ export function CreativeGallery({
   duplicateVideoItems = true,
 }: CreativeGalleryProps) {
   const [activeItem, setActiveItem] = useState<CreativeGalleryItem | null>(null);
-  const visibleVideoItems = duplicateVideoItems ? [...videoItems, ...videoItems] : videoItems;
+  const visibleStaticItems = buildMarqueeItems(staticItems);
+  const visibleVideoItems = duplicateVideoItems ? buildMarqueeItems(videoItems) : videoItems;
 
   useEffect(() => {
     if (!activeItem) {
@@ -132,7 +154,7 @@ export function CreativeGallery({
       <div className="mt-8 flex flex-col gap-4 overflow-hidden sm:gap-5">
         <div className="creative-marquee">
           <div className="creative-marquee__track creative-marquee__track--left">
-            {[...staticItems, ...staticItems].map((item, index) => (
+            {visibleStaticItems.map((item, index) => (
               <CreativePreview
                 key={`static-${item.src}-${index}`}
                 item={item}

@@ -278,7 +278,6 @@ export const siteContent: Record<Language, SiteDictionary> = {
     nav: [
       { href: "#cases", label: "Cases" },
       { href: "#services", label: "Services" },
-      { href: "#clients", label: "Clients" },
       { href: "#about", label: "About" },
       { href: "#testimonials", label: "Reviews" },
       { href: "#contacts", label: "Contacts" },
@@ -383,7 +382,6 @@ export const siteContent: Record<Language, SiteDictionary> = {
     nav: [
       { href: "#cases", label: "Tööd" },
       { href: "#services", label: "Teenused" },
-      { href: "#clients", label: "Kliendid" },
       { href: "#about", label: "Meist" },
       { href: "#testimonials", label: "Tagasiside" },
       { href: "#contacts", label: "Kontakt" },
@@ -488,7 +486,6 @@ export const siteContent: Record<Language, SiteDictionary> = {
     nav: [
       { href: "#cases", label: "Кейсы" },
       { href: "#services", label: "Услуги" },
-      { href: "#clients", label: "Клиенты" },
       { href: "#about", label: "О нас" },
       { href: "#testimonials", label: "Отзывы" },
       { href: "#contacts", label: "Контакты" },

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
@@ -591,7 +591,12 @@ export function LandingPage() {
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
             {pricing.additional.map((item) => {
-              const href = item === "SMM" ? "/smm" : null;
+              const href =
+                item === "SMM"
+                  ? "/smm"
+                  : item === "Google реклама" || item === "Google Ads"
+                    ? "/google-ads"
+                    : null;
 
               const className =
                 "inline-flex items-center rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-[20px] font-light text-slate-100 transition hover:border-violet-300/35 hover:bg-white/10";

@@ -40,7 +40,6 @@ export function ContactForm({ language }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
-  const [errorMessage, setErrorMessage] = useState(copy.error);
 
   const handleChange =
     (field: keyof FormState) =>
@@ -51,49 +50,24 @@ export function ContactForm({ language }: ContactFormProps) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus("loading");
-    setErrorMessage(copy.error);
 
     try {
-      const params =
-        typeof window !== "undefined"
-          ? new URLSearchParams(window.location.search)
-          : new URLSearchParams();
       const response = await fetch("/api/lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...formState,
-          source: "contact_form",
-          language,
-          pageUrl: typeof window !== "undefined" ? window.location.href : "",
-          referrer: typeof document !== "undefined" ? document.referrer : "",
-          utm: {
-            utm_source: params.get("utm_source") || "",
-            utm_medium: params.get("utm_medium") || "",
-            utm_campaign: params.get("utm_campaign") || "",
-            utm_content: params.get("utm_content") || "",
-            utm_term: params.get("utm_term") || "",
-          },
-        }),
+        body: JSON.stringify(formState),
       });
 
       if (!response.ok) {
-        const responseBody = (await response.json().catch(() => null)) as {
-          error?: string;
-        } | null;
-        throw new Error(responseBody?.error || copy.error);
+        throw new Error("Lead submission failed");
       }
 
       trackCompleteRegistration();
       setFormState(initialState);
       setStatus("success");
-    } catch (error) {
-      if (error instanceof Error && error.message) {
-        console.error(error.message);
-        setErrorMessage(error.message);
-      }
+    } catch {
       setStatus("error");
     }
   };
@@ -120,13 +94,7 @@ export function ContactForm({ language }: ContactFormProps) {
             <span className="text-sm text-slate-500">{copy.labels.email}</span>
             <input
               type="email"
-              name="email"
               required
-              autoComplete="email"
-              autoCapitalize="none"
-              autoCorrect="off"
-              inputMode="email"
-              enterKeyHint="next"
               value={formState.email}
               onChange={handleChange("email")}
               placeholder={copy.placeholders.email}
@@ -138,11 +106,7 @@ export function ContactForm({ language }: ContactFormProps) {
             <span className="text-sm text-slate-500">{copy.labels.phone}</span>
             <input
               type="tel"
-              name="phone"
               required
-              autoComplete="tel"
-              inputMode="tel"
-              enterKeyHint="next"
               value={formState.phone}
               onChange={handleChange("phone")}
               placeholder={copy.placeholders.phone}
@@ -156,12 +120,6 @@ export function ContactForm({ language }: ContactFormProps) {
             </span>
             <input
               type="text"
-              name="website"
-              autoComplete="url"
-              autoCapitalize="none"
-              autoCorrect="off"
-              inputMode="url"
-              enterKeyHint="next"
               value={formState.website}
               onChange={handleChange("website")}
               placeholder={copy.placeholders.website || "Да: ссылка на сайт / пока нет"}
@@ -172,9 +130,6 @@ export function ContactForm({ language }: ContactFormProps) {
           <label className="rounded-[1.5rem] border border-white/10 bg-slate-900/80 p-5 sm:col-span-2">
             <span className="sr-only">{copy.labels.brief}</span>
             <textarea
-              name="brief"
-              autoComplete="on"
-              enterKeyHint="send"
               value={formState.brief}
               onChange={handleChange("brief")}
               placeholder={copy.placeholders.brief}
@@ -196,7 +151,7 @@ export function ContactForm({ language }: ContactFormProps) {
           <p className="text-sm text-emerald-300">{copy.success}</p>
         ) : null}
         {status === "error" ? (
-          <p className="text-sm text-rose-300">{errorMessage}</p>
+          <p className="text-sm text-rose-300">{copy.error}</p>
         ) : null}
       </div>
     </div>
