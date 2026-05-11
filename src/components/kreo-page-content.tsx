@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { BrandLogo } from "@/components/brand-logo";
-import { PageLanguageSwitcher } from "@/components/page-language-switcher";
-import type { Language } from "@/data/site-content";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { siteContent, type Language, type SiteDictionary } from "@/data/site-content";
 
 type CreativeItem = {
   src: string;
@@ -220,6 +219,25 @@ export function KreoPageContent() {
   const [language, setLanguage] = useState<Language>("ru");
   const [activeItem, setActiveItem] = useState<CreativeItem | null>(null);
   const copy = useMemo(() => copyByLanguage[language], [language]);
+  const pageContent = useMemo<SiteDictionary>(() => {
+    const content = siteContent[language];
+    const normalizeHref = (href: string) => (href.startsWith("#") ? `/${href}` : href);
+
+    return {
+      ...content,
+      nav: content.nav.map((item) => ({
+        ...item,
+        href: normalizeHref(item.href),
+      })),
+      footer: {
+        ...content.footer,
+        links: content.footer.links.map((item) => ({
+          ...item,
+          href: normalizeHref(item.href),
+        })),
+      },
+    };
+  }, [language]);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -252,7 +270,7 @@ export function KreoPageContent() {
   }, [activeItem]);
 
   return (
-    <main id="top" className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
+    <div id="top" className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[-6rem] top-[-3rem] h-[20rem] w-[20rem] rounded-full bg-amber-200/20 blur-3xl" />
         <div className="absolute left-1/2 top-0 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-violet-400/12 blur-3xl" />
@@ -260,22 +278,14 @@ export function KreoPageContent() {
         <div className="grid-overlay absolute inset-0 opacity-40" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-10 lg:px-10 lg:py-14">
-        <header className="glass-shell flex flex-wrap items-center justify-between gap-5 rounded-full px-5 py-4 lg:px-8">
-          <Link href="/" aria-label="Do.Marketing home">
-            <BrandLogo compact />
-          </Link>
+      <SiteHeader
+        content={pageContent}
+        currentLanguage={language}
+        onLanguageChange={setLanguage}
+        homeHref="/"
+      />
 
-          <div className="flex items-center gap-3">
-            <Link
-              href="/"
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
-            >
-              {copy.home}
-            </Link>
-            <PageLanguageSwitcher currentLanguage={language} onChange={setLanguage} />
-          </div>
-        </header>
+      <main className="relative z-10 mx-auto w-full max-w-7xl px-6 py-10 lg:px-10 lg:py-14">
 
         <section className="py-16 lg:py-20">
           <div className="max-w-3xl space-y-5">
@@ -306,7 +316,9 @@ export function KreoPageContent() {
             onOpen={setActiveItem}
           />
         </div>
-      </div>
+      </main>
+
+      <SiteFooter content={pageContent} language={language} />
 
       <a
         href="#top"
@@ -358,6 +370,6 @@ export function KreoPageContent() {
           </div>
         </div>
       ) : null}
-    </main>
+    </div>
   );
 }

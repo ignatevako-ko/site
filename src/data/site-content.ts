@@ -1,4 +1,4 @@
-export type Language = "en" | "et" | "ru";
+﻿export type Language = "en" | "et" | "ru";
 
 export type NavItem = {
   href: string;
@@ -139,7 +139,7 @@ const casesRu: CaseStudy[] = [
       "Для магазина косметики в Эстонии кампания со скидкой 20% на Medic8 принесла 114 продаж. Стоимость продажи составила €2.43, средний чек €73.57, а окупаемость достигла 30.23.",
   },
   {
-    title: "Prime Tour",
+    title: "Турагенство Prime Tour",
     category: "Travel / Estonia",
     result: "11 броней при бюджете €390",
     summary:
@@ -153,14 +153,14 @@ const casesRu: CaseStudy[] = [
       "Продвижение SMAS-лифтинга с тестированием форматов, языков и сегментов позволило найти самую сильную связку. При бюджете €600 привлекли 34 клиента на маржинальную процедуру стоимостью €125-537.",
   },
   {
-    title: "Мужская психотерапевтическая группа",
-    category: "Lead generation / psychotherapy",
-    result: "Стабильный поток заявок в терапевтическую группу",
+    title: "Детские лагеря Suvelaagrid",
+    category: "Lead generation / children camps",
+    result: "751 заявка в месяц по 3,4 евро за заявку",
     summary:
-      "Продвижение мужской психотерапевтической группы было выстроено через аккуратную коммуникацию, понятный оффер и точную работу с аудиторией. Это позволило получать стабильные заявки от релевантных мужчин без давления и перегретых обещаний.",
+      "Для детских лагерей Suvelaagrid выстроили системный поток заявок в сезон. Уточнили оффер, собрали понятную коммуникацию для родителей и довели рекламные связки до точного спроса. В результате проект получает 751 заявку в месяц по средней цене 3,4 евро за заявку.",
   },
   {
-    title: "Sadhu Boards",
+    title: "Магазин досок для гвоздестояния Sadhu Boards",
     category: "E-commerce / Moldova",
     result: "300-500 лидов ежемесячно",
     summary:
@@ -205,11 +205,11 @@ const casesEn: CaseStudy[] = [
       "SMAS lifting campaigns tested multiple languages, segments and ad formats to identify the strongest combination. With a €600 budget, the project attracted 34 clients for a high-margin service priced at €125-537.",
   },
   {
-    title: "Men’s Psychotherapy Group",
-    category: "Lead generation / psychotherapy",
-    result: "A steady flow of qualified group inquiries",
+    title: "Suvelaagrid Children's Camps",
+    category: "Lead generation / children camps",
+    result: "751 leads per month at €3.4 per lead",
     summary:
-      "Promotion for the men’s psychotherapy group focused on careful messaging, a clear offer and precise audience targeting. This created a steady stream of relevant inquiries without aggressive promises or forced sales pressure.",
+      "For Suvelaagrid children's camps, we built a predictable seasonal lead flow. We clarified the offer, shaped clear communication for parents and refined the ad setup around real demand. As a result, the project now receives 751 leads per month at an average cost of €3.4 per lead.",
   },
   {
     title: "Sadhu Boards",
@@ -257,11 +257,11 @@ const casesEt: CaseStudy[] = [
       "SMAS-liftingu kampaanias testiti erinevaid formaate, keeli ja sihtgruppe, et leida tugevaim kombinatsioon. €600 eelarvega toodi 34 klienti kõrge marginaaliga teenusele hinnaga €125-537.",
   },
   {
-    title: "Meeste psühhoteraapia grupp",
-    category: "Lead generation / psychotherapy",
-    result: "Stabiilne voog kvaliteetseid päringuid gruppi",
+    title: "Suvelaagrid laste laagrid",
+    category: "Lead generation / children camps",
+    result: "751 päringut kuus hinnaga 3,4 eurot päringu kohta",
     summary:
-      "Meeste psühhoteraapia grupi turundus ehitati üles hoolika sõnumi, selge pakkumise ja täpse sihtimise peale. See tõi grupile stabiilselt asjakohaseid päringuid ilma agressiivse müügi või tühjade lubadusteta.",
+      "Suvelaagrid laste laagrite jaoks ehitasime üles prognoositava hooajalise päringute voo. Täpsustasime pakkumise, lõime vanematele arusaadava kommunikatsiooni ja timmisime reklaamid reaalse nõudluse järgi paika. Tulemuseks saab projekt nüüd 751 päringut kuus keskmise hinnaga 3,4 eurot päringu kohta.",
   },
   {
     title: "Sadhu Boards",

@@ -43,9 +43,6 @@ type SmmCopy = {
 const smmCopy: Record<Language, SmmCopy> = {
   ru: {
     nav: [
-      { href: "#offer", label: "Оффер" },
-      { href: "#month-1", label: "1 месяц" },
-      { href: "#month-2", label: "Ведение" },
       { href: "#month-3", label: "Таргет" },
       { href: "#process", label: "Процесс" },
       { href: "#contacts", label: "Контакты" },
@@ -145,9 +142,6 @@ const smmCopy: Record<Language, SmmCopy> = {
   },
   en: {
     nav: [
-      { href: "#offer", label: "Offer" },
-      { href: "#month-1", label: "Month 1" },
-      { href: "#month-2", label: "Management" },
       { href: "#month-3", label: "Ads" },
       { href: "#process", label: "Process" },
       { href: "#contacts", label: "Contacts" },
@@ -247,9 +241,6 @@ const smmCopy: Record<Language, SmmCopy> = {
   },
   et: {
     nav: [
-      { href: "#offer", label: "Pakkumine" },
-      { href: "#month-1", label: "1. kuu" },
-      { href: "#month-2", label: "Haldus" },
       { href: "#month-3", label: "Reklaam" },
       { href: "#process", label: "Protsess" },
       { href: "#contacts", label: "Kontakt" },

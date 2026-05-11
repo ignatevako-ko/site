@@ -78,6 +78,85 @@ const pricingByLanguage: Record<
   },
 };
 
+const googleServicesByLanguage: Record<
+  Language,
+  {
+    title: string;
+    features: string[];
+    priceLabel: string;
+    budgetBadge: string;
+    managementLabel: string;
+    prices: Array<{ budget: string; price: string }>;
+  }
+> = {
+  en: {
+    title: "GOOGLE ADS CAMPAIGN SETUP AND MANAGEMENT",
+    features: [
+      "Niche and competitor analysis",
+      "Google Ads account structure setup",
+      "Keyword and negative keyword research",
+      "Campaign strategy and budget planning",
+      "Ad copywriting and extension setup",
+      "Creative guidance for Display campaigns",
+      "Launch of Search and Display campaigns",
+      "A/B testing and bid optimisation",
+      "Ongoing campaign management and scaling",
+    ],
+    priceLabel: "500€",
+    budgetBadge: "+ ad budget: from 350€",
+    managementLabel: "GOOGLE ADS MANAGEMENT FEE",
+    prices: [
+      { budget: "up to 1000€", price: "500€" },
+      { budget: "up to 2000€", price: "650€" },
+      { budget: "from 2000€", price: "custom" },
+    ],
+  },
+  et: {
+    title: "GOOGLE ADS REKLAAMI SEADISTUS JA HALDUS",
+    features: [
+      "Niši ja konkurentide analüüs",
+      "Google Ads konto struktuuri seadistus",
+      "Märksõnade ja negatiivsete märksõnade valik",
+      "Kampaania strateegia ja eelarve planeerimine",
+      "Reklaamtekstide kirjutamine ja laienduste seadistus",
+      "Loovlahenduste juhised Display kampaaniate jaoks",
+      "Searchi ja Display kampaaniate käivitamine",
+      "A/B testimine ja pakkumiste optimeerimine",
+      "Jooksev haldus ja skaleerimine",
+    ],
+    priceLabel: "500€",
+    budgetBadge: "+ reklaамieelarve: alates 350€",
+    managementLabel: "GOOGLE ADS HALDUSE HIND",
+    prices: [
+      { budget: "kuni 1000€", price: "500€" },
+      { budget: "kuni 2000€", price: "650€" },
+      { budget: "alates 2000€", price: "personaalselt" },
+    ],
+  },
+  ru: {
+    title: "НАСТРОЙКА И ВЕДЕНИЕ РЕКЛАМЫ GOOGLE ADS",
+    features: [
+      "анализ ниши и конкурентов",
+      "настройка структуры рекламного кабинета Google Ads",
+      "сбор ключевых слов и минус-слов",
+      "разработка стратегии кампаний и логики бюджета",
+      "написание текстов объявлений и настройка расширений",
+      "подготовка креативов или ТЗ для КМС",
+      "запуск поисковых и медийных кампаний",
+      "A/B тестирование и оптимизация ставок",
+      "регулярное ведение, масштабирование и отчётность",
+    ],
+    priceLabel: "500€",
+    budgetBadge: "+ рекламный бюджет: от 350€",
+    managementLabel: "СТОИМОСТЬ ВЕДЕНИЯ GOOGLE ADS",
+    prices: [
+      { budget: "до 1000€", price: "500€" },
+      { budget: "до 2000€", price: "650€" },
+      { budget: "от 2000€", price: "индивидуально" },
+    ],
+  },
+};
+
 const liveTestimonialsCopy: Record<
   Language,
   {
@@ -293,10 +372,36 @@ function BackgroundGlow({
   );
 }
 
+function renderServiceTitle(title: string) {
+  if (title.includes("META ADS")) {
+    return (
+      <>
+        {title.replace("META ADS", "").trim()} <span className="text-[21px] tracking-[0.08em]">META ADS</span>
+      </>
+    );
+  }
+
+  if (title.includes("GOOGLE ADS")) {
+    return (
+      <>
+        {title.replace("GOOGLE ADS", "").trim()} <span className="text-[21px] tracking-[0.08em]">GOOGLE ADS</span>
+      </>
+    );
+  }
+
+  return title;
+}
+
 function CaseCard({ item, index, language }: { item: CaseStudy; index: number; language: Language }) {
   const palette = caseBackgrounds[index % caseBackgrounds.length];
   const categoryParts = item.category.split("/").map((part) => part.trim());
-  const isWideCase = index === 0 || item.category.toLowerCase().includes("psychotherapy");
+  const normalizedCategory = item.category.toLowerCase();
+  const normalizedTitle = item.title.toLowerCase();
+  const isWideCase =
+    index === 0 ||
+    normalizedCategory.includes("psychotherapy") ||
+    normalizedCategory.includes("children camps") ||
+    normalizedTitle.includes("suvelaagrid");
 
   return (
     <article
@@ -357,6 +462,19 @@ export function LandingPage() {
 
   const content = siteContent[language];
   const pricing = pricingByLanguage[language];
+  const services = useMemo(
+    () => [
+      {
+        ...content.services[0],
+        priceLabel: pricing.priceLabel,
+        budgetBadge: pricing.budgetBadge,
+        managementLabel: pricing.managementLabel,
+        prices: pricing.prices,
+      },
+      googleServicesByLanguage[language],
+    ],
+    [content.services, language, pricing.budgetBadge, pricing.managementLabel, pricing.priceLabel, pricing.prices],
+  );
   const liveTestimonials = useMemo(() => liveTestimonialsCopy[language], [language]);
   const creativeExamples = useMemo(() => creativeExamplesCopy[language], [language]);
   const casesForGrid = useMemo(
@@ -556,77 +674,83 @@ export function LandingPage() {
             title={content.sections.services}
             description={content.sectionLead.services}
           />
-          <div className="relative mt-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(12,18,42,0.92),rgba(16,20,42,0.84),rgba(32,22,51,0.88))] p-8 shadow-[0_40px_120px_rgba(7,10,24,0.32)] sm:p-10 lg:p-12">
-            <BackgroundGlow className="right-8 top-[-8rem] h-[20rem] w-[20rem] bg-fuchsia-300/10" />
-            <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start">
-              <div className="space-y-8">
-                <h3 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-white">
-                  {content.services[0].title.includes("META ADS") ? (
-                    <>
-                      {content.services[0].title.replace("META ADS", "").trim()} {" "}
-                      <span className="text-[21px] tracking-[0.08em]">META ADS</span>
-                    </>
-                  ) : (
-                    content.services[0].title
-                  )}
-                </h3>
+          <div className="mt-10 space-y-8">
+            {services.map((service, index) => (
+              <div
+                key={service.title}
+                className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(12,18,42,0.92),rgba(16,20,42,0.84),rgba(32,22,51,0.88))] p-8 shadow-[0_40px_120px_rgba(7,10,24,0.32)] sm:p-10 lg:p-12"
+              >
+                <BackgroundGlow
+                  className={index === 0 ? "right-8 top-[-8rem] h-[20rem] w-[20rem] bg-fuchsia-300/10" : "left-[-5rem] top-[-6rem] h-[18rem] w-[18rem] bg-violet-300/10"}
+                />
+                <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start">
+                  <div className="space-y-8">
+                    <h3 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-white">
+                      {renderServiceTitle(service.title)}
+                    </h3>
 
-                <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
-                  {content.services[0].features.map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-start gap-3 text-[20px] font-light text-slate-100"
-                    >
-                      <span className="mt-[0.35rem] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-violet-300/30 bg-violet-300/10 text-[11px] text-violet-200">
-                        ✓
-                      </span>
-                      <span className="leading-[1.45]">{item}</span>
-                    </div>
-                  ))}
-                </div>
-
-
-              </div>
-
-              <div className="rounded-[1.9rem] border border-violet-300/18 bg-[linear-gradient(155deg,rgba(167,139,250,0.18),rgba(255,255,255,0.04),rgba(15,23,42,0.35))] p-5 shadow-[0_24px_70px_rgba(76,29,149,0.18)] sm:p-6">
-                <div className="flex min-h-full flex-col items-center text-center">
-                  <div className="mt-0 flex items-baseline justify-center gap-2 text-white">
-                    <span className="text-[14px] font-medium uppercase tracking-[0.04em] text-white/70 sm:text-[14px]">
-                      от
-                    </span>
-                    <p className="text-[48px] font-light tracking-[-0.08em] text-white sm:text-[58px]">
-                      {pricing.priceLabel}
-                    </p>
-                  </div>
-                  <div className="mt-5 inline-flex items-center justify-center rounded-full border border-violet-300/22 bg-violet-300/10 px-3.5 py-1 text-[13px] font-medium text-violet-100 shadow-[0_12px_40px_rgba(167,139,250,0.12)]">
-                    {pricing.budgetBadge}
-                  </div>
-                  <div className="mt-5 w-full max-w-[19rem] rounded-[1.2rem] border border-white/8 bg-slate-950/22 px-4 py-4 text-left">
-                    <p className="mb-4 text-[11px] uppercase tracking-[0.12em] text-slate-300 sm:text-[12px]">
-                      {pricing.managementLabel}
-                    </p>
-                    <div className="space-y-2">
-                      {pricing.prices.map((row) => (
+                    <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+                      {service.features.map((item) => (
                         <div
-                          key={`${row.budget}-${row.price}`}
-                          className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-white/8 pb-2 text-[14px] text-slate-200 last:border-b-0 last:pb-0"
+                          key={item}
+                          className="flex items-start gap-3 text-[20px] font-light text-slate-100"
                         >
-                          <span>{row.budget}</span>
-                          <span className="font-semibold text-white">{row.price}</span>
+                          <span className="mt-[0.35rem] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-violet-300/30 bg-violet-300/10 text-[11px] text-violet-200">
+                            ✓
+                          </span>
+                          <span className="leading-[1.45]">{item}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <a
-                    href="#contacts"
-                    className="mt-8 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300"
-                  >
-                    {pricing.cta}
-                  </a>
+                  <div className="rounded-[1.9rem] border border-violet-300/18 bg-[linear-gradient(155deg,rgba(167,139,250,0.18),rgba(255,255,255,0.04),rgba(15,23,42,0.35))] p-5 shadow-[0_24px_70px_rgba(76,29,149,0.18)] sm:p-6">
+                    <div className="flex min-h-full flex-col items-center text-center">
+                      <div className="mt-0 flex items-baseline justify-center gap-2 text-white">
+                        <span className="text-[14px] font-medium uppercase tracking-[0.04em] text-white/70 sm:text-[14px]">
+                          от
+                        </span>
+                        <p className="text-[48px] font-light tracking-[-0.08em] text-white sm:text-[58px]">
+                          {service.priceLabel}
+                        </p>
+                      </div>
+                      <div className="mt-5 inline-flex items-center justify-center rounded-full border border-violet-300/22 bg-violet-300/10 px-3.5 py-1 text-[13px] font-medium text-violet-100 shadow-[0_12px_40px_rgba(167,139,250,0.12)]">
+                        {service.budgetBadge}
+                      </div>
+                      <div className="mt-5 w-full max-w-[19rem] rounded-[1.2rem] border border-white/8 bg-slate-950/22 px-4 py-4 text-left">
+                        <p className="mb-4 text-[11px] uppercase tracking-[0.12em] text-slate-300 sm:text-[12px]">
+                          {service.managementLabel}
+                        </p>
+                        {service.title.includes("GOOGLE ADS") ? (
+                          <p className="text-[16px] leading-7 text-slate-100 sm:text-[17px]">
+                            рассчитывается индивидуально под каждый проект
+                          </p>
+                        ) : (
+                          <div className="space-y-2">
+                            {service.prices.map((row) => (
+                              <div
+                                key={`${row.budget}-${row.price}`}
+                                className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-white/8 pb-2 text-[14px] text-slate-200 last:border-b-0 last:pb-0"
+                              >
+                                <span>{row.budget}</span>
+                                <span className="font-semibold text-white">{row.price}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      <a
+                        href="#contacts"
+                        className="mt-8 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300"
+                      >
+                        {pricing.cta}
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </section>
 
