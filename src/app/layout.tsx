@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import { ScrollToTopButton } from "@/components/scroll-to-top-button";
+import {
+  defaultKeywords,
+  organizationStructuredData,
+  siteDescription,
+  siteTitle,
+  siteUrl,
+} from "@/lib/seo";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -15,22 +22,13 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://domarketing.ee"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Do.Marketing | Реклама Meta Ads и Google Ads в Tallinn, Estonia",
+    default: siteTitle,
     template: "%s",
   },
-  description:
-    "Do.Marketing помогает бизнесу в Таллинне и по всей Эстонии привлекать клиентов через Meta Ads и Google Ads: стратегия, запуск, ведение, креативы и рост заявок.",
-  keywords: [
-    "Meta Ads Tallinn",
-    "Google Ads Tallinn",
-    "marketing agency Tallinn",
-    "performance marketing Estonia",
-    "Facebook Ads Estonia",
-    "Instagram Ads Tallinn",
-    "Do.Marketing",
-  ],
+  description: siteDescription,
+  keywords: defaultKeywords,
   alternates: {
     canonical: "/",
   },
@@ -46,73 +44,18 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Do.Marketing | Реклама Meta Ads и Google Ads в Tallinn, Estonia",
-    description:
-      "Локальное performance marketing агентство в Таллинне: Meta Ads, Google Ads, кейсы, креативы и реклама с фокусом на заявки и окупаемость.",
+    title: siteTitle,
+    description: siteDescription,
     siteName: "Do.Marketing",
     type: "website",
-    url: "https://domarketing.ee",
+    url: siteUrl,
     locale: "ru_EE",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Do.Marketing | Реклама Meta Ads и Google Ads в Tallinn, Estonia",
-    description:
-      "Meta Ads и Google Ads для бизнеса в Таллинне и Эстонии: стратегия, запуск и ведение рекламы под реальные заявки.",
+    title: siteTitle,
+    description: siteDescription,
   },
-};
-
-const organizationStructuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://domarketing.ee/#organization",
-      name: "Do.Marketing",
-      legalName: "OÜ Turundusagendid",
-      url: "https://domarketing.ee",
-      email: "ceo@domarketing.ee",
-      telephone: "+37257843293",
-      foundingLocation: "Tallinn, Estonia",
-      areaServed: ["Tallinn", "Estonia"],
-      sameAs: [
-        "https://www.instagram.com/do.market.ng/",
-        "https://t.me/ignateva_ko",
-      ],
-    },
-    {
-      "@type": "LocalBusiness",
-      "@id": "https://domarketing.ee/#localbusiness",
-      name: "Do.Marketing",
-      url: "https://domarketing.ee",
-      image: "https://domarketing.ee/brand/logo-white.png",
-      email: "ceo@domarketing.ee",
-      telephone: "+37257843293",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Tallinn",
-        addressCountry: "EE",
-      },
-      areaServed: [
-        {
-          "@type": "City",
-          name: "Tallinn",
-        },
-        {
-          "@type": "Country",
-          name: "Estonia",
-        },
-      ],
-      priceRange: "€€",
-      knowsAbout: [
-        "Meta Ads",
-        "Facebook Ads",
-        "Instagram Ads",
-        "Google Ads",
-        "Performance marketing",
-      ],
-    },
-  ],
 };
 
 export default function RootLayout({

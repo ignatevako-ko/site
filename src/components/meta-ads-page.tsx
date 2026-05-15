@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { metaAdsRelatedServices } from "@/lib/services";
 import { siteContent } from "@/data/site-content";
 
 const pageContent = {
@@ -92,11 +94,6 @@ const faqItems = [
     answer:
       "Мы можем взять и стратегию, и настройку кабинета, и тексты, и креативы, и ТЗ на съемку. Это позволяет быстрее находить рабочие связки и не терять темп.",
   },
-];
-
-const extraServices = [
-  { label: "Google Ads", href: "/google-ads" },
-  { label: "SMM", href: "/smm" },
 ];
 
 function SectionHeading({
@@ -367,12 +364,12 @@ export function MetaAdsPage() {
                 ))}
               </div>
 
-              <a
+              <Link
                 href="#contacts"
                 className="mt-8 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-violet-400 px-7 text-[18px] font-semibold text-slate-950 transition hover:bg-violet-300"
               >
                 Обсудить проект
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -382,14 +379,14 @@ export function MetaAdsPage() {
             Дополнительные услуги
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            {extraServices.map((item) => (
-              <a
+            {metaAdsRelatedServices.map((item) => (
+              <Link
                 key={item.href}
                 href={item.href}
                 className="inline-flex items-center rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-[18px] font-light text-slate-100 transition hover:border-violet-300/35 hover:bg-white/10"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         </section>

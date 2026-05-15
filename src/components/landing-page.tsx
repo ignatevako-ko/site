@@ -1,11 +1,13 @@
 ﻿"use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { BrandLogo } from "@/components/brand-logo";
 import { CreativeGallery, type CreativeGalleryItem } from "@/components/creative-gallery";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { landingAdditionalServices } from "@/lib/services";
 import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
 
 const defaultLanguage: Language = "ru";
@@ -34,7 +36,6 @@ const pricingByLanguage: Record<
     pricingLabel: string;
     managementLabel: string;
     prices: Array<{ budget: string; price: string }>;
-    additional: string[];
     cta: string;
   }
 > = {
@@ -48,7 +49,6 @@ const pricingByLanguage: Record<
       { budget: "up to 2000€", price: "670€" },
       { budget: "from 2000€", price: "890€" },
     ],
-    additional: ["Meta Ads", "Marketing audit", "SMM", "Google Ads", "SEO"],
     cta: "Start a conversation",
   },
   et: {
@@ -61,7 +61,6 @@ const pricingByLanguage: Record<
       { budget: "kuni 2000€", price: "670€" },
       { budget: "alates 2000€", price: "890€" },
     ],
-    additional: ["Meta Ads", "Turundusaudit", "SMM", "Google Ads", "SEO"],
     cta: "Alusta vestlust",
   },
   ru: {
@@ -74,7 +73,6 @@ const pricingByLanguage: Record<
       { budget: "до 2000€", price: "670€" },
       { budget: "от 2000€", price: "890€" },
     ],
-    additional: ["Meta Ads", "Аудит маркетинга", "SMM", "Google реклама", "SEO оптимизация"],
     cta: "Оставить заявку",
   },
 };
@@ -463,6 +461,7 @@ export function LandingPage() {
 
   const content = siteContent[language];
   const pricing = pricingByLanguage[language];
+  const additionalServices = landingAdditionalServices[language];
   const services = useMemo(
     () => [
       {
@@ -741,12 +740,12 @@ export function LandingPage() {
                         )}
                       </div>
 
-                      <a
+                      <Link
                         href={serviceLinks[index] ?? "#contacts"}
                         className="mt-8 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300"
                       >
                         {pricing.cta}
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -762,26 +761,17 @@ export function LandingPage() {
             </p>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
-            {pricing.additional.map((item) => {
-              const href =
-                item === "Meta Ads"
-                  ? "/meta-ads"
-                  : item === "SMM"
-                    ? "/smm"
-                    : item === "Google реклама" || item === "Google Ads"
-                      ? "/google-ads"
-                      : null;
-
+            {additionalServices.map((item) => {
               const className =
                 "inline-flex items-center rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-[20px] font-light text-slate-100 transition hover:border-violet-300/35 hover:bg-white/10";
 
-              return href ? (
-                <a key={item} href={href} className={className}>
-                  {item}
-                </a>
+              return item.href ? (
+                <Link key={item.label} href={item.href} className={className}>
+                  {item.label}
+                </Link>
               ) : (
-                <span key={item} className={className}>
-                  {item}
+                <span key={item.label} className={className}>
+                  {item.label}
                 </span>
               );
             })}

@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 import { BrandLogo } from "@/components/brand-logo";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { servicesMenuItems } from "@/lib/services";
 import type { Language, SiteDictionary } from "@/data/site-content";
 
 type SiteHeaderProps = {
@@ -38,11 +40,6 @@ export function SiteHeader({
   const [isServicesMenuOpen, setIsServicesMenuOpen] = useState(false);
   const servicesMenuId = useId();
   const resolvedServiceMenuLabel = serviceMenuLabel ?? content.sections.services;
-  const serviceMenuItems = [
-    { href: "/meta-ads", label: "Meta Ads" },
-    { href: "/google-ads", label: "Google Ads" },
-    { href: "/smm", label: "SMM" },
-  ];
   const hasServicesItem = content.nav.some(
     (item) =>
       item.href === "#services" || item.label === content.sections.services,
@@ -61,15 +58,15 @@ export function SiteHeader({
   return (
     <header className="sticky top-0 z-50 px-4 pt-4 lg:px-6">
       <div className="glass-shell mx-auto flex w-full max-w-7xl items-center justify-between gap-6 rounded-full px-5 py-4 lg:px-8">
-        <a href={homeHref} aria-label="Do.Marketing home">
+        <Link href={homeHref} aria-label="Do.Marketing home">
           <BrandLogo compact />
-        </a>
+        </Link>
 
         {showServicesMenu ? (
           <div className="md:hidden">
             <ServicesMenu
               label={resolvedServiceMenuLabel}
-              items={serviceMenuItems}
+              items={[...servicesMenuItems]}
               menuId={`${servicesMenuId}-mobile`}
               isOpen={isServicesMenuOpen}
               onOpen={() => setIsServicesMenuOpen(true)}
@@ -84,7 +81,7 @@ export function SiteHeader({
           {showServicesMenu && !hasServicesItem ? (
             <ServicesMenu
               label={resolvedServiceMenuLabel}
-              items={serviceMenuItems}
+              items={[...servicesMenuItems]}
               menuId={servicesMenuId}
               isOpen={isServicesMenuOpen}
               onOpen={() => setIsServicesMenuOpen(true)}
@@ -98,7 +95,7 @@ export function SiteHeader({
               <ServicesMenu
                 key={`${item.href}-${item.label}`}
                 label={item.label}
-                items={serviceMenuItems}
+                items={[...servicesMenuItems]}
                 menuId={servicesMenuId}
                 isOpen={isServicesMenuOpen}
                 onOpen={() => setIsServicesMenuOpen(true)}
@@ -106,13 +103,13 @@ export function SiteHeader({
                 onToggle={() => setIsServicesMenuOpen((current) => !current)}
               />
             ) : (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="text-sm text-slate-300 transition hover:text-violet-300"
               >
                 {item.label}
-              </a>
+              </Link>
             ),
           )}
         </nav>
@@ -203,7 +200,7 @@ function ServicesMenu({
         }}
       >
         {items.map((item) => (
-          <a
+          <Link
             key={item.href}
             href={item.href}
             role="menuitem"
@@ -211,7 +208,7 @@ function ServicesMenu({
             onClick={onClose}
           >
             {item.label}
-          </a>
+          </Link>
         ))}
       </div>
     </div>

@@ -1,73 +1,46 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { MetaAdsPage } from "@/components/meta-ads-page";
+import { buildPageMetadata, buildServiceStructuredData } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Meta Ads Tallinn | Реклама Facebook и Instagram в Эстонии | Do.Marketing",
   description:
     "Настройка и ведение Meta Ads в Tallinn и по всей Эстонии: Facebook Ads, Instagram Ads, креативы, аудитории, оптимизация и рост заявок для бизнеса.",
+  path: "/meta-ads",
   keywords: [
     "Meta Ads Tallinn",
     "Facebook Ads Tallinn",
     "Instagram Ads Estonia",
     "таргетированная реклама Таллинн",
   ],
-  alternates: {
-    canonical: "/meta-ads",
-  },
-  openGraph: {
-    title: "Meta Ads Tallinn | Do.Marketing",
-    description:
-      "Meta Ads для бизнеса в Таллинне и Эстонии: стратегия, запуск, ведение и оптимизация рекламы Facebook и Instagram.",
-    url: "https://domarketing.ee/meta-ads",
-    siteName: "Do.Marketing",
-    type: "website",
-  },
-};
+});
 
-const metaAdsStructuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
+const metaAdsStructuredData = buildServiceStructuredData({
+  path: "/meta-ads",
+  name: "Meta Ads management in Tallinn",
+  description:
+    "Настройка и ведение рекламы Meta Ads для бизнеса в Таллинне и по всей Эстонии.",
+  serviceType: "Meta Ads advertising",
+  price: "549",
+  faq: [
     {
-      "@type": "Service",
-      "@id": "https://domarketing.ee/meta-ads#service",
-      name: "Meta Ads management in Tallinn",
-      serviceType: "Meta Ads advertising",
-      areaServed: ["Tallinn", "Estonia"],
-      provider: {
-        "@id": "https://domarketing.ee/#organization",
-      },
-      url: "https://domarketing.ee/meta-ads",
-      offers: {
-        "@type": "Offer",
-        priceCurrency: "EUR",
-        price: "549",
-      },
+      question: "Подходит ли Meta Ads для локального бизнеса в Таллинне?",
+      answer:
+        "Да. Для салонов, образования, услуг, e-commerce и локальных проектов Meta Ads хорошо работает, если правильно собрать оффер, гео, языки и креативы под аудиторию Эстонии.",
     },
     {
-      "@type": "FAQPage",
-      "@id": "https://domarketing.ee/meta-ads#faq",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Подходит ли Meta Ads для локального бизнеса в Таллинне?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Да. Для салонов, образования, услуг, e-commerce и локальных проектов Meta Ads хорошо работает, если правильно собрать оффер, гео, языки и креативы под аудиторию Эстонии.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Сколько стоит ведение рекламы Meta Ads?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Базовая стоимость ведения начинается от 549 евро. Финальная цена зависит от объема кампаний, числа сегментов, количества креативов и темпа тестирования.",
-          },
-        },
-      ],
+      question: "Сколько стоит ведение рекламы Meta Ads?",
+      answer:
+        "Базовая стоимость ведения начинается от 549€. Финальная цена зависит от объема кампаний, числа сегментов, количества креативов и темпа тестирования.",
+    },
+    {
+      question: "Вы делаете только настройку или и креативы тоже?",
+      answer:
+        "Мы можем взять и стратегию, и настройку кабинета, и тексты, и креативы, и ТЗ на съемку. Это позволяет быстрее находить рабочие связки и не терять темп.",
     },
   ],
-};
+});
 
 export default function MetaAdsRoute() {
   return (

@@ -1,7 +1,9 @@
 ﻿"use client";
 
+import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { googleAdsRelatedServices } from "@/lib/services";
 import { siteContent } from "@/data/site-content";
 
 const pageContent = {
@@ -117,12 +119,6 @@ const startSteps = [
     title: "Принятие решения",
     text: "Предлагаем удобный формат сотрудничества: от тестового месяца до более длинной работы на масштабирование результата.",
   },
-];
-
-const extraServices = [
-  { label: "Аудит рекламного кабинета МЕТА" },
-  { label: "Таргетированная реклама Facebook и Instagram" },
-  { label: "SEO продвижение в Google" },
 ];
 
 function SectionHeading({
@@ -476,13 +472,14 @@ export function GoogleAdsPage() {
             Дополнительные услуги
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            {extraServices.map((item) => (
-              <span
-                key={item.label}
-                className="inline-flex items-center rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-[18px] font-light text-slate-100"
+            {googleAdsRelatedServices.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="inline-flex items-center rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-[18px] font-light text-slate-100 transition hover:border-violet-300/35 hover:bg-white/10"
               >
                 {item.label}
-              </span>
+              </Link>
             ))}
           </div>
         </section>
