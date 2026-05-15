@@ -7,6 +7,7 @@ import { siteContent } from "@/data/site-content";
 const pageContent = {
   ...siteContent.ru,
   nav: [
+    { href: "/meta-ads", label: "Услуги" },
     { href: "#offer", label: "Оффер" },
     { href: "#benefits", label: "Преимущества" },
     { href: "#results", label: "Что получите" },

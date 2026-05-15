@@ -9,6 +9,7 @@ import { SiteHeader } from "@/components/site-header";
 import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
 
 const defaultLanguage: Language = "ru";
+const serviceLinks = ["/meta-ads", "/google-ads"] as const;
 
 const casesUiCopy: Record<Language, { badge: string; more: string }> = {
   en: { badge: "Case", more: "See more" },
@@ -47,7 +48,7 @@ const pricingByLanguage: Record<
       { budget: "up to 2000€", price: "670€" },
       { budget: "from 2000€", price: "890€" },
     ],
-    additional: ["Consultation", "Marketing audit", "SMM", "Google Ads", "SEO"],
+    additional: ["Meta Ads", "Marketing audit", "SMM", "Google Ads", "SEO"],
     cta: "Start a conversation",
   },
   et: {
@@ -60,7 +61,7 @@ const pricingByLanguage: Record<
       { budget: "kuni 2000€", price: "670€" },
       { budget: "alates 2000€", price: "890€" },
     ],
-    additional: ["Konsultatsioon", "Turundusaudit", "SMM", "Google Ads", "SEO"],
+    additional: ["Meta Ads", "Turundusaudit", "SMM", "Google Ads", "SEO"],
     cta: "Alusta vestlust",
   },
   ru: {
@@ -73,7 +74,7 @@ const pricingByLanguage: Record<
       { budget: "до 2000€", price: "670€" },
       { budget: "от 2000€", price: "890€" },
     ],
-    additional: ["Консультация", "Аудит маркетинга", "SMM", "Google реклама", "SEO оптимизация"],
+    additional: ["Meta Ads", "Аудит маркетинга", "SMM", "Google реклама", "SEO оптимизация"],
     cta: "Оставить заявку",
   },
 };
@@ -741,7 +742,7 @@ export function LandingPage() {
                       </div>
 
                       <a
-                        href="#contacts"
+                        href={serviceLinks[index] ?? "#contacts"}
                         className="mt-8 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300"
                       >
                         {pricing.cta}
@@ -763,11 +764,13 @@ export function LandingPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             {pricing.additional.map((item) => {
               const href =
-                item === "SMM"
-                  ? "/smm"
-                  : item === "Google реклама" || item === "Google Ads"
-                    ? "/google-ads"
-                    : null;
+                item === "Meta Ads"
+                  ? "/meta-ads"
+                  : item === "SMM"
+                    ? "/smm"
+                    : item === "Google реклама" || item === "Google Ads"
+                      ? "/google-ads"
+                      : null;
 
               const className =
                 "inline-flex items-center rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-[20px] font-light text-slate-100 transition hover:border-violet-300/35 hover:bg-white/10";
