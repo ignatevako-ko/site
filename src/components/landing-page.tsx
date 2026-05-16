@@ -7,11 +7,9 @@ import { BrandLogo } from "@/components/brand-logo";
 import { CreativeGallery, type CreativeGalleryItem } from "@/components/creative-gallery";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { landingAdditionalServices } from "@/lib/services";
+import { defaultLanguage, localizedPath } from "@/lib/locales";
+import { getLandingAdditionalServices } from "@/lib/services";
 import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
-
-const defaultLanguage: Language = "ru";
-const serviceLinks = ["/meta-ads", "/google-ads"] as const;
 
 const casesUiCopy: Record<Language, { badge: string; more: string }> = {
   en: { badge: "Case", more: "See more" },
@@ -267,6 +265,12 @@ const creativeExamplesCopy: Record<Language, { title: string; more: string }> = 
   },
 };
 
+const additionalServicesTitle: Record<Language, string> = {
+  en: "Additional services",
+  et: "Lisateenused",
+  ru: "Дополнительные услуги",
+};
+
 const staticCreativeItems: CreativeGalleryItem[] = Array.from({ length: 7 }, (_, index) => ({
   src: `/images/creative-examples/stories/story-${String(index + 1).padStart(2, "0")}.png`,
   alt: `Static creative ${index + 1}`,
@@ -447,8 +451,20 @@ function CaseCard({ item, index, language }: { item: CaseStudy; index: number; l
   );
 }
 
-export function LandingPage() {
-  const [language, setLanguage] = useState<Language>(defaultLanguage);
+type LandingPageProps = {
+  initialLanguage?: Language;
+  homeHref?: string;
+  languageLinks?: Partial<Record<Language, string>>;
+  servicesRouteLanguage?: Language;
+};
+
+export function LandingPage({
+  initialLanguage = defaultLanguage,
+  homeHref = "#",
+  languageLinks,
+  servicesRouteLanguage,
+}: LandingPageProps) {
+  const [language, setLanguage] = useState<Language>(initialLanguage);
   const [activeTestimonialVideo, setActiveTestimonialVideo] = useState<{
     src: string;
     poster?: string;
@@ -461,7 +477,22 @@ export function LandingPage() {
 
   const content = siteContent[language];
   const pricing = pricingByLanguage[language];
-  const additionalServices = landingAdditionalServices[language];
+  const additionalServices = getLandingAdditionalServices(
+    language,
+    servicesRouteLanguage,
+  );
+  const serviceLinks = useMemo(
+    () =>
+      [
+        servicesRouteLanguage
+          ? localizedPath(servicesRouteLanguage, "/meta-ads")
+          : "/meta-ads",
+        servicesRouteLanguage
+          ? localizedPath(servicesRouteLanguage, "/google-ads")
+          : "/google-ads",
+      ] as const,
+    [servicesRouteLanguage],
+  );
   const services = useMemo(
     () => [
       {
@@ -525,6 +556,9 @@ export function LandingPage() {
         content={content}
         currentLanguage={language}
         onLanguageChange={setLanguage}
+        homeHref={homeHref}
+        languageLinks={languageLinks}
+        servicesRouteLanguage={servicesRouteLanguage}
       />
 
       <main className="relative z-10">
@@ -757,7 +791,7 @@ export function LandingPage() {
         <section className="mx-auto w-full max-w-7xl px-6 pb-20 lg:px-10">
           <div className="max-w-2xl space-y-4">
             <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
-              Дополнительные услуги
+              {additionalServicesTitle[language]}
             </p>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">

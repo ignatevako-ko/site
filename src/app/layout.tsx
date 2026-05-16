@@ -29,9 +29,6 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   keywords: defaultKeywords,
-  alternates: {
-    canonical: "/",
-  },
   robots: {
     index: true,
     follow: true,
@@ -65,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="ru"
+      suppressHydrationWarning
       className={`${manrope.variable} ${spaceGrotesk.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col">

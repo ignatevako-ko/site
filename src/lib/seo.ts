@@ -1,4 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
+import type { Language } from "@/data/site-content";
+import { buildLanguageAlternates, localizedPath } from "@/lib/locales";
 
 export const siteUrl = "https://domarketing.ee";
 export const siteName = "Do.Marketing";
@@ -47,13 +49,25 @@ export type IndexedRoute = {
 };
 
 export const indexedRoutes: IndexedRoute[] = [
-  { path: "/", changeFrequency: "weekly", priority: 1 },
-  { path: "/meta-ads", changeFrequency: "weekly", priority: 0.95 },
-  { path: "/google-ads", changeFrequency: "weekly", priority: 0.95 },
+  { path: "/ru", changeFrequency: "weekly", priority: 1 },
+  { path: "/en", changeFrequency: "weekly", priority: 0.95 },
+  { path: "/et", changeFrequency: "weekly", priority: 0.95 },
+  { path: "/ru/meta-ads", changeFrequency: "weekly", priority: 0.95 },
+  { path: "/en/meta-ads", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/et/meta-ads", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/ru/google-ads", changeFrequency: "weekly", priority: 0.95 },
+  { path: "/en/google-ads", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/et/google-ads", changeFrequency: "weekly", priority: 0.9 },
   { path: "/smm", changeFrequency: "weekly", priority: 0.85 },
   { path: "/cases", changeFrequency: "weekly", priority: 0.8 },
   { path: "/kreo", changeFrequency: "monthly", priority: 0.55 },
 ];
+
+const localeByLanguage: Record<Language, string> = {
+  ru: "ru_EE",
+  en: "en_EE",
+  et: "et_EE",
+};
 
 export function absoluteUrl(path: string) {
   return new URL(path, siteUrl).toString();
@@ -91,6 +105,36 @@ export function buildPageMetadata({
       card: "summary_large_image",
       title,
       description,
+    },
+  };
+}
+
+export function buildLocalizedPageMetadata({
+  title,
+  description,
+  path,
+  language,
+  keywords = [],
+}: {
+  title: string;
+  description: string;
+  path: string;
+  language: Language;
+  keywords?: string[];
+}): Metadata {
+  const localizedCanonical = localizedPath(language, path);
+
+  return {
+    ...buildPageMetadata({
+      title,
+      description,
+      path: localizedCanonical,
+      keywords,
+      locale: localeByLanguage[language],
+    }),
+    alternates: {
+      ...buildLanguageAlternates(path),
+      canonical: localizedCanonical,
     },
   };
 }
@@ -160,6 +204,60 @@ export function buildHomePageStructuredData() {
       {
         "@type": "Service",
         "@id": `${siteUrl}/#service-catalog`,
+        serviceType: "Performance marketing",
+        provider: {
+          "@id": `${siteUrl}/#organization`,
+        },
+        areaServed: servedAreas,
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Advertising services",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Meta Ads management",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Google Ads management",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "SMM management",
+              },
+            },
+          ],
+        },
+      },
+    ],
+  };
+}
+
+export function buildLocalizedHomePageStructuredData(language: Language) {
+  const path = localizedPath(language);
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${absoluteUrl(path)}#webpage`,
+        url: absoluteUrl(path),
+        name: siteTitle,
+        description: siteDescription,
+        inLanguage: language,
+      },
+      {
+        "@type": "Service",
+        "@id": `${absoluteUrl(path)}#service-catalog`,
         serviceType: "Performance marketing",
         provider: {
           "@id": `${siteUrl}/#organization`,

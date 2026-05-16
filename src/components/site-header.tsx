@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 import { BrandLogo } from "@/components/brand-logo";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { servicesMenuItems } from "@/lib/services";
+import { getServicesMenuItems } from "@/lib/services";
 import type { Language, SiteDictionary } from "@/data/site-content";
 
 type SiteHeaderProps = {
@@ -15,6 +15,9 @@ type SiteHeaderProps = {
   showLanguageSwitcher?: boolean;
   showServicesMenu?: boolean;
   serviceMenuLabel?: string;
+  servicesRouteLanguage?: Language;
+  languageLinks?: Partial<Record<Language, string>>;
+  servicesMenuItemsOverride?: Array<{ href: string; label: string }>;
 };
 
 type ServicesMenuProps = {
@@ -36,10 +39,16 @@ export function SiteHeader({
   showLanguageSwitcher = true,
   showServicesMenu = true,
   serviceMenuLabel,
+  servicesRouteLanguage,
+  languageLinks,
+  servicesMenuItemsOverride,
 }: SiteHeaderProps) {
   const [isServicesMenuOpen, setIsServicesMenuOpen] = useState(false);
   const servicesMenuId = useId();
   const resolvedServiceMenuLabel = serviceMenuLabel ?? content.sections.services;
+  const servicesMenuItems = servicesMenuItemsOverride ?? [
+    ...getServicesMenuItems(servicesRouteLanguage),
+  ];
   const hasServicesItem = content.nav.some(
     (item) =>
       item.href === "#services" || item.label === content.sections.services,
@@ -134,6 +143,7 @@ export function SiteHeader({
             <LanguageSwitcher
               currentLanguage={currentLanguage}
               onChange={onLanguageChange}
+              hrefs={languageLinks}
             />
           ) : null}
         </div>
