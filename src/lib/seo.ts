@@ -81,6 +81,24 @@ const localeByLanguage: Record<Language, string> = {
   et: "et_EE",
 };
 
+const homeStructuredDataCopy: Record<Language, { name: string; description: string }> = {
+  ru: {
+    name: "Meta Ads и Google Ads агентство в Tallinn | Do.Marketing",
+    description:
+      "Агентство рекламы в Таллинне для бизнеса в Эстонии: Meta Ads, Google Ads, креативы, кейсы и рост заявок.",
+  },
+  en: {
+    name: "Meta Ads and Google Ads Agency in Tallinn | Do.Marketing",
+    description:
+      "Tallinn advertising agency for businesses in Estonia: Meta Ads, Google Ads, creatives, case studies and lead growth.",
+  },
+  et: {
+    name: "Meta Ads ja Google Ads agentuur Tallinnas | Do.Marketing",
+    description:
+      "Tallinna reklaamiagentuur Eesti ettevõtetele: Meta Ads, Google Ads, loovlahendused, case'id ja päringute kasv.",
+  },
+};
+
 export function absoluteUrl(path: string) {
   return new URL(path, siteUrl).toString();
 }
@@ -279,6 +297,7 @@ export function buildHomePageStructuredData() {
 
 export function buildLocalizedHomePageStructuredData(language: Language) {
   const path = localizedPath(language);
+  const copy = homeStructuredDataCopy[language];
 
   return {
     "@context": "https://schema.org",
@@ -287,8 +306,8 @@ export function buildLocalizedHomePageStructuredData(language: Language) {
         "@type": "WebPage",
         "@id": `${absoluteUrl(path)}#webpage`,
         url: absoluteUrl(path),
-        name: siteTitle,
-        description: siteDescription,
+        name: copy.name,
+        description: copy.description,
         inLanguage: language,
       },
       {
