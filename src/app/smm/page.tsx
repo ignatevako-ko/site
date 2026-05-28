@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -71,7 +72,7 @@ const smmCopy: Record<Language, SmmCopy> = {
     month2Description:
       "Цель: системный рост охватов, доверия и заявок через короткие видео.",
     includedTitle: "Что входит",
-    month2Price: "Стоимость ведения: 750€ / месяц",
+    month2Price: "Стоимость ведения: 1000€ / месяц",
     month3Note: "С 3-го месяца: 12 Reels в месяц + 8 дней сторис.",
     month3Title: "С 3 месяца — подключение таргетированной рекламы",
     month3Description:
@@ -170,7 +171,7 @@ const smmCopy: Record<Language, SmmCopy> = {
     month2Description:
       "Goal: systematic growth of reach, trust and leads through short-form video.",
     includedTitle: "What is included",
-    month2Price: "Management fee: 750€ / month",
+    month2Price: "Management fee: 1000€ / month",
     month3Note: "From month 3: 12 Reels per month + 8 days of stories.",
     month3Title: "From month 3 — targeted advertising",
     month3Description:
@@ -269,7 +270,7 @@ const smmCopy: Record<Language, SmmCopy> = {
     month2Description:
       "Eesmärk: süsteemne nähtavuse, usalduse ja päringute kasv läbi lühivideote.",
     includedTitle: "Mis sisaldub",
-    month2Price: "Haldustasu: 750€ / kuu",
+    month2Price: "Haldustasu: 1000€ / kuu",
     month3Note: "Alates 3. kuust: 12 Reelsi kuus + 8 päeva storysid.",
     month3Title: "Alates 3. kuust — sihitud reklaam",
     month3Description:
@@ -417,6 +418,15 @@ export default function SmmPage() {
         onLanguageChange={setLanguage}
         homeHref="/"
       />
+
+      <div className="mx-auto flex w-full max-w-6xl justify-end px-6 pt-5 lg:px-10">
+        <Link
+          href="/"
+          className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/12 bg-white/6 px-5 text-sm font-medium text-white transition hover:border-violet-300/40 hover:bg-white/10"
+        >
+          {language === "ru" ? "На главную" : language === "en" ? "Home" : "Avalehele"}
+        </Link>
+      </div>
 
       <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-10 lg:px-10 lg:py-14">
         <section

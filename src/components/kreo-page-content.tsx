@@ -184,10 +184,6 @@ function GallerySection({
   const visibleItems = items.slice(0, visibleCount);
   const hasMore = visibleCount < items.length;
 
-  useEffect(() => {
-    setVisibleCount(8);
-  }, [items]);
-
   return (
     <section className="space-y-7">
       <h2 className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">

@@ -11,6 +11,7 @@ type ServicePageShellProps = {
   content: SiteDictionary;
   copy: ServicePageCopy;
   homeHref: string;
+  homeButtonLabel?: string;
   languageLinks: Partial<Record<Language, string>>;
   relatedServices: ReadonlyArray<{ href: string; label: string }>;
 };
@@ -42,6 +43,7 @@ export function ServicePageShell({
   content,
   copy,
   homeHref,
+  homeButtonLabel,
   languageLinks,
   relatedServices,
 }: ServicePageShellProps) {
@@ -64,6 +66,17 @@ export function ServicePageShell({
         languageLinks={languageLinks}
         servicesRouteLanguage={language}
       />
+
+      {homeButtonLabel ? (
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl justify-end px-6 pt-5 lg:px-10">
+          <Link
+            href={homeHref}
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/12 bg-white/6 px-5 text-sm font-medium text-white transition hover:border-violet-300/40 hover:bg-white/10"
+          >
+            {homeButtonLabel}
+          </Link>
+        </div>
+      ) : null}
 
       <main className="relative z-10">
         <section

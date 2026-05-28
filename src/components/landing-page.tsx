@@ -518,10 +518,6 @@ export function LandingPage({
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
-    setActiveTestimonial(0);
-  }, [language]);
-
-  useEffect(() => {
     if (!activeTestimonialVideo) {
       return;
     }
@@ -684,12 +680,12 @@ export function LandingPage({
           </div>
 
           <div className="mt-8 flex justify-center">
-            <a
+            <Link
               href="/cases"
               className="inline-flex items-center justify-center text-[20px] font-extralight text-white underline decoration-white/80 underline-offset-[10px] transition hover:text-white/85 hover:decoration-white"
             >
               {casesUiCopy[language].more}
-            </a>
+            </Link>
           </div>
         </section>
 

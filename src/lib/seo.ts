@@ -58,6 +58,18 @@ export const indexedRoutes: IndexedRoute[] = [
   { path: "/ru/google-ads", changeFrequency: "weekly", priority: 0.95 },
   { path: "/en/google-ads", changeFrequency: "weekly", priority: 0.9 },
   { path: "/et/google-ads", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/ru/marketing-audit", changeFrequency: "weekly", priority: 0.86 },
+  { path: "/en/marketing-audit", changeFrequency: "weekly", priority: 0.82 },
+  { path: "/et/marketing-audit", changeFrequency: "weekly", priority: 0.82 },
+  { path: "/ru/smm", changeFrequency: "weekly", priority: 0.86 },
+  { path: "/en/smm", changeFrequency: "weekly", priority: 0.82 },
+  { path: "/et/smm", changeFrequency: "weekly", priority: 0.82 },
+  { path: "/ru/seo", changeFrequency: "weekly", priority: 0.86 },
+  { path: "/en/seo", changeFrequency: "weekly", priority: 0.82 },
+  { path: "/et/seo", changeFrequency: "weekly", priority: 0.82 },
+  { path: "/ru/website-development", changeFrequency: "weekly", priority: 0.86 },
+  { path: "/en/website-development", changeFrequency: "weekly", priority: 0.82 },
+  { path: "/et/website-development", changeFrequency: "weekly", priority: 0.82 },
   { path: "/smm", changeFrequency: "weekly", priority: 0.85 },
   { path: "/cases", changeFrequency: "weekly", priority: 0.8 },
   { path: "/kreo", changeFrequency: "monthly", priority: 0.55 },
@@ -183,6 +195,9 @@ export const organizationStructuredData = {
         "Google Ads",
         "Performance marketing",
         "SMM",
+        "SEO",
+        "Marketing audit",
+        "Website development",
       ],
     },
   ],
@@ -232,6 +247,27 @@ export function buildHomePageStructuredData() {
               itemOffered: {
                 "@type": "Service",
                 name: "SMM management",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Marketing audit",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "SEO optimisation",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Website development",
               },
             },
           ],
@@ -286,6 +322,27 @@ export function buildLocalizedHomePageStructuredData(language: Language) {
               itemOffered: {
                 "@type": "Service",
                 name: "SMM management",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Marketing audit",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "SEO optimisation",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Website development",
               },
             },
           ],
