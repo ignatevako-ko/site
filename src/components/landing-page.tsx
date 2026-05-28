@@ -283,6 +283,12 @@ const customPricingByLanguage: Record<Language, string> = {
   ru: "рассчитывается индивидуально под каждый проект",
 };
 
+const videoReviewLabelByLanguage: Record<Language, string> = {
+  en: "Video review",
+  et: "Video tagasiside",
+  ru: "Видео отзыв",
+};
+
 const staticCreativeItems: CreativeGalleryItem[] = Array.from({ length: 7 }, (_, index) => ({
   src: `/images/creative-examples/stories/story-${String(index + 1).padStart(2, "0")}.png`,
   alt: `Static creative ${index + 1}`,
@@ -900,7 +906,7 @@ export function LandingPage({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/10 to-transparent" />
                   <div className="absolute left-5 top-5 inline-flex rounded-full border border-violet-300/25 bg-violet-300/15 px-3 py-1 text-xs font-medium text-violet-100 backdrop-blur">
-                    Видео отзыв
+                    {videoReviewLabelByLanguage[language]}
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <button
