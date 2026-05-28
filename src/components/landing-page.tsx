@@ -271,6 +271,18 @@ const additionalServicesTitle: Record<Language, string> = {
   ru: "Дополнительные услуги",
 };
 
+const fromLabelByLanguage: Record<Language, string> = {
+  en: "from",
+  et: "alates",
+  ru: "от",
+};
+
+const customPricingByLanguage: Record<Language, string> = {
+  en: "calculated individually for each project",
+  et: "arvutatakse iga projekti jaoks personaalselt",
+  ru: "рассчитывается индивидуально под каждый проект",
+};
+
 const staticCreativeItems: CreativeGalleryItem[] = Array.from({ length: 7 }, (_, index) => ({
   src: `/images/creative-examples/stories/story-${String(index + 1).padStart(2, "0")}.png`,
   alt: `Static creative ${index + 1}`,
@@ -738,7 +750,7 @@ export function LandingPage({
                     <div className="flex min-h-full flex-col items-center text-center">
                       <div className="mt-0 flex items-baseline justify-center gap-2 text-white">
                         <span className="text-[14px] font-medium uppercase tracking-[0.04em] text-white/70 sm:text-[14px]">
-                          от
+                          {fromLabelByLanguage[language]}
                         </span>
                         <p className="text-[48px] font-light tracking-[-0.08em] text-white sm:text-[58px]">
                           {service.priceLabel}
@@ -753,7 +765,7 @@ export function LandingPage({
                         </p>
                         {service.title.includes("GOOGLE ADS") ? (
                           <p className="text-[16px] leading-7 text-slate-100 sm:text-[17px]">
-                            рассчитывается индивидуально под каждый проект
+                            {customPricingByLanguage[language]}
                           </p>
                         ) : (
                           <div className="space-y-2">
