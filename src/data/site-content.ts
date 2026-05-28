@@ -443,7 +443,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
         "Aitame ettevõtetel saada kvaliteetseid päringuid ja muuta reklaami prognoositavaks kasvutööriistaks. Meie töö ei tähenda ainult kampaaniate käivitamist — selle aluseks on teie projekti majandusloogika sügav mõistmine. Me ei tee «reklaami reklaami pärast», vaid keskendume sellele, et iga investeeritud euro tooks tagasi kasumina.",
       points: [
         "Aus valik. Liitume projektiga ainult siis, kui oleme kindlad selle finantsilises potentsiaalis. Tavaliselt on need kõrge keskmise ostuga nišid, kus 1–5 klienti katavad täielikult reklaamikulud.",
-        "Kogemus 18+ valdkonnas. Alates аппараткосметoloogiast kuni keerukate ehitusteenusteni. Me mõistame erinevate turgude eripära ega raiska aega ilmselgelt nõrkade hüpoteeside testimisele.",
+        "Kogemus 18+ valdkonnas. Alates aparaadikosmetoloogiast kuni keerukate ehitusteenusteni. Me mõistame erinevate turgude eripära ega raiska aega ilmselgelt nõrkade hüpoteeside testimisele.",
         "Tulemus numbrites. Meie rekord on ROMI 2305%. Oskame ehitada selge kliendihanke süsteemi ja tulemust skaleerida.",
         "Hindame teie meelerahu ja ehitame töö üles vastastikusele usaldusele. Kaootiliste tegevuste asemel pakume läbipaistvat süsteemi ja tähelepanu teie äri igale nüansile, et turundusest saaks teie kasvu usaldusväärne tugi.",
       ],

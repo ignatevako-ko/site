@@ -122,7 +122,7 @@ const googleServicesByLanguage: Record<
       "Jooksev haldus ja skaleerimine",
     ],
     priceLabel: "500€",
-    budgetBadge: "+ reklaамieelarve: alates 350€",
+    budgetBadge: "+ reklaamieelarve: alates 350€",
     managementLabel: "GOOGLE ADS HALDUSE HIND",
     prices: [
       { budget: "kuni 1000€", price: "500€" },
