@@ -13,6 +13,7 @@ type FormState = {
   phone: string;
   website: string;
   brief: string;
+  company: string;
 };
 
 const initialState: FormState = {
@@ -20,6 +21,7 @@ const initialState: FormState = {
   phone: "",
   website: "",
   brief: "",
+  company: "",
 };
 
 function trackCompleteRegistration() {
@@ -137,6 +139,17 @@ export function ContactForm({ language }: ContactFormProps) {
               className="mt-3 w-full resize-none bg-transparent text-lg font-medium text-white placeholder:text-white/35 focus:outline-none"
             />
           </label>
+
+          <input
+            type="text"
+            name="company"
+            value={formState.company}
+            onChange={handleChange("company")}
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
 
           <button
             type="submit"

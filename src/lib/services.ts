@@ -2,20 +2,11 @@ import type { Language } from "@/data/site-content";
 import { localizedPath } from "@/lib/locales";
 
 export function getServicesMenuItems(language?: Language) {
+  const servicesSectionHref = language
+    ? `${localizedPath(language, "/")}#services`
+    : "/ru#services";
+
   return [
-    {
-      href: language ? localizedPath(language, "/marketing-audit") : "/ru/marketing-audit",
-      label:
-        language === "en"
-          ? "Marketing audit"
-          : language === "et"
-            ? "Turundusaudit"
-            : "Аудит маркетинга",
-    },
-    {
-      href: language ? localizedPath(language, "/smm") : "/ru/smm",
-      label: "SMM",
-    },
     {
       href: language ? localizedPath(language, "/meta-ads") : "/meta-ads",
       label: "Meta Ads",
@@ -34,15 +25,13 @@ export function getServicesMenuItems(language?: Language) {
             : "SEO optimisation",
     },
     {
-      href: language
-        ? localizedPath(language, "/website-development")
-        : "/ru/website-development",
+      href: servicesSectionHref,
       label:
         language === "ru"
-          ? "Разработка сайта"
+          ? "Другие услуги"
           : language === "et"
-            ? "Veebilehe arendus"
-            : "Website development",
+            ? "Muud teenused"
+            : "Other services",
     },
   ] as const;
 }
@@ -69,27 +58,27 @@ export function getLandingAdditionalServices(
   const byLanguage: Record<Language, Array<{ label: string; href?: string }>> = {
     en: [
       { label: "Marketing audit", href: marketingAuditHref },
-      { label: "SMM", href: smmHref },
       { label: "Google Ads", href: googleAdsHref },
       { label: "SEO", href: seoHref },
       { label: "Meta Ads", href: metaAdsHref },
       { label: "Website development", href: websiteDevelopmentHref },
+      { label: "SMM", href: smmHref },
     ],
     et: [
       { label: "Turundusaudit", href: marketingAuditHref },
-      { label: "SMM", href: smmHref },
       { label: "Google Ads", href: googleAdsHref },
       { label: "SEO", href: seoHref },
       { label: "Meta Ads", href: metaAdsHref },
       { label: "Veebilehe arendus", href: websiteDevelopmentHref },
+      { label: "SMM", href: smmHref },
     ],
     ru: [
       { label: "Аудит маркетинга", href: marketingAuditHref },
-      { label: "SMM", href: smmHref },
       { label: "Google реклама", href: googleAdsHref },
       { label: "SEO оптимизация", href: seoHref },
       { label: "Meta Ads", href: metaAdsHref },
       { label: "Разработка сайта", href: websiteDevelopmentHref },
+      { label: "SMM", href: smmHref },
     ],
   };
 
@@ -115,4 +104,3 @@ export function getGoogleAdsRelatedServices(language?: Language) {
     },
   ] as const;
 }
-

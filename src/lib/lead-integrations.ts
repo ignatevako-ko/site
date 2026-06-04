@@ -72,16 +72,38 @@ function formatTelegramMessage(payload: LeadPayload) {
   return [
     "<b>New lead from Do.Marketing</b>",
     "",
-    `<b>Source:</b> ${payload.source || "-"}`,
-    `<b>Language:</b> ${payload.language || "-"}`,
-    `<b>Email:</b> ${payload.email || "-"}`,
-    `<b>Phone:</b> ${payload.phone || "-"}`,
-    `<b>Website:</b> ${payload.website || "-"}`,
-    `<b>Brief:</b> ${payload.brief || "-"}`,
-    `<b>Page:</b> ${payload.pageUrl || "-"}`,
-    `<b>Referrer:</b> ${payload.referrer || "-"}`,
-    `<b>UTM:</b> ${(payload.utm && Object.entries(payload.utm).filter(([, value]) => value).map(([key, value]) => `${key}=${value}`).join(", ")) || "-"}`,
+    `<b>Source:</b> ${escapeTelegramHtml(payload.source)}`,
+    `<b>Language:</b> ${escapeTelegramHtml(payload.language)}`,
+    `<b>Email:</b> ${escapeTelegramHtml(payload.email)}`,
+    `<b>Phone:</b> ${escapeTelegramHtml(payload.phone)}`,
+    `<b>Website:</b> ${escapeTelegramHtml(payload.website)}`,
+    `<b>Brief:</b> ${escapeTelegramHtml(payload.brief)}`,
+    `<b>Page:</b> ${escapeTelegramHtml(payload.pageUrl)}`,
+    `<b>Referrer:</b> ${escapeTelegramHtml(payload.referrer)}`,
+    `<b>UTM:</b> ${escapeTelegramHtml(formatUtm(payload.utm))}`,
   ].join("\n");
+}
+
+function escapeTelegramHtml(value?: string) {
+  return String(value || "-")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function formatUtm(utm?: Record<string, string>) {
+  return (
+    utm &&
+    Object.entries(utm)
+      .filter(([, value]) => value)
+      .map(([key, value]) => `${key}=${value}`)
+      .join(", ")
+  ) || "-";
+}
+
+function escapeSheetFormula(value?: string) {
+  const text = value || "";
+  return /^[=+\-@]/.test(text) ? `'${text}` : text;
 }
 
 export async function sendToTelegram(payload: LeadPayload) {
@@ -129,14 +151,14 @@ export async function appendToGoogleSheets(payload: LeadPayload) {
     new Date().toISOString(),
     payload.source || "",
     payload.language || "",
-    payload.email || "",
-    payload.phone || "",
-    payload.website || "",
-    payload.brief || "",
-    payload.pageUrl || "",
-    payload.referrer || "",
-    payload.utm?.utm_source || "",
-    [payload.utm?.utm_medium || "", payload.utm?.utm_campaign || "", payload.utm?.utm_content || "", payload.utm?.utm_term || ""].filter(Boolean).join(" | "),
+    escapeSheetFormula(payload.email),
+    escapeSheetFormula(payload.phone),
+    escapeSheetFormula(payload.website),
+    escapeSheetFormula(payload.brief),
+    escapeSheetFormula(payload.pageUrl),
+    escapeSheetFormula(payload.referrer),
+    escapeSheetFormula(payload.utm?.utm_source),
+    escapeSheetFormula([payload.utm?.utm_medium || "", payload.utm?.utm_campaign || "", payload.utm?.utm_content || "", payload.utm?.utm_term || ""].filter(Boolean).join(" | ")),
   ]];
 
   if (clientEmail && privateKey) {
@@ -151,7 +173,7 @@ export async function appendToGoogleSheets(payload: LeadPayload) {
     await sheets.spreadsheets.values.append({
       spreadsheetId,
       range: `${sheetName}!A:K`,
-      valueInputOption: "USER_ENTERED",
+      valueInputOption: "RAW",
       requestBody: { values },
     });
 
@@ -165,7 +187,7 @@ export async function appendToGoogleSheets(payload: LeadPayload) {
 
   const range = encodeURIComponent(`${sheetName}!A:K`);
   const response = await fetch(
-    `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${range}:append?valueInputOption=USER_ENTERED`,
+    `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${range}:append?valueInputOption=RAW`,
     {
       method: "POST",
       headers: {

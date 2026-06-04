@@ -1,40 +1,44 @@
 import { appendToGoogleSheets, sendToTelegram } from "@/lib/lead-integrations";
+import {
+  checkLeadRateLimit,
+  getClientIp,
+  isAllowedBodySize,
+  isAllowedContentType,
+  isAllowedOrigin,
+  sanitizeLeadBody,
+  type RawLeadBody,
+} from "@/lib/lead-security";
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as {
-      email?: string;
-      phone?: string;
-      website?: string;
-      brief?: string;
-      source?: string;
-      language?: string;
-      pageUrl?: string;
-      referrer?: string;
-      utm?: Record<string, string>;
-    };
+    if (!isAllowedContentType(request) || !isAllowedBodySize(request)) {
+      return Response.json({ error: "Invalid request." }, { status: 400 });
+    }
 
-    const email = body.email?.trim() || "";
-    const phone = body.phone?.trim() || "";
-    const website = body.website?.trim() || "";
-    const brief = body.brief?.trim() || "";
-    const phonePattern = /^\+?[0-9\s().-]{6,20}$/;
+    if (!isAllowedOrigin(request)) {
+      return Response.json({ error: "Forbidden." }, { status: 403 });
+    }
 
-    if (!email || !phone) {
+    const rateLimit = checkLeadRateLimit(getClientIp(request));
+
+    if (rateLimit.rateLimited) {
       return Response.json(
-        { error: "Email and phone are required." },
-        { status: 400 },
+        { error: "Too many requests. Please try again later." },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(Math.ceil(rateLimit.retryAfter / 1000)),
+          },
+        },
       );
     }
 
-    if (!phonePattern.test(phone)) {
-      return Response.json(
-        { error: "Phone number is invalid." },
-        { status: 400 },
-      );
+    const payload = sanitizeLeadBody((await request.json()) as RawLeadBody);
+
+    if (!payload) {
+      return Response.json({ error: "Invalid lead data." }, { status: 400 });
     }
 
-    const payload = { email, phone, website, brief, source: body.source || "contact_form", language: body.language || "", pageUrl: body.pageUrl || "", referrer: body.referrer || "", utm: body.utm || {} };
     const results = await Promise.allSettled([
       sendToTelegram(payload),
       appendToGoogleSheets(payload),
