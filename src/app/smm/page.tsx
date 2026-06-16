@@ -81,9 +81,9 @@ const smmCopy: Record<Language, SmmCopy> = {
     budgetBadge: "+ рекламный бюджет: от 350€",
     processTitle: "Как выглядит процесс работы",
     pricingRows: [
-      { budget: "до 1000€", price: "549€" },
-      { budget: "до 2000€", price: "670€" },
-      { budget: "от 2000€", price: "890€" },
+      { budget: "до 1500€", price: "650€" },
+      { budget: "до 2500€", price: "770€" },
+      { budget: "от 2500€", price: "990€" },
     ],
     foundationWeek: [
       "анализ ниши и конкурентов",
@@ -180,9 +180,9 @@ const smmCopy: Record<Language, SmmCopy> = {
     budgetBadge: "+ ad budget: from 350€",
     processTitle: "How the process works",
     pricingRows: [
-      { budget: "up to 1000€", price: "549€" },
-      { budget: "up to 2000€", price: "670€" },
-      { budget: "from 2000€", price: "890€" },
+      { budget: "up to 1500€", price: "650€" },
+      { budget: "up to 2500€", price: "770€" },
+      { budget: "from 2500€", price: "990€" },
     ],
     foundationWeek: [
       "niche and competitor analysis",
@@ -279,9 +279,9 @@ const smmCopy: Record<Language, SmmCopy> = {
     budgetBadge: "+ reklaamieelarve: alates 350€",
     processTitle: "Kuidas tööprotsess välja näeb",
     pricingRows: [
-      { budget: "kuni 1000€", price: "549€" },
-      { budget: "kuni 2000€", price: "670€" },
-      { budget: "alates 2000€", price: "890€" },
+      { budget: "kuni 1500€", price: "650€" },
+      { budget: "kuni 2500€", price: "770€" },
+      { budget: "alates 2500€", price: "990€" },
     ],
     foundationWeek: [
       "niši ja konkurentide analüüs",
@@ -541,7 +541,7 @@ export default function SmmPage() {
             <div className="xl:mt-[3.25rem] rounded-[1.9rem] border border-violet-300/18 bg-[linear-gradient(155deg,rgba(167,139,250,0.18),rgba(255,255,255,0.04),rgba(15,23,42,0.35))] p-5 shadow-[0_24px_70px_rgba(76,29,149,0.18)] sm:p-6">
               <div className="flex min-h-full flex-col items-center text-center">
                 <p className="mt-0 text-[48px] font-light tracking-[-0.08em] text-white sm:text-[58px]">
-                  549€
+                  650€
                 </p>
                 <div className="mt-5 inline-flex items-center justify-center rounded-full border border-violet-300/22 bg-violet-300/10 px-3.5 py-1 text-[13px] font-medium text-violet-100 shadow-[0_12px_40px_rgba(167,139,250,0.12)]">
                   {copy.budgetBadge}

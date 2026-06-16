@@ -110,7 +110,7 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
       serviceDescription:
         "Настройка и ведение рекламы Meta Ads для бизнеса в Таллинне и по всей Эстонии.",
       serviceType: "Meta Ads advertising",
-      price: "549",
+      price: "650",
     },
     navigation: {
       proof: "Результат",
@@ -136,17 +136,17 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
       serviceName: "Facebook + Instagram + оптимизация",
       status: "Active",
       stats: [
-        { value: "549€", label: "старт ведения" },
+        { value: "650€", label: "старт ведения" },
         { value: "350€+", label: "рекомендуемый бюджет" },
         { value: "ROAS", label: "фокус на окупаемости" },
       ],
       budgetBadge: "+ рекламный бюджет: от 350€",
       fromLabel: "от",
-      priceLabel: "549€",
+      priceLabel: "650€",
       tiers: [
-        { budget: "до 1000€", fee: "549€" },
-        { budget: "до 2000€", fee: "670€" },
-        { budget: "от 2000€", fee: "890€" },
+        { budget: "до 1500€", fee: "650€" },
+        { budget: "до 2500€", fee: "770€" },
+        { budget: "от 2500€", fee: "990€" },
       ],
     },
     benefits: {
@@ -222,7 +222,7 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
         {
           question: "Сколько стоит ведение рекламы Meta Ads?",
           answer:
-            "Базовая стоимость ведения начинается от 549€. Финальная цена зависит от объема кампаний, числа сегментов и темпа тестирования.",
+            "Базовая стоимость ведения начинается от 650€. Финальная цена зависит от объема кампаний, числа сегментов и темпа тестирования.",
         },
         {
           question: "Вы делаете только настройку или и креативы тоже?",
@@ -262,7 +262,7 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
       serviceDescription:
         "Meta Ads setup and ongoing management for businesses in Tallinn and across Estonia.",
       serviceType: "Meta Ads advertising",
-      price: "549",
+      price: "650",
     },
     navigation: {
       proof: "Results",
@@ -288,17 +288,17 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
       serviceName: "Facebook + Instagram + optimisation",
       status: "Active",
       stats: [
-        { value: "549€", label: "management starts from" },
+        { value: "650€", label: "management starts from" },
         { value: "350€+", label: "recommended ad spend" },
         { value: "ROAS", label: "profitability focus" },
       ],
       budgetBadge: "+ ad budget: from 350€",
       fromLabel: "from",
-      priceLabel: "549€",
+      priceLabel: "650€",
       tiers: [
-        { budget: "up to 1000€", fee: "549€" },
-        { budget: "up to 2000€", fee: "670€" },
-        { budget: "from 2000€", fee: "890€" },
+        { budget: "up to 1500€", fee: "650€" },
+        { budget: "up to 2500€", fee: "770€" },
+        { budget: "from 2500€", fee: "990€" },
       ],
     },
     benefits: {
@@ -374,7 +374,7 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
         {
           question: "How much does Meta Ads management cost?",
           answer:
-            "Management starts from 549€. The final scope depends on campaign volume, number of segments and the testing pace we need.",
+            "Management starts from 650€. The final scope depends on campaign volume, number of segments and the testing pace we need.",
         },
         {
           question: "Do you also handle creatives?",
@@ -414,7 +414,7 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
       serviceDescription:
         "Meta Ads seadistamine ja haldus ettevõtetele Tallinnas ja üle Eesti.",
       serviceType: "Meta Ads advertising",
-      price: "549",
+      price: "650",
     },
     navigation: {
       proof: "Tulemus",
@@ -440,17 +440,17 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
       serviceName: "Facebook + Instagram + optimeerimine",
       status: "Active",
       stats: [
-        { value: "549€", label: "halduse alghind" },
+        { value: "650€", label: "halduse alghind" },
         { value: "350€+", label: "soovituslik eelarve" },
         { value: "ROAS", label: "tasuvuse fookus" },
       ],
       budgetBadge: "+ reklaamieelarve: alates 350€",
       fromLabel: "alates",
-      priceLabel: "549€",
+      priceLabel: "650€",
       tiers: [
-        { budget: "kuni 1000€", fee: "549€" },
-        { budget: "kuni 2000€", fee: "670€" },
-        { budget: "alates 2000€", fee: "890€" },
+        { budget: "kuni 1500€", fee: "650€" },
+        { budget: "kuni 2500€", fee: "770€" },
+        { budget: "alates 2500€", fee: "990€" },
       ],
     },
     benefits: {
@@ -526,7 +526,7 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
         {
           question: "Kui palju Meta Adsi haldus maksab?",
           answer:
-            "Haldus algab 549€ juurest. Lõplik maht sõltub kampaaniate arvust, segmentidest ja sellest, kui kiire testimise tempoga peame töötama.",
+            "Haldus algab 650€ juurest. Lõplik maht sõltub kampaaniate arvust, segmentidest ja sellest, kui kiire testimise tempoga peame töötama.",
         },
         {
           question: "Kas teete ka loovlahendused?",
@@ -569,7 +569,7 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
       serviceDescription:
         "Настройка и ведение контекстной рекламы Google Ads для бизнеса в Таллинне и по всей Эстонии.",
       serviceType: "Google Ads advertising",
-      price: "500",
+      price: "550",
     },
     navigation: {
       proof: "Преимущества",
@@ -595,15 +595,15 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
       serviceName: "Search + КМС + оптимизация",
       status: "Active",
       stats: [
-        { value: "500€", label: "старт ведения" },
+        { value: "550€", label: "старт ведения" },
         { value: "350€+", label: "рекомендуемый бюджет" },
         { value: "ROI", label: "фокус на окупаемости" },
       ],
       budgetBadge: "+ рекламный бюджет: от 350€",
       fromLabel: "от",
-      priceLabel: "500€",
+      priceLabel: "550€",
       tiers: [
-        { budget: "до 1000€", fee: "500€" },
+        { budget: "до 1000€", fee: "550€" },
         { budget: "до 2000€", fee: "650€" },
         { budget: "от 2000€", fee: "индивидуально" },
       ],
@@ -681,7 +681,7 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
         {
           question: "Сколько стоит ведение Google Ads?",
           answer:
-            "Базовая стоимость ведения начинается от 500€. Итог зависит от числа кампаний, географии, конкуренции и объема оптимизации.",
+            "Базовая стоимость ведения начинается от 550€. Итог зависит от числа кампаний, географии, конкуренции и объема оптимизации.",
         },
         {
           question: "Вы помогаете и с посадочной страницей?",
@@ -721,7 +721,7 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
       serviceDescription:
         "Google Ads setup and management for businesses in Tallinn and across Estonia.",
       serviceType: "Google Ads advertising",
-      price: "500",
+      price: "550",
     },
     navigation: {
       proof: "Benefits",
@@ -747,15 +747,15 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
       serviceName: "Search + Display + optimisation",
       status: "Active",
       stats: [
-        { value: "500€", label: "management starts from" },
+        { value: "550€", label: "management starts from" },
         { value: "350€+", label: "recommended ad spend" },
         { value: "ROI", label: "profitability focus" },
       ],
       budgetBadge: "+ ad budget: from 350€",
       fromLabel: "from",
-      priceLabel: "500€",
+      priceLabel: "550€",
       tiers: [
-        { budget: "up to 1000€", fee: "500€" },
+        { budget: "up to 1000€", fee: "550€" },
         { budget: "up to 2000€", fee: "650€" },
         { budget: "from 2000€", fee: "custom" },
       ],
@@ -833,7 +833,7 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
         {
           question: "How much does Google Ads management cost?",
           answer:
-            "Management starts from 500€. Final scope depends on campaign count, geography, competition and optimisation depth.",
+            "Management starts from 550€. Final scope depends on campaign count, geography, competition and optimisation depth.",
         },
         {
           question: "Do you also help with the landing page?",
@@ -873,7 +873,7 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
       serviceDescription:
         "Google Ads seadistamine ja haldus ettevõtetele Tallinnas ja üle Eesti.",
       serviceType: "Google Ads advertising",
-      price: "500",
+      price: "550",
     },
     navigation: {
       proof: "Eelised",
@@ -899,15 +899,15 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
       serviceName: "Search + Display + optimeerimine",
       status: "Active",
       stats: [
-        { value: "500€", label: "halduse alghind" },
+        { value: "550€", label: "halduse alghind" },
         { value: "350€+", label: "soovituslik eelarve" },
         { value: "ROI", label: "tasuvuse fookus" },
       ],
       budgetBadge: "+ reklaamieelarve: alates 350€",
       fromLabel: "alates",
-      priceLabel: "500€",
+      priceLabel: "550€",
       tiers: [
-        { budget: "kuni 1000€", fee: "500€" },
+        { budget: "kuni 1000€", fee: "550€" },
         { budget: "kuni 2000€", fee: "650€" },
         { budget: "alates 2000€", fee: "personaalselt" },
       ],
@@ -985,7 +985,7 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
         {
           question: "Kui palju Google Adsi haldus maksab?",
           answer:
-            "Haldus algab 500€ juurest. Lõplik maht sõltub kampaaniate arvust, geograafiast, konkurentsist ja optimeerimise sügavusest.",
+            "Haldus algab 550€ juurest. Lõplik maht sõltub kampaaniate arvust, geograafiast, konkurentsist ja optimeerimise sügavusest.",
         },
         {
           question: "Kas aitate ka maandumislehega?",
