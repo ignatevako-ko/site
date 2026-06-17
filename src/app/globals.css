@@ -8,8 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-manrope);
-  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-onest);
+  --font-display: var(--font-onest);
 }
 
 * {
@@ -27,7 +27,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-manrope), sans-serif;
+  font-family: var(--font-onest), sans-serif;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.015)),
     radial-gradient(circle at top, rgba(167, 139, 250, 0.06), transparent 24%),
@@ -70,7 +70,7 @@ h1,
 h2,
 h3,
 .font-display {
-  font-family: var(--font-space-grotesk), sans-serif;
+  font-family: var(--font-onest), sans-serif;
 }
 
 

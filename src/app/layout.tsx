@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Space_Grotesk } from "next/font/google";
+import { Onest } from "next/font/google";
 import Script from "next/script";
 import { ScrollToTopButton } from "@/components/scroll-to-top-button";
 import {
@@ -11,14 +11,9 @@ import {
 } from "@/lib/seo";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
+const onest = Onest({
+  variable: "--font-onest",
+  subsets: ["latin", "cyrillic"],
 });
 
 export const metadata: Metadata = {
@@ -63,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       suppressHydrationWarning
-      className={`${manrope.variable} ${spaceGrotesk.variable} h-full scroll-smooth antialiased`}
+      className={`${onest.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <noscript>
