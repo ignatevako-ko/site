@@ -351,7 +351,7 @@ function renderHighlightedText(text: string) {
   return text.split(/(\*[^*]+\*)/g).map((part, index) => {
     if (part.startsWith("*") && part.endsWith("*")) {
       return (
-        <strong key={`${part}-${index}`} className="font-medium text-white">
+        <strong key={`${part}-${index}`} className="font-semibold text-white">
           {part.slice(1, -1)}
         </strong>
       );
@@ -599,7 +599,7 @@ export function LandingPage({
 
             <div className="space-y-6">
               <h1
-                className={`max-w-3xl font-light tracking-[-0.05em] text-white ${
+                className={`max-w-3xl whitespace-pre-line font-light tracking-[-0.05em] text-white ${
                   language === "ru"
                     ? "text-[39px] sm:text-[39px] md:text-[46px] lg:text-[58px]"
                     : "text-[27px] sm:text-[34px] lg:text-[58px]"
