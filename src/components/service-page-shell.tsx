@@ -48,7 +48,7 @@ export function ServicePageShell({
   relatedServices,
 }: ServicePageShellProps) {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
+    <div className="relative min-h-screen overflow-x-clip bg-slate-950 text-white">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[-7rem] top-[-4rem] h-[22rem] w-[22rem] rounded-full bg-amber-200/14 blur-3xl" />
         <div className="absolute left-1/2 top-10 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-violet-400/10 blur-3xl" />
@@ -81,7 +81,7 @@ export function ServicePageShell({
       <main className="relative z-10">
         <section
           id="offer"
-          className="mx-auto grid w-full max-w-7xl gap-10 px-6 pb-20 pt-14 lg:grid-cols-[1.06fr_0.94fr] lg:px-10 lg:pb-28 lg:pt-20"
+          className="mx-auto grid w-full max-w-7xl gap-10 px-6 pb-20 pt-18 sm:pt-20 lg:grid-cols-[1.06fr_0.94fr] lg:px-10 lg:pb-28 lg:pt-24"
         >
           <div className="space-y-8">
             <div className="inline-flex rounded-full border border-violet-300/20 bg-violet-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-violet-100">
@@ -124,7 +124,7 @@ export function ServicePageShell({
             </div>
           </div>
 
-          <div id="pricing" className="glass-shell rounded-[2rem] p-6 sm:p-8">
+          <div id="pricing" className="glass-shell scroll-mt-36 rounded-[2rem] p-6 sm:p-8">
             <div className="space-y-6">
               <div className="flex items-center justify-between border-b border-white/10 pb-5">
                 <div>
