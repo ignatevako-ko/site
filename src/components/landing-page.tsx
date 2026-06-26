@@ -321,8 +321,8 @@ const targetAudienceByLanguage: Record<
     ],
     niches: [
       {
-        title: "Construction and renovation",
-        text: "We help attract people who are already planning a project and looking for a contractor they can trust.",
+        title: "Construction, renovation and real estate",
+        text: "We help attract people already planning a renovation, construction project, purchase or sale and looking for a specialist they can trust.",
       },
       {
         title: "Dental clinics",
@@ -366,8 +366,8 @@ const targetAudienceByLanguage: Record<
     ],
     niches: [
       {
-        title: "Ehitus ja remont",
-        text: "Toome inimesi, kes juba planeerivad projekti ja otsivad usaldusväärset tegijat.",
+        title: "Ehitus, remont ja kinnisvara",
+        text: "Toome inimesi, kes planeerivad remonti, ehitust, ostu või müüki ja otsivad usaldusväärset spetsialisti.",
       },
       {
         title: "Hambakliinikud",
@@ -411,8 +411,8 @@ const targetAudienceByLanguage: Record<
     ],
     niches: [
       {
-        title: "Строительство и ремонт",
-        text: "Помогаем получать заявки от людей, которые уже планируют ремонт, строительство или покупку услуги и ищут подрядчика, которому можно доверять.",
+        title: "Строительство, ремонт и недвижимость",
+        text: "Помогаем получать заявки от людей, которые уже планируют ремонт, строительство, покупку или продажу недвижимости и ищут специалиста, которому можно доверять.",
       },
       {
         title: "Стоматологии",
