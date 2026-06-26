@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sheet-leads:sync": "node scripts/sheet-leads-to-telegram.mjs",
+    "sheet-leads:check": "node scripts/sheet-leads-to-telegram.mjs --dry-run"
   },
   "dependencies": {
     "googleapis": "^171.4.0",
