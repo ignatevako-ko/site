@@ -7,34 +7,7 @@ import {
   homeButtonLabels,
 } from "@/lib/additional-service-pages";
 import { localizedPath } from "@/lib/locales";
-
-const relatedLabels: Record<Language, Record<AdditionalServiceSlug, string>> = {
-  ru: {
-    "marketing-audit": "Аудит маркетинга",
-    smm: "SMM",
-    seo: "SEO оптимизация",
-    "website-development": "Разработка сайта",
-  },
-  en: {
-    "marketing-audit": "Marketing audit",
-    smm: "SMM",
-    seo: "SEO optimisation",
-    "website-development": "Website development",
-  },
-  et: {
-    "marketing-audit": "Turundusaudit",
-    smm: "SMM",
-    seo: "SEO optimeerimine",
-    "website-development": "Veebilehe arendus",
-  },
-};
-
-const relatedSlugs: AdditionalServiceSlug[] = [
-  "marketing-audit",
-  "smm",
-  "seo",
-  "website-development",
-];
+import { getAllServiceLinks } from "@/lib/services";
 
 export function AdditionalServicePage({
   slug,
@@ -45,12 +18,7 @@ export function AdditionalServicePage({
 }) {
   const copy = getAdditionalServicePageCopy(slug, language);
   const content = getAdditionalServicePageDictionary(slug, language);
-  const relatedServices = relatedSlugs
-    .filter((item) => item !== slug)
-    .map((item) => ({
-      href: localizedPath(language, `/${item}`),
-      label: relatedLabels[language][item],
-    }));
+  const relatedServices = getAllServiceLinks(language).filter((item) => item.slug !== slug);
 
   return (
     <ServicePageShell
@@ -68,4 +36,3 @@ export function AdditionalServicePage({
     />
   );
 }
-

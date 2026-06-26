@@ -562,7 +562,17 @@ function renderServiceTitle(title: string) {
   return title;
 }
 
-function CaseCard({ item, index, language }: { item: CaseStudy; index: number; language: Language }) {
+function CaseCard({
+  item,
+  index,
+  language,
+  className = "",
+}: {
+  item: CaseStudy;
+  index: number;
+  language: Language;
+  className?: string;
+}) {
   const palette = caseBackgrounds[index % caseBackgrounds.length];
   const categoryParts = item.category.split("/").map((part) => part.trim());
   const normalizedCategory = item.category.toLowerCase();
@@ -577,7 +587,7 @@ function CaseCard({ item, index, language }: { item: CaseStudy; index: number; l
     <article
       className={`group overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/[0.04] transition hover:-translate-y-1 hover:border-violet-300/35 ${
         isWideCase ? "xl:col-span-2" : ""
-      }`}
+      } ${className}`}
     >
       <div
         className={`relative min-h-[17rem] bg-gradient-to-br ${palette} p-5 sm:min-h-[18.5rem] sm:p-6`}
@@ -726,9 +736,9 @@ export function LandingPage({
       />
 
       <main className="relative z-10">
-        <section className="mx-auto grid w-full max-w-7xl gap-14 px-6 pb-20 pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:pb-28 lg:pt-24">
+        <section className="mx-auto grid w-full max-w-7xl gap-10 px-6 pb-12 pt-0 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:px-10 lg:pb-28 lg:pt-24">
           <div className="space-y-8">
-            <div className="-mt-[50px] flex flex-col items-center gap-1 text-center text-[20px] font-extralight text-slate-200 sm:hidden">
+            <div className="mt-1 flex flex-col items-center gap-1 text-center text-[20px] font-extralight text-slate-200 sm:hidden">
               <a
                 href={`tel:${content.contacts.phone}`}
                 className="transition hover:text-violet-200"
@@ -743,7 +753,7 @@ export function LandingPage({
               </a>
             </div>
 
-            <div className="inline-flex rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-violet-200">
+            <div className="hidden rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-violet-200 sm:inline-flex">
               {content.hero.eyebrow}
             </div>
 
@@ -757,7 +767,7 @@ export function LandingPage({
               >
                 {renderHighlightedText(content.hero.title)}
               </h1>
-              <p className="max-w-2xl text-lg font-medium uppercase tracking-[0.22em] text-violet-200/95 sm:text-xl">
+              <p className="hidden max-w-2xl text-lg font-medium uppercase tracking-[0.22em] text-violet-200/95 sm:block sm:text-xl">
                 {content.hero.description}
               </p>
             </div>
@@ -782,14 +792,14 @@ export function LandingPage({
             <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-violet-400/24 via-transparent to-fuchsia-500/24 blur-2xl" />
             <div className="glass-shell relative rounded-[2rem] bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_24%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 sm:p-8">
               <div className="space-y-6">
-                <div className="flex items-center justify-between border-b border-white/10 pb-5">
+                <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
                   <div className="space-y-3">
                     <BrandLogo compact />
                     <p className="text-xl font-semibold text-white">
                       {content.hero.dashboardTitle}
                     </p>
                   </div>
-                  <div className="rounded-full border border-violet-400/25 bg-violet-400/10 px-3 py-1 text-xs font-medium text-violet-200">
+                  <div className="mt-1 rounded-full border border-violet-400/25 bg-violet-400/10 px-3 py-1 text-xs font-medium text-violet-200">
                     {content.hero.dashboardStatus}
                   </div>
                 </div>
@@ -834,20 +844,26 @@ export function LandingPage({
           </div>
         </section>
 
-        <section id="cases" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="cases" className="relative mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-20">
           <BackgroundGlow className="left-[-8rem] top-20 h-[22rem] w-[22rem] bg-violet-300/10" />
           <BackgroundGlow className="right-[-10rem] bottom-8 h-[26rem] w-[26rem] bg-fuchsia-300/9" />
           <SectionHeading
             title={content.sections.cases}
             description={content.sectionLead.cases}
           />
-          <div className="mt-10 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-6 grid gap-5 lg:mt-10 lg:grid-cols-2 xl:grid-cols-3">
             {casesForGrid.map((item, index) => (
-              <CaseCard key={item.title} item={item} index={index} language={language} />
+              <CaseCard
+                key={item.title}
+                item={item}
+                index={index}
+                language={language}
+                className={index >= 3 ? "hidden sm:block" : ""}
+              />
             ))}
           </div>
 
-          <div className="mt-8 flex justify-center">
+          <div className="mt-5 flex justify-center lg:mt-8">
             <Link
               href="/cases"
               className="inline-flex items-center justify-center text-[20px] font-extralight text-white underline decoration-white/80 underline-offset-[10px] transition hover:text-white/85 hover:decoration-white"
@@ -865,24 +881,24 @@ export function LandingPage({
           showMoreLabel={creativeExamples.more}
         />
 
-        <section id="services" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="services" className="relative mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-20">
           <BackgroundGlow className="left-[8%] top-4 h-[24rem] w-[24rem] bg-amber-100/9" />
           <BackgroundGlow className="right-[-7rem] top-28 h-[25rem] w-[25rem] bg-violet-400/12" />
           <SectionHeading
             title={content.sections.services}
             description={content.sectionLead.services}
           />
-          <div className="mt-10 space-y-8">
+          <div className="mt-6 space-y-5 lg:mt-10 lg:space-y-8">
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(12,18,42,0.92),rgba(16,20,42,0.84),rgba(32,22,51,0.88))] p-8 shadow-[0_40px_120px_rgba(7,10,24,0.32)] sm:p-10 lg:p-12"
+                className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(12,18,42,0.92),rgba(16,20,42,0.84),rgba(32,22,51,0.88))] p-6 shadow-[0_40px_120px_rgba(7,10,24,0.32)] sm:p-10 lg:p-12"
               >
                 <BackgroundGlow
                   className={index === 0 ? "right-8 top-[-8rem] h-[20rem] w-[20rem] bg-fuchsia-300/10" : "left-[-5rem] top-[-6rem] h-[18rem] w-[18rem] bg-violet-300/10"}
                 />
                 <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start">
-                  <div className="space-y-8">
+                  <div className="space-y-5 lg:space-y-8">
                     <h3 className="text-[18px] font-semibold uppercase tracking-[0.16em] text-white">
                       {renderServiceTitle(service.title)}
                     </h3>
@@ -940,7 +956,7 @@ export function LandingPage({
 
                       <Link
                         href={serviceLinks[index] ?? "#contacts"}
-                        className="mt-8 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300"
+                        className="mt-5 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300 lg:mt-8"
                       >
                         {pricing.cta}
                       </Link>
@@ -952,16 +968,16 @@ export function LandingPage({
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-7xl px-6 pb-20 lg:px-10">
-          <div className="max-w-2xl space-y-4">
-            <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
+        <section className="mx-auto w-full max-w-7xl px-6 pb-12 text-center sm:text-left lg:px-10 lg:pb-20">
+          <div className="mx-auto max-w-2xl space-y-4 sm:mx-0">
+            <p className="text-[18px] font-semibold uppercase tracking-[0.24em] text-violet-300 sm:text-[20px] sm:tracking-[0.3em]">
               {additionalServicesTitle[language]}
             </p>
           </div>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap justify-center gap-3 sm:justify-start">
             {additionalServices.map((item) => {
               const className =
-                "inline-flex items-center rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-[20px] font-light text-slate-100 transition hover:border-violet-300/35 hover:bg-white/10";
+                "inline-flex items-center rounded-full border border-white/10 bg-white/6 px-4 py-2 text-[17px] font-light text-slate-100 transition hover:border-violet-300/35 hover:bg-white/10 sm:px-5 sm:py-2.5 sm:text-[20px]";
 
               return item.href ? (
                 <Link key={item.label} href={item.href} className={className}>
@@ -976,16 +992,16 @@ export function LandingPage({
           </div>
         </section>
 
-        <section id="testimonials" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="testimonials" className="relative mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-20">
           <BackgroundGlow className="left-[-10rem] top-10 h-[26rem] w-[26rem] bg-violet-300/10" />
           <BackgroundGlow className="right-[-7rem] bottom-0 h-[22rem] w-[22rem] bg-amber-100/9" />
-          <div className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.85fr] lg:items-center">
+          <div className="mt-6 grid gap-6 lg:mt-10 lg:grid-cols-[1.05fr_0.85fr] lg:items-center lg:gap-10">
             <div className="max-w-2xl">
               <h2 className="max-w-xl text-[28px] font-extralight leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.075rem]">
                 {liveTestimonials.title}
               </h2>
 
-              <div className="mt-10 flex items-center gap-3">
+              <div className="mt-6 flex items-center gap-3 lg:mt-10">
                 <button
                   type="button"
                   onClick={() =>
@@ -1012,11 +1028,11 @@ export function LandingPage({
                 </button>
               </div>
 
-              <div className="mt-8 max-w-[36rem]">
+              <div className="mt-5 max-w-[36rem] lg:mt-8">
                 <p className="text-[20px] font-light leading-[1.45] text-slate-100">
                   {liveTestimonials.items[activeTestimonial].quote}
                 </p>
-                <div className="mt-8">
+                <div className="mt-5 lg:mt-8">
                   <p className="text-lg font-medium text-white">
                     {liveTestimonials.items[activeTestimonial].name}
                   </p>
@@ -1026,7 +1042,7 @@ export function LandingPage({
                 </div>
               </div>
 
-              <div className="mt-8 flex items-center gap-3">
+              <div className="mt-5 flex items-center gap-3 lg:mt-8">
                 {liveTestimonials.items.map((item, index) => (
                   <button
                     key={item.name}
@@ -1092,14 +1108,14 @@ export function LandingPage({
           </div>
         </section>
 
-        <section id="clients" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="clients" className="relative mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-20">
           <BackgroundGlow className="left-[-6rem] bottom-2 h-[22rem] w-[22rem] bg-cyan-200/8" />
           <BackgroundGlow className="right-[16%] top-10 h-[18rem] w-[18rem] bg-violet-300/8" />
           <SectionHeading
             title={content.sections.clients}
             description={content.sectionLead.clients}
           />
-          <div className="client-marquee relative left-1/2 mt-10 w-screen -translate-x-1/2 overflow-hidden">
+          <div className="client-marquee relative left-1/2 mt-6 w-screen -translate-x-1/2 overflow-hidden lg:mt-10">
             <div className="client-marquee__track">
               {[...content.clients, ...content.clients].map((client, index) => {
                 const hasLightPlate = lightPlateClientLogos.has(client.name);
@@ -1135,10 +1151,10 @@ export function LandingPage({
           </div>
         </section>
 
-        <section id="about" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="about" className="relative mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-20">
           <BackgroundGlow className="left-[24%] top-[-3rem] h-[22rem] w-[22rem] bg-amber-100/10" />
           <BackgroundGlow className="right-[-9rem] bottom-[-4rem] h-[26rem] w-[26rem] bg-fuchsia-300/9" />
-          <div className="mb-10 max-w-2xl space-y-4">
+          <div className="mb-6 max-w-2xl space-y-4 lg:mb-10">
             <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
               {content.sections.about}
             </p>
@@ -1186,10 +1202,10 @@ export function LandingPage({
           </div>
         </section>
 
-        <section id="audience" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="audience" className="relative mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-20">
           <BackgroundGlow className="left-[-7rem] top-12 h-[24rem] w-[24rem] bg-violet-300/10" />
           <BackgroundGlow className="right-[-8rem] bottom-[-2rem] h-[25rem] w-[25rem] bg-fuchsia-300/10" />
-          <div className="mb-10 max-w-2xl space-y-4">
+          <div className="mb-6 max-w-2xl space-y-4 lg:mb-10">
             <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
               {targetAudience.eyebrow}
             </p>

@@ -142,7 +142,7 @@ export function CreativeGallery({
     <section
       id="kreo"
       className={`relative mx-auto w-full ${embedded ? "max-w-none px-0" : "max-w-7xl px-6 lg:px-10"} ${
-        dense ? "py-12" : "pb-20"
+        dense ? "py-8 lg:py-12" : "pb-12 lg:pb-20"
       }`}
     >
       <div className="max-w-2xl space-y-4">
@@ -151,7 +151,7 @@ export function CreativeGallery({
         </p>
       </div>
 
-      <div className="mt-8 flex flex-col gap-4 overflow-hidden sm:gap-5">
+      <div className="mt-5 flex flex-col gap-4 overflow-hidden sm:mt-8 sm:gap-5">
         <div className="creative-marquee">
           <div className="creative-marquee__track creative-marquee__track--left">
             {visibleStaticItems.map((item, index) => (
@@ -182,7 +182,7 @@ export function CreativeGallery({
       </div>
 
       {showMoreLink ? (
-        <div className="mt-8 flex justify-center">
+        <div className="mt-5 flex justify-center sm:mt-8">
           <Link
             href="/kreo"
             className="inline-flex items-center justify-center text-[20px] font-extralight text-white underline decoration-white/80 underline-offset-[10px] transition hover:text-white/85 hover:decoration-white"

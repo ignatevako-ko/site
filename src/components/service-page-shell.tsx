@@ -23,6 +23,32 @@ const defaultHomeButtonLabels: Record<Language, string> = {
   et: "Tagasi avalehele",
 };
 
+const proofCtaLabels: Record<Language, string> = {
+  ru: "Хочу также",
+  en: "I want this too",
+  et: "Soovin sama",
+};
+
+function cleanHeroTitle(title: string) {
+  return title
+    .replace(/,\s*которые приводят клиентов в Таллинне и по всей Эстонии/g, ", которые приводят клиентов")
+    .replace(/\s+в Таллинне и по всей Эстонии/g, "")
+    .replace(/\s+в Таллинне и Эстонии/g, "")
+    .replace(/\s+в Таллинне/g, "")
+    .replace(/\s+по всей Эстонии/g, "")
+    .replace(/\s+Таллинна и Эстонии/g, "")
+    .replace(/\s+in Tallinn and across Estonia/g, "")
+    .replace(/\s+in Tallinn/g, "")
+    .replace(/\s+in Estonia/g, "")
+    .replace(/\s+across Estonia/g, "")
+    .replace(/\s+Tallinn and Estonia/g, "")
+    .replace(/\s+Tallinnas ja Eestis/g, "")
+    .replace(/\s+Tallinnas/g, "")
+    .replace(/\s+Eestis/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
 function SectionHeading({
   eyebrow,
   title,
@@ -84,23 +110,23 @@ export function ServicePageShell({
       <main className="relative z-10">
         <section
           id="offer"
-          className="mx-auto grid w-full max-w-7xl gap-10 px-6 pb-20 pt-18 sm:pt-20 lg:grid-cols-[1.06fr_0.94fr] lg:px-10 lg:pb-28 lg:pt-24"
+          className="mx-auto grid w-full max-w-7xl gap-6 px-6 pb-12 pt-5 sm:pt-20 lg:grid-cols-[1.06fr_0.94fr] lg:gap-10 lg:px-10 lg:pb-28 lg:pt-24"
         >
-          <div className="space-y-8">
-            <div className="inline-flex rounded-full border border-violet-300/20 bg-violet-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-violet-100">
+          <div className="space-y-6 sm:space-y-8">
+            <div className="hidden rounded-full border border-violet-300/20 bg-violet-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-violet-100 sm:inline-flex">
               {copy.hero.badge}
             </div>
 
             <div className="space-y-5">
-              <h1 className="max-w-4xl text-[34px] font-light leading-[1.02] tracking-[-0.06em] text-white sm:text-[50px] lg:text-[68px]">
-                {copy.hero.title}
+              <h1 className="max-w-4xl text-[34px] font-light leading-normal tracking-[-0.06em] text-white sm:text-[50px] lg:text-[68px]">
+                {cleanHeroTitle(copy.hero.title)}
               </h1>
               <p className="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
                 {copy.hero.description}
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="hidden gap-3 sm:grid sm:grid-cols-3">
               {copy.hero.bullets.map((item) => (
                 <div
                   key={item}
@@ -186,14 +212,14 @@ export function ServicePageShell({
           </div>
         </section>
 
-        <section id="proof" className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="proof" className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-20">
           <SectionHeading
             eyebrow={copy.benefits.eyebrow}
             title={copy.benefits.title}
             description={copy.benefits.description}
           />
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-6 grid gap-5 lg:mt-10 lg:grid-cols-2 xl:grid-cols-4">
             {copy.benefits.cards.map((card) => (
               <article
                 key={card.title}
@@ -207,13 +233,13 @@ export function ServicePageShell({
             ))}
           </div>
 
-          <div className="mt-10 rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(19,26,53,0.88),rgba(35,21,51,0.82))] p-7 sm:p-8">
+          <div className="mt-6 rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(19,26,53,0.88),rgba(35,21,51,0.82))] p-6 sm:p-8 lg:mt-10">
             <SectionHeading
               eyebrow={copy.proof.eyebrow}
               title={copy.proof.title}
               description={copy.proof.description}
             />
-            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            <div className="mt-5 grid gap-4 lg:mt-8 lg:grid-cols-3">
               {copy.proof.points.map((item) => (
                 <div
                   key={item}
@@ -223,17 +249,25 @@ export function ServicePageShell({
                 </div>
               ))}
             </div>
+            <div className="mt-5 flex justify-center sm:justify-start lg:mt-8">
+              <Link
+                href="#contacts"
+                className="inline-flex min-h-[3.25rem] items-center justify-center rounded-full bg-violet-400 px-7 text-[17px] font-semibold text-slate-950 transition hover:bg-violet-300 sm:min-h-14 sm:text-[18px]"
+              >
+                {proofCtaLabels[language]}
+              </Link>
+            </div>
           </div>
         </section>
 
-        <section id="process" className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section id="process" className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-20">
           <SectionHeading
             eyebrow={copy.process.eyebrow}
             title={copy.process.title}
             description={copy.process.description}
           />
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-6 grid gap-5 lg:mt-10 lg:grid-cols-2 xl:grid-cols-4">
             {copy.process.items.map((item, index) => (
               <article
                 key={item.title}
@@ -251,7 +285,7 @@ export function ServicePageShell({
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+        <section className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-20">
           <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
             <div className="rounded-[2rem] border border-white/10 bg-white/5 p-7 sm:p-8">
               <SectionHeading
@@ -259,7 +293,7 @@ export function ServicePageShell({
                 title={copy.faq.title}
                 description={copy.faq.description}
               />
-              <div className="mt-8 space-y-4">
+              <div className="mt-5 space-y-4 lg:mt-8">
                 {copy.faq.items.map((item) => (
                   <article
                     key={item.question}
@@ -293,7 +327,7 @@ export function ServicePageShell({
 
               <Link
                 href="#contacts"
-                className="mt-8 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-violet-400 px-7 text-[18px] font-semibold text-slate-950 transition hover:bg-violet-300"
+                className="mt-5 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-violet-400 px-7 text-[18px] font-semibold text-slate-950 transition hover:bg-violet-300 lg:mt-8"
               >
                 {copy.included.cta}
               </Link>
@@ -301,16 +335,16 @@ export function ServicePageShell({
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-7xl px-6 pb-20 lg:px-10">
-          <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
+        <section className="mx-auto w-full max-w-7xl px-6 pb-12 text-center sm:text-left lg:px-10 lg:pb-20">
+          <p className="text-[18px] font-semibold uppercase tracking-[0.24em] text-violet-300 sm:text-[20px] sm:tracking-[0.3em]">
             {copy.relatedTitle}
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap justify-center gap-3 sm:justify-start">
             {relatedServices.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="inline-flex items-center rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-[18px] font-light text-slate-100 transition hover:border-violet-300/35 hover:bg-white/10"
+                className="inline-flex items-center rounded-full border border-white/10 bg-white/6 px-4 py-2 text-[16px] font-light text-slate-100 transition hover:border-violet-300/35 hover:bg-white/10 sm:px-5 sm:py-2.5 sm:text-[18px]"
               >
                 {item.label}
               </Link>

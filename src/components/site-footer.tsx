@@ -13,13 +13,13 @@ export function SiteFooter({ content, language }: SiteFooterProps) {
 
   return (
     <footer id="contacts" className="border-t border-white/10 bg-slate-950">
-      <div className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:pt-20">
+      <div className="mx-auto w-full max-w-7xl px-6 py-8 lg:px-10 lg:py-12 lg:pt-20">
         <div className="glass-shell rounded-[2rem] bg-[radial-gradient(circle_at_top_left,rgba(255,224,196,0.08),transparent_18%),linear-gradient(135deg,rgba(167,139,250,0.12),rgba(255,255,255,0.04),rgba(236,72,153,0.08))] p-8 lg:p-12">
           <ContactForm language={language} />
         </div>
       </div>
 
-      <div className="mx-auto grid w-full max-w-7xl gap-12 px-6 py-12 lg:grid-cols-[1.05fr_0.4fr_0.75fr] lg:px-10">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 py-8 lg:grid-cols-[1.05fr_0.4fr_0.75fr] lg:gap-12 lg:px-10 lg:py-12">
         <div className="space-y-4">
           <BrandLogo />
 
