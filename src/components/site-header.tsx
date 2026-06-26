@@ -80,7 +80,7 @@ export function SiteHeader({
   }, []);
 
   return (
-    <header className="relative z-50 px-4 pt-4 md:sticky md:top-0 lg:px-6">
+    <header className="relative z-50 px-4 pt-4 lg:px-6">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-0 py-0 md:flex-row md:flex-nowrap md:items-center md:gap-4 md:rounded-full md:border md:border-white/8 md:bg-[linear-gradient(180deg,rgba(10,16,39,0.82),rgba(8,12,28,0.72))] md:px-5 md:py-4 md:shadow-[0_20px_60px_rgba(2,6,23,0.32),inset_0_1px_0_rgba(255,255,255,0.04)] md:backdrop-blur-[18px] lg:gap-6 lg:px-8">
         <div className="flex w-full items-start justify-between gap-4 md:w-auto md:shrink-0 md:items-center">
           <Link href={homeHref} aria-label="Do.Marketing home" className="shrink-0">
