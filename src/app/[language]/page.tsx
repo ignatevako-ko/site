@@ -8,9 +8,9 @@ import { buildLocalizedHomePageStructuredData, buildLocalizedPageMetadata } from
 
 const homeSeoByLanguage: Record<Language, { title: string; description: string; keywords: string[] }> = {
   ru: {
-    title: "Meta Ads и Google Ads агентство в Tallinn | Do.Marketing",
+    title: "Meta Ads и Google Ads агентство в Европе | Do.Marketing",
     description:
-      "Do.Marketing — агентство рекламы в Таллинне, которое ведет Meta Ads и Google Ads для бизнеса в Эстонии: стратегия, креативы, кейсы и рост заявок.",
+      "Do.Marketing — агентство рекламы, которое ведет Meta Ads и Google Ads для бизнеса в Европе: стратегия, креативы, кейсы и рост заявок.",
     keywords: [
       "Meta Ads agency Tallinn",
       "Google Ads agency Tallinn",
@@ -19,9 +19,9 @@ const homeSeoByLanguage: Record<Language, { title: string; description: string; 
     ],
   },
   en: {
-    title: "Meta Ads and Google Ads Agency in Tallinn | Do.Marketing",
+    title: "Meta Ads and Google Ads Agency in Europe | Do.Marketing",
     description:
-      "Do.Marketing is a Tallinn-based agency managing Meta Ads and Google Ads for businesses in Estonia: strategy, creatives, case studies and lead growth.",
+      "Do.Marketing is an agency managing Meta Ads and Google Ads for businesses across Europe: strategy, creatives, case studies and lead growth.",
     keywords: [
       "Meta Ads agency Tallinn",
       "Google Ads agency Tallinn",
@@ -30,9 +30,9 @@ const homeSeoByLanguage: Record<Language, { title: string; description: string; 
     ],
   },
   et: {
-    title: "Meta Ads ja Google Ads agentuur Tallinnas | Do.Marketing",
+    title: "Meta Ads ja Google Ads agentuur Euroopas | Do.Marketing",
     description:
-      "Do.Marketing on Tallinna reklaamiagentuur, mis juhib Meta Adsi ja Google Adsi kampaaniaid Eesti ettevõtetele: strateegia, loovlahendused, case'id ja päringute kasv.",
+      "Do.Marketing juhib Meta Adsi ja Google Adsi kampaaniaid Euroopa ettevõtetele: strateegia, loovlahendused, case'id ja päringute kasv.",
     keywords: [
       "Meta Ads agentuur Tallinn",
       "Google Ads agentuur Tallinn",

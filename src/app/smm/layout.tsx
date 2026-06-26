@@ -3,9 +3,9 @@ import Script from "next/script";
 import { buildPageMetadata, buildServiceStructuredData } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "SMM Tallinn | Instagram, Facebook, TikTok и Shorts для бизнеса | Do.Marketing",
+  title: "SMM в Европе | Instagram, Facebook, TikTok и Shorts для бизнеса | Do.Marketing",
   description:
-    "SMM в Tallinn и по всей Эстонии: стратегия контента, упаковка аккаунта, Reels, Stories, автоматизация и масштабирование через таргетированную рекламу.",
+    "SMM в Европе: стратегия контента, упаковка аккаунта, Reels, Stories, автоматизация и масштабирование через таргетированную рекламу.",
   path: "/smm",
   keywords: [
     "SMM Tallinn",
@@ -17,9 +17,9 @@ export const metadata: Metadata = buildPageMetadata({
 
 const smmStructuredData = buildServiceStructuredData({
   path: "/smm",
-  name: "SMM management in Tallinn",
+  name: "SMM management in Europe",
   description:
-    "SMM для бизнеса в Таллинне и по всей Эстонии: контент, упаковка, Reels, Stories и усиление через рекламу.",
+    "SMM для бизнеса в Европе: контент, упаковка, Reels, Stories и усиление через рекламу.",
   serviceType: "Social media marketing",
 });
 

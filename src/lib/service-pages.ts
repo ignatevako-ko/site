@@ -97,18 +97,18 @@ function buildServicePageDictionary(
 const metaAdsCopy: Record<Language, ServicePageCopy> = {
   ru: {
     metadata: {
-      title: "Meta Ads Tallinn | Реклама Facebook и Instagram в Эстонии | Do.Marketing",
+      title: "Meta Ads в Европе | Реклама Facebook и Instagram | Do.Marketing",
       description:
-        "Настройка и ведение Meta Ads в Tallinn и по всей Эстонии: Facebook Ads, Instagram Ads, креативы, аудитории, оптимизация и рост заявок для бизнеса.",
+        "Настройка и ведение Meta Ads в Европе: Facebook Ads, Instagram Ads, креативы, аудитории, оптимизация и рост заявок для бизнеса.",
       keywords: [
         "Meta Ads Tallinn",
         "Facebook Ads Tallinn",
         "Instagram Ads Estonia",
         "таргетированная реклама Таллинн",
       ],
-      serviceName: "Meta Ads management in Tallinn",
+      serviceName: "Meta Ads management in Europe",
       serviceDescription:
-        "Настройка и ведение рекламы Meta Ads для бизнеса в Таллинне и по всей Эстонии.",
+        "Настройка и ведение рекламы Meta Ads для бизнеса в Европе.",
       serviceType: "Meta Ads advertising",
       price: "650",
     },
@@ -118,15 +118,15 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
       pricing: "Цены",
     },
     hero: {
-      badge: "Meta Ads Tallinn для рекламы в Facebook и Instagram",
+      badge: "Meta Ads в Европе для рекламы в Facebook и Instagram",
       title:
         "Настройка и ведение рекламы Meta Ads, которая приводит клиентов",
       description:
         "Запускаем рекламу в Facebook и Instagram с фокусом на заявки, продажи и рост прибыли. Собираем структуру кабинета, креативы, аудитории и стратегию под ваш бизнес, чтобы реклама стабильно приводила клиентов.",
       bullets: [
-        "собираем кампании под локальный спрос в Tallinn и по Эстонии",
+        "собираем кампании под спрос в разных странах Европы",
         "готовим офферы, тексты и креативы под конкретную нишу",
-        "оптимизируем стоимость лида, частоту и окупаемость рекламы",
+        "оптимизируем стоимость лида, частоту и рост прибыли от рекламы",
       ],
       primaryCta: "Оставить заявку",
       secondaryCta: "Посмотреть этапы",
@@ -138,7 +138,7 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
       stats: [
         { value: "650€", label: "старт ведения" },
         { value: "350€+", label: "рекомендуемый бюджет" },
-        { value: "ROAS", label: "фокус на окупаемости" },
+        { value: "ROAS", label: "фокус на росте прибыли" },
       ],
       budgetBadge: "+ рекламный бюджет: от 350€",
       fromLabel: "от",
@@ -151,13 +151,13 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
     },
     benefits: {
       eyebrow: "Результат",
-      title: "Что получает бизнес от Meta Ads в Эстонии",
+      title: "Что получает бизнес от Meta Ads в Европе",
       description:
         "Сильная реклама в Meta начинается не с кнопки запуска, а с правильной связки оффера, аудитории, креатива и посадочной страницы.",
       cards: [
         {
           title: "Локальный спрос",
-          text: "Собираем структуру кампаний так, чтобы реклама точно работала по географии, языкам и сегментам аудитории в Эстонии.",
+          text: "Собираем структуру кампаний так, чтобы реклама точно работала по географии, языкам и сегментам аудитории в Европе.",
         },
         {
           title: "Понятная воронка",
@@ -215,7 +215,7 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
         "Короткие ответы на вопросы, которые чаще всего возникают перед стартом рекламы в Facebook и Instagram.",
       items: [
         {
-          question: "Подходит ли Meta Ads для локального бизнеса в Таллинне?",
+          question: "Подходит ли Meta Ads для бизнеса в Европе?",
           answer:
             "Да. Для салонов, услуг, образования, e-commerce и локальных проектов Meta Ads хорошо работает, если правильно собрать оффер, гео, языки и креативы.",
         },
@@ -249,18 +249,18 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
   },
   en: {
     metadata: {
-      title: "Meta Ads Tallinn | Facebook and Instagram Ads in Estonia | Do.Marketing",
+      title: "Meta Ads in Europe | Facebook and Instagram Ads | Do.Marketing",
       description:
-        "Meta Ads management in Tallinn and across Estonia: Facebook Ads, Instagram Ads, creatives, audience strategy, optimisation and lead growth for local businesses.",
+        "Meta Ads management across Europe: Facebook Ads, Instagram Ads, creatives, audience strategy, optimisation and lead growth for businesses.",
       keywords: [
         "Meta Ads Tallinn",
         "Facebook Ads Tallinn",
         "Instagram Ads Estonia",
         "Meta advertising agency Estonia",
       ],
-      serviceName: "Meta Ads management in Tallinn",
+      serviceName: "Meta Ads management in Europe",
       serviceDescription:
-        "Meta Ads setup and ongoing management for businesses in Tallinn and across Estonia.",
+        "Meta Ads setup and ongoing management for businesses across Europe.",
       serviceType: "Meta Ads advertising",
       price: "650",
     },
@@ -270,13 +270,13 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
       pricing: "Pricing",
     },
     hero: {
-      badge: "Meta Ads Tallinn for Facebook and Instagram growth",
+      badge: "Meta Ads in Europe for Facebook and Instagram growth",
       title:
-        "Meta Ads setup and management that turns attention into leads and sales in Estonia",
+        "Meta Ads setup and management that turns attention into leads and sales in Europe",
       description:
         "We launch Facebook and Instagram campaigns with a clear focus on lead quality, revenue and repeatable scaling. Structure, creatives, audiences and testing logic all work as one system.",
       bullets: [
-        "campaign structure aligned with Tallinn and Estonia demand",
+        "campaign structure aligned with demand across Europe",
         "offers, copy and creatives tailored to your niche",
         "ongoing optimisation around CPL, CTR, frequency and ROAS",
       ],
@@ -303,13 +303,13 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
     },
     benefits: {
       eyebrow: "Results",
-      title: "What businesses gain from Meta Ads in Estonia",
+      title: "What businesses gain from Meta Ads in Europe",
       description:
         "Strong Meta performance starts with the right connection between offer, audience, creative and landing page, not just with pressing launch.",
       cards: [
         {
           title: "Local demand coverage",
-          text: "We build campaigns around city, language and audience segments so ads fit Tallinn and broader Estonia demand.",
+          text: "We build campaigns around country, language and audience segments so ads fit demand across Europe.",
         },
         {
           title: "Clear lead funnel",
@@ -367,7 +367,7 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
         "A short overview of the questions that usually come up before launching Facebook and Instagram campaigns.",
       items: [
         {
-          question: "Does Meta Ads work for local businesses in Tallinn?",
+          question: "Does Meta Ads work for businesses in Europe?",
           answer:
             "Yes. Meta Ads works well for services, beauty, education, e-commerce and other local offers when the offer, geography, language and creatives are set up properly.",
         },
@@ -401,18 +401,18 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
   },
   et: {
     metadata: {
-      title: "Meta Ads Tallinn | Facebooki ja Instagrami reklaam Eestis | Do.Marketing",
+      title: "Meta Ads Euroopas | Facebooki ja Instagrami reklaam | Do.Marketing",
       description:
-        "Meta Ads haldus Tallinnas ja üle Eesti: Facebooki reklaam, Instagrami reklaam, loovlahendused, auditooriumid, optimeerimine ja päringute kasv ettevõtetele.",
+        "Meta Ads haldus Euroopas: Facebooki reklaam, Instagrami reklaam, loovlahendused, auditooriumid, optimeerimine ja päringute kasv ettevõtetele.",
       keywords: [
         "Meta Ads Tallinn",
         "Facebooki reklaam Tallinn",
         "Instagrami reklaam Eesti",
         "Meta reklaami agentuur Eesti",
       ],
-      serviceName: "Meta Ads management in Tallinn",
+      serviceName: "Meta Ads management in Europe",
       serviceDescription:
-        "Meta Ads seadistamine ja haldus ettevõtetele Tallinnas ja üle Eesti.",
+        "Meta Ads seadistamine ja haldus ettevõtetele Euroopas.",
       serviceType: "Meta Ads advertising",
       price: "650",
     },
@@ -422,13 +422,13 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
       pricing: "Hinnad",
     },
     hero: {
-      badge: "Meta Ads Tallinn Facebooki ja Instagrami reklaamiks",
+      badge: "Meta Ads Euroopas Facebooki ja Instagrami reklaamiks",
       title:
-        "Meta Ads seadistus ja haldus, mis toob Tallinnas ja Eestis päris päringuid ja müüki",
+        "Meta Ads seadistus ja haldus, mis toob Euroopas päris päringuid ja müüki",
       description:
         "Käivitame Facebooki ja Instagrami kampaaniaid fookusega päringutele, müügile ja tasuvusele. Konto struktuur, loovlahendused, auditooriumid ja testimise loogika töötavad koos.",
       bullets: [
-        "kampaaniad kohaliku nõudluse jaoks Tallinnas ja Eestis",
+        "kampaaniad nõudluse jaoks eri Euroopa riikides",
         "pakkumised, tekstid ja loovlahendused teie niši järgi",
         "pidev optimeerimine CPL-i, CTR-i, sageduse ja ROAS-i järgi",
       ],
@@ -455,13 +455,13 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
     },
     benefits: {
       eyebrow: "Tulemus",
-      title: "Mida ettevõte Meta Adsist Eestis saab",
+      title: "Mida ettevõte Meta Adsist Euroopas saab",
       description:
         "Hea tulemus Meta Adsis ei alga nupust Launch, vaid õigest seosest pakkumise, auditooriumi, loovlahenduse ja maandumislehe vahel.",
       cards: [
         {
           title: "Kohalik nõudlus",
-          text: "Seadistame kampaaniad nii, et reklaam arvestab linna, keele ja auditooriumi segmentidega Tallinnas ja üle Eesti.",
+          text: "Seadistame kampaaniad nii, et reklaam arvestab riigi, keele ja auditooriumi segmentidega Euroopas.",
         },
         {
           title: "Selge päringulehter",
@@ -519,7 +519,7 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
         "Lühikesed vastused küsimustele, mis tekivad kõige sagedamini enne Facebooki ja Instagrami reklaami käivitamist.",
       items: [
         {
-          question: "Kas Meta Ads sobib kohalikele ettevõtetele Tallinnas?",
+          question: "Kas Meta Ads sobib ettevõtetele Euroopas?",
           answer:
             "Jah. Meta Ads töötab hästi teenuste, ilu, hariduse, e-kaubanduse ja teiste kohalike pakkumiste jaoks, kui pakkumine, geograafia, keel ja loovlahendused on õigesti paigas.",
         },
@@ -556,18 +556,18 @@ const metaAdsCopy: Record<Language, ServicePageCopy> = {
 const googleAdsCopy: Record<Language, ServicePageCopy> = {
   ru: {
     metadata: {
-      title: "Google Ads Tallinn | Контекстная реклама в Эстонии | Do.Marketing",
+      title: "Google Ads в Европе | Контекстная реклама | Do.Marketing",
       description:
-        "Настройка и ведение Google Ads в Tallinn и по всей Эстонии: поиск, КМС, структура кампаний, оптимизация ставок и рост обращений для бизнеса.",
+        "Настройка и ведение Google Ads в Европе: поиск, КМС, структура кампаний, оптимизация ставок и рост обращений для бизнеса.",
       keywords: [
         "Google Ads Tallinn",
         "контекстная реклама Таллинн",
         "Google Ads Estonia",
         "PPC Tallinn",
       ],
-      serviceName: "Google Ads management in Tallinn",
+      serviceName: "Google Ads management in Europe",
       serviceDescription:
-        "Настройка и ведение контекстной рекламы Google Ads для бизнеса в Таллинне и по всей Эстонии.",
+        "Настройка и ведение контекстной рекламы Google Ads для бизнеса в Европе.",
       serviceType: "Google Ads advertising",
       price: "550",
     },
@@ -577,7 +577,7 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
       pricing: "Цены",
     },
     hero: {
-      badge: "Google Ads Tallinn для быстрого спроса и продаж",
+      badge: "Google Ads в Европе для быстрого спроса и продаж",
       title:
         "Контекстная реклама Google, которая приводит горячих клиентов из поиска",
       description:
@@ -597,7 +597,7 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
       stats: [
         { value: "550€", label: "старт ведения" },
         { value: "350€+", label: "рекомендуемый бюджет" },
-        { value: "ROI", label: "фокус на окупаемости" },
+        { value: "ROI", label: "фокус на росте прибыли" },
       ],
       budgetBadge: "+ рекламный бюджет: от 350€",
       fromLabel: "от",
@@ -708,18 +708,18 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
   },
   en: {
     metadata: {
-      title: "Google Ads Tallinn | PPC Campaign Management in Estonia | Do.Marketing",
+      title: "Google Ads in Europe | PPC Campaign Management | Do.Marketing",
       description:
-        "Google Ads setup and management in Tallinn and across Estonia: search, display, account structure, bid optimisation and conversion growth for local businesses.",
+        "Google Ads setup and management across Europe: search, display, account structure, bid optimisation and conversion growth for businesses.",
       keywords: [
         "Google Ads Tallinn",
         "PPC agency Estonia",
         "search advertising Tallinn",
         "Google Ads management Estonia",
       ],
-      serviceName: "Google Ads management in Tallinn",
+      serviceName: "Google Ads management in Europe",
       serviceDescription:
-        "Google Ads setup and management for businesses in Tallinn and across Estonia.",
+        "Google Ads setup and management for businesses across Europe.",
       serviceType: "Google Ads advertising",
       price: "550",
     },
@@ -729,7 +729,7 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
       pricing: "Pricing",
     },
     hero: {
-      badge: "Google Ads Tallinn for high-intent demand",
+      badge: "Google Ads in Europe for high-intent demand",
       title:
         "Google Ads campaigns that capture hot demand and turn search traffic into sales",
       description:
@@ -860,18 +860,18 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
   },
   et: {
     metadata: {
-      title: "Google Ads Tallinn | PPC reklaam ja haldus Eestis | Do.Marketing",
+      title: "Google Ads Euroopas | PPC reklaam ja haldus | Do.Marketing",
       description:
-        "Google Ads seadistus ja haldus Tallinnas ja üle Eesti: otsing, display, konto struktuur, pakkumiste optimeerimine ja päringute kasv ettevõtetele.",
+        "Google Ads seadistus ja haldus Euroopas: otsing, display, konto struktuur, pakkumiste optimeerimine ja päringute kasv ettevõtetele.",
       keywords: [
         "Google Ads Tallinn",
         "PPC agentuur Eesti",
         "otsingureklaam Tallinn",
         "Google Ads haldus Eesti",
       ],
-      serviceName: "Google Ads management in Tallinn",
+      serviceName: "Google Ads management in Europe",
       serviceDescription:
-        "Google Ads seadistamine ja haldus ettevõtetele Tallinnas ja üle Eesti.",
+        "Google Ads seadistamine ja haldus ettevõtetele Euroopas.",
       serviceType: "Google Ads advertising",
       price: "550",
     },
@@ -881,7 +881,7 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
       pricing: "Hinnad",
     },
     hero: {
-      badge: "Google Ads Tallinn kiire nõudluse püüdmiseks",
+      badge: "Google Ads Euroopas kiire nõudluse püüdmiseks",
       title:
         "Google Ads kampaaniad, mis püüavad kuuma nõudlust ja toovad müüki juba stardipäeval",
       description:

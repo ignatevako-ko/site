@@ -132,11 +132,11 @@ const casesRu: CaseStudy[] = [
       "До Черной пятницы реклама принесла $8 881 при бюджете $868 и ROAS 10. Во время Black Friday за 3 дня реклама дала $4 690 продаж при бюджете $311, ROAS 15 и цене клиента $10.",
   },
   {
-    title: "Интернет-магазин косметики в Эстонии",
+    title: "Интернет-магазин косметики",
     category: "Beauty retail / Estonia",
     result: "€8 387 выручки при бюджете €277",
     summary:
-      "Для магазина косметики в Эстонии кампания со скидкой 20% на Medic8 принесла 114 продаж. Стоимость продажи составила €2.43, средний чек €73.57, а окупаемость достигла 30.23.",
+      "Для магазина косметики кампания со скидкой 20% на Medic8 принесла 114 продаж. Стоимость продажи составила €2.43, средний чек €73.57, а ROAS достиг 30.23.",
   },
   {
     title: "Турагенство Prime Tour",
@@ -184,7 +184,7 @@ const casesEn: CaseStudy[] = [
       "Before Black Friday, campaigns generated $8,881 in sales on an $868 budget with ROAS 10. During the 3-day Black Friday period, ads delivered $4,690 in sales on $311 spend, ROAS 15 and a $10 customer cost.",
   },
   {
-    title: "Cosmetics E-commerce Store in Estonia",
+    title: "Cosmetics E-commerce Store",
     category: "Beauty retail / Estonia",
     result: "€8,387 revenue on €277 spend",
     summary:
@@ -236,7 +236,7 @@ const casesEt: CaseStudy[] = [
       "Enne Black Fridayd tõi reklaam $8,881 müüki $868 eelarvega ja ROAS 10. Black Friday 3 päeva jooksul tõi kampaania $4,690 müüki $311 kuluga, ROAS 15 ning kliendi hind oli $10.",
   },
   {
-    title: "Kosmeetika e-pood Eestis",
+    title: "Kosmeetika e-pood",
     category: "Beauty retail / Estonia",
     result: "€8 387 käivet €277 eelarvega",
     summary:
@@ -501,7 +501,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
       dashboardChartLabel: "Обзор результатов",
       dashboardChartStatus: "Live",
       stats: [
-        { value: "2923%", label: "Максимальная окупаемость" },
+        { value: "2923%", label: "Максимальный ROAS" },
         { value: "578", label: "Лидов в месяц" },
         { value: "30.23", label: "Лучший ROAS" },
       ],
@@ -527,7 +527,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
       {
         title: "НАСТРОЙКА ТАРГЕТИРОВАННОЙ РЕКЛАМЫ META ADS",
         description:
-          "Настраиваем рекламу в Meta Ads с фокусом на окупаемость, прозрачную структуру кампаний и устойчивый рост.",
+          "Настраиваем рекламу в Meta Ads с фокусом на рост прибыли, прозрачную структуру кампаний и устойчивый рост.",
         features: [
           "анализ ниши и конкурентов",
           "настройка рекламного кабинета Meta Ads",

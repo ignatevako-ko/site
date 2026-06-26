@@ -4,9 +4,9 @@ import { buildLanguageAlternates, localizedPath } from "@/lib/locales";
 
 export const siteUrl = "https://domarketing.ee";
 export const siteName = "Do.Marketing";
-export const siteTitle = "Do.Marketing | Meta Ads и Google Ads агентство в Tallinn";
+export const siteTitle = "Do.Marketing | Meta Ads и Google Ads агентство в Европе";
 export const siteDescription =
-  "Do.Marketing помогает бизнесу в Таллинне и по всей Эстонии привлекать клиентов через Meta Ads и Google Ads: стратегия, запуск, ведение, креативы и рост заявок.";
+  "Do.Marketing помогает бизнесу в Европе привлекать клиентов через Meta Ads и Google Ads: стратегия, запуск, ведение, креативы и рост заявок.";
 
 export const defaultKeywords = [
   "Meta Ads Tallinn",
@@ -83,19 +83,19 @@ const localeByLanguage: Record<Language, string> = {
 
 const homeStructuredDataCopy: Record<Language, { name: string; description: string }> = {
   ru: {
-    name: "Meta Ads и Google Ads агентство в Tallinn | Do.Marketing",
+    name: "Meta Ads и Google Ads агентство в Европе | Do.Marketing",
     description:
-      "Агентство рекламы в Таллинне для бизнеса в Эстонии: Meta Ads, Google Ads, креативы, кейсы и рост заявок.",
+      "Агентство рекламы для бизнеса в Европе: Meta Ads, Google Ads, креативы, кейсы и рост заявок.",
   },
   en: {
-    name: "Meta Ads and Google Ads Agency in Tallinn | Do.Marketing",
+    name: "Meta Ads and Google Ads Agency in Europe | Do.Marketing",
     description:
-      "Tallinn advertising agency for businesses in Estonia: Meta Ads, Google Ads, creatives, case studies and lead growth.",
+      "Advertising agency for businesses in Europe: Meta Ads, Google Ads, creatives, case studies and lead growth.",
   },
   et: {
-    name: "Meta Ads ja Google Ads agentuur Tallinnas | Do.Marketing",
+    name: "Meta Ads ja Google Ads agentuur Euroopas | Do.Marketing",
     description:
-      "Tallinna reklaamiagentuur Eesti ettevõtetele: Meta Ads, Google Ads, loovlahendused, case'id ja päringute kasv.",
+      "Reklaamiagentuur Euroopa ettevõtetele: Meta Ads, Google Ads, loovlahendused, case'id ja päringute kasv.",
   },
 };
 
@@ -229,9 +229,9 @@ export function buildHomePageStructuredData() {
         "@type": "WebPage",
         "@id": `${siteUrl}/#webpage`,
         url: siteUrl,
-        name: "Meta Ads и Google Ads агентство в Tallinn | Do.Marketing",
+        name: "Meta Ads и Google Ads агентство в Европе | Do.Marketing",
         description:
-          "Агентство рекламы в Таллинне для бизнеса в Эстонии: Meta Ads, Google Ads, креативы, кейсы и рост заявок.",
+          "Агентство рекламы для бизнеса в Европе: Meta Ads, Google Ads, креативы, кейсы и рост заявок.",
         inLanguage: "ru",
       },
       {
