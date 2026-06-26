@@ -7,15 +7,15 @@ type BrandLogoProps = {
 export function BrandLogo({ compact = false }: BrandLogoProps) {
   return (
     <Image
-      src="/brand/logo-white-site.png"
+      src="/brand/logo-white-site-cropped.png"
       alt="Do.Marketing"
-      width={compact ? 220 : 220}
-      height={compact ? 77 : 100}
+      width={compact ? 165 : 220}
+      height={compact ? 55 : 74}
       priority={compact}
       className={`block w-auto ${
-        compact ? "h-16 sm:h-[4.5rem]" : "h-16 sm:h-20"
+        compact ? "h-12 sm:h-[3.375rem]" : "h-16 sm:h-20"
       }`}
-      sizes={compact ? "220px" : "220px"}
+      sizes={compact ? "165px" : "220px"}
     />
   );
 }
