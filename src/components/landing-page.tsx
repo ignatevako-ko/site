@@ -289,6 +289,155 @@ const videoReviewLabelByLanguage: Record<Language, string> = {
   ru: "Видео отзыв",
 };
 
+const targetAudienceByLanguage: Record<
+  Language,
+  {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    criteriaTitle: string;
+    criteria: string[];
+    signals: Array<{ value: string; label: string }>;
+    niches: Array<{ title: string; text: string }>;
+  }
+> = {
+  en: {
+    eyebrow: "Who we work with",
+    title: "We work with businesses we can bring real clients to",
+    lead:
+      "We care about advertising becoming a clear source of growth, not just a campaign launch.",
+    criteriaTitle: "Projects where",
+    criteria: [
+      "The business is already stable and ready to grow systematically",
+      "There is a clear service or product clients genuinely need",
+      "One client brings meaningful value through ticket size, repeat purchases or long-term work",
+      "The team is ready to process leads and turn them into sales",
+      "The goal is not just more inquiries, but a predictable client flow",
+    ],
+    signals: [
+      { value: "Stable", label: "sales and a clear product already exist" },
+      { value: "Value", label: "each new client matters for revenue" },
+      { value: "LTV", label: "clients return or stay for longer" },
+    ],
+    niches: [
+      {
+        title: "Construction and renovation",
+        text: "We help attract people who are already planning a project and looking for a contractor they can trust.",
+      },
+      {
+        title: "Dental clinics",
+        text: "We build advertising around trust, expertise and specific services so patients leave real inquiries.",
+      },
+      {
+        title: "Beauty and aesthetics",
+        text: "We show the value of procedures through results, safety and expertise so people want to book with you.",
+      },
+      {
+        title: "Travel and VIP services",
+        text: "We package the offer so it reaches people who connect with your format, service level and approach.",
+      },
+      {
+        title: "And more",
+        text: "We also work with other niches when there is clear demand, a strong offer and a path from lead to sale.",
+      },
+      {
+        title: "Fitness / Wellness / Health",
+        text: "We communicate the value of a program, membership or specialist so people come for trials and return.",
+      },
+    ],
+  },
+  et: {
+    eyebrow: "Kellega töötame",
+    title: "Töötame ettevõtetega, kellele saame tuua päris kliente",
+    lead:
+      "Meile on oluline, et reklaam oleks arusaadav kasvuallikas, mitte lihtsalt kampaania käivitamine.",
+    criteriaTitle: "Projektid, kus",
+    criteria: [
+      "Ettevõte töötab stabiilselt ja on valmis süsteemselt kasvama",
+      "On selge teenus või toode, mida kliendid päriselt vajavad",
+      "Üks klient loob ärile olulist väärtust läbi ostu, kordusostude või pika koostöö",
+      "Tiim on valmis päringuid töötlema ja müügini viima",
+      "Eesmärk ei ole lihtsalt rohkem päringuid, vaid prognoositav kliendivoog",
+    ],
+    signals: [
+      { value: "Tugi", label: "müük ja selge toode on olemas" },
+      { value: "Väärtus", label: "uus klient mõjutab käivet" },
+      { value: "LTV", label: "kliendid naasevad või jäävad kauemaks" },
+    ],
+    niches: [
+      {
+        title: "Ehitus ja remont",
+        text: "Toome inimesi, kes juba planeerivad projekti ja otsivad usaldusväärset tegijat.",
+      },
+      {
+        title: "Hambakliinikud",
+        text: "Ehitame reklaami usalduse, ekspertsuse ja konkreetsete teenuste ümber, et tuleksid päris pöördumised.",
+      },
+      {
+        title: "Kosmetoloogia ja esteetika",
+        text: "Näitame protseduuride väärtust tulemuse, turvalisuse ja ekspertsuse kaudu.",
+      },
+      {
+        title: "Reisid ja VIP-teenused",
+        text: "Pakendame pakkumise nii, et see kõnetaks inimesi, kellele sobib teie formaat ja teenusetase.",
+      },
+      {
+        title: "Ja muud valdkonnad",
+        text: "Töötame ka teiste niššidega, kui on selge nõudlus, tugev pakkumine ja tee päringust müügini.",
+      },
+      {
+        title: "Fitness / Wellness / Health",
+        text: "Anname edasi programmi, liikmesuse või spetsialisti väärtuse, et inimesed tuleksid ja naaseksid.",
+      },
+    ],
+  },
+  ru: {
+    eyebrow: "С кем мы работаем",
+    title: "Работаем с бизнесами, которым можем привести реальных клиентов",
+    lead:
+      "Нам важно, чтобы реклама была не просто запуском кампаний, а понятным источником роста.",
+    criteriaTitle: "Проекты, где",
+    criteria: [
+      "Бизнес стабильно работает и готов расти системно",
+      "Есть понятная услуга или продукт, который нужен клиентам",
+      "Один клиент приносит бизнесу хорошую ценность: за счёт чека, повторных покупок или долгой работы с вами",
+      "Команда готова обрабатывать заявки и доводить их до продажи",
+      "Важно не просто получить больше обращений, а выстроить предсказуемый поток клиентов",
+    ],
+    signals: [
+      { value: "Опора", label: "уже есть продажи и понятный продукт" },
+      { value: "Чек", label: "новый клиент заметно влияет на выручку" },
+      { value: "LTV", label: "клиенты возвращаются, покупают повторно или остаются надолго" },
+    ],
+    niches: [
+      {
+        title: "Строительство и ремонт",
+        text: "Помогаем получать заявки от людей, которые уже планируют ремонт, строительство или покупку услуги и ищут подрядчика, которому можно доверять.",
+      },
+      {
+        title: "Стоматологии",
+        text: "Выстраиваем рекламу вокруг доверия, экспертности и конкретных услуг, чтобы пациенты оставляли обращения, а не просто переходили на сайт.",
+      },
+      {
+        title: "Косметология и эстетика",
+        text: "Помогаем показать ценность процедур через результат, безопасность и экспертность, чтобы человек захотел записаться именно к вам.",
+      },
+      {
+        title: "Туризм и VIP-услуги",
+        text: "Упаковываем предложение так, чтобы приходили люди, которым близок ваш формат отдыха, уровень сервиса и подход.",
+      },
+      {
+        title: "И другое",
+        text: "Работаем и с другими нишами, если у бизнеса есть понятный спрос, сильное предложение и возможность превращать заявки в продажи.",
+      },
+      {
+        title: "Fitness / Wellness / Health",
+        text: "Доносим ценность программы, абонемента или специалиста так, чтобы люди приходили на пробные визиты, консультации и возвращались дальше.",
+      },
+    ],
+  },
+};
+
 const staticCreativeItems: CreativeGalleryItem[] = Array.from({ length: 7 }, (_, index) => ({
   src: `/images/creative-examples/stories/story-${String(index + 1).padStart(2, "0")}.png`,
   alt: `Static creative ${index + 1}`,
@@ -494,6 +643,7 @@ export function LandingPage({
   }, [language]);
 
   const content = siteContent[language];
+  const targetAudience = targetAudienceByLanguage[language];
   const pricing = pricingByLanguage[language];
   const additionalServices = getLandingAdditionalServices(
     language,
@@ -1030,6 +1180,83 @@ export function LandingPage({
                   <p key={point} className="text-base leading-8 text-slate-300">
                     {point}
                   </p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="audience" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+          <BackgroundGlow className="left-[-7rem] top-12 h-[24rem] w-[24rem] bg-violet-300/10" />
+          <BackgroundGlow className="right-[-8rem] bottom-[-2rem] h-[25rem] w-[25rem] bg-fuchsia-300/10" />
+          <div className="mb-10 max-w-2xl space-y-4">
+            <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
+              {targetAudience.eyebrow}
+            </p>
+          </div>
+
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(12,18,42,0.92),rgba(16,20,42,0.84),rgba(32,22,51,0.88))] p-8 shadow-[0_40px_120px_rgba(7,10,24,0.32)] sm:p-10 lg:p-12">
+            <BackgroundGlow className="right-20 top-[-10rem] h-[22rem] w-[22rem] bg-fuchsia-300/12" />
+            <div className="relative grid gap-10 lg:grid-cols-[0.92fr_1.08fr]">
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <h2 className="max-w-xl text-[28px] font-extralight leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.075rem]">
+                    {targetAudience.title}
+                  </h2>
+                  <p className="max-w-xl text-base leading-8 text-slate-300">
+                    {targetAudience.lead}
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-violet-200">
+                    {targetAudience.criteriaTitle}
+                  </p>
+                  <div className="space-y-4">
+                    {targetAudience.criteria.map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3 text-[18px] font-light leading-[1.45] text-slate-100"
+                      >
+                        <span className="mt-[0.25rem] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-violet-300/30 bg-violet-300/10 text-[11px] text-violet-200">
+                          ✓
+                        </span>
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-3">
+                  {targetAudience.signals.map((signal) => (
+                    <div
+                      key={signal.value}
+                      className="rounded-[1.25rem] border border-white/8 bg-slate-950/28 p-4"
+                    >
+                      <p className="text-[24px] font-semibold tracking-[-0.05em] text-white">
+                        {signal.value}
+                      </p>
+                      <p className="mt-2 text-sm leading-5 text-slate-400">
+                        {signal.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {targetAudience.niches.map((niche) => (
+                  <article
+                    key={niche.title}
+                    className="min-h-[10rem] rounded-[1.5rem] border border-white/10 bg-white/[0.055] p-5"
+                  >
+                    <h3 className="text-[20px] font-semibold tracking-[-0.02em] text-white">
+                      {niche.title}
+                    </h3>
+                    <p className="mt-4 text-[15px] leading-7 text-slate-300">
+                      {niche.text}
+                    </p>
+                  </article>
                 ))}
               </div>
             </div>
