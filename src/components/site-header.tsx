@@ -46,9 +46,9 @@ export function SiteHeader({
   const [isServicesMenuOpen, setIsServicesMenuOpen] = useState(false);
   const servicesMenuId = useId();
   const resolvedServiceMenuLabel = serviceMenuLabel ?? content.sections.services;
-  const servicesMenuItems = servicesMenuItemsOverride ?? [
-    ...getServicesMenuItems(servicesRouteLanguage),
-  ];
+  const servicesMenuItems = (
+    servicesMenuItemsOverride ?? [...getServicesMenuItems(servicesRouteLanguage)]
+  ).filter((item) => item.label !== "SMM");
   const hasServicesItem = content.nav.some(
     (item) =>
       item.href === "#services" || item.label === content.sections.services,
