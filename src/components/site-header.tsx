@@ -166,7 +166,7 @@ export function SiteHeader({
               <Link
                 key={item.href}
                 href={resolveNavHref(item.href)}
-                className="whitespace-nowrap text-sm text-slate-300 transition hover:text-violet-300"
+                className="whitespace-nowrap text-base text-slate-300 transition hover:text-violet-300"
               >
                 {item.label}
               </Link>
@@ -309,7 +309,7 @@ function ServicesMenu({
     >
       <button
         type="button"
-        className="inline-flex items-center gap-2 whitespace-nowrap text-sm text-slate-300 transition hover:text-violet-300 focus:outline-none focus:text-violet-300"
+        className="inline-flex items-center gap-2 whitespace-nowrap text-base text-slate-300 transition hover:text-violet-300 focus:outline-none focus:text-violet-300"
         aria-haspopup="menu"
         aria-expanded={isOpen}
         aria-controls={menuId}
