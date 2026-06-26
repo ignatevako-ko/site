@@ -16,9 +16,9 @@ export const additionalServiceSlugs = [
 ] as const satisfies readonly AdditionalServiceSlug[];
 
 export const homeButtonLabels: Record<Language, string> = {
-  ru: "На главную",
-  en: "Home",
-  et: "Avalehele",
+  ru: "Вернуться на главную",
+  en: "Back to home",
+  et: "Tagasi avalehele",
 };
 
 function buildDictionary(language: Language, copy: ServicePageCopy): SiteDictionary {
@@ -685,4 +685,3 @@ export function getAdditionalServicePageCopy(slug: AdditionalServiceSlug, langua
 export function getAdditionalServicePageDictionary(slug: AdditionalServiceSlug, language: Language) {
   return buildDictionary(language, getAdditionalServicePageCopy(slug, language));
 }
-

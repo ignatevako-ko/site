@@ -1,6 +1,5 @@
 ﻿"use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -413,20 +412,16 @@ export default function SmmPage() {
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(167,139,250,0.18),transparent_28%),linear-gradient(180deg,#080714_0%,#0c1020_35%,#0a0f1a_100%)] text-white">
       <SiteHeader
-        content={pageContent}
+        content={{
+          ...siteContent[language],
+          nav: siteContent[language].nav.filter((item) => item.href !== "#audience"),
+        }}
         currentLanguage={language}
         onLanguageChange={setLanguage}
         homeHref="/"
+        homeButtonLabel={language === "ru" ? "Вернуться на главную" : language === "en" ? "Back to home" : "Tagasi avalehele"}
+        anchorHrefPrefix="/"
       />
-
-      <div className="mx-auto flex w-full max-w-6xl justify-end px-6 pt-5 lg:px-10">
-        <Link
-          href="/"
-          className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/12 bg-white/6 px-5 text-sm font-medium text-white transition hover:border-violet-300/40 hover:bg-white/10"
-        >
-          {language === "ru" ? "На главную" : language === "en" ? "Home" : "Avalehele"}
-        </Link>
-      </div>
 
       <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-10 lg:px-10 lg:py-14">
         <section

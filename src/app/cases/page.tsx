@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { BrandLogo } from "@/components/brand-logo";
-import { PageLanguageSwitcher } from "@/components/page-language-switcher";
+import { SiteHeader } from "@/components/site-header";
 import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
 
 const caseBackgrounds = [
@@ -31,7 +29,7 @@ const casesPageCopy: Record<
     metaTitle: "Кейсы | Do.Marketing",
     metaDescription:
       "Кейсы Do.Marketing: результаты рекламных кампаний и привлечения заявок.",
-    home: "На главную",
+    home: "Вернуться на главную",
     section: "Кейсы",
     title: "Результаты рекламных кампаний",
     description:
@@ -149,26 +147,20 @@ export default function CasesPage() {
         <div className="grid-overlay absolute inset-0 opacity-40" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-10 lg:px-10 lg:py-14">
-        <header className="glass-shell flex flex-wrap items-center justify-between gap-5 rounded-full px-5 py-4 lg:px-8">
-          <Link href="/" aria-label="Do.Marketing home">
-            <BrandLogo compact />
-          </Link>
+      <div className="relative z-10">
+        <SiteHeader
+          content={{
+            ...content,
+            nav: content.nav.filter((item) => item.href !== "#audience"),
+          }}
+          currentLanguage={language}
+          onLanguageChange={setLanguage}
+          homeHref="/"
+          homeButtonLabel={copy.home}
+          anchorHrefPrefix="/"
+        />
 
-          <div className="flex items-center gap-3">
-            <Link
-              href="/"
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
-            >
-              {copy.home}
-            </Link>
-            <PageLanguageSwitcher
-              currentLanguage={language}
-              onChange={setLanguage}
-            />
-          </div>
-        </header>
-
+        <div className="mx-auto w-full max-w-7xl px-6 py-10 lg:px-10 lg:py-14">
         <section className="py-16 lg:py-20">
           <div className="max-w-3xl space-y-5">
             <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
@@ -188,6 +180,7 @@ export default function CasesPage() {
             ))}
           </div>
         </section>
+        </div>
       </div>
     </main>
   );

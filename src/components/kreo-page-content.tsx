@@ -81,7 +81,7 @@ const copyByLanguage: Record<
   ru: {
     metaTitle: "Примеры креативов | Do.Marketing",
     metaDescription: "Статические и видео креативы Do.Marketing для рекламных кампаний.",
-    home: "На главную",
+    home: "Вернуться на главную",
     eyebrow: "Креативы",
     title: "Больше примеров рекламных креативов",
     description: "Статические макеты и видеоформаты для Meta Ads. Нажмите на любой креатив, чтобы открыть его крупнее.",
@@ -221,10 +221,12 @@ export function KreoPageContent() {
 
     return {
       ...content,
-      nav: content.nav.map((item) => ({
-        ...item,
-        href: normalizeHref(item.href),
-      })),
+      nav: content.nav
+        .filter((item) => item.href !== "#audience")
+        .map((item) => ({
+          ...item,
+          href: normalizeHref(item.href),
+        })),
       footer: {
         ...content.footer,
         links: content.footer.links.map((item) => ({
@@ -279,6 +281,7 @@ export function KreoPageContent() {
         currentLanguage={language}
         onLanguageChange={setLanguage}
         homeHref="/"
+        homeButtonLabel={copy.home}
       />
 
       <main className="relative z-10 mx-auto w-full max-w-7xl px-6 py-10 lg:px-10 lg:py-14">

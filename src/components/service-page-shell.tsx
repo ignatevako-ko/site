@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import type { Language, SiteDictionary } from "@/data/site-content";
+import { siteContent } from "@/data/site-content";
 import type { ServicePageCopy } from "@/lib/service-pages";
 
 type ServicePageShellProps = {
@@ -14,6 +15,12 @@ type ServicePageShellProps = {
   homeButtonLabel?: string;
   languageLinks: Partial<Record<Language, string>>;
   relatedServices: ReadonlyArray<{ href: string; label: string }>;
+};
+
+const defaultHomeButtonLabels: Record<Language, string> = {
+  ru: "Вернуться на главную",
+  en: "Back to home",
+  et: "Tagasi avalehele",
 };
 
 function SectionHeading({
@@ -47,6 +54,11 @@ export function ServicePageShell({
   languageLinks,
   relatedServices,
 }: ServicePageShellProps) {
+  const headerContent = {
+    ...content,
+    nav: siteContent[language].nav.filter((item) => item.href !== "#audience"),
+  };
+
   return (
     <div className="relative min-h-screen overflow-x-clip bg-slate-950 text-white">
       <div className="pointer-events-none absolute inset-0">
@@ -58,25 +70,16 @@ export function ServicePageShell({
       </div>
 
       <SiteHeader
-        content={content}
+        content={headerContent}
         currentLanguage={language}
         onLanguageChange={() => {}}
         homeHref={homeHref}
+        homeButtonLabel={homeButtonLabel ?? defaultHomeButtonLabels[language]}
         showLanguageSwitcher
         languageLinks={languageLinks}
         servicesRouteLanguage={language}
+        anchorHrefPrefix={homeHref}
       />
-
-      {homeButtonLabel ? (
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl justify-end px-6 pt-5 lg:px-10">
-          <Link
-            href={homeHref}
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/12 bg-white/6 px-5 text-sm font-medium text-white transition hover:border-violet-300/40 hover:bg-white/10"
-          >
-            {homeButtonLabel}
-          </Link>
-        </div>
-      ) : null}
 
       <main className="relative z-10">
         <section

@@ -12,12 +12,14 @@ type SiteHeaderProps = {
   currentLanguage: Language;
   onLanguageChange: (language: Language) => void;
   homeHref?: string;
+  homeButtonLabel?: string;
   showLanguageSwitcher?: boolean;
   showServicesMenu?: boolean;
   serviceMenuLabel?: string;
   servicesRouteLanguage?: Language;
   languageLinks?: Partial<Record<Language, string>>;
   servicesMenuItemsOverride?: Array<{ href: string; label: string }>;
+  anchorHrefPrefix?: string;
 };
 
 type ServicesMenuProps = {
@@ -36,12 +38,14 @@ export function SiteHeader({
   currentLanguage,
   onLanguageChange,
   homeHref = "#",
+  homeButtonLabel,
   showLanguageSwitcher = true,
   showServicesMenu = true,
   serviceMenuLabel,
   servicesRouteLanguage,
   languageLinks,
   servicesMenuItemsOverride,
+  anchorHrefPrefix,
 }: SiteHeaderProps) {
   const [isServicesMenuOpen, setIsServicesMenuOpen] = useState(false);
   const servicesMenuId = useId();
@@ -53,6 +57,8 @@ export function SiteHeader({
     (item) =>
       item.href === "#services" || item.label === content.sections.services,
   );
+  const resolveNavHref = (href: string) =>
+    anchorHrefPrefix && href.startsWith("#") ? `${anchorHrefPrefix}${href}` : href;
 
   useEffect(() => {
     const closeMenu = () => setIsServicesMenuOpen(false);
@@ -66,13 +72,22 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-4 lg:px-6">
-      <div className="glass-shell mx-auto flex w-full max-w-7xl items-center justify-between gap-6 rounded-full px-5 py-4 lg:px-8">
-        <Link href={homeHref} aria-label="Do.Marketing home">
+      <div className="glass-shell mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 rounded-full px-5 py-4 sm:flex-nowrap lg:gap-6 lg:px-8">
+        <Link href={homeHref} aria-label="Do.Marketing home" className="shrink-0">
           <BrandLogo compact />
         </Link>
 
+        {homeButtonLabel ? (
+          <Link
+            href={homeHref}
+            className="order-3 inline-flex min-h-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10 sm:order-none"
+          >
+            {homeButtonLabel}
+          </Link>
+        ) : null}
+
         {showServicesMenu ? (
-          <div className="md:hidden">
+          <div className="order-4 md:hidden">
             <ServicesMenu
               label={resolvedServiceMenuLabel}
               items={[...servicesMenuItems]}
@@ -114,8 +129,8 @@ export function SiteHeader({
             ) : (
               <Link
                 key={item.href}
-                href={item.href}
-                className="text-sm text-slate-300 transition hover:text-violet-300"
+                href={resolveNavHref(item.href)}
+                className="whitespace-nowrap text-sm text-slate-300 transition hover:text-violet-300"
               >
                 {item.label}
               </Link>
@@ -123,7 +138,7 @@ export function SiteHeader({
           )}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="ml-auto flex items-center gap-3">
           <div className="hidden text-right sm:block">
             <a
               href={`tel:${content.contacts.phone}`}
@@ -170,7 +185,7 @@ function ServicesMenu({
     >
       <button
         type="button"
-        className="inline-flex items-center gap-2 text-sm text-slate-300 transition hover:text-violet-300 focus:outline-none focus:text-violet-300"
+        className="inline-flex items-center gap-2 whitespace-nowrap text-sm text-slate-300 transition hover:text-violet-300 focus:outline-none focus:text-violet-300"
         aria-haspopup="menu"
         aria-expanded={isOpen}
         aria-controls={menuId}
