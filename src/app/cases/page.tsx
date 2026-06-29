@@ -145,10 +145,7 @@ export default function CasesPage() {
 
   const content = siteContent[language];
   const copy = casesPageCopy[language];
-  const casesForGrid =
-    content.cases.length > 6
-      ? [...content.cases.slice(0, 5), content.cases[6], content.cases[5]]
-      : content.cases;
+  const casesForGrid = content.cases;
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
