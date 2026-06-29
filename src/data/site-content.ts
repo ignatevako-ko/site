@@ -146,8 +146,8 @@ const casesRu: CaseStudy[] = [
       "Настроили таргет на обычные и авторские туры для русско- и эстоноговорящей аудитории. Лучший результат дали яркие видео и карусели с CTR 5-8%, что принесло 10 броней горячих туров и 1 бронь авторского тура.",
   },
   {
-    title: "ILUPROFF Ilusalong",
-    category: "Beauty services / Estonia",
+    title: "ILUPROFF",
+    category: "Салон красоты / Estonia",
     result: "34 клиента по €17.50",
     summary:
       "Продвижение SMAS-лифтинга с тестированием форматов, языков и сегментов позволило найти самую сильную связку. При бюджете €600 привлекли 34 клиента на маржинальную процедуру стоимостью €125-537.",
@@ -198,7 +198,7 @@ const casesEn: CaseStudy[] = [
       "Targeted campaigns for standard and premium tours reached both Russian- and Estonian-speaking audiences. Bright video ads and carousel creatives became the winning setup with CTR between 5% and 8%.",
   },
   {
-    title: "ILUPROFF Ilusalong",
+    title: "ILUPROFF",
     category: "Beauty services / Estonia",
     result: "34 clients at €17.50 each",
     summary:
@@ -250,7 +250,7 @@ const casesEt: CaseStudy[] = [
       "Turundasime nii tavareise kui autorituure vene- ja eestikeelsele sihtrühmale. Parima tulemuse tõid erksad videod ja karussellid CTR-iga 5-8%, mis tõid 10 kuuma reisi broneeringut ja 1 autorituuri broneeringu.",
   },
   {
-    title: "ILUPROFF Ilusalong",
+    title: "ILUPROFF",
     category: "Beauty services / Estonia",
     result: "34 klienti hinnaga €17.50",
     summary:
