@@ -23,6 +23,7 @@ export type CaseStudy = {
   category: string;
   result: string;
   summary: string;
+  href?: string;
 };
 
 export type Service = {
@@ -118,6 +119,14 @@ const clientLogos: ClientLogo[] = [
 
 const casesRu: CaseStudy[] = [
   {
+    title: "ROMI 2500% в строительных работах",
+    category: "Lead generation / renovation & construction",
+    result: "€450 за клиента при выручке около €90 000",
+    summary:
+      "5,5 лет системно привлекали клиентов для компании комплексного ремонта: от дизайн-проекта и ремонтных работ до комплектации материалами и производства мебели. За 5 лет компания вышла из эконом-сегмента в элитный сегмент, сохранив поток заявок даже в низкий сезон.",
+    href: "/cases/romi-2500-construction",
+  },
+  {
     title: "Детские спортивные секции EDU.DO",
     category: "Lead generation / sports education",
     result: "350-580 заявок ежемесячно по €5.7 за лида",
@@ -146,7 +155,7 @@ const casesRu: CaseStudy[] = [
       "Настроили таргет на обычные и авторские туры для русско- и эстоноговорящей аудитории. Лучший результат дали яркие видео и карусели с CTR 5-8%, что принесло 10 броней горячих туров и 1 бронь авторского тура.",
   },
   {
-    title: "ILUPROFF",
+    title: "Салон красоты ILUPROFF",
     category: "Салон красоты / Estonia",
     result: "34 клиента по €17.50",
     summary:
@@ -169,6 +178,14 @@ const casesRu: CaseStudy[] = [
 ];
 
 const casesEn: CaseStudy[] = [
+  {
+    title: "2500% ROMI in renovation services",
+    category: "Lead generation / renovation & construction",
+    result: "€450 customer cost with about €90,000 revenue",
+    summary:
+      "For 5.5 years we built a predictable acquisition system for a full-cycle renovation company: design projects, renovation works, material sourcing and custom furniture production. In 5 years the company moved from the economy segment to the premium segment while keeping client flow stable even in low season.",
+    href: "/cases/romi-2500-construction",
+  },
   {
     title: "EDU.DO Children’s Sports Programs",
     category: "Lead generation / sports education",
@@ -221,6 +238,14 @@ const casesEn: CaseStudy[] = [
 ];
 
 const casesEt: CaseStudy[] = [
+  {
+    title: "2500% ROMI renoveerimistöödes",
+    category: "Lead generation / renovation & construction",
+    result: "€450 kliendi hind ja umbes €90 000 käivet",
+    summary:
+      "5,5 aasta jooksul ehitasime tervikliku kliendihanke süsteemi täisteenust pakkuvale remondiettevõttele: sisekujundusprojektid, remonditööd, materjalide komplekteerimine ja eritellimusmööbli tootmine. 5 aastaga liikus ettevõte säästusegmendist premium-segmenti ning säilitas kliendivoo ka madalhooajal.",
+    href: "/cases/romi-2500-construction",
+  },
   {
     title: "EDU.DO laste spordiringid",
     category: "Lead generation / sports education",

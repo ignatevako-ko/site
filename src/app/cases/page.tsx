@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
@@ -72,13 +73,8 @@ function CaseCard({
   const palette = caseBackgrounds[index % caseBackgrounds.length];
   const categoryParts = item.category.split("/").map((part) => part.trim());
   const isWideCase = index === 0 || item.category.toLowerCase().includes("psychotherapy");
-
-  return (
-    <article
-      className={`group overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/[0.04] transition hover:-translate-y-1 hover:border-violet-300/35 ${
-        isWideCase ? "xl:col-span-2" : ""
-      }`}
-    >
+  const card = (
+    <>
       <div
         className={`relative min-h-[17rem] bg-gradient-to-br ${palette} p-5 sm:min-h-[18.5rem] sm:p-6`}
       >
@@ -114,6 +110,22 @@ function CaseCard({
       <div className="border-t border-white/10 bg-slate-950/55 p-5 sm:p-6">
         <p className="max-w-3xl text-sm leading-7 text-slate-300">{item.summary}</p>
       </div>
+    </>
+  );
+
+  return (
+    <article
+      className={`group overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/[0.04] transition hover:-translate-y-1 hover:border-violet-300/35 ${
+        isWideCase ? "xl:col-span-2" : ""
+      }`}
+    >
+      {item.href ? (
+        <Link href={item.href} className="block h-full">
+          {card}
+        </Link>
+      ) : (
+        card
+      )}
     </article>
   );
 }

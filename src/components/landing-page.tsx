@@ -26,6 +26,16 @@ const caseBackgrounds = [
   "from-[#1d1730] via-[#31214b] to-[#5b2d54]",
 ] as const;
 
+const heroChartGrowth = [
+  { height: 28, label: "×1.4" },
+  { height: 42, label: "×2.7" },
+  { height: 54, label: "×5.1" },
+  { height: 63, label: "×8.6" },
+  { height: 88, label: "×13.4" },
+  { height: 106, label: "×20.7" },
+  { height: 124, label: "×30.2" },
+] as const;
+
 const pricingByLanguage: Record<
   Language,
   {
@@ -583,12 +593,8 @@ function CaseCard({
     normalizedCategory.includes("children camps") ||
     normalizedTitle.includes("suvelaagrid");
 
-  return (
-    <article
-      className={`group overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/[0.04] transition hover:-translate-y-1 hover:border-violet-300/35 ${
-        isWideCase ? "xl:col-span-2" : ""
-      } ${className}`}
-    >
+  const card = (
+    <>
       <div
         className={`relative min-h-[17rem] bg-gradient-to-br ${palette} p-5 sm:min-h-[18.5rem] sm:p-6`}
       >
@@ -624,6 +630,22 @@ function CaseCard({
       <div className="border-t border-white/10 bg-slate-950/55 p-5 sm:p-6">
         <p className="max-w-3xl text-sm leading-7 text-slate-300">{item.summary}</p>
       </div>
+    </>
+  );
+
+  return (
+    <article
+      className={`group overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/[0.04] transition hover:-translate-y-1 hover:border-violet-300/35 ${
+        isWideCase ? "xl:col-span-2" : ""
+      } ${className}`}
+    >
+      {item.href ? (
+        <Link href={item.href} className="block h-full">
+          {card}
+        </Link>
+      ) : (
+        card
+      )}
     </article>
   );
 }
@@ -686,13 +708,24 @@ export function LandingPage({
   );
   const liveTestimonials = useMemo(() => liveTestimonialsCopy[language], [language]);
   const creativeExamples = useMemo(() => creativeExamplesCopy[language], [language]);
-  const casesForGrid = useMemo(
-    () =>
-      content.cases.length > 6
-        ? [...content.cases.slice(0, 5), content.cases[6], content.cases[5]]
-        : content.cases,
-    [content.cases],
-  );
+  const casesForGrid = useMemo(() => {
+    const visibleCases = content.cases.filter((item) => {
+      const title = item.title.toLowerCase();
+      return !title.includes("sadhu") && !title.includes("гвоздестояния");
+    });
+    const featuredCase = visibleCases.find(
+      (item) => item.href === "/cases/romi-2500-construction",
+    );
+
+    if (!featuredCase) {
+      return visibleCases;
+    }
+
+    return [
+      featuredCase,
+      ...visibleCases.filter((item) => item !== featuredCase),
+    ];
+  }, [content.cases]);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
@@ -825,15 +858,19 @@ export function LandingPage({
                       {content.hero.dashboardChartStatus}
                     </p>
                   </div>
-                  <div className="flex h-40 items-end gap-3">
-                    {[28, 42, 54, 63, 88, 106, 124].map((height, index) => (
-                      <div key={height} className="flex-1">
+                  <div className="flex h-44 items-end gap-3">
+                    {heroChartGrowth.map((item) => (
+                      <div key={item.label} className="flex min-w-0 flex-1 flex-col items-center">
                         <div
-                          className="rounded-t-2xl bg-gradient-to-t from-violet-400 to-fuchsia-500"
-                          style={{ height }}
-                        />
-                        <p className="mt-3 text-center text-xs text-slate-500">
-                          W{index + 1}
+                          className="relative w-full rounded-t-2xl bg-gradient-to-t from-violet-400 to-fuchsia-500 shadow-[0_18px_34px_rgba(168,85,247,0.22)]"
+                          style={{ height: item.height }}
+                        >
+                          <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-full text-base font-bold leading-none text-white">
+                            €
+                          </span>
+                        </div>
+                        <p className="mt-3 text-center text-xs font-semibold text-slate-400">
+                          {item.label}
                         </p>
                       </div>
                     ))}
