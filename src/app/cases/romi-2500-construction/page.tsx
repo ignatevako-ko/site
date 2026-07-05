@@ -2,6 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { BrandLogo } from "@/components/brand-logo";
+import { SiteFooter } from "@/components/site-footer";
+import { siteContent } from "@/data/site-content";
+
+const footerContent = {
+  ...siteContent.ru,
+  footer: {
+    ...siteContent.ru.footer,
+    links: [
+      { href: "/ru#cases", label: "Кейсы" },
+      { href: "/ru#services", label: "Услуги" },
+      { href: "/ru#about", label: "О нас" },
+      { href: "/ru#contacts", label: "Контакты" },
+    ],
+  },
+};
 
 const caseFacts = [
   { label: "Ниша", value: "Комплексный ремонт жилых и коммерческих объектов" },
@@ -152,24 +167,59 @@ export default function ConstructionRomiCasePage() {
               <BrandLogo compact />
             </Link>
 
+            <Link
+              href="/ru"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
+            >
+              Вернуться на главную
+            </Link>
+
             <nav className="hidden items-center gap-8 md:flex">
-              <Link href="/cases" className="text-sm text-slate-300 transition hover:text-violet-300">
+              <Link href="/ru#cases" className="text-sm text-slate-300 transition hover:text-violet-300">
                 Кейсы
               </Link>
               <Link href="/ru#services" className="text-sm text-slate-300 transition hover:text-violet-300">
                 Услуги
+              </Link>
+              <Link href="/ru#about" className="text-sm text-slate-300 transition hover:text-violet-300">
+                О нас
+              </Link>
+              <Link href="/ru#testimonials" className="text-sm text-slate-300 transition hover:text-violet-300">
+                Отзывы
               </Link>
               <Link href="/ru#contacts" className="text-sm text-slate-300 transition hover:text-violet-300">
                 Контакты
               </Link>
             </nav>
 
-            <Link
-              href="/ru#contacts"
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-violet-400 px-5 text-sm font-semibold text-slate-950 transition hover:bg-violet-300"
-            >
-              Обсудить проект
-            </Link>
+            <div className="flex items-center gap-3">
+              <div className="hidden text-right sm:block">
+                <a
+                  href="tel:+37257843293"
+                  className="block text-[14px] uppercase tracking-[0.24em] text-slate-400 transition hover:text-violet-300"
+                >
+                  +37257843293
+                </a>
+                <a
+                  href="mailto:ceo@domarketing.ee"
+                  className="mt-1 block text-[13.5px] text-slate-500 transition hover:text-violet-300"
+                >
+                  ceo@domarketing.ee
+                </a>
+              </div>
+
+              <div className="inline-flex rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur" aria-label="Language switcher" role="group">
+                <Link className="rounded-full px-3 py-2 text-xs font-semibold tracking-[0.24em] text-slate-300 transition hover:text-white" href="/en">
+                  EN
+                </Link>
+                <Link className="rounded-full px-3 py-2 text-xs font-semibold tracking-[0.24em] text-slate-300 transition hover:text-white" href="/et">
+                  ET
+                </Link>
+                <Link className="rounded-full bg-violet-400 px-3 py-2 text-xs font-semibold tracking-[0.24em] text-slate-950 transition" aria-current="page" href="/ru">
+                  RU
+                </Link>
+              </div>
+            </div>
           </div>
         </header>
 
@@ -410,6 +460,8 @@ export default function ConstructionRomiCasePage() {
           </div>
         </section>
       </div>
+
+      <SiteFooter content={footerContent} language="ru" />
     </main>
   );
 }

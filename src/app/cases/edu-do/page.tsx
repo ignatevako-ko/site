@@ -3,6 +3,21 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { BrandLogo } from "@/components/brand-logo";
+import { SiteFooter } from "@/components/site-footer";
+import { siteContent } from "@/data/site-content";
+
+const footerContent = {
+  ...siteContent.ru,
+  footer: {
+    ...siteContent.ru.footer,
+    links: [
+      { href: "/ru#cases", label: "Кейсы" },
+      { href: "/ru#services", label: "Услуги" },
+      { href: "/ru#about", label: "О нас" },
+      { href: "/ru#contacts", label: "Контакты" },
+    ],
+  },
+};
 
 const caseFacts = [
   { label: "Клиент", value: "EDU.DO, детские спортивные секции" },
@@ -95,7 +110,7 @@ export const metadata: Metadata = {
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <p className="text-[13px] font-semibold uppercase tracking-[0.28em] text-amber-200">
+    <p className="text-[13px] font-semibold uppercase tracking-[0.28em] text-violet-300">
       {children}
     </p>
   );
@@ -184,7 +199,7 @@ export default function EduDoCasePrototypePage() {
         }
       `}</style>
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-7rem] top-[-7rem] h-[24rem] w-[24rem] rounded-full bg-amber-300/18 blur-3xl" />
+        <div className="absolute left-[-7rem] top-[-7rem] h-[24rem] w-[24rem] rounded-full bg-violet-400/14 blur-3xl" />
         <div className="absolute right-[-7rem] top-24 h-[24rem] w-[24rem] rounded-full bg-cyan-300/12 blur-3xl" />
         <div className="absolute bottom-[-10rem] left-1/3 h-[28rem] w-[28rem] rounded-full bg-violet-300/12 blur-3xl" />
         <div className="grid-overlay absolute inset-0 opacity-35" />
@@ -195,6 +210,13 @@ export default function EduDoCasePrototypePage() {
           <div className="glass-shell mx-auto flex w-full max-w-7xl items-center justify-between gap-6 rounded-full px-5 py-4 lg:px-8">
             <Link href="/ru" aria-label="Do.Marketing home">
               <BrandLogo compact />
+            </Link>
+
+            <Link
+              href="/ru"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
+            >
+              Вернуться на главную
             </Link>
 
             <nav className="case-site-nav hidden items-center gap-8 md:flex">
@@ -246,19 +268,10 @@ export default function EduDoCasePrototypePage() {
           </div>
         </header>
 
-        <div className="pt-8">
-          <Link
-            href="/cases"
-            className="inline-flex min-h-13 items-center justify-center rounded-full bg-amber-200 px-7 text-base font-semibold text-slate-950 shadow-[0_18px_50px_rgba(251,191,36,0.2)] transition hover:bg-amber-100"
-          >
-            Вернуться назад
-          </Link>
-        </div>
-
         <section className="grid gap-10 py-12 lg:grid-cols-[1.03fr_0.97fr] lg:items-end lg:py-16">
           <div className="space-y-7">
             <div className="flex flex-wrap gap-2">
-              <span className="rounded-full border border-amber-200/30 bg-amber-200/10 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.24em] text-amber-100">
+              <span className="rounded-full border border-violet-300/30 bg-violet-400/10 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.24em] text-violet-100">
                 Реальный кейс
               </span>
               <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2 text-[12px] font-medium text-slate-300">
@@ -280,13 +293,13 @@ export default function EduDoCasePrototypePage() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/ru#contacts"
-                className="inline-flex min-h-14 items-center justify-center rounded-full bg-amber-200 px-7 text-base font-semibold text-slate-950 transition hover:bg-amber-100"
+                className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-7 text-base font-semibold text-slate-950 transition hover:bg-violet-300"
               >
                 Хочу также
               </Link>
               <Link
                 href="#mechanics"
-                className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 text-base font-semibold text-white transition hover:border-amber-200/60 hover:bg-white/10"
+                className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
               >
                 Как это сделали
               </Link>
@@ -365,7 +378,7 @@ export default function EduDoCasePrototypePage() {
             </p>
             <Link
               href="/ru#contacts"
-              className="inline-flex min-h-13 items-center justify-center rounded-full bg-white px-6 text-base font-semibold text-slate-950 transition hover:bg-amber-100"
+              className="inline-flex min-h-13 items-center justify-center rounded-full bg-white px-6 text-base font-semibold text-slate-950 transition hover:bg-violet-100"
             >
               Хочу также
             </Link>
@@ -410,7 +423,7 @@ export default function EduDoCasePrototypePage() {
           <div className="space-y-3">
             {strategySteps.map((step, index) => (
               <div key={step} className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-slate-950/55 p-5">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-200 text-sm font-semibold text-slate-950">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-violet-400 text-sm font-semibold text-slate-950">
                   {index + 1}
                 </span>
                 <p className="text-base leading-7 text-slate-300">{step}</p>
@@ -457,7 +470,7 @@ export default function EduDoCasePrototypePage() {
           </div>
         </section>
 
-        <section className="case-pdf-block mb-10 rounded-[1.75rem] border border-amber-200/20 bg-amber-200/10 p-7 sm:p-9">
+        <section className="case-pdf-block mb-10 rounded-[1.75rem] border border-violet-300/20 bg-violet-400/10 p-7 sm:p-9">
           <div className="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center">
             <div className="space-y-3">
               <SectionLabel>Следующий шаг</SectionLabel>
@@ -469,12 +482,14 @@ export default function EduDoCasePrototypePage() {
                 посмотрим экономику проекта и предложим реалистичный следующий шаг.
               </p>
             </div>
-            <Link href="/ru#contacts" className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-base font-semibold text-slate-950 transition hover:bg-amber-100">
+            <Link href="/ru#contacts" className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-base font-semibold text-slate-950 transition hover:bg-violet-100">
               Хочу также
             </Link>
           </div>
         </section>
       </div>
+
+      <SiteFooter content={footerContent} language="ru" />
     </main>
   );
 }
