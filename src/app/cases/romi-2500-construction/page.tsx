@@ -23,9 +23,6 @@ const caseFacts = [
   { label: "Период работы", value: "5,5 лет" },
   { label: "Клиент", value: "Компания полного цикла в ремонтно-строительных работах" },
   { label: "Услуги клиента", value: "Дизайн-проект, ремонт, комплектация, мебель" },
-  { label: "Стоимость клиента", value: "€450" },
-  { label: "Выручка с клиента", value: "€90 000" },
-  { label: "ROMI", value: "2500% по прибыли" },
   { label: "Сезонность", value: "Январь перестал быть месяцем без заявок" },
 ];
 
@@ -271,51 +268,43 @@ export default function ConstructionRomiCasePage() {
             </div>
           </div>
 
-          <div className="relative min-h-[34rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/60 p-6 shadow-[0_30px_90px_rgba(2,6,23,0.38)]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(167,139,250,0.24),transparent_34%),linear-gradient(160deg,rgba(14,165,233,0.12),rgba(7,9,20,0.15))]" />
-            <div className="relative flex items-center justify-between">
-              <div>
-                <p className="text-sm uppercase tracking-[0.28em] text-slate-400">Unit economics</p>
-                <p className="mt-2 text-3xl font-light tracking-[-0.04em] text-white">€450 CAC → €90 000</p>
-              </div>
-              <div className="rounded-full border border-violet-300/30 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-100">
-                ROMI 2500% по прибыли
-              </div>
-            </div>
-
-            <div className="relative mt-9 grid gap-4">
-              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.06] p-5">
-                <p className="text-sm uppercase tracking-[0.24em] text-violet-100">Экономика в евро</p>
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-2xl bg-slate-950/55 p-4">
-                    <p className="mt-1 text-3xl font-semibold text-white">€450</p>
-                    <p className="mt-2 text-sm text-slate-500">стоимость клиента</p>
-                  </div>
-                  <div className="rounded-2xl bg-slate-950/55 p-4">
-                    <p className="mt-1 text-3xl font-semibold text-white">€90 000</p>
-                    <p className="mt-2 text-sm text-slate-500">выручка с клиента</p>
-                  </div>
+          <div className="glass-shell relative overflow-hidden rounded-[2rem] p-6 sm:p-8">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between border-b border-white/10 pb-5">
+                <div>
+                  <p className="text-[12px] uppercase tracking-[0.28em] text-violet-200/90">Unit economics</p>
+                  <p className="mt-3 text-xl font-semibold text-white">Путь клиента за 5,5 лет</p>
                 </div>
-                <p className="mt-4 text-xs leading-5 text-slate-500">
-                  По выручке это около 200x. ROMI 2500% корректен при расчете
-                  от прибыли после себестоимости.
-                </p>
+                <div className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs font-medium text-emerald-200">
+                  ROMI 2500%
+                </div>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-3">
                 {segmentShift.map((item) => (
-                  <div key={item.label} className="rounded-[1.1rem] border border-white/10 bg-slate-950/50 p-4">
+                  <div key={item.label} className="rounded-[1.5rem] border border-white/10 bg-slate-900/80 p-4">
                     <p className="text-xs uppercase tracking-[0.24em] text-slate-500">{item.label}</p>
-                    <p className="mt-2 text-xl font-semibold text-white">{item.value}</p>
-                    <p className="mt-3 text-sm leading-6 text-slate-400">{item.description}</p>
+                    <p className="mt-2 text-base font-semibold leading-snug text-white">{item.value}</p>
                   </div>
                 ))}
+              </div>
+
+              <div className="rounded-[1.5rem] border border-white/8 bg-slate-950/50 p-5">
+                <div className="inline-flex rounded-full border border-violet-300/22 bg-violet-300/10 px-3.5 py-1 text-[13px] font-medium text-violet-100">
+                  Экономика на клиента
+                </div>
+                <p className="mt-4 text-[32px] font-light leading-none tracking-[-0.05em] text-white sm:text-[40px]">
+                  €450 CAC → €90 000
+                </p>
+                <p className="mt-4 text-sm leading-7 text-slate-300">
+                  Около 200x по выручке. ROMI 2500% — от прибыли после себестоимости.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="grid gap-5 border-y border-white/10 py-8 md:grid-cols-4">
+        <section className="grid gap-5 border-y border-white/10 py-8 sm:grid-cols-2 lg:grid-cols-5">
           {caseFacts.map((item) => (
             <div key={item.label} className="space-y-2">
               <p className="text-xs uppercase tracking-[0.24em] text-slate-500">{item.label}</p>
