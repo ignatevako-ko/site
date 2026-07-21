@@ -74,6 +74,7 @@ export const indexedRoutes: IndexedRoute[] = [
   { path: "/cases", changeFrequency: "weekly", priority: 0.8 },
   { path: "/cases/edu-do", changeFrequency: "monthly", priority: 0.78 },
   { path: "/cases/romi-2500-construction", changeFrequency: "monthly", priority: 0.78 },
+  { path: "/cases/suvelaagrid", changeFrequency: "monthly", priority: 0.78 },
   { path: "/kreo", changeFrequency: "monthly", priority: 0.55 },
 ];
 

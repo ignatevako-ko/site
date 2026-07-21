@@ -165,9 +165,10 @@ const casesRu: CaseStudy[] = [
   {
     title: "Детские лагеря Suvelaagrid",
     category: "Lead generation / children camps",
-    result: "751 заявка в месяц по 3,4 евро за заявку",
+    result: "от 565 лидов в месяц за 2,7 евро за лид",
     summary:
-      "Для детских лагерей Suvelaagrid выстроили системный поток заявок в сезон. Уточнили оффер, собрали понятную коммуникацию для родителей и довели рекламные связки до точного спроса. В результате проект получает 751 заявку в месяц по средней цене 3,4 евро за заявку.",
+      "С апреля до середины августа ведем набор в дневной городской детский лагерь и выездные лагеря в Эстонии. Сначала трафик шел только на лид-форму, затем часть бюджета оставили на лиды, а часть перевели на прямую регистрацию на сайте. В результате проект получает от 565 лидов в месяц за 2,7 евро за лид.",
+    href: "/cases/suvelaagrid",
   },
   {
     title: "Магазин досок для гвоздестояния Sadhu Boards",
@@ -226,9 +227,10 @@ const casesEn: CaseStudy[] = [
   {
     title: "Suvelaagrid Children's Camps",
     category: "Lead generation / children camps",
-    result: "751 leads per month at €3.4 per lead",
+    result: "at least 565 leads per month at €2.7 per lead",
     summary:
-      "For Suvelaagrid children's camps, we built a predictable seasonal lead flow. We clarified the offer, shaped clear communication for parents and refined the ad setup around real demand. As a result, the project now receives 751 leads per month at an average cost of €3.4 per lead.",
+      "From April to mid-August, we run enrollment for a daytime city camp and away camps across Estonia. We started with lead forms only, then split the budget between lead forms and direct website registrations. The project now receives at least 565 leads per month at €2.7 per lead.",
+    href: "/cases/suvelaagrid",
   },
   {
     title: "Sadhu Boards",
@@ -287,9 +289,10 @@ const casesEt: CaseStudy[] = [
   {
     title: "Suvelaagrid laste laagrid",
     category: "Lead generation / children camps",
-    result: "751 päringut kuus hinnaga 3,4 eurot päringu kohta",
+    result: "alates 565 päringust kuus hinnaga 2,7 eurot",
     summary:
-      "Suvelaagrid laste laagrite jaoks ehitasime üles prognoositava hooajalise päringute voo. Täpsustasime pakkumise, lõime vanematele arusaadava kommunikatsiooni ja timmisime reklaamid reaalse nõudluse järgi paika. Tulemuseks saab projekt nüüd 751 päringut kuus keskmise hinnaga 3,4 eurot päringu kohta.",
+      "Aprillist augusti keskpaigani juhime registreerimist linna päevalaagrisse ja väljasõidulaagritesse Eestis. Alustasime ainult lead-vormidega, seejärel jätsime osa eelarvest vormidele ja suunasime osa otse veebilehe registreerimisele. Projekt saab nüüd alates 565 päringust kuus hinnaga 2,7 eurot päringu kohta.",
+    href: "/cases/suvelaagrid",
   },
   {
     title: "Sadhu Boards",
