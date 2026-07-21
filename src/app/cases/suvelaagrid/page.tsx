@@ -52,14 +52,42 @@ const strategySteps = [
 
 const creativeImages = [
   {
+    type: "image",
     src: "/images/creative-examples/static/static-17-laager-est.png",
     alt: "Рекламный креатив для набора детей в лагерь Suvelaagrid",
   },
   {
+    type: "image",
+    src: "/images/cases/suvelaagrid/creative-day-camp-district-ru.jpeg",
+    alt: "Рекламный креатив Suvelaagrid: дневной лагерь в вашем районе",
+  },
+  {
+    type: "image",
+    src: "/images/cases/suvelaagrid/creative-day-camp-tallinn-ru.jpeg",
+    alt: "Рекламный креатив Suvelaagrid: дневной лагерь в Таллинне",
+  },
+  {
+    type: "image",
+    src: "/images/cases/suvelaagrid/creative-away-camp-et.jpeg",
+    alt: "Рекламный креатив Suvelaagrid на эстонском языке: laager lastele alates 7. eluaastast",
+  },
+  {
+    type: "video",
+    src: "/videos/cases/suvelaagrid/creative-video-01.mov",
+    alt: "Видео-креатив Suvelaagrid для рекламы детского лагеря",
+  },
+  {
+    type: "video",
+    src: "/videos/cases/suvelaagrid/creative-video-02.mov",
+    alt: "Видео-креатив Suvelaagrid для набора детей в лагерь",
+  },
+  {
+    type: "image",
     src: "/images/cases/suvelaagrid/camp-gallery-city.jpg",
     alt: "Фотография детей из городского лагеря Suvelaagrid",
   },
   {
+    type: "image",
     src: "/images/cases/suvelaagrid/camp-gallery-away.jpg",
     alt: "Фотография детей из выездного лагеря Suvelaagrid",
   },
@@ -491,7 +519,20 @@ export default function SuvelaagridCasePage() {
                 className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]"
               >
                 <div className="relative aspect-[9/16] bg-slate-950">
-                  <Image src={item.src} alt={item.alt} fill sizes="360px" className="object-cover" />
+                  {item.type === "video" ? (
+                    <video
+                      src={item.src}
+                      aria-label={item.alt}
+                      className="h-full w-full object-cover"
+                      controls
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <Image src={item.src} alt={item.alt} fill sizes="360px" className="object-cover" />
+                  )}
                 </div>
               </figure>
             ))}
