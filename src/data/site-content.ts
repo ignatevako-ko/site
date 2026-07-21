@@ -151,9 +151,9 @@ const casesRu: CaseStudy[] = [
   {
     title: "ROAS 3790% для Prime Tour",
     category: "Travel / Estonia",
-    result: "11 броней при бюджете €390",
+    result: "8 купленных туров за 2 недели рекламы",
     summary:
-      "Настроили таргет на обычные, чартерные и авторские туры для русско- и эстоноязычной аудитории. Лучший результат дали яркие видео и карусели с CTR 5-8%: 10 броней горячих туров, 1 бронь авторского тура и ROAS 3790% в сильном направлении.",
+      "Настроили таргет на обычные, чартерные и авторские туры для русско- и эстоноязычной аудитории. За 2 недели рекламы получили 8 купленных туров при расходах €252, выручке €9 560 и ROAS 3790%. Дополнительно кампания дала 91 лид по €2.27 в среднем, лучший лид стоил €1.94.",
     href: "/cases/prime-tour",
   },
   {
@@ -214,9 +214,9 @@ const casesEn: CaseStudy[] = [
   {
     title: "3790% ROAS for Prime Tour",
     category: "Travel / Estonia",
-    result: "11 bookings on a €390 budget",
+    result: "8 purchased tours in 2 weeks",
     summary:
-      "We set up targeting for standard, charter and custom tours for Russian- and Estonian-speaking audiences. Bright videos and carousels with 5-8% CTR performed best, bringing 10 last-minute tour bookings, 1 custom tour booking and 3790% ROAS in the strongest segment.",
+      "We set up targeting for standard, charter and custom tours for Russian- and Estonian-speaking audiences. In 2 weeks, the campaign generated 8 purchased tours on €252 spend, €9,560 revenue and 3790% ROAS. It also brought 91 leads at €2.27 on average, with the best lead costing €1.94.",
     href: "/en/cases/prime-tour",
   },
   {
@@ -277,9 +277,9 @@ const casesEt: CaseStudy[] = [
   {
     title: "3790% ROAS Prime Tourile",
     category: "Travel / Estonia",
-    result: "11 broneeringut €390 eelarvega",
+    result: "8 ostetud reisi 2 nädalaga",
     summary:
-      "Seadistasime reklaami tava-, tšarter- ja autorireisidele vene- ja eestikeelsele sihtrühmale. Parimad olid erksad videod ja karussellid CTR-iga 5-8%, mis tõid 10 viimase hetke reisi broneeringut, 1 autorireisi broneeringu ja parimas lõigus 3790% ROAS-i.",
+      "Seadistasime reklaami tava-, tšarter- ja autorireisidele vene- ja eestikeelsele sihtrühmale. 2 nädalaga tõi kampaania 8 ostetud reisi €252 kuluga, €9 560 käivet ja 3790% ROAS-i. Lisaks tuli 91 päringut keskmise hinnaga €2.27, parim päring maksis €1.94.",
     href: "/et/cases/prime-tour",
   },
   {
@@ -329,7 +329,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
       stats: [
         { value: "2923%", label: "Maximum ROAS" },
         { value: "578", label: "Leads per month" },
-        { value: "3790", label: "Best ROAS" },
+        { value: "x35", label: "Payback" },
       ],
     },
     sections: {
@@ -435,7 +435,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
       stats: [
         { value: "2923%", label: "Parim kampaania tasuvus" },
         { value: "578", label: "Leadi kuus" },
-        { value: "3790", label: "Parim ROAS" },
+        { value: "x35", label: "Tasuvus" },
       ],
     },
     sections: {
@@ -541,7 +541,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
       stats: [
         { value: "2923%", label: "Максимальный ROAS" },
         { value: "578", label: "Лидов в месяц" },
-        { value: "3790", label: "Лучший ROAS" },
+        { value: "x35", label: "Окупаемость" },
       ],
     },
     sections: {

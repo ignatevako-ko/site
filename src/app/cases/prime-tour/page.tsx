@@ -8,9 +8,9 @@ const copy = primeTourCaseCopy[language];
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
-    title: "ROAS 3790% для Prime Tour: 11 броней | Do.Marketing",
+    title: "ROAS 3790% для Prime Tour: 8 купленных туров | Do.Marketing",
     description:
-      "Кейс Do.Marketing для Prime Tour, агентства авторских и чартерных туров: 11 броней при бюджете €390, ROAS 3790%, €31.53 за бронь по направлению Грузия.",
+      "Кейс Do.Marketing для Prime Tour: за 2 недели рекламы 8 купленных туров, €252 расходов, €31 за купленный тур, €9 560 выручки, 91 лид и ROAS 3790%.",
     path: "/cases/prime-tour",
     keywords: [
       "Prime Tour кейс",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "ROAS 3790% для Prime Tour: 11 броней",
+    title: "ROAS 3790% для Prime Tour: 8 купленных туров",
     description:
       "Как Do.Marketing продвигал авторские и чартерные туры Prime Tour через Meta Ads для русско- и эстоноязычной аудитории.",
     url: absoluteUrl("/cases/prime-tour"),

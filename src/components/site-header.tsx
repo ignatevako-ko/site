@@ -81,13 +81,13 @@ export function SiteHeader({
 
   return (
     <header className="relative z-50 px-4 pt-4 lg:px-6">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-0 py-0 md:flex-row md:flex-nowrap md:items-center md:gap-4 md:rounded-full md:border md:border-white/8 md:bg-[linear-gradient(180deg,rgba(10,16,39,0.82),rgba(8,12,28,0.72))] md:px-5 md:py-4 md:shadow-[0_20px_60px_rgba(2,6,23,0.32),inset_0_1px_0_rgba(255,255,255,0.04)] md:backdrop-blur-[18px] lg:gap-6 lg:px-8">
-        <div className="flex w-full items-start justify-between gap-4 md:w-auto md:shrink-0 md:items-center">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-0 py-0 lg:flex-row lg:flex-nowrap lg:items-center lg:gap-4 lg:rounded-full lg:border lg:border-white/8 lg:bg-[linear-gradient(180deg,rgba(10,16,39,0.82),rgba(8,12,28,0.72))] lg:px-5 lg:py-4 lg:shadow-[0_20px_60px_rgba(2,6,23,0.32),inset_0_1px_0_rgba(255,255,255,0.04)] lg:backdrop-blur-[18px] xl:gap-6 xl:px-8">
+        <div className="flex w-full items-start justify-between gap-4 lg:w-auto lg:shrink-0 lg:items-center">
           <Link href={homeHref} aria-label="Do.Marketing home" className="shrink-0">
             <BrandLogo compact />
           </Link>
 
-          <div className="flex shrink-0 items-center gap-2 md:hidden">
+          <div className="flex shrink-0 items-center gap-2 lg:hidden">
             {showLanguageSwitcher ? (
               <LanguageSwitcher
                 currentLanguage={currentLanguage}
@@ -119,7 +119,7 @@ export function SiteHeader({
         {homeButtonLabel ? (
           <Link
             href={homeHref}
-            className="order-3 inline-flex min-h-[1.8rem] w-fit max-w-full shrink-0 self-center items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 text-[11px] font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10 md:order-none md:min-h-11 md:self-auto md:px-5 md:text-sm"
+            className="order-3 inline-flex min-h-[1.8rem] w-fit max-w-full shrink-0 self-center items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 text-[11px] font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10 lg:order-none lg:min-h-11 lg:self-auto lg:px-5 lg:text-sm"
           >
             {homeButtonLabel}
           </Link>
@@ -137,7 +137,7 @@ export function SiteHeader({
           />
         ) : null}
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-8 md:flex">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-5 lg:flex xl:gap-8">
           {showServicesMenu && !hasServicesItem ? (
             <ServicesMenu
               label={resolvedServiceMenuLabel}
@@ -174,8 +174,8 @@ export function SiteHeader({
           )}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-3 md:flex">
-          <div className="hidden text-right sm:block">
+        <div className="hidden shrink-0 items-center gap-3 lg:flex">
+          <div className="hidden text-right xl:block">
             <a
               href={`tel:${content.contacts.phone}`}
               className="block text-[14px] uppercase tracking-[0.24em] text-slate-400 transition hover:text-violet-300"

@@ -9,9 +9,9 @@ const localizedLanguages = ["en", "et"] as const satisfies readonly Language[];
 
 const seoByLanguage: Record<(typeof localizedLanguages)[number], { title: string; description: string; keywords: string[] }> = {
   en: {
-    title: "3790% ROAS for Prime Tour: 11 Bookings | Do.Marketing",
+    title: "3790% ROAS for Prime Tour: 8 Purchased Tours | Do.Marketing",
     description:
-      "Do.Marketing case study for Prime Tour, a custom and charter tour agency: 11 bookings on a €390 budget, 3790% ROAS and €31.53 cost per booking for Georgia.",
+      "Do.Marketing case study for Prime Tour: in 2 weeks, 8 purchased tours, €252 spend, €31 cost per purchased tour, €9,560 revenue, 91 leads and 3790% ROAS.",
     keywords: [
       "Prime Tour case study",
       "travel agency advertising Estonia",
@@ -21,9 +21,9 @@ const seoByLanguage: Record<(typeof localizedLanguages)[number], { title: string
     ],
   },
   et: {
-    title: "3790% ROAS Prime Tourile: 11 broneeringut | Do.Marketing",
+    title: "3790% ROAS Prime Tourile: 8 ostetud reisi | Do.Marketing",
     description:
-      "Do.Marketingu töö Prime Tourile, autori- ja tšarterreiside agentuurile: 11 broneeringut €390 eelarvega, 3790% ROAS ja €31.53 broneeringu hind Gruusia suunal.",
+      "Do.Marketingu töö Prime Tourile: 2 nädalaga 8 ostetud reisi, €252 reklaamikulu, €31 ühe ostetud reisi hind, €9 560 käivet, 91 päringut ja 3790% ROAS.",
     keywords: [
       "Prime Tour töö",
       "reisibüroo reklaam Eesti",
