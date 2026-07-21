@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { BrandLogo } from "@/components/brand-logo";
 import { SiteFooter } from "@/components/site-footer";
 import { siteContent } from "@/data/site-content";
 
@@ -224,16 +223,38 @@ export default function EduDoCasePage() {
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-8 lg:px-10">
         <header className="sticky top-0 z-50 -mx-2 px-0 pt-0">
-          <div className="glass-shell mx-auto flex w-full max-w-7xl items-center justify-between gap-6 rounded-full px-5 py-4 lg:px-8">
-            <Link href="/ru" aria-label="Do.Marketing home">
-              <BrandLogo compact />
+          <div className="glass-shell mx-auto flex w-full max-w-7xl items-center justify-between gap-2 rounded-full px-3 py-3 sm:gap-4 sm:px-5 lg:gap-6 lg:px-8 lg:py-4">
+            <Link href="/ru" aria-label="Do.Marketing home" className="shrink-0">
+              <Image
+                src="/brand/logo-white-site-cropped.png"
+                alt="Do.Marketing"
+                width={165}
+                height={55}
+                priority
+                className="block h-10 w-auto sm:h-12 lg:h-[3.375rem]"
+                sizes="(max-width: 640px) 124px, 165px"
+              />
             </Link>
 
             <Link
               href="/ru"
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
+              aria-label="Вернуться на главную"
+              title="Вернуться на главную"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:border-violet-300/60 hover:bg-white/10"
             >
-              Вернуться на главную
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M19 12H5" />
+                <path d="M12 19l-7-7 7-7" />
+              </svg>
             </Link>
 
             <nav className="hidden items-center gap-8 md:flex">
@@ -270,14 +291,14 @@ export default function EduDoCasePage() {
                 </a>
               </div>
 
-              <div className="inline-flex rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur" aria-label="Language switcher" role="group">
-                <Link className="rounded-full px-3 py-2 text-xs font-semibold tracking-[0.24em] text-slate-300 transition hover:text-white" href="/en">
+              <div className="inline-flex shrink-0 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur" aria-label="Language switcher" role="group">
+                <Link className="rounded-full px-2.5 py-2 text-xs font-semibold tracking-[0.12em] text-slate-300 transition hover:text-white sm:px-3 sm:tracking-[0.24em]" href="/en">
                   EN
                 </Link>
-                <Link className="rounded-full px-3 py-2 text-xs font-semibold tracking-[0.24em] text-slate-300 transition hover:text-white" href="/et">
+                <Link className="rounded-full px-2.5 py-2 text-xs font-semibold tracking-[0.12em] text-slate-300 transition hover:text-white sm:px-3 sm:tracking-[0.24em]" href="/et">
                   ET
                 </Link>
-                <Link className="rounded-full bg-violet-400 px-3 py-2 text-xs font-semibold tracking-[0.24em] text-slate-950 transition" aria-current="page" href="/ru">
+                <Link className="rounded-full bg-violet-400 px-2.5 py-2 text-xs font-semibold tracking-[0.12em] text-slate-950 transition sm:px-3 sm:tracking-[0.24em]" aria-current="page" href="/ru">
                   RU
                 </Link>
               </div>
