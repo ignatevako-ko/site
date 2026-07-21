@@ -53,11 +53,6 @@ const strategySteps = [
 const creativeImages = [
   {
     type: "image",
-    src: "/images/creative-examples/static/static-17-laager-est.png",
-    alt: "Рекламный креатив для набора детей в лагерь Suvelaagrid",
-  },
-  {
-    type: "image",
     src: "/images/cases/suvelaagrid/creative-day-camp-district-ru.jpeg",
     alt: "Рекламный креатив Suvelaagrid: дневной лагерь в вашем районе",
   },
@@ -70,16 +65,6 @@ const creativeImages = [
     type: "image",
     src: "/images/cases/suvelaagrid/creative-away-camp-et.jpeg",
     alt: "Рекламный креатив Suvelaagrid на эстонском языке: laager lastele alates 7. eluaastast",
-  },
-  {
-    type: "video",
-    src: "/videos/cases/suvelaagrid/creative-video-01.mov",
-    alt: "Видео-креатив Suvelaagrid для рекламы детского лагеря",
-  },
-  {
-    type: "video",
-    src: "/videos/cases/suvelaagrid/creative-video-02.mov",
-    alt: "Видео-креатив Suvelaagrid для набора детей в лагерь",
   },
   {
     type: "image",
@@ -167,9 +152,9 @@ export const metadata: Metadata = {
     siteName: "Do.Marketing",
     images: [
       {
-        url: "https://domarketing.ee/images/creative-examples/static/static-17-laager-est.png",
-        width: 1080,
-        height: 1920,
+        url: "https://domarketing.ee/images/cases/suvelaagrid/creative-day-camp-district-ru.jpeg",
+        width: 720,
+        height: 1280,
         alt: "Креатив для рекламы детского лагеря Suvelaagrid",
       },
     ],
@@ -181,7 +166,7 @@ export const metadata: Metadata = {
     title: "Кейс Suvelaagrid: от 565 лидов в месяц по €2.7",
     description:
       "Сезонный набор детей в городской и выездные лагеря через лид-формы и прямую регистрацию на сайте.",
-    images: ["https://domarketing.ee/images/creative-examples/static/static-17-laager-est.png"],
+    images: ["https://domarketing.ee/images/cases/suvelaagrid/creative-day-camp-district-ru.jpeg"],
   },
 };
 
@@ -210,7 +195,7 @@ function JsonLd() {
         headline: "Кейс Suvelaagrid: от 565 лидов в месяц по €2.7",
         description:
           "Как Do.Marketing выстроил сезонный поток заявок для детских лагерей Suvelaagrid в Эстонии.",
-        image: "https://domarketing.ee/images/creative-examples/static/static-17-laager-est.png",
+        image: "https://domarketing.ee/images/cases/suvelaagrid/creative-day-camp-district-ru.jpeg",
         inLanguage: "ru",
         about: ["Meta Ads", "lead generation", "children camps", "summer camps Estonia"],
         provider: { "@type": "Organization", name: "Do.Marketing", url: "https://domarketing.ee" },
