@@ -19,90 +19,137 @@ const footerContent = {
   },
 };
 
-const caseFacts = [
-  { label: "Клиент", value: "EDU.DO, детские спортивные секции" },
-  { label: "Ниша", value: "Lead generation / sports education" },
-  { label: "География", value: "Эстония, русскоязычная и локальная аудитория" },
-  { label: "Период работы", value: "больше 2 лет" },
-  { label: "Канал", value: "performance-реклама и креативы для заявок" },
-  { label: "Результат", value: "350-580 заявок ежемесячно" },
-  { label: "Стоимость лида", value: "€5.7 в среднем" },
-  { label: "До работы", value: "около €42 за лид" },
+const resultStats = [
+  { value: "370+", label: "заявок стабильно каждый месяц" },
+  { value: "561", label: "максимум заявок за месяц" },
+  { value: "€3.4", label: "цена лида в лучший месяц" },
+  { value: "€4", label: "средняя цена лида сейчас" },
 ];
 
-const resultStats = [
-  { value: "350-580", label: "заявок в месяц" },
-  { value: "€5.7", label: "средняя цена лида" },
-  { value: "€42", label: "стоимость лида до работы" },
-  { value: "2+ года", label: "стабильной работы с проектом" },
+const caseFacts = [
+  { label: "Клиент", value: "EDU.DO, спортивная школа в Таллинне" },
+  { label: "Направления", value: "карате, плавание, общая физическая подготовка" },
+  { label: "Период", value: "3 года стабильной работы" },
+  { label: "География", value: "Таллинн, Эстония" },
+  { label: "Канал", value: "Meta Ads и креативы для лид-форм" },
+  { label: "До нас", value: "€20-60 за лид" },
+  { label: "Минимум", value: "€1.8 за лид" },
+  { label: "Стабильный уровень", value: "от 370 заявок в месяц" },
 ];
 
 const strategySteps = [
-  "Уточнили, какие группы родителей дают более качественные заявки и быстрее принимают решение.",
-  "Собрали рекламную коммуникацию вокруг понятной пользы: спорт, дисциплина, развитие ребенка и удобство для родителей.",
-  "Разделили кампании по аудиториям, языкам и гипотезам, чтобы не смешивать разные типы спроса.",
-  "Регулярно обновляли креативы и тексты, чтобы удерживать стабильную стоимость заявки в сезонных колебаниях.",
-  "Оптимизировали кампании по фактической цене лида, а не по поверхностным метрикам охвата.",
+  "Разделили рекламу по направлениям: карате, плавание и ОФП для детей разного возраста.",
+  "Собрали офферы вокруг понятного действия для родителей: записаться на первое бесплатное занятие.",
+  "Регулярно обновляли креативы, чтобы удерживать цену заявки в сезонных колебаниях.",
+  "Оптимизировали кампании по стоимости лида и фактическому объему заявок, а не по охватам.",
+  "Масштабировали рабочие связки без резкого роста CPL, чтобы школа получала набор каждый месяц.",
 ];
 
-const creativeAssets = [
+const creativeImages = [
   {
-    src: "/images/creative-examples/stories/story-01.png",
-    alt: "Пример вертикального рекламного креатива для Meta Ads",
+    src: "/images/cases/edu-do/creative-karate.png",
+    alt: "Рекламный сторис-креатив EDU.DO для набора детей на карате",
   },
   {
-    src: "/images/creative-examples/stories/story-02.png",
-    alt: "Пример сторис-креатива для лидогенерации",
+    src: "/images/cases/edu-do/creative-swimming.png",
+    alt: "Рекламный сторис-креатив EDU.DO для набора детей на плавание",
   },
   {
-    src: "/images/creative-examples/stories/story-03.png",
-    alt: "Пример рекламного макета для детской аудитории и родителей",
+    src: "/images/cases/edu-do/creative-ofp.png",
+    alt: "Рекламный сторис-креатив EDU.DO для общей физической подготовки детей",
+  },
+];
+
+const creativeVideos = [
+  {
+    src: "/videos/cases/edu-do/creative-video-01.m4v",
+    title: "Видео-креатив для набора в спортивную школу",
   },
   {
-    src: "/images/creative-examples/kreo-video-posters/video-19.webp",
-    alt: "Постер видео креатива для спортивной секции",
+    src: "/videos/cases/edu-do/creative-video-02.m4v",
+    title: "Вертикальный креатив для лид-формы",
+  },
+  {
+    src: "/videos/cases/edu-do/creative-video-03.m4v",
+    title: "Видео для прогрева родителей перед заявкой",
+  },
+];
+
+const proofImages = [
+  {
+    src: "/images/cases/edu-do/ads-dashboard-results.png",
+    alt: "Скриншот рекламного кабинета EDU.DO с результатами кампаний",
+    ratio: "aspect-[1908/282]",
+  },
+  {
+    src: "/images/cases/edu-do/chat-561-leads.jpeg",
+    alt: "Скрин переписки: 561 заявка за месяц по 3,4 евро за лид",
+    ratio: "aspect-[1280/174]",
+  },
+  {
+    src: "/images/cases/edu-do/chat-401-leads.jpeg",
+    alt: "Скрин переписки: 401 заявка за месяц по 4,5 евро",
+    ratio: "aspect-[1280/280]",
+  },
+  {
+    src: "/images/cases/edu-do/chat-520-context.jpeg",
+    alt: "Скрин переписки: обсуждение 520 лидов",
+    ratio: "aspect-[1280/320]",
+  },
+  {
+    src: "/images/cases/edu-do/chat-520-reaction.jpeg",
+    alt: "Скрин переписки с реакцией клиента на 520 лидов",
+    ratio: "aspect-[1280/674]",
   },
 ];
 
 const faqItems = [
   {
-    question: "Какой результат получил EDU.DO от рекламы?",
+    question: "Какой результат получил EDU.DO?",
     answer:
-      "EDU.DO получает 350-580 заявок ежемесячно по средней цене €5.7 за лид. До начала работы с Do.Marketing один лид стоил около €42.",
+      "Проект стабильно получает от 370 заявок каждый месяц. Максимальный результат - 561 заявка за месяц по средней цене €3.4 за лид.",
   },
   {
-    question: "Почему кейс важен для локального бизнеса в Эстонии?",
+    question: "Какая средняя стоимость лида сейчас?",
     answer:
-      "Кейс показывает, что локальный проект с регулярным набором клиентов может получать стабильный поток заявок, если рекламная структура, оффер и креативы адаптированы под реальные сегменты аудитории.",
+      "Средняя стоимость лида держится в районе €4. Самая низкая цена одного лида за время работы была €1.8.",
   },
   {
-    question: "Можно ли повторить такую механику для другой детской секции?",
+    question: "Что было до работы с Do.Marketing?",
     answer:
-      "Да, но цифры будут зависеть от города, расписания, цены услуги, сезонности, посадочной страницы и скорости обработки заявок. Поэтому сначала оценивается экономика проекта и спрос.",
+      "До начала сотрудничества стоимость лида у клиента была от €20 до €60. После перестройки рекламы лидогенерация стала стабильной и предсказуемой.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Кейс EDU.DO: 350-580 заявок в месяц по €5.7 | Do.Marketing",
+  title: "Кейс EDU.DO: 561 заявка за месяц по €3.4 | Do.Marketing",
   description:
-    "Кейс Do.Marketing: как EDU.DO получает 350-580 заявок ежемесячно по €5.7 за лид вместо €42 до начала работы.",
+    "Кейс Do.Marketing для спортивной школы EDU.DO в Таллинне: 3 года работы, от 370 заявок ежемесячно, максимум 561 заявка за месяц и средняя цена лида около €4.",
   keywords: [
     "кейс EDU.DO",
-    "детские спортивные секции реклама",
-    "lead generation Estonia",
-    "Meta Ads для детских секций",
+    "реклама спортивной школы",
+    "реклама детских секций",
+    "лидогенерация Tallinn",
+    "Meta Ads для спортивной школы",
     "Do.Marketing кейсы",
-    "performance marketing Tallinn",
   ],
   alternates: {
     canonical: "https://domarketing.ee/cases/edu-do",
   },
   openGraph: {
-    title: "Кейс EDU.DO: 350-580 заявок в месяц по €5.7",
+    title: "Кейс EDU.DO: 561 заявка за месяц по €3.4",
     description:
-      "Как Do.Marketing снизил стоимость заявки для детских спортивных секций с €42 до €5.7 и выстроил стабильный поток лидов.",
+      "Как Do.Marketing 3 года стабильно привлекает заявки для спортивной школы EDU.DO в Таллинне.",
     url: "https://domarketing.ee/cases/edu-do",
     siteName: "Do.Marketing",
+    images: [
+      {
+        url: "https://domarketing.ee/images/cases/edu-do/creative-karate.png",
+        width: 1080,
+        height: 1920,
+        alt: "Креатив EDU.DO для рекламы детского карате",
+      },
+    ],
     locale: "ru_EE",
     type: "article",
   },
@@ -130,9 +177,10 @@ function JsonLd() {
       },
       {
         "@type": "Article",
-        headline: "Кейс EDU.DO: 350-580 заявок в месяц по €5.7",
+        headline: "Кейс EDU.DO: 561 заявка за месяц по €3.4",
         description:
-          "Как Do.Marketing выстроил стабильную лидогенерацию для детских спортивных секций EDU.DO.",
+          "Как Do.Marketing выстроил стабильную лидогенерацию для спортивной школы EDU.DO в Таллинне.",
+        image: "https://domarketing.ee/images/cases/edu-do/creative-karate.png",
         inLanguage: "ru",
         about: ["Meta Ads", "lead generation", "children sports programs", "performance marketing Estonia"],
         provider: { "@type": "Organization", name: "Do.Marketing", url: "https://domarketing.ee" },
@@ -157,51 +205,14 @@ function JsonLd() {
   );
 }
 
-export default function EduDoCasePrototypePage() {
+export default function EduDoCasePage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#070914] text-white">
       <JsonLd />
-      <style>{`
-        @page {
-          size: 1440px 2200px;
-          margin: 0;
-        }
-
-        @media print {
-          html,
-          body {
-            background: #070914 !important;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-          }
-
-          .case-pdf-block,
-          .case-pdf-card {
-            break-inside: avoid;
-            page-break-inside: avoid;
-          }
-
-          .hero-creative-grid {
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          }
-
-          .creative-approval-grid {
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          }
-
-          .hero-creative-item {
-            margin-top: 0 !important;
-          }
-
-          .case-site-nav {
-            display: flex !important;
-          }
-        }
-      `}</style>
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[-7rem] top-[-7rem] h-[24rem] w-[24rem] rounded-full bg-violet-400/14 blur-3xl" />
         <div className="absolute right-[-7rem] top-24 h-[24rem] w-[24rem] rounded-full bg-cyan-300/12 blur-3xl" />
-        <div className="absolute bottom-[-10rem] left-1/3 h-[28rem] w-[28rem] rounded-full bg-violet-300/12 blur-3xl" />
+        <div className="absolute bottom-[-10rem] left-1/3 h-[28rem] w-[28rem] rounded-full bg-yellow-300/10 blur-3xl" />
         <div className="grid-overlay absolute inset-0 opacity-35" />
       </div>
 
@@ -219,7 +230,7 @@ export default function EduDoCasePrototypePage() {
               Вернуться на главную
             </Link>
 
-            <nav className="case-site-nav hidden items-center gap-8 md:flex">
+            <nav className="hidden items-center gap-8 md:flex">
               <Link href="/ru#cases" className="text-sm text-slate-300 transition hover:text-violet-300">
                 Кейсы
               </Link>
@@ -268,25 +279,26 @@ export default function EduDoCasePrototypePage() {
           </div>
         </header>
 
-        <section className="grid gap-10 py-12 lg:grid-cols-[1.03fr_0.97fr] lg:items-end lg:py-16">
+        <section className="grid gap-10 py-12 lg:grid-cols-[1fr_0.95fr] lg:items-end lg:py-16">
           <div className="space-y-7">
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full border border-violet-300/30 bg-violet-400/10 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.24em] text-violet-100">
                 Реальный кейс
               </span>
               <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2 text-[12px] font-medium text-slate-300">
-                Lead generation / sports education
+                Sports school / lead generation
               </span>
             </div>
 
             <div className="space-y-5">
-              <h1 className="max-w-4xl text-[44px] font-light leading-[0.95] tracking-[-0.055em] text-white sm:text-[62px] lg:text-[76px]">
-                Как EDU.DO получает 350-580 заявок в месяц на детские спортивные секции
+              <h1 className="max-w-4xl text-[42px] font-light leading-[0.98] text-white sm:text-[60px] lg:text-[74px]">
+                561 заявка за месяц для EDU.DO по €3.4 за лид
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-slate-300">
-                До начала работы заявка стоила около €42. После перестройки
-                рекламной системы EDU.DO больше 2 лет получает стабильный поток
-                обращений по средней цене €5.7 за лид.
+                EDU.DO - спортивная школа в Таллинне с направлениями карате,
+                плавания и общей физической подготовки. За 3 года работы мы
+                выстроили стабильный поток заявок: от 370 лидов каждый месяц,
+                средняя цена около €4, минимум - €1.8 за лид.
               </p>
             </div>
 
@@ -298,10 +310,10 @@ export default function EduDoCasePrototypePage() {
                 Хочу также
               </Link>
               <Link
-                href="#mechanics"
+                href="#proof"
                 className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-white/10"
               >
-                Как это сделали
+                Смотреть доказательства
               </Link>
             </div>
 
@@ -329,27 +341,27 @@ export default function EduDoCasePrototypePage() {
                 />
               </div>
               <div className="rounded-full border border-emerald-300/30 bg-emerald-300/10 px-4 py-2 text-sm font-semibold text-emerald-200">
-                CPL -86%
+                CPL до -97%
               </div>
             </div>
 
-            <div className="hero-creative-grid relative mt-8 grid grid-cols-2 gap-4">
-              {creativeAssets.map((item, index) => (
+            <div className="relative mt-8 grid grid-cols-3 gap-3">
+              {creativeImages.map((item, index) => (
                 <div
                   key={item.src}
-                  className={`hero-creative-item relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border border-white/12 bg-white/5 ${
-                    index % 2 === 1 ? "mt-10" : ""
+                  className={`relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border border-white/12 bg-white/5 ${
+                    index === 1 ? "mt-10" : ""
                   }`}
                 >
                   <Image src={item.src} alt={item.alt} fill sizes="220px" className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-transparent to-transparent" />
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="case-pdf-block grid gap-5 border-y border-white/10 py-8 md:grid-cols-4">
+        <section className="grid gap-5 border-y border-white/10 py-8 sm:grid-cols-2 lg:grid-cols-4">
           {caseFacts.map((item) => (
             <div key={item.label} className="space-y-2">
               <p className="text-xs uppercase tracking-[0.24em] text-slate-500">{item.label}</p>
@@ -358,66 +370,61 @@ export default function EduDoCasePrototypePage() {
           ))}
         </section>
 
-        <section className="case-pdf-block grid gap-10 py-16 lg:grid-cols-[0.9fr_1.1fr]">
+        <section className="grid gap-10 py-16 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-4">
-            <SectionLabel>Главное в кейсе</SectionLabel>
-            <h2 className="text-[34px] font-light leading-tight tracking-[-0.04em] text-white sm:text-[46px]">
-              Реклама стала не разовой акцией, а системой набора
+            <SectionLabel>Главное</SectionLabel>
+            <h2 className="text-[34px] font-light leading-tight text-white sm:text-[46px]">
+              Реклама стала постоянной системой набора
             </h2>
           </div>
           <div className="space-y-5 text-lg leading-8 text-slate-300">
             <p>
-              EDU.DO - пример локального проекта, где реклама работает не как разовая
-              акция, а как постоянная система набора заявок. После перестройки
-              рекламной логики средняя стоимость лида снизилась с €42 до €5.7.
+              До сотрудничества с Do.Marketing заявка для клиента стоила от €20
+              до €60. Для регулярного набора в детские секции такая экономика
+              сильно ограничивала масштабирование.
             </p>
             <p>
-              В основе результата не один удачный креатив, а связка из оффера,
-              сегментации, регулярного обновления объявлений и оптимизации по
-              реальной стоимости обращения.
+              Мы перестроили рекламные связки вокруг конкретных направлений
+              школы и понятного оффера: первое бесплатное занятие. В результате
+              проект 3 года стабильно получает заявки, а средняя стоимость лида
+              держится около €4.
             </p>
-            <Link
-              href="/ru#contacts"
-              className="inline-flex min-h-13 items-center justify-center rounded-full bg-white px-6 text-base font-semibold text-slate-950 transition hover:bg-violet-100"
-            >
-              Хочу также
-            </Link>
           </div>
         </section>
 
-        <section className="case-pdf-block grid gap-6 py-4 lg:grid-cols-3">
-          <article className="case-pdf-card rounded-[1.35rem] border border-white/10 bg-white/[0.045] p-6">
+        <section className="grid gap-6 py-4 lg:grid-cols-3">
+          <article className="rounded-[1.35rem] border border-white/10 bg-white/[0.045] p-6">
             <SectionLabel>Задача</SectionLabel>
-            <h3 className="mt-4 text-2xl font-light text-white">Снизить стоимость заявки и масштабировать набор</h3>
+            <h3 className="mt-4 text-2xl font-light text-white">Снизить цену заявки и не потерять объем</h3>
             <p className="mt-4 text-base leading-7 text-slate-400">
-              До начала работы лид стоил около €42. Для детских секций такая цена
-              ограничивает рост, особенно когда набор зависит от сезона, расписания
-              и доверия родителей.
+              EDU.DO нужны были регулярные заявки от родителей на спортивные
+              занятия для детей: карате, плавание и ОФП.
             </p>
           </article>
-          <article className="case-pdf-card rounded-[1.35rem] border border-white/10 bg-white/[0.045] p-6">
+          <article className="rounded-[1.35rem] border border-white/10 bg-white/[0.045] p-6">
             <SectionLabel>Подход</SectionLabel>
-            <h3 className="mt-4 text-2xl font-light text-white">Связать оффер, аудитории и креативы</h3>
+            <h3 className="mt-4 text-2xl font-light text-white">Отдельные офферы под разные секции</h3>
             <p className="mt-4 text-base leading-7 text-slate-400">
-              Кампании строились вокруг понятной пользы для семьи: развитие ребенка,
-              регулярные занятия, удобная запись и ясный следующий шаг после клика.
+              Вместо одной общей рекламы мы показывали родителям конкретные
+              сценарии: спорт вместо экранного времени, плавание рядом с домом,
+              карате для дисциплины и уверенности.
             </p>
           </article>
-          <article className="case-pdf-card rounded-[1.35rem] border border-white/10 bg-white/[0.045] p-6">
+          <article className="rounded-[1.35rem] border border-white/10 bg-white/[0.045] p-6">
             <SectionLabel>Результат</SectionLabel>
-            <h3 className="mt-4 text-2xl font-light text-white">350-580 заявок ежемесячно</h3>
+            <h3 className="mt-4 text-2xl font-light text-white">370+ заявок стабильно каждый месяц</h3>
             <p className="mt-4 text-base leading-7 text-slate-400">
-              Проект больше 2 лет получает стабильный поток лидов по средней цене
-              €5.7, что примерно в 7 раз ниже стартовой стоимости заявки.
+              Лучший месяц дал 561 заявку по €3.4 за лид. В отдельные периоды
+              цена заявки опускалась до €1.8.
             </p>
           </article>
         </section>
 
-        <section id="mechanics" className="case-pdf-block grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr]">
+        <section id="mechanics" className="grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="space-y-4">
             <SectionLabel>Что сделали</SectionLabel>
-            <h2 className="text-[34px] font-light leading-tight tracking-[-0.04em] text-white sm:text-[46px]">
-              Рабочая механика кампаний
+            <h2 className="text-[34px] font-light leading-tight text-white sm:text-[46px]">
+              Лаконичная система для стабильного набора
             </h2>
           </div>
           <div className="space-y-3">
@@ -432,37 +439,93 @@ export default function EduDoCasePrototypePage() {
           </div>
         </section>
 
-        <section className="case-pdf-block py-10">
+        <section className="py-10">
           <div className="max-w-3xl space-y-4">
             <SectionLabel>Креативы</SectionLabel>
-            <h2 className="text-[34px] font-light leading-tight tracking-[-0.04em] text-white sm:text-[46px]">
-              Креативы, которые помогают заявке случиться
+            <h2 className="text-[34px] font-light leading-tight text-white sm:text-[46px]">
+              Рекламные материалы для родителей
             </h2>
             <p className="text-base leading-7 text-slate-400">
-              Визуалы помогают быстро объяснить предложение родителям и довести
-              человека до понятного действия: оставить заявку на пробное занятие
-              или уточнить расписание.
+              Креативы сразу объясняют направление, возраст, город и следующий
+              шаг. Это снижает лишние клики и помогает получать заявки по
+              стабильной цене.
             </p>
           </div>
-          <div className="creative-approval-grid mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {creativeAssets.map((item) => (
-              <div key={`gallery-${item.src}`} className="relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/5">
-                <Image src={item.src} alt={item.alt} fill sizes="260px" className="object-cover" />
-              </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {creativeImages.map((item) => (
+              <figure
+                key={`gallery-${item.src}`}
+                className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]"
+              >
+                <div className="relative aspect-[9/16] bg-slate-950">
+                  <Image src={item.src} alt={item.alt} fill sizes="360px" className="object-cover" />
+                </div>
+              </figure>
+            ))}
+          </div>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {creativeVideos.map((item) => (
+              <figure
+                key={item.src}
+                className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]"
+              >
+                <div className="relative aspect-[9/16] bg-slate-950">
+                  <video
+                    className="h-full w-full object-cover"
+                    controls
+                    playsInline
+                    preload="metadata"
+                    muted
+                    aria-label={item.title}
+                  >
+                    <source src={item.src} type="video/mp4" />
+                  </video>
+                </div>
+                <figcaption className="min-h-16 px-4 py-3 text-sm leading-5 text-slate-300">
+                  {item.title}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </section>
 
-        <section className="case-pdf-block grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr]">
+        <section id="proof" className="py-16">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+            <div className="space-y-4">
+              <SectionLabel>Доказательства</SectionLabel>
+              <h2 className="text-[34px] font-light leading-tight text-white sm:text-[46px]">
+                Скрины из кабинета и переписки
+              </h2>
+              <p className="text-base leading-7 text-slate-400">
+                В кейсе оставлены реальные скрины: результаты кампаний, месяцы
+                с 401, 520 и 561 заявкой, а также реакция клиента на рост объема.
+              </p>
+            </div>
+            <div className="space-y-4">
+              {proofImages.map((item) => (
+                <div
+                  key={item.src}
+                  className={`relative ${item.ratio} overflow-hidden rounded-[1.1rem] border border-white/10 bg-white/[0.045]`}
+                >
+                  <Image src={item.src} alt={item.alt} fill sizes="760px" className="object-cover" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="space-y-4">
             <SectionLabel>FAQ</SectionLabel>
-            <h2 className="text-[34px] font-light leading-tight tracking-[-0.04em] text-white sm:text-[46px]">
-              Вопросы перед запуском похожей кампании
+            <h2 className="text-[34px] font-light leading-tight text-white sm:text-[46px]">
+              Коротко о цифрах
             </h2>
           </div>
           <div className="space-y-4">
             {faqItems.map((item) => (
-              <article key={item.question} className="case-pdf-card rounded-[1.25rem] border border-white/10 bg-white/[0.045] p-6">
+              <article key={item.question} className="rounded-[1.25rem] border border-white/10 bg-white/[0.045] p-6">
                 <h3 className="text-xl font-semibold text-white">{item.question}</h3>
                 <p className="mt-3 text-base leading-7 text-slate-400">{item.answer}</p>
               </article>
@@ -470,20 +533,20 @@ export default function EduDoCasePrototypePage() {
           </div>
         </section>
 
-        <section className="case-pdf-block mb-10 rounded-[1.75rem] border border-violet-300/20 bg-violet-400/10 p-7 sm:p-9">
+        <section className="mb-10 rounded-[1.75rem] border border-violet-300/20 bg-violet-400/10 p-7 sm:p-9">
           <div className="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center">
             <div className="space-y-3">
               <SectionLabel>Следующий шаг</SectionLabel>
-              <h2 className="text-[32px] font-light tracking-[-0.04em] text-white">
-                Хотите стабильный поток заявок в своей нише?
+              <h2 className="text-[32px] font-light text-white">
+                Хотите такую же систему заявок для своей ниши?
               </h2>
               <p className="max-w-3xl text-base leading-7 text-slate-300">
-                Покажите нам ваш продукт, географию и текущую цену заявки. Мы
-                посмотрим экономику проекта и предложим реалистичный следующий шаг.
+                Покажите нам текущую цену заявки, географию и продукт. Мы
+                оценим экономику и предложим реалистичный план роста.
               </p>
             </div>
             <Link href="/ru#contacts" className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-base font-semibold text-slate-950 transition hover:bg-violet-100">
-              Хочу также
+              Обсудить проект
             </Link>
           </div>
         </section>

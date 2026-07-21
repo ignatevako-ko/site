@@ -129,9 +129,10 @@ const casesRu: CaseStudy[] = [
   {
     title: "Детские спортивные секции EDU.DO",
     category: "Lead generation / sports education",
-    result: "350-580 заявок ежемесячно по €5.7 за лида",
+    result: "561 заявка за месяц по €3.4 за лида",
     summary:
-      "Работаем с проектом больше 2 лет и стабильно приводим от 350 до 580 заявок в месяц по средней цене €5.7 за лида. До начала работы с нами один лид стоил в среднем €42.",
+      "Работаем с проектом 3 года и стабильно приводим от 370 заявок каждый месяц. Максимум - 561 заявка за месяц по €3.4 за лид, средняя цена держится около €4, а до начала работы лид стоил €20-60.",
+    href: "/cases/edu-do",
   },
   {
     title: "Женская спортивная одежда",
@@ -189,9 +190,10 @@ const casesEn: CaseStudy[] = [
   {
     title: "EDU.DO Children’s Sports Programs",
     category: "Lead generation / sports education",
-    result: "350-580 leads monthly at €5.7 per lead",
+    result: "561 leads in one month at €3.4 per lead",
     summary:
-      "We have been working with the project for over 2 years and consistently generate 350 to 580 leads per month at an average cost of €5.7 per lead. Before working with us, one lead cost around €42 on average.",
+      "We have worked with the project for 3 years and consistently generate at least 370 leads every month. The best month brought 561 leads at €3.4 per lead, with the average cost now around €4 versus €20-60 before our work.",
+    href: "/cases/edu-do",
   },
   {
     title: "Women’s Activewear Brand",
@@ -249,9 +251,10 @@ const casesEt: CaseStudy[] = [
   {
     title: "EDU.DO laste spordiringid",
     category: "Lead generation / sports education",
-    result: "350-580 päringut kuus hinnaga €5.7",
+    result: "561 päringut kuus hinnaga €3.4",
     summary:
-      "Oleme projektiga töötanud üle 2 aasta ja toome stabiilselt 350 kuni 580 päringut kuus keskmise hinnaga €5.7. Enne meiega koostööd maksis üks päring keskmiselt €42.",
+      "Oleme projektiga töötanud 3 aastat ja toome stabiilselt vähemalt 370 päringut kuus. Parim kuu tõi 561 päringut hinnaga €3.4, keskmine hind on nüüd umbes €4 võrreldes varasema €20-60 päringu hinnaga.",
+    href: "/cases/edu-do",
   },
   {
     title: "Naiste spordiriiete bränd",
