@@ -409,14 +409,6 @@ export default function SuvelaagridCasePage() {
                 </p>
               </div>
 
-              <a
-                href="https://suvelaagrid.ee/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-emerald-300/30 bg-emerald-300/10 px-5 text-sm font-semibold text-emerald-200 transition hover:border-emerald-200/70 hover:bg-emerald-300/15"
-              >
-                suvelaagrid.ee
-              </a>
             </div>
           </div>
         </section>
