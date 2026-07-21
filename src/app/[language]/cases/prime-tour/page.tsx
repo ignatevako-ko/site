@@ -11,7 +11,7 @@ const seoByLanguage: Record<(typeof localizedLanguages)[number], { title: string
   en: {
     title: "3790% ROAS for Prime Tour: 8 Purchased Tours | Do.Marketing",
     description:
-      "Do.Marketing case study for Prime Tour: in 2 weeks, 8 purchased tours, €252 spend, €31 cost per purchased tour, €9,560 revenue, 91 leads and 3790% ROAS.",
+      "Do.Marketing case study for Prime Tour: a custom tour through Georgia, €252 ad spend, €9,560 revenue, 8 purchased tours, 91 leads and 3790% ROAS.",
     keywords: [
       "Prime Tour case study",
       "travel agency advertising Estonia",
@@ -23,7 +23,7 @@ const seoByLanguage: Record<(typeof localizedLanguages)[number], { title: string
   et: {
     title: "3790% ROAS Prime Tourile: 8 ostetud reisi | Do.Marketing",
     description:
-      "Do.Marketingu töö Prime Tourile: 2 nädalaga 8 ostetud reisi, €252 reklaamikulu, €31 ühe ostetud reisi hind, €9 560 käivet, 91 päringut ja 3790% ROAS.",
+      "Do.Marketingu töö Prime Tourile: Gruusia autorireis, €252 reklaamikulu, €9 560 käivet, 8 ostetud reisi, 91 päringut ja 3790% ROAS.",
     keywords: [
       "Prime Tour töö",
       "reisibüroo reklaam Eesti",

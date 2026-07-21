@@ -153,7 +153,7 @@ const casesRu: CaseStudy[] = [
     category: "Travel / Estonia",
     result: "8 купленных туров за 2 недели рекламы",
     summary:
-      "Настроили таргет на обычные, чартерные и авторские туры для русско- и эстоноязычной аудитории. За 2 недели рекламы получили 8 купленных туров при расходах €252, выручке €9 560 и ROAS 3790%. Дополнительно кампания дала 91 лид по €2.27 в среднем, лучший лид стоил €1.94.",
+      "Для Prime Tour настроили Meta Ads на авторский тур по Грузии и другие туристические направления для русско- и эстоноязычной аудитории. Кейс показывает финансовый результат через ROAS, выручку и стоимость купленного тура.",
     href: "/cases/prime-tour",
   },
   {
@@ -216,7 +216,7 @@ const casesEn: CaseStudy[] = [
     category: "Travel / Estonia",
     result: "8 purchased tours in 2 weeks",
     summary:
-      "We set up targeting for standard, charter and custom tours for Russian- and Estonian-speaking audiences. In 2 weeks, the campaign generated 8 purchased tours on €252 spend, €9,560 revenue and 3790% ROAS. It also brought 91 leads at €2.27 on average, with the best lead costing €1.94.",
+      "We set up Meta Ads for a custom tour through Georgia and other travel directions for Russian- and Estonian-speaking audiences. The case presents the financial result through ROAS, revenue and cost per purchased tour.",
     href: "/en/cases/prime-tour",
   },
   {
@@ -279,7 +279,7 @@ const casesEt: CaseStudy[] = [
     category: "Travel / Estonia",
     result: "8 ostetud reisi 2 nädalaga",
     summary:
-      "Seadistasime reklaami tava-, tšarter- ja autorireisidele vene- ja eestikeelsele sihtrühmale. 2 nädalaga tõi kampaania 8 ostetud reisi €252 kuluga, €9 560 käivet ja 3790% ROAS-i. Lisaks tuli 91 päringut keskmise hinnaga €2.27, parim päring maksis €1.94.",
+      "Seadistasime Meta Ads reklaami Gruusia autorireisile ja teistele reisissuundadele vene- ja eestikeelsele sihtrühmale. Töö näitab finantstulemust ROAS-i, käibe ja ostetud reisi hinna kaudu.",
     href: "/et/cases/prime-tour",
   },
   {

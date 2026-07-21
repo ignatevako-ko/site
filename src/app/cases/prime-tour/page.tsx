@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   ...buildPageMetadata({
     title: "ROAS 3790%: €252 превратили в €9 560 за 2 недели | Do.Marketing",
     description:
-      "Кейс Do.Marketing для Prime Tour: за 2 недели рекламы 8 купленных туров, €252 расходов, €31 за купленный тур, €9 560 выручки, 91 лид и ROAS 3790%.",
+      "Кейс Do.Marketing для Prime Tour: авторский тур по Грузии, €252 рекламного бюджета, €9 560 выручки, 8 купленных туров, 91 лид и ROAS 3790%.",
     path: "/cases/prime-tour",
     keywords: [
       "Prime Tour кейс",

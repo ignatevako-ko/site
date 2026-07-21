@@ -65,37 +65,35 @@ export const primeTourCaseCopy = {
     category: "Travel / Meta Ads",
     title: "ROAS 3790%: €252 превратили в €9 560 за 2 недели",
     lead:
-      "Prime Tour - агентство авторских и чартерных туров. За 2 недели рекламы по направлению Грузия получили 8 купленных туров при расходах €252, выручке €9 560 и ROAS 3790%. Дополнительно кампания дала 91 лид со средней стоимостью €2.27, а лучшая стоимость лида опустилась до €1.94.",
+      "Prime Tour - агентство авторских и чартерных туров. Для авторского тура по Грузии собрали Meta Ads-кампанию вокруг маршрута, языка аудитории и ярких видео/каруселей. Считали не клики, а купленные туры, выручку и ROAS.",
     primaryCta: "Хочу также",
     secondaryCta: "Смотреть цифры",
     statsTitle: "Ключевые показатели",
     statsBadge: "ROAS 3790%",
     proofNote:
-      "Цифры собраны из отчетности: майский срез, Грузия 2 апреля - 13 мая и авторский тур на Мадейру.",
+      "Цифры собраны из отчетности по авторскому туру по Грузии, майским срезам по турам и авторскому туру на Мадейру.",
     facts: [
       { label: "Клиент", value: "Prime Tour, агентство авторских и чартерных туров" },
       { label: "География", value: "Эстония, русско- и эстоноязычная аудитория" },
       { label: "Канал", value: "Meta Ads: видео, Reels и карусели" },
       { label: "Продукт", value: "Обычные туры, горячие туры и авторские маршруты" },
-      { label: "Период", value: "2 недели рекламы по направлению Грузия" },
-      { label: "Лучший срез", value: "8 купленных туров, €9 560 выручки и ROAS 3790%" },
-      { label: "Стоимость тура", value: "€1 195 за тур" },
-      { label: "Лиды", value: "91 лид по €2.27 в среднем, лучшая цена - €1.94" },
+      { label: "Фокус кейса", value: "авторский тур по Грузии" },
+      { label: "Период", value: "2 недели активной рекламы" },
       { label: "Креативы", value: "Лучше всего сработали видео и карусели с CTR 5-8%" },
     ],
     stats: [
       { value: "3790%", label: "ROAS за 2 недели рекламы" },
-      { value: "8", label: "купленных туров по направлению Грузия" },
+      { value: "8", label: "купленных туров: авторский тур по Грузии" },
       { value: "€252", label: "потрачено на рекламу" },
       { value: "€31", label: "цена за купленный тур" },
       { value: "€9 560", label: "выручка с тура стоимостью €1 195" },
-      { value: "€1.94", label: "лучшая стоимость лида" },
+      { value: "91", label: "лид по €2.27 в среднем, лучший - €1.94" },
     ],
     mainLabel: "Главное",
     mainTitle: "Туры продавались через конкретные направления, а не через общую рекламу",
     mainParagraphs: [
       "В туристической нише людям важно быстро увидеть маршрут, даты, настроение поездки и понятную причину оставить заявку. Поэтому рекламу не собирали в одну широкую кампанию, а разложили по направлениям и типу спроса.",
-      "Для обычных и горячих туров работали более прямые объявления с датами и ценой, для авторских маршрутов - визуальные видео и карусели, которые показывали впечатления от поездки. В лучшем двухнедельном срезе это дало 8 купленных туров и ROAS 3790%.",
+      "Для обычных и горячих туров работали более прямые объявления с датами и ценой, для авторских маршрутов - визуальные видео и карусели, которые показывали впечатления от поездки и подводили к заявке без лишних объяснений.",
     ],
     taskLabel: "Задача",
     taskTitle: "Получить купленные туры без внешних ссылок в коммуникации",
@@ -106,9 +104,9 @@ export const primeTourCaseCopy = {
     approachText:
       "Отдельно тестировали русско- и эстоноязычные аудитории, обычные туры, экзотические страны и авторские маршруты. Креативы показывали направление и эмоцию поездки сразу в первом экране.",
     resultLabel: "Результат",
-    resultTitle: "ROAS 3790% и 8 купленных туров за 2 недели",
+    resultTitle: "Финансовый результат посчитали через ROAS",
     resultText:
-      "По направлению Грузия отчетность показала €252 расходов, 8 купленных туров, €31 за купленный тур, стоимость тура €1 195, выручку €9 560 и ROAS 3790%. Также получили 91 лид со средней стоимостью €2.27, а лучшая стоимость лида составила €1.94.",
+      "Вместо оценки по кликам смотрели связку целиком: сколько стоит купленный тур, какую выручку дает направление и как рекламный бюджет возвращается в продажах. Поэтому в кейсе используем ROAS, а не абстрактную окупаемость.",
     mechanicsLabel: "Что сделали",
     mechanicsTitle: "Собрали рекламу вокруг маршрутов, языка и готовности купить",
     steps: [
@@ -129,12 +127,7 @@ export const primeTourCaseCopy = {
       {
         question: "Почему в кейсе указан ROAS, а не окупаемость?",
         answer:
-          "Потому что в отчетности показатель отражает возврат рекламных расходов. Для направления Грузия он составил 3790%, поэтому на странице используется формулировка ROAS 3790%.",
-      },
-      {
-        question: "Сколько стоил лид в рекламе Prime Tour?",
-        answer:
-          "В сильном срезе получили 91 лид со средней стоимостью €2.27. Лучшая стоимость лида в кампании составила €1.94.",
+          "Потому что в отчетности показатель отражает возврат рекламных расходов. Для авторского тура по Грузии он составил 3790%, поэтому на странице используется формулировка ROAS 3790%.",
       },
       {
         question: "Что лучше всего сработало в рекламе Prime Tour?",
@@ -144,7 +137,7 @@ export const primeTourCaseCopy = {
       {
         question: "Какие направления использовались в отчетности?",
         answer:
-          "В данных есть майский срез по Мадейре, Грузии, обычным турам и турам в экзотические страны, а также отдельные расчеты по Грузии и Мадейре.",
+          "В данных есть авторский тур по Грузии, майские срезы по обычным и экзотическим турам, а также отдельный расчет по авторскому туру на Мадейру.",
       },
     ],
     nextLabel: "Следующий шаг",
@@ -158,37 +151,35 @@ export const primeTourCaseCopy = {
     category: "Travel / Meta Ads",
     title: "3790% ROAS for Prime Tour: 8 purchased tours in 2 weeks",
     lead:
-      "Prime Tour is an agency for custom and charter tours. In 2 weeks of advertising for Georgia, the campaign generated 8 purchased tours on €252 spend, €9,560 revenue and 3790% ROAS. It also brought 91 leads at an average cost of €2.27, with the best lead cost reaching €1.94.",
+      "Prime Tour is an agency for custom and charter tours. For a custom tour through Georgia, we built a Meta Ads campaign around the route, audience language and vivid videos/carousels. We measured purchased tours, revenue and ROAS instead of clicks.",
     primaryCta: "I want this too",
     secondaryCta: "See the numbers",
     statsTitle: "Key metrics",
     statsBadge: "3790% ROAS",
     proofNote:
-      "The numbers come from reporting: the May overview, Georgia from April 2 to May 13, and the Madeira custom tour.",
+      "The numbers come from reporting for the custom tour through Georgia, May tour snapshots and the Madeira custom tour.",
     facts: [
       { label: "Client", value: "Prime Tour, custom and charter tour agency" },
       { label: "Market", value: "Estonia, Russian- and Estonian-speaking audiences" },
       { label: "Channel", value: "Meta Ads: video, Reels and carousels" },
       { label: "Product", value: "Standard tours, last-minute tours and custom routes" },
-      { label: "Period", value: "2 weeks of advertising for Georgia" },
-      { label: "Best segment", value: "8 purchased tours, €9,560 revenue and 3790% ROAS" },
-      { label: "Tour price", value: "€1,195 per tour" },
-      { label: "Leads", value: "91 leads at €2.27 average cost, best cost - €1.94" },
+      { label: "Case focus", value: "custom tour through Georgia" },
+      { label: "Period", value: "2 weeks of active advertising" },
       { label: "Creatives", value: "Videos and carousels with 5-8% CTR performed best" },
     ],
     stats: [
       { value: "3790%", label: "ROAS after 2 weeks of advertising" },
-      { value: "8", label: "purchased tours for Georgia" },
+      { value: "8", label: "purchased tours: custom tour through Georgia" },
       { value: "€252", label: "spent on advertising" },
       { value: "€31", label: "cost per purchased tour" },
       { value: "€9,560", label: "revenue from tours priced at €1,195" },
-      { value: "€1.94", label: "best lead cost" },
+      { value: "91", label: "leads at €2.27 average, best - €1.94" },
     ],
     mainLabel: "Core idea",
     mainTitle: "Tours were sold through specific destinations, not generic travel ads",
     mainParagraphs: [
       "In travel, people need to quickly see the route, dates, mood and a clear reason to leave a request. So we did not put everything into one broad campaign; we split the work by destination and demand type.",
-      "For standard and last-minute tours, the ads were more direct with dates and price. For custom routes, visual videos and carousels showed the experience of the trip. In the strongest two-week segment, this generated 8 purchased tours and 3790% ROAS.",
+      "For standard and last-minute tours, the ads were more direct with dates and price. For custom routes, visual videos and carousels showed the experience of the trip and led people to the request without extra explanation.",
     ],
     taskLabel: "Task",
     taskTitle: "Generate purchased tours and keep reporting tied to business outcomes",
@@ -199,9 +190,9 @@ export const primeTourCaseCopy = {
     approachText:
       "We tested Russian- and Estonian-speaking audiences separately, along with standard tours, exotic destinations and custom routes. Creatives showed the destination and travel emotion immediately.",
     resultLabel: "Result",
-    resultTitle: "3790% ROAS and 8 purchased tours in 2 weeks",
+    resultTitle: "The financial result was measured through ROAS",
     resultText:
-      "For Georgia, the report showed €252 spend, 8 purchased tours, €31 cost per purchased tour, a €1,195 tour price, €9,560 revenue and 3790% ROAS. The campaign also generated 91 leads at an average cost of €2.27, with the best lead cost reaching €1.94.",
+      "Instead of judging the campaign by clicks, we looked at the full business path: cost per purchased tour, revenue by direction and how ad spend returned through sales. That is why the case uses ROAS instead of abstract payback wording.",
     mechanicsLabel: "What we did",
     mechanicsTitle: "Built the ad system around routes, language and readiness to buy",
     steps: [
@@ -222,12 +213,7 @@ export const primeTourCaseCopy = {
       {
         question: "Why does the case use ROAS instead of payback wording?",
         answer:
-          "Because the report reflects return on ad spend. For Georgia, the metric reached 3790%, so the page uses 3790% ROAS.",
-      },
-      {
-        question: "How much did a lead cost for Prime Tour?",
-        answer:
-          "The strong segment generated 91 leads at an average cost of €2.27. The best lead cost in the campaign was €1.94.",
+          "Because the report reflects return on ad spend. For the custom tour through Georgia, the metric reached 3790%, so the page uses 3790% ROAS.",
       },
       {
         question: "What performed best for Prime Tour?",
@@ -237,7 +223,7 @@ export const primeTourCaseCopy = {
       {
         question: "Which destinations were included in the reporting?",
         answer:
-          "The data includes a May snapshot for Madeira, Georgia, standard tours and exotic destinations, plus separate calculations for Georgia and Madeira.",
+          "The data includes the custom tour through Georgia, May snapshots for standard and exotic tours, plus a separate calculation for the Madeira custom tour.",
       },
     ],
     nextLabel: "Next step",
@@ -251,37 +237,35 @@ export const primeTourCaseCopy = {
     category: "Travel / Meta Ads",
     title: "3790% ROAS Prime Tourile: 8 ostetud reisi 2 nädalaga",
     lead:
-      "Prime Tour on autori- ja tšarterreiside agentuur. Gruusia suunal tõi 2 nädalat reklaami 8 ostetud reisi €252 kuluga, €9 560 käivet ja 3790% ROAS-i. Kampaania tõi ka 91 päringut keskmise hinnaga €2.27 ning parim päringu hind langes €1.94-ni.",
+      "Prime Tour on autori- ja tšarterreiside agentuur. Gruusia autorireisi jaoks ehitasime Meta Ads kampaania marsruudi, sihtrühma keele ning erksate videote/karussellide ümber. Mõõtsime klikkide asemel ostetud reise, käivet ja ROAS-i.",
     primaryCta: "Soovin sama",
     secondaryCta: "Vaata numbreid",
     statsTitle: "Põhinäitajad",
     statsBadge: "ROAS 3790%",
     proofNote:
-      "Numbrid pärinevad aruandlusest: mai ülevaade, Gruusia 2. aprillist 13. maini ning Madeira autorireis.",
+      "Numbrid pärinevad Gruusia autorireisi aruandlusest, mai reiside lõikudest ja Madeira autorireisi arvutusest.",
     facts: [
       { label: "Klient", value: "Prime Tour, autori- ja tšarterreiside agentuur" },
       { label: "Turg", value: "Eesti, vene- ja eestikeelne sihtrühm" },
       { label: "Kanal", value: "Meta Ads: video, Reels ja karussellid" },
       { label: "Toode", value: "Tavareisid, viimase hetke reisid ja autorimarsruudid" },
-      { label: "Periood", value: "2 nädalat reklaami Gruusia suunal" },
-      { label: "Parim lõik", value: "8 ostetud reisi, €9 560 käivet ja 3790% ROAS" },
-      { label: "Reisi hind", value: "€1 195 ühe reisi kohta" },
-      { label: "Päringud", value: "91 päringut keskmise hinnaga €2.27, parim hind - €1.94" },
+      { label: "Fookus", value: "Gruusia autorireis" },
+      { label: "Periood", value: "2 nädalat aktiivset reklaami" },
       { label: "Loovlahendused", value: "Parimad olid videod ja karussellid CTR-iga 5-8%" },
     ],
     stats: [
       { value: "3790%", label: "ROAS 2 reklaaminädalaga" },
-      { value: "8", label: "ostetud reisi Gruusia suunal" },
+      { value: "8", label: "ostetud reisi: Gruusia autorireis" },
       { value: "€252", label: "reklaamikulu" },
       { value: "€31", label: "hind ühe ostetud reisi kohta" },
       { value: "€9 560", label: "käive reisidest hinnaga €1 195" },
-      { value: "€1.94", label: "parim päringu hind" },
+      { value: "91", label: "päringut keskmise hinnaga €2.27, parim - €1.94" },
     ],
     mainLabel: "Põhiline",
     mainTitle: "Reise müüdi konkreetsete sihtkohtade, mitte üldise reisireklaami kaudu",
     mainParagraphs: [
       "Reisivaldkonnas peab inimene kiiresti nägema marsruuti, kuupäevi, reisi meeleolu ja selget põhjust päring jätta. Seetõttu ei pannud me kõike ühte laia kampaaniasse, vaid jagasime reklaami sihtkoha ja nõudluse tüübi järgi.",
-      "Tava- ja viimase hetke reisidel kasutasime otsesemaid sõnumeid kuupäevade ja hinnaga. Autorimarsruutidel näitasid videod ja karussellid reisi kogemust. Parimas kahe nädala lõigus tõi see 8 ostetud reisi ja 3790% ROAS-i.",
+      "Tava- ja viimase hetke reisidel kasutasime otsesemaid sõnumeid kuupäevade ja hinnaga. Autorimarsruutidel näitasid videod ja karussellid reisi kogemust ning viisid inimesi päringuni ilma liigse selgituseta.",
     ],
     taskLabel: "Ülesanne",
     taskTitle: "Tuua ostetud reise ja siduda aruandlus äritulemusega",
@@ -292,9 +276,9 @@ export const primeTourCaseCopy = {
     approachText:
       "Testisime eraldi vene- ja eestikeelseid sihtrühmi, tavareise, eksootilisi sihtkohti ja autorimarsruute. Loovlahendused näitasid sihtkohta ja reisi emotsiooni kohe esimesel hetkel.",
     resultLabel: "Tulemus",
-    resultTitle: "3790% ROAS ja 8 ostetud reisi 2 nädalaga",
+    resultTitle: "Finantstulemust mõõtsime ROAS-i kaudu",
     resultText:
-      "Gruusia aruandes oli kulu €252, 8 ostetud reisi, ühe ostetud reisi hind €31, reisi hind €1 195, käive €9 560 ja ROAS 3790%. Kampaania tõi ka 91 päringut keskmise hinnaga €2.27 ning parim päringu hind oli €1.94.",
+      "Me ei hinnanud kampaaniat ainult klikkide järgi, vaid vaatasime kogu ärilist teekonda: ostetud reisi hinda, suuna käivet ja seda, kuidas reklaamikulu müügina tagasi tuli. Seetõttu kasutab töö ROAS-i, mitte üldist tasuvuse sõnastust.",
     mechanicsLabel: "Mida tegime",
     mechanicsTitle: "Ehitasime reklaami marsruutide, keele ja ostuvalmiduse ümber",
     steps: [
@@ -315,12 +299,7 @@ export const primeTourCaseCopy = {
       {
         question: "Miks on töös kirjas ROAS, mitte tasuvus?",
         answer:
-          "Sest aruandluses mõõdetakse reklaamikulu tootlust. Gruusia suunal oli näitaja 3790%, seetõttu kasutab leht sõnastust ROAS 3790%.",
-      },
-      {
-        question: "Kui palju maksis päring Prime Touri reklaamis?",
-        answer:
-          "Tugevas lõigus tuli 91 päringut keskmise hinnaga €2.27. Kampaania parim päringu hind oli €1.94.",
+          "Sest aruandluses mõõdetakse reklaamikulu tootlust. Gruusia autorireisi näitaja oli 3790%, seetõttu kasutab leht sõnastust ROAS 3790%.",
       },
       {
         question: "Mis Prime Touri reklaamis kõige paremini töötas?",
@@ -330,7 +309,7 @@ export const primeTourCaseCopy = {
       {
         question: "Millised suunad olid aruandluses?",
         answer:
-          "Andmetes on mai ülevaade Madeira, Gruusia, tavareiside ja eksootiliste reiside kohta ning eraldi arvutused Gruusia ja Madeira kohta.",
+          "Andmetes on Gruusia autorireis, mai lõigud tava- ja eksootiliste reiside kohta ning eraldi arvutus Madeira autorireisile.",
       },
     ],
     nextLabel: "Järgmine samm",
