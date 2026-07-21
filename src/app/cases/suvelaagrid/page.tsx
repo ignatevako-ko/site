@@ -66,16 +66,6 @@ const creativeImages = [
     src: "/images/cases/suvelaagrid/creative-away-camp-et.jpeg",
     alt: "Рекламный креатив Suvelaagrid на эстонском языке: laager lastele alates 7. eluaastast",
   },
-  {
-    type: "image",
-    src: "/images/cases/suvelaagrid/camp-gallery-city.jpg",
-    alt: "Фотография детей из городского лагеря Suvelaagrid",
-  },
-  {
-    type: "image",
-    src: "/images/cases/suvelaagrid/camp-gallery-away.jpg",
-    alt: "Фотография детей из выездного лагеря Suvelaagrid",
-  },
 ];
 
 const proofImages = [
