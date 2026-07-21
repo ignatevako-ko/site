@@ -26,6 +26,12 @@ const resultStats = [
   { value: "€4", label: "средняя цена лида сейчас" },
 ];
 
+const heroStats = [
+  ...resultStats,
+  { value: "€1.8", label: "самая низкая цена лида" },
+  { value: "€20-60", label: "стоимость лида до работы" },
+];
+
 const caseFacts = [
   { label: "Клиент", value: "EDU.DO, спортивная школа в Таллинне" },
   { label: "Направления", value: "карате, плавание, общая физическая подготовка" },
@@ -291,7 +297,7 @@ export default function EduDoCasePage() {
             </div>
 
             <div className="space-y-5">
-              <h1 className="max-w-4xl text-[42px] font-light leading-[0.98] text-white sm:text-[60px] lg:text-[74px]">
+              <h1 className="max-w-4xl text-[38px] font-light leading-[0.98] text-white sm:text-[56px] lg:text-[70px]">
                 561 заявка за месяц для EDU.DO по €3.4 за лид
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-slate-300">
@@ -316,47 +322,40 @@ export default function EduDoCasePage() {
                 Смотреть доказательства
               </Link>
             </div>
-
-            <div className="grid gap-3 sm:grid-cols-4">
-              {resultStats.map((item) => (
-                <div key={item.label} className="rounded-[1.25rem] border border-white/10 bg-white/[0.045] p-4">
-                  <p className="text-2xl font-semibold text-white">{item.value}</p>
-                  <p className="mt-2 text-sm leading-5 text-slate-400">{item.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
-          <div className="relative min-h-[34rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/60 p-5 shadow-[0_30px_90px_rgba(2,6,23,0.38)]">
+          <div className="relative min-h-[34rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/60 p-6 shadow-[0_30px_90px_rgba(2,6,23,0.38)] sm:p-8">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.22),transparent_34%),linear-gradient(160deg,rgba(34,211,238,0.12),rgba(7,9,20,0.15))]" />
-            <div className="relative flex items-center justify-between">
-              <div className="rounded-2xl bg-white p-4">
-                <Image
-                  src="/images/client-logos/edu-do.png"
-                  alt="EDU.DO logo"
-                  width={118}
-                  height={54}
-                  className="h-auto w-[7.25rem]"
-                  priority
-                />
-              </div>
-              <div className="rounded-full border border-emerald-300/30 bg-emerald-300/10 px-4 py-2 text-sm font-semibold text-emerald-200">
-                CPL до -97%
-              </div>
-            </div>
-
-            <div className="relative mt-8 grid grid-cols-3 gap-3">
-              {creativeImages.map((item, index) => (
-                <div
-                  key={item.src}
-                  className={`relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border border-white/12 bg-white/5 ${
-                    index === 1 ? "mt-10" : ""
-                  }`}
-                >
-                  <Image src={item.src} alt={item.alt} fill sizes="220px" className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-transparent to-transparent" />
+            <div className="relative flex h-full min-h-[30rem] flex-col justify-between gap-8">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div className="space-y-3">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-violet-200">
+                    Цифры кейса
+                  </p>
+                  <h2 className="max-w-lg text-[34px] font-light leading-tight text-white sm:text-[42px]">
+                    Стабильный набор в спортивную школу
+                  </h2>
                 </div>
-              ))}
+                <div className="shrink-0 rounded-full border border-emerald-300/30 bg-emerald-300/10 px-4 py-2 text-sm font-semibold text-emerald-200">
+                  CPL до -97%
+                </div>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {heroStats.map((item) => (
+                  <div key={item.label} className="rounded-[1.25rem] border border-white/10 bg-white/[0.055] p-5 backdrop-blur">
+                    <p className="text-[34px] font-semibold leading-none text-white">{item.value}</p>
+                    <p className="mt-3 text-sm leading-5 text-slate-400">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/45 p-5">
+                <p className="text-sm leading-6 text-slate-300">
+                  Результат подтвержден скринами из рекламного кабинета и
+                  перепиской с клиентом: 401, 520 и 561 заявка в месяц.
+                </p>
+              </div>
             </div>
           </div>
         </section>
