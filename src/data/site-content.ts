@@ -149,11 +149,12 @@ const casesRu: CaseStudy[] = [
       "Для магазина косметики кампания со скидкой 20% на Medic8 принесла 114 продаж. Стоимость продажи составила €2.43, средний чек €73.57, а ROAS достиг 30.23.",
   },
   {
-    title: "Турагенство Prime Tour",
+    title: "ROAS 3790% для Prime Tour",
     category: "Travel / Estonia",
     result: "11 броней при бюджете €390",
     summary:
-      "Настроили таргет на обычные и авторские туры для русско- и эстоноговорящей аудитории. Лучший результат дали яркие видео и карусели с CTR 5-8%, что принесло 10 броней горячих туров и 1 бронь авторского тура.",
+      "Настроили таргет на обычные, чартерные и авторские туры для русско- и эстоноязычной аудитории. Лучший результат дали яркие видео и карусели с CTR 5-8%: 10 броней горячих туров, 1 бронь авторского тура и ROAS 3790% в сильном направлении.",
+    href: "/cases/prime-tour",
   },
   {
     title: "Салон красоты ILUPROFF",
@@ -211,11 +212,12 @@ const casesEn: CaseStudy[] = [
       "A focused campaign around a 20% Medic8 offer generated 114 sales for the online store. Cost per sale reached €2.43, average order value €73.57 and overall ROAS 30.23.",
   },
   {
-    title: "Prime Tour",
+    title: "3790% ROAS for Prime Tour",
     category: "Travel / Estonia",
     result: "11 bookings on a €390 budget",
     summary:
-      "Targeted campaigns for standard and premium tours reached both Russian- and Estonian-speaking audiences. Bright video ads and carousel creatives became the winning setup with CTR between 5% and 8%.",
+      "We set up targeting for standard, charter and custom tours for Russian- and Estonian-speaking audiences. Bright videos and carousels with 5-8% CTR performed best, bringing 10 last-minute tour bookings, 1 custom tour booking and 3790% ROAS in the strongest segment.",
+    href: "/en/cases/prime-tour",
   },
   {
     title: "ILUPROFF",
@@ -273,11 +275,12 @@ const casesEt: CaseStudy[] = [
       "20% Medic8 pakkumisega kampaania tõi e-poele 114 müüki. Müügi hind oli €2.43, keskmine ost €73.57 ning kogu kampaania tasuvus ulatus 30.23-ni.",
   },
   {
-    title: "Prime Tour",
+    title: "3790% ROAS Prime Tourile",
     category: "Travel / Estonia",
     result: "11 broneeringut €390 eelarvega",
     summary:
-      "Turundasime nii tavareise kui autorituure vene- ja eestikeelsele sihtrühmale. Parima tulemuse tõid erksad videod ja karussellid CTR-iga 5-8%, mis tõid 10 kuuma reisi broneeringut ja 1 autorituuri broneeringu.",
+      "Seadistasime reklaami tava-, tšarter- ja autorireisidele vene- ja eestikeelsele sihtrühmale. Parimad olid erksad videod ja karussellid CTR-iga 5-8%, mis tõid 10 viimase hetke reisi broneeringut, 1 autorireisi broneeringu ja parimas lõigus 3790% ROAS-i.",
+    href: "/et/cases/prime-tour",
   },
   {
     title: "ILUPROFF",
@@ -315,8 +318,8 @@ export const siteContent: Record<Language, SiteDictionary> = {
     ],
     hero: {
       eyebrow: "Conscious marketing with measurable results",
-      title: "We bring *qualified clients* through *targeted ads* on FB and Inst",
-      description: "while your competitors are still asleep",
+      title: "We bring qualified clients through *Meta Ads* (FB, Inst)\nand *Google Ads*",
+      description: "While your competitors are asleep",
       primaryCta: "Start a conversation",
       secondaryCta: "Explore cases",
       dashboardTitle: "Growth command center",
@@ -324,9 +327,9 @@ export const siteContent: Record<Language, SiteDictionary> = {
       dashboardChartLabel: "Performance overview",
       dashboardChartStatus: "Live",
       stats: [
-        { value: "2923%", label: "Peak campaign return" },
+        { value: "2923%", label: "Maximum ROAS" },
         { value: "578", label: "Leads per month" },
-        { value: "30.23", label: "Best ROAS" },
+        { value: "3790", label: "Best ROAS" },
       ],
     },
     sections: {
@@ -342,24 +345,26 @@ export const siteContent: Record<Language, SiteDictionary> = {
       services: "",
       clients: "",
       about: "",
-      testimonials: "",
-      contacts: "",
+      testimonials: "Client feedback from projects where we worked on growth, positioning and advertising.",
+      contacts: "Contact us to discuss a project, ad campaign or ongoing marketing support.",
     },
     cases: casesEn,
     services: [
       {
         title: "META ADS TARGETED ADVERTISING SETUP",
-        description: "We build campaign architecture, creatives and testing logic around the real economics of your offer.",
+        description:
+          "We set up Meta Ads with a focus on profit growth, transparent campaign structure and sustainable scaling.",
         features: [
-          "Niche and competitor analysis",
-          "Meta Ads account setup",
-          "Audience setup",
-          "Campaign strategy and structure",
-          "Ad copywriting",
-          "Creative production or filming brief",
-          "Campaign launch",
+          "niche and competitor analysis",
+          "Meta Ads ad account setup",
+          "audience setup",
+          "advertising campaign strategy",
+          "ad structure creation",
+          "ad copywriting",
+          "creative production or filming brief",
+          "ad launch",
           "A/B testing",
-          "Optimization and scaling",
+          "campaign optimization",
         ],
       },
     ],
@@ -370,7 +375,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
         "We help businesses generate high-quality leads and turn advertising into a predictable growth tool. Our work is not just about launching campaigns — it is built on a deep understanding of your project’s economics. We do not do ‘advertising for the sake of advertising’; we focus on making every euro invested return as profit.",
       points: [
         "Honest selection. We only enter a project when we are confident in its financial potential. Usually these are high-ticket niches where 1–5 clients fully cover the advertising costs.",
-        "Experience across 18+ industries. From аппаратной косметологии to complex construction services. We understand the specifics of different markets, so we do not waste time testing obviously weak hypotheses.",
+        "Experience across 18+ industries. From hardware cosmetology to complex construction services. We understand the specifics of different markets, so we do not waste time testing obviously weak hypotheses.",
         "Results in numbers. Our record is ROMI 2305%. We know how to build a clear acquisition system and scale the result.",
         "We value your peace of mind and build our work on mutual trust. Instead of chaotic actions, we offer a transparent system and attention to every nuance of your business so that marketing becomes a reliable support for your growth.",
       ],
@@ -394,7 +399,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
     },
     footer: {
       brand: "Do.Marketing",
-      text: "Conscious performance marketing for brands that need clarity, stronger decisions and predictable growth.",
+      text: "Conscious performance marketing for brands that need sharper decisions and stronger results.",
       links: [
         { href: "#cases", label: "Cases" },
         { href: "#services", label: "Services" },
@@ -419,8 +424,8 @@ export const siteContent: Record<Language, SiteDictionary> = {
     ],
     hero: {
       eyebrow: "Teadlik turundus, mis viib tulemusteni",
-      title: "Toome *sihtkliendid* kohale *FB ja Insti suunatud reklaamiga*",
-      description: "samal ajal kui konkurendid alles magavad",
+      title: "Toome sihtkliendid läbi *Meta Ads* reklaami (FB, Inst)\nja *Google Ads* reklaami",
+      description: "Samal ajal kui konkurendid magavad",
       primaryCta: "Alusta vestlust",
       secondaryCta: "Vaata töid",
       dashboardTitle: "Kasvu juhtimiskeskus",
@@ -430,7 +435,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
       stats: [
         { value: "2923%", label: "Parim kampaania tasuvus" },
         { value: "578", label: "Leadi kuus" },
-        { value: "30.23", label: "Parim ROAS" },
+        { value: "3790", label: "Parim ROAS" },
       ],
     },
     sections: {
@@ -446,24 +451,26 @@ export const siteContent: Record<Language, SiteDictionary> = {
       services: "",
       clients: "",
       about: "",
-      testimonials: "",
-      contacts: "",
+      testimonials: "Tagasiside klientidelt, kellega töötasime kasvu, pakendamise ja reklaami kallal.",
+      contacts: "Võta meiega ühendust, et arutada projekti, reklaamikampaaniat või pidevat turundustuge.",
     },
     cases: casesEt,
     services: [
       {
         title: "META ADS SIHITUD REKLAAMI SEADISTUS",
-        description: "Ehitasime kampaania arhitektuuri, loovlahendused ja testimise päris pakkumise majandusloogika ümber.",
+        description:
+          "Seadistame Meta Adsi reklaami kasumi kasvu, läbipaistva kampaaniastruktuuri ja stabiilse kasvu fookusega.",
         features: [
-          "Niši ja konkurentide analüüs",
-          "Meta Ads konto seadistus",
-          "Auditooriumide seadistus",
-          "Kampaania strateegia ja struktuur",
-          "Reklaamtekstid",
-          "Loovlahendused või võtme-TK võtteks",
-          "Kampaania käivitamine",
+          "niši ja konkurentide analüüs",
+          "Meta Ads reklaamikonto seadistus",
+          "auditooriumide seadistus",
+          "reklaamikampaania strateegia väljatöötamine",
+          "reklaami struktuuri loomine",
+          "reklaamtekstide kirjutamine",
+          "loovlahenduste loomine või võtteülesanne",
+          "reklaami käivitamine",
           "A/B testimine",
-          "Optimeerimine ja skaleerimine",
+          "reklaamikampaaniate optimeerimine",
         ],
       },
     ],
@@ -534,7 +541,7 @@ export const siteContent: Record<Language, SiteDictionary> = {
       stats: [
         { value: "2923%", label: "Максимальный ROAS" },
         { value: "578", label: "Лидов в месяц" },
-        { value: "30.23", label: "Лучший ROAS" },
+        { value: "3790", label: "Лучший ROAS" },
       ],
     },
     sections: {

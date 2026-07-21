@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand-logo";
+import { SiteFooter } from "@/components/site-footer";
+import { siteContent } from "@/data/site-content";
 
 const targetingFeatures = [
   "анализ ниши и конкурентов",
@@ -54,9 +56,10 @@ export const metadata: Metadata = {
 
 export default function DigitalArtHouseOfferPage() {
   return (
-    <main className="relative isolate overflow-x-hidden bg-[#06070c] text-white">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(167,139,250,0.22),transparent_28%),radial-gradient(circle_at_80%_18%,rgba(250,250,250,0.12),transparent_22%),linear-gradient(180deg,#06070c_0%,#11131b_48%,#050608_100%)]" />
-      <div className="grid-overlay absolute inset-x-0 top-0 -z-10 h-[42rem] opacity-55" />
+    <>
+    <main className="relative isolate overflow-x-hidden bg-slate-950 text-white">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(167,139,250,0.2),transparent_28%),radial-gradient(circle_at_80%_18%,rgba(244,114,182,0.12),transparent_24%),radial-gradient(circle_at_50%_60%,rgba(255,214,170,0.06),transparent_30%)]" />
+      <div className="grid-overlay absolute inset-x-0 top-0 -z-10 h-[42rem] opacity-45" />
 
       <header className="mx-auto flex w-full max-w-[100vw] items-center justify-between gap-3 px-4 py-5 sm:max-w-7xl sm:px-6 lg:px-10">
         <Link href="/ru" aria-label="Do.Marketing home">
@@ -214,6 +217,8 @@ export default function DigitalArtHouseOfferPage() {
         </div>
       </section>
     </main>
+    <SiteFooter content={siteContent.ru} language="ru" />
+    </>
   );
 }
 
@@ -231,7 +236,7 @@ function OfferCard({
   note?: string;
 }) {
   return (
-    <article className="flex h-full flex-col rounded-[1.7rem] border border-white/10 bg-[#0b0d14]/86 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.22)] backdrop-blur lg:p-8">
+    <article className="flex h-full flex-col rounded-[1.7rem] border border-white/10 bg-white/[0.045] p-6 shadow-[0_24px_80px_rgba(2,6,23,0.28)] backdrop-blur lg:p-8">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h2 className="font-display text-2xl font-light leading-tight text-white sm:text-3xl">{title}</h2>

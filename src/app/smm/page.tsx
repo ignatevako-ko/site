@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { PageBackground } from "@/components/page-background";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import type { Language } from "@/data/site-content";
@@ -410,7 +411,8 @@ export default function SmmPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(167,139,250,0.18),transparent_28%),linear-gradient(180deg,#080714_0%,#0c1020_35%,#0a0f1a_100%)] text-white">
+    <div className="relative min-h-screen overflow-x-clip bg-slate-950 text-white">
+      <PageBackground />
       <SiteHeader
         content={{
           ...siteContent[language],
@@ -423,21 +425,33 @@ export default function SmmPage() {
         anchorHrefPrefix="/"
       />
 
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-10 lg:px-10 lg:py-14">
+      <main className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 py-10 lg:px-10 lg:py-14">
         <section
           id="offer"
-          className="rounded-[2.4rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03),rgba(15,23,42,0.3))] p-8 shadow-[0_40px_100px_rgba(8,7,20,0.45)] sm:p-10 lg:p-12"
+          className="rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03),rgba(15,23,42,0.3))] p-8 shadow-[0_40px_100px_rgba(8,7,20,0.45)] sm:p-10 lg:p-12"
         >
           <div className="max-w-4xl space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-violet-300">
               {copy.heroLabel}
             </p>
-            <h1 className="text-[40px] font-semibold leading-none tracking-[-0.06em] text-white sm:text-[58px]">
+            <h1 className="text-[40px] font-light leading-[1.05] tracking-[-0.05em] text-white sm:text-[58px]">
               {copy.heroTitle}
             </h1>
             <p className="max-w-3xl text-[18px] leading-8 text-slate-300 sm:text-[20px]">
               {copy.heroDescription}
             </p>
+            <div className="pt-2">
+              <a
+                href="#contacts"
+                className="inline-flex min-h-14 items-center justify-center rounded-full bg-violet-400 px-7 text-base font-semibold text-slate-950 transition hover:bg-violet-300"
+              >
+                {language === "ru"
+                  ? "Обсудить проект"
+                  : language === "en"
+                    ? "Discuss a project"
+                    : "Aruta projekti"}
+              </a>
+            </div>
           </div>
         </section>
 

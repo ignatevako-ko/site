@@ -65,6 +65,7 @@ export async function renderAdditionalServiceRoute({
             description: copy.metadata.serviceDescription,
             serviceType: copy.metadata.serviceType,
             price: copy.metadata.price,
+            keywords: copy.metadata.keywords,
             faq: copy.faq.items,
           }),
         )}
@@ -72,4 +73,3 @@ export async function renderAdditionalServiceRoute({
     </>
   );
 }
-

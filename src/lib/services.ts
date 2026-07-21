@@ -59,9 +59,11 @@ export function getServicesMenuItems(language?: Language) {
   const servicesSectionHref = language
     ? `${localizedPath(language, "/")}#services`
     : "/ru#services";
+  const [metaAds, googleAds] = getAllServiceLinks(language);
 
   return [
-    ...getAllServiceLinks(language).map(({ href, label }) => ({ href, label })),
+    { href: metaAds.href, label: metaAds.label },
+    { href: googleAds.href, label: googleAds.label },
     {
       href: servicesSectionHref,
       label:

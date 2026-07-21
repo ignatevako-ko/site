@@ -883,9 +883,9 @@ const googleAdsCopy: Record<Language, ServicePageCopy> = {
     hero: {
       badge: "Google Ads Euroopas kiire nõudluse püüdmiseks",
       title:
-        "Google Ads kampaaniad, mis püüavad kuuma nõudlust ja toovad müüki juba stardipäeval",
+        "Google Ads kontekstreklaam, mis toob kuumi kliente",
       description:
-        "Ehitatame otsingu- ja display-kampaaniaid, korrastame konto loogika, jälgime tasuvust ja juhime eelarvet päris ostuvalmiduse järgi.",
+        "Seadistame otsingu- ja display-kampaaniaid, ehitame korrektse struktuuri, jälgime kasumi kasvu ja juhime reklaami nii, et see tooks stabiilselt kliente.",
       bullets: [
         "otsingu- ja display-kampaaniad kõrge ostuvalmidusega nõudluse jaoks",
         "selge märksõna struktuur, miinusmärksõnad ja pakkumiste loogika",

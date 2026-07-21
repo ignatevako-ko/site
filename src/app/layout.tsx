@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import Script from "next/script";
+import { QuestionWidget } from "@/components/question-widget";
 import { ScrollToTopButton } from "@/components/scroll-to-top-button";
 import {
   defaultKeywords,
@@ -72,6 +73,7 @@ export default function RootLayout({
         </noscript>
         {children}
         <ScrollToTopButton />
+        <QuestionWidget />
         <Script id="google-tag-manager" strategy="beforeInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

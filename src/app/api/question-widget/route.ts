@@ -1,17 +1,18 @@
 import {
-  appendToGoogleSheets,
-  sendConfirmationEmail,
-  sendToTelegram,
-} from "@/lib/lead-integrations";
+  appendWidgetLeadToSheet,
+  sendWidgetLeadToTelegram,
+} from "@/lib/question-widget-integrations";
 import {
-  checkLeadRateLimit,
-  getClientIp,
-  isAllowedBodySize,
   isAllowedContentType,
   isAllowedOrigin,
-  sanitizeLeadBody,
-  type RawLeadBody,
 } from "@/lib/lead-security";
+import {
+  checkWidgetRateLimit,
+  getClientIp,
+  isAllowedBodySize,
+  sanitizeWidgetLeadBody,
+  type RawWidgetLeadBody,
+} from "@/lib/question-widget-security";
 
 export const runtime = "nodejs";
 
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
       return Response.json({ error: "Forbidden." }, { status: 403 });
     }
 
-    const rateLimit = checkLeadRateLimit(getClientIp(request));
+    const rateLimit = checkWidgetRateLimit(getClientIp(request));
 
     if (rateLimit.rateLimited) {
       return Response.json(
@@ -39,35 +40,36 @@ export async function POST(request: Request) {
       );
     }
 
-    const payload = sanitizeLeadBody((await request.json()) as RawLeadBody);
+    const payload = sanitizeWidgetLeadBody(
+      (await request.json()) as RawWidgetLeadBody,
+    );
 
     if (!payload) {
       return Response.json({ error: "Invalid lead data." }, { status: 400 });
     }
 
-    // The confirmation email is best-effort: a failure to reach the client's
-    // inbox must not fail lead capture (Telegram + Google Sheets).
-    const [telegramResult, sheetsResult, emailResult] = await Promise.allSettled([
-      sendToTelegram(payload),
-      appendToGoogleSheets(payload),
-      sendConfirmationEmail(payload),
+    const timestamp = new Date();
+
+    const [telegramResult, sheetResult] = await Promise.allSettled([
+      sendWidgetLeadToTelegram(payload, timestamp),
+      appendWidgetLeadToSheet(payload, timestamp),
     ]);
 
-    if (emailResult.status === "fulfilled" && emailResult.value === false) {
-      console.warn("Lead confirmation email skipped: SMTP is not configured.");
+    if (telegramResult.status === "rejected") {
+      console.error("Question widget Telegram notification failed:", telegramResult.reason);
     }
 
-    if (emailResult.status === "rejected") {
-      console.error("Lead confirmation email failed:", emailResult.reason);
+    if (sheetResult.status === "rejected") {
+      console.error("Question widget CRM (Sheets) append failed:", sheetResult.reason);
     }
 
-    const configured = [telegramResult, sheetsResult].some(
+    const configured = [telegramResult, sheetResult].some(
       (result) => result.status === "fulfilled" && result.value === true,
     );
 
     if (!configured) {
       return Response.json(
-        { error: "Form integrations are not configured on the server." },
+        { error: "Widget integrations are not configured on the server." },
         { status: 500 },
       );
     }

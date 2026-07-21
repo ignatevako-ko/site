@@ -1,74 +1,52 @@
+// Security/validation for the "ask a question" widget. Kept separate from
+// lead-security.ts (the contact-form path) so changes here can't affect the
+// production lead intake — see AGENTS.md.
+
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const BODY_SIZE_LIMIT_BYTES = 8 * 1024;
+const QUESTION_MIN_LENGTH = 5;
+
 type RateLimitBucket = {
   count: number;
   resetAt: number;
 };
 
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const RATE_LIMIT_MAX_REQUESTS = 5;
-const BODY_SIZE_LIMIT_BYTES = 12 * 1024;
 const rateLimitStore = new Map<string, RateLimitBucket>();
 
-export type RawLeadBody = {
-  email?: unknown;
-  phone?: unknown;
-  website?: unknown;
-  brief?: unknown;
-  source?: unknown;
-  language?: unknown;
+export type WidgetChannel = "telegram" | "whatsapp";
+
+export type RawWidgetLeadBody = {
+  name?: unknown;
+  question?: unknown;
+  channel?: unknown;
+  contact?: unknown;
   pageUrl?: unknown;
   referrer?: unknown;
-  ctaLabel?: unknown;
-  ctaHref?: unknown;
-  ctaPage?: unknown;
+  language?: unknown;
+  userAgent?: unknown;
   utm?: unknown;
   company?: unknown;
 };
 
-export type SanitizedLeadBody = {
-  email: string;
-  phone: string;
-  website: string;
-  brief: string;
-  source: string;
-  language: string;
+export type SanitizedWidgetLead = {
+  name: string;
+  question: string;
+  channel: WidgetChannel;
+  contact: string;
   pageUrl: string;
   referrer: string;
-  ctaLabel: string;
-  ctaHref: string;
-  ctaPage: string;
+  language: string;
+  userAgent: string;
   utm: Record<string, string>;
 };
 
-export function isAllowedContentType(request: Request) {
-  const contentType = request.headers.get("content-type") || "";
-  return contentType.toLowerCase().includes("application/json");
-}
+const TELEGRAM_USERNAME_PATTERN = /^@?[a-zA-Z][a-zA-Z0-9_]{4,31}$/;
+const PHONE_PATTERN = /^\+?[0-9\s().-]{6,20}$/;
 
 export function isAllowedBodySize(request: Request) {
   const contentLength = Number(request.headers.get("content-length") || 0);
   return !contentLength || contentLength <= BODY_SIZE_LIMIT_BYTES;
-}
-
-export function isAllowedOrigin(request: Request) {
-  const origin = request.headers.get("origin");
-
-  if (!origin) {
-    return true;
-  }
-
-  const host = request.headers.get("host");
-  const allowedOrigins = new Set(
-    [
-      process.env.NEXT_PUBLIC_SITE_URL,
-      process.env.SITE_URL,
-      host ? `https://${host}` : "",
-      host?.startsWith("localhost") || host?.startsWith("127.0.0.1")
-        ? `http://${host}`
-        : "",
-    ].filter(Boolean),
-  );
-
-  return allowedOrigins.has(origin);
 }
 
 export function getClientIp(request: Request) {
@@ -78,7 +56,7 @@ export function getClientIp(request: Request) {
   return forwardedFor?.split(",")[0]?.trim() || realIp || "unknown";
 }
 
-export function checkLeadRateLimit(identifier: string) {
+export function checkWidgetRateLimit(identifier: string) {
   const now = Date.now();
   const bucket = rateLimitStore.get(identifier);
 
@@ -99,41 +77,54 @@ export function checkLeadRateLimit(identifier: string) {
   return { rateLimited: false, retryAfter: bucket.resetAt - now };
 }
 
-export function sanitizeLeadBody(body: RawLeadBody): SanitizedLeadBody | null {
+function isValidContact(channel: WidgetChannel, contact: string) {
+  if (!contact) {
+    return false;
+  }
+
+  if (channel === "telegram") {
+    return TELEGRAM_USERNAME_PATTERN.test(contact) || PHONE_PATTERN.test(contact);
+  }
+
+  return PHONE_PATTERN.test(contact);
+}
+
+export function sanitizeWidgetLeadBody(body: RawWidgetLeadBody): SanitizedWidgetLead | null {
+  // Honeypot: real visitors never fill this hidden field.
   if (typeof body.company === "string" && body.company.trim()) {
     return null;
   }
 
-  const email = normalizeString(body.email, 254);
-  const phone = normalizeString(body.phone, 32);
-  const website = normalizeString(body.website, 300);
-  const brief = normalizeString(body.brief, 1200);
-  const source = normalizeString(body.source, 80) || "contact_form";
-  const language = normalizeString(body.language, 8);
+  const name = normalizeString(body.name, 120);
+  const question = normalizeString(body.question, 1500);
+  const channel = normalizeString(body.channel, 20).toLowerCase();
+  const contact = normalizeString(body.contact, 120);
   const pageUrl = normalizeString(body.pageUrl, 500);
   const referrer = normalizeString(body.referrer, 500);
-  const ctaLabel = normalizeString(body.ctaLabel, 160);
-  const ctaHref = normalizeString(body.ctaHref, 300);
-  const ctaPage = normalizeString(body.ctaPage, 300);
-  const phonePattern = /^\+?[0-9\s().-]{6,20}$/;
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const language = normalizeString(body.language, 16);
+  const userAgent = normalizeString(body.userAgent, 300);
 
-  if (!email || !phone || !emailPattern.test(email) || !phonePattern.test(phone)) {
+  if (question.length < QUESTION_MIN_LENGTH || !/[a-zA-Zа-яА-ЯёЁ]{2,}/.test(question)) {
+    return null;
+  }
+
+  if (channel !== "telegram" && channel !== "whatsapp") {
+    return null;
+  }
+
+  if (!isValidContact(channel, contact)) {
     return null;
   }
 
   return {
-    email,
-    phone,
-    website,
-    brief,
-    source,
-    language,
+    name,
+    question,
+    channel,
+    contact,
     pageUrl,
     referrer,
-    ctaLabel,
-    ctaHref,
-    ctaPage,
+    language,
+    userAgent,
     utm: sanitizeUtm(body.utm),
   };
 }

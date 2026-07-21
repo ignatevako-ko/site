@@ -568,20 +568,34 @@ function createSeoCopy(language: Language): ServicePageCopy {
   if (language === "en") {
     return {
       metadata: {
-        title: "SEO Optimisation in Europe | Do.Marketing",
-        description: "SEO optimisation for businesses in Tallinn and Estonia: technical SEO, content, local intent and search visibility.",
-        keywords: ["SEO Tallinn", "SEO agency Estonia", "local SEO Tallinn"],
-        serviceName: "SEO optimisation",
-        serviceDescription: "SEO optimisation for businesses in Tallinn and Estonia.",
+        title: "SEO Optimisation Tallinn | Local SEO Agency Estonia | Do.Marketing",
+        description:
+          "SEO optimisation in Tallinn for local businesses: technical SEO, on-page content, local SEO, internal links and search visibility in Estonia.",
+        keywords: [
+          "seo optimisation tallinn",
+          "SEO optimisation Tallinn",
+          "SEO agency Tallinn",
+          "SEO agency Estonia",
+          "local SEO Tallinn",
+          "search engine optimisation Tallinn",
+        ],
+        serviceName: "SEO optimisation Tallinn",
+        serviceDescription:
+          "SEO optimisation for Tallinn businesses that need stronger local visibility in Estonia.",
         serviceType: "SEO",
         price: "650",
       },
       navigation: { proof: "SEO scope", process: "Process", pricing: "Pricing" },
       hero: {
-        badge: "SEO Europe",
-        title: "SEO optimisation that helps local demand find your business",
-        description: "We improve structure, metadata, content, internal links and local intent so pages can rank for relevant searches in Estonia.",
-        bullets: ["technical and on-page SEO", "Tallinn and Estonia keywords", "content and internal links"],
+        badge: "SEO optimisation Tallinn",
+        title: "SEO optimisation for Tallinn companies that need local search visibility",
+        description:
+          "We improve technical SEO, metadata, content, internal links and local search intent so your service pages can rank for relevant searches in Tallinn and across Estonia.",
+        bullets: [
+          "SEO optimisation Tallinn keyword map",
+          "technical and on-page SEO",
+          "local SEO content and internal links",
+        ],
         primaryCta: "Discuss SEO",
         secondaryCta: "See the process",
       },
@@ -595,11 +609,11 @@ function createSeoCopy(language: Language): ServicePageCopy {
         priceLabel: "650€",
         tiers: [{ budget: "SEO audit", fee: "450€" }, { budget: "monthly SEO", fee: "650€+" }, { budget: "SEO + content", fee: "custom" }],
       },
-      benefits: { eyebrow: "Search", title: "What SEO work includes", description: "We cover the technical and content signals that help pages become understandable and rankable.", cards: [{ title: "Metadata", text: "Titles, descriptions, H1/H2 structure and snippet quality." }, { title: "Technical SEO", text: "Indexability, canonical logic, sitemap, redirects and page structure." }, { title: "Content", text: "Search intent, service depth, FAQs and local proof." }, { title: "Internal links", text: "Clear links between services, cases and conversion pages." }] },
-      proof: { eyebrow: "SEO", title: "Built for European search intent", description: "SEO pages need to match how people search by country, service and language.", points: ["Russian, English and Estonian keyword coverage", "service pages for commercial intent", "structured data and crawlable pages"] },
-      process: { eyebrow: "Steps", title: "How SEO optimisation works", description: "We start with crawlability, then improve pages and content around real search intent.", items: [{ title: "Audit", text: "We check indexability, metadata, structure, duplicates and page intent." }, { title: "Keyword map", text: "We map services to search queries by language and location." }, { title: "Implementation", text: "We improve copy, headings, internal links and schema." }, { title: "Growth", text: "We expand useful pages and monitor rankings and leads." }] },
-      faq: { eyebrow: "FAQ", title: "SEO questions", description: "What to know before starting.", items: [{ question: "How fast does SEO work?", answer: "Most service SEO needs several months, but technical and metadata fixes can improve visibility faster." }, { question: "Do you do local SEO?", answer: "Yes. We focus on Tallinn, Estonia and multilingual commercial intent." }, { question: "Can SEO work with ads?", answer: "Yes. SEO pages can also improve paid traffic quality and conversion." }] },
-      included: { eyebrow: "Included", items: ["SEO audit", "keyword map", "metadata", "content structure", "internal links", "structured data"], cta: "Discuss SEO" },
+      benefits: { eyebrow: "Search", title: "What SEO optimisation includes", description: "We cover the technical, content and local signals that help Tallinn service pages become understandable and rankable.", cards: [{ title: "Metadata", text: "Title tags, descriptions, H1/H2 structure and snippet quality for Tallinn search intent." }, { title: "Technical SEO", text: "Indexability, canonical logic, sitemap, redirects, crawl paths and page structure." }, { title: "Local content", text: "Search intent, service depth, FAQs, local proof and Estonia-specific wording." }, { title: "Internal links", text: "Clear links between services, cases and conversion pages with descriptive anchors." }] },
+      proof: { eyebrow: "Local SEO Tallinn", title: "Built for Tallinn search intent", description: "SEO pages need to match how people search by city, service, language and buying intent.", points: ["English, Russian and Estonian keyword coverage", "service pages for commercial searches like SEO optimisation Tallinn", "structured data, crawlable pages and local business signals"] },
+      process: { eyebrow: "Steps", title: "How SEO optimisation works", description: "We start with crawlability, then improve pages and content around real local search intent.", items: [{ title: "Audit", text: "We check indexability, metadata, structure, duplicates, speed risks and page intent." }, { title: "Keyword map", text: "We map services to Tallinn, Estonia and multilingual search queries." }, { title: "Implementation", text: "We improve copy, headings, internal links, schema and conversion blocks." }, { title: "Growth", text: "We expand useful pages, monitor rankings and connect SEO work with lead quality." }] },
+      faq: { eyebrow: "FAQ", title: "SEO optimisation Tallinn questions", description: "What to know before starting local SEO.", items: [{ question: "How fast does SEO optimisation work?", answer: "Most service SEO needs several months, but technical, metadata and content fixes can improve visibility faster once Google recrawls the page." }, { question: "Do you do local SEO in Tallinn?", answer: "Yes. We focus on Tallinn, Estonia and multilingual commercial intent across English, Russian and Estonian searches." }, { question: "Can SEO work with Google Ads and Meta Ads?", answer: "Yes. SEO pages can also improve paid traffic quality, landing page relevance and conversion." }] },
+      included: { eyebrow: "Included", items: ["SEO audit", "Tallinn keyword map", "metadata", "content structure", "internal links", "structured data"], cta: "Discuss SEO" },
       relatedTitle: "Related services",
     };
   }

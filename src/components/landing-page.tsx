@@ -7,7 +7,7 @@ import { BrandLogo } from "@/components/brand-logo";
 import { CreativeGallery, type CreativeGalleryItem } from "@/components/creative-gallery";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { defaultLanguage, localizedPath } from "@/lib/locales";
+import { defaultLanguage } from "@/lib/locales";
 import { getLandingAdditionalServices } from "@/lib/services";
 import { siteContent, type CaseStudy, type Language } from "@/data/site-content";
 
@@ -83,6 +83,12 @@ const pricingByLanguage: Record<
     ],
     cta: "Оставить заявку",
   },
+};
+
+const serviceCtaContextByLanguage: Record<Language, string[]> = {
+  en: ["Meta Ads targeted advertising", "Google Ads contextual advertising"],
+  et: ["Meta Ads sihitud reklaam", "Google Ads otsingureklaam"],
+  ru: ["таргетированная реклама Meta Ads", "контекстная реклама Google Ads"],
 };
 
 const googleServicesByLanguage: Record<
@@ -182,24 +188,26 @@ const liveTestimonialsCopy: Record<
     title: "Live feedback from our clients",
     items: [
       {
-        name: "Alexander",
-        subtitle: "Business owner",
+        name: "Petr",
+        subtitle: "Owner of the StenVarg construction company",
         quote:
-          "We have been working together for a long time. The process is calm, clear and genuinely supportive. Most importantly, advertising started bringing predictable sales instead of chaos.",
+          "I like that the work combines structure, calm communication and real involvement. Advertising became clearer, decisions became more precise, and the result finally started showing up in the numbers.",
+        image: "/images/testimonial-2.jpg",
+        poster: "/images/testimonial-2.jpg",
+        video: "/videos/testimonials/petr.mp4",
+      },
+      {
+        name: "Konstantin",
+        subtitle: "Owner of the EDU.DO children's sports school",
+        quote:
+          "I have been working with the team for more than three years. They are the best! Believe me, it is very comfortable to work with them. They always hear you and help. Most importantly, they increased my sales. I am very grateful to them. They really know their craft.",
         image: "/images/testimonial-portrait.jpg",
       },
       {
-        name: "Artem",
-        subtitle: "Founder",
+        name: "Svetlana",
+        subtitle: "Representative of Prime Tour travel company",
         quote:
-          "The team helped structure the offer, clean up campaign logic and focus on the metrics that actually matter. It became easier to make decisions and scale with confidence.",
-        image: "/images/testimonial-2.jpg",
-      },
-      {
-        name: "Elena",
-        subtitle: "Brand owner",
-        quote:
-          "What I value most is the mix of comfort and competence. Communication is easy, reporting is clear and the marketing work feels thoughtful instead of noisy.",
+          "For me, it is valuable that everything is done without fuss or unnecessary noise. There is a strategy, there is clarity around the actions, and at the same time there is always a feeling that the project is truly handled with care.",
         image: "/images/testimonial-3.jpg",
       },
     ],
@@ -208,24 +216,26 @@ const liveTestimonialsCopy: Record<
     title: "Meie klientide päris tagasiside",
     items: [
       {
-        name: "Alexander",
-        subtitle: "Ettevõtja",
+        name: "Petr",
+        subtitle: "Ehitusfirma StenVarg omanik",
         quote:
-          "Oleme koos töötanud juba pikemat aega. Kogu protsess on rahulik, selge ja toetav. Kõige olulisem on see, et reklaam hakkas lõpuks tooma prognoositavat müüki, mitte lihtsalt müra.",
+          "Mulle meeldib, et siin on koos süsteemsus, rahulik suhtlus ja päris kaasamõtlemine. Reklaam muutus arusaadavamaks, otsused täpsemaks ja tulemus hakkas lõpuks numbrites tunda andma.",
+        image: "/images/testimonial-2.jpg",
+        poster: "/images/testimonial-2.jpg",
+        video: "/videos/testimonials/petr.mp4",
+      },
+      {
+        name: "Konstantin",
+        subtitle: "EDU.DO laste spordikooli omanik",
+        quote:
+          "Olen nendega töötanud juba üle kolme aasta. Nad on parimad! Uskuge mind, nendega on väga mugav. Nad kuulavad teid alati ära ja aitavad. Kõige tähtsam on see, et nad suurendasid minu müüki. Olen neile väga tänulik. Nad tõesti tunnevad oma tööd.",
         image: "/images/testimonial-portrait.jpg",
       },
       {
-        name: "Artem",
-        subtitle: "Asutaja",
+        name: "Svetlana",
+        subtitle: "Prime Touri reisifirma esindaja",
         quote:
-          "Meeskond aitas pakkumise struktureerida, kampaania loogika paika saada ja keskenduda numbritele, mis päriselt loevad. Otsuseid on nüüd palju lihtsam teha ja kasvada kindlamalt.",
-        image: "/images/testimonial-2.jpg",
-      },
-      {
-        name: "Elena",
-        subtitle: "Brändi omanik",
-        quote:
-          "Kõige rohkem hindan ma seda, et siin on koos nii mugav suhtlus kui ka päris kompetents. Turundus tundub läbimõeldud, mitte lärmakas.",
+          "Minu jaoks on väärtuslik, et kõike tehakse ilma sagina ja liigse mürata. On strateegia, tegevustes on selgus ja samal ajal on alati tunne, et projektiga tegeletakse päriselt tähelepanelikult.",
         image: "/images/testimonial-3.jpg",
       },
     ],
@@ -320,14 +330,14 @@ const targetAudienceByLanguage: Record<
     criteria: [
       "The business is already stable and ready to grow systematically",
       "There is a clear service or product clients genuinely need",
-      "One client brings meaningful value through ticket size, repeat purchases or long-term work",
+      "One client brings strong value through ticket size, repeat purchases or long-term work with you",
       "The team is ready to process leads and turn them into sales",
-      "The goal is not just more inquiries, but a predictable client flow",
+      "The goal is not just more enquiries, but building a predictable client flow",
     ],
     signals: [
-      { value: "Stable", label: "sales and a clear product already exist" },
-      { value: "Value", label: "each new client matters for revenue" },
-      { value: "LTV", label: "clients return or stay for longer" },
+      { value: "Base", label: "sales and a clear product already exist" },
+      { value: "Ticket", label: "each new client noticeably affects revenue" },
+      { value: "LTV", label: "clients return, buy again or stay for longer" },
     ],
     niches: [
       {
@@ -365,14 +375,14 @@ const targetAudienceByLanguage: Record<
     criteria: [
       "Ettevõte töötab stabiilselt ja on valmis süsteemselt kasvama",
       "On selge teenus või toode, mida kliendid päriselt vajavad",
-      "Üks klient loob ärile olulist väärtust läbi ostu, kordusostude või pika koostöö",
+      "Üks klient loob ärile tugevat väärtust ostu, kordusostude või pika koostöö kaudu",
       "Tiim on valmis päringuid töötlema ja müügini viima",
-      "Eesmärk ei ole lihtsalt rohkem päringuid, vaid prognoositav kliendivoog",
+      "Eesmärk ei ole lihtsalt rohkem päringuid, vaid prognoositava kliendivoo ülesehitamine",
     ],
     signals: [
-      { value: "Tugi", label: "müük ja selge toode on olemas" },
-      { value: "Väärtus", label: "uus klient mõjutab käivet" },
-      { value: "LTV", label: "kliendid naasevad või jäävad kauemaks" },
+      { value: "Alus", label: "müük ja selge toode on juba olemas" },
+      { value: "Ost", label: "uus klient mõjutab käivet märgatavalt" },
+      { value: "LTV", label: "kliendid naasevad, ostavad uuesti või jäävad kauemaks" },
     ],
     niches: [
       {
@@ -681,18 +691,7 @@ export function LandingPage({
     language,
     servicesRouteLanguage,
   );
-  const serviceLinks = useMemo(
-    () =>
-      [
-        servicesRouteLanguage
-          ? localizedPath(servicesRouteLanguage, "/meta-ads")
-          : "/meta-ads",
-        servicesRouteLanguage
-          ? localizedPath(servicesRouteLanguage, "/google-ads")
-          : "/google-ads",
-      ] as const,
-    [servicesRouteLanguage],
-  );
+  const serviceCtaContexts = serviceCtaContextByLanguage[language];
   const services = useMemo(
     () => [
       {
@@ -992,7 +991,8 @@ export function LandingPage({
                       </div>
 
                       <Link
-                        href={serviceLinks[index] ?? "#contacts"}
+                        href="#contacts"
+                        data-lead-cta-label={`${pricing.cta}: ${serviceCtaContexts[index] ?? service.title}`}
                         className="mt-5 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-violet-400 px-7 text-[20px] font-semibold text-slate-950 transition hover:bg-violet-300 lg:mt-8"
                       >
                         {pricing.cta}

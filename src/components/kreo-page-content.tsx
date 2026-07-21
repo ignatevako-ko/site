@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
+import { PageBackground } from "@/components/page-background";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteContent, type Language, type SiteDictionary } from "@/data/site-content";
@@ -269,12 +270,7 @@ export function KreoPageContent() {
 
   return (
     <div id="top" className="relative min-h-screen overflow-x-clip bg-slate-950 text-white">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-6rem] top-[-3rem] h-[20rem] w-[20rem] rounded-full bg-amber-200/20 blur-3xl" />
-        <div className="absolute left-1/2 top-0 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-violet-400/12 blur-3xl" />
-        <div className="absolute right-[-9rem] top-32 h-[26rem] w-[26rem] rounded-full bg-fuchsia-200/12 blur-3xl" />
-        <div className="grid-overlay absolute inset-0 opacity-40" />
-      </div>
+      <PageBackground />
 
       <SiteHeader
         content={pageContent}
@@ -291,7 +287,7 @@ export function KreoPageContent() {
             <p className="text-[20px] font-semibold uppercase tracking-[0.3em] text-violet-300">
               {copy.eyebrow}
             </p>
-            <h1 className="text-[28px] font-extralight leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.075rem]">
+            <h1 className="text-[34px] font-light leading-[1.05] tracking-[-0.05em] text-white sm:text-[48px] lg:text-[56px]">
               {copy.title}
             </h1>
             <p className="max-w-4xl text-base leading-8 text-slate-400 sm:text-lg">

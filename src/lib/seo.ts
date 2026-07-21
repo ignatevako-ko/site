@@ -65,7 +65,7 @@ export const indexedRoutes: IndexedRoute[] = [
   { path: "/en/smm", changeFrequency: "weekly", priority: 0.82 },
   { path: "/et/smm", changeFrequency: "weekly", priority: 0.82 },
   { path: "/ru/seo", changeFrequency: "weekly", priority: 0.86 },
-  { path: "/en/seo", changeFrequency: "weekly", priority: 0.82 },
+  { path: "/en/seo", changeFrequency: "weekly", priority: 0.95 },
   { path: "/et/seo", changeFrequency: "weekly", priority: 0.82 },
   { path: "/ru/website-development", changeFrequency: "weekly", priority: 0.86 },
   { path: "/en/website-development", changeFrequency: "weekly", priority: 0.82 },
@@ -75,6 +75,9 @@ export const indexedRoutes: IndexedRoute[] = [
   { path: "/cases/edu-do", changeFrequency: "monthly", priority: 0.78 },
   { path: "/cases/romi-2500-construction", changeFrequency: "monthly", priority: 0.78 },
   { path: "/cases/suvelaagrid", changeFrequency: "monthly", priority: 0.78 },
+  { path: "/cases/prime-tour", changeFrequency: "monthly", priority: 0.78 },
+  { path: "/en/cases/prime-tour", changeFrequency: "monthly", priority: 0.72 },
+  { path: "/et/cases/prime-tour", changeFrequency: "monthly", priority: 0.72 },
   { path: "/kreo", changeFrequency: "monthly", priority: 0.55 },
 ];
 
@@ -217,6 +220,8 @@ export const organizationStructuredData = {
         "Performance marketing",
         "SMM",
         "SEO",
+        "SEO optimisation Tallinn",
+        "Local SEO Tallinn",
         "Marketing audit",
         "Website development",
       ],
@@ -380,6 +385,7 @@ export function buildServiceStructuredData({
   description,
   serviceType,
   price,
+  keywords = [],
   faq = [],
 }: {
   path: string;
@@ -387,6 +393,7 @@ export function buildServiceStructuredData({
   description: string;
   serviceType: string;
   price?: string;
+  keywords?: string[];
   faq?: FaqItem[];
 }) {
   const url = absoluteUrl(path);
@@ -397,6 +404,12 @@ export function buildServiceStructuredData({
       name,
       description,
       serviceType,
+      ...(keywords.length > 0
+        ? {
+            alternateName: keywords,
+            keywords: keywords.join(", "),
+          }
+        : {}),
       provider: {
         "@id": `${siteUrl}/#organization`,
       },

@@ -1,12 +1,79 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { footerContactCopy } from "@/data/footer-contact-copy";
 import type { Language } from "@/data/site-content";
 
 type ContactFormProps = {
   language: Language;
 };
+
+// Records which CTA button carried the visitor to the contact form so the lead
+// notification can show it. Any link pointing at the #contacts anchor counts.
+const CTA_STORAGE_KEY = "domarketing_lead_cta";
+const UTM_STORAGE_KEY = "domarketing_lead_utm";
+const UTM_KEYS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "utm_term",
+] as const;
+
+type LeadUtm = Partial<Record<(typeof UTM_KEYS)[number], string>>;
+
+type LeadCta = {
+  label: string;
+  href: string;
+  page: string;
+};
+
+function readLeadCta(): LeadCta | null {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  try {
+    const raw = window.sessionStorage.getItem(CTA_STORAGE_KEY);
+    return raw ? (JSON.parse(raw) as LeadCta) : null;
+  } catch {
+    return null;
+  }
+}
+
+function getCurrentUtm(): LeadUtm {
+  if (typeof window === "undefined") {
+    return {};
+  }
+
+  const searchParams = new URLSearchParams(window.location.search);
+
+  return Object.fromEntries(
+    UTM_KEYS.map((key) => [key, searchParams.get(key)?.trim() || ""]).filter(
+      ([, value]) => value,
+    ),
+  ) as LeadUtm;
+}
+
+function readStoredUtm(): LeadUtm {
+  if (typeof window === "undefined") {
+    return {};
+  }
+
+  try {
+    const raw = window.sessionStorage.getItem(UTM_STORAGE_KEY);
+    return raw ? (JSON.parse(raw) as LeadUtm) : {};
+  } catch {
+    return {};
+  }
+}
+
+function readLeadUtm() {
+  return {
+    ...readStoredUtm(),
+    ...getCurrentUtm(),
+  };
+}
 
 type FormState = {
   email: string;
@@ -43,6 +110,50 @@ export function ContactForm({ language }: ContactFormProps) {
     "idle",
   );
 
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const currentUtm = getCurrentUtm();
+    if (Object.keys(currentUtm).length) {
+      try {
+        window.sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(currentUtm));
+      } catch {
+        // sessionStorage may be unavailable (private mode) — ignore.
+      }
+    }
+
+    const handleCtaClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      const anchor = target?.closest?.(
+        'a[href*="#contacts"]',
+      ) as HTMLAnchorElement | null;
+
+      if (!anchor) {
+        return;
+      }
+
+      const cta: LeadCta = {
+        label: (anchor.dataset.leadCtaLabel || anchor.textContent || "")
+          .replace(/\s+/g, " ")
+          .trim()
+          .slice(0, 120),
+        href: anchor.getAttribute("href") || "",
+        page: `${window.location.pathname}${window.location.search}`,
+      };
+
+      try {
+        window.sessionStorage.setItem(CTA_STORAGE_KEY, JSON.stringify(cta));
+      } catch {
+        // sessionStorage may be unavailable (private mode) — ignore.
+      }
+    };
+
+    document.addEventListener("click", handleCtaClick, true);
+    return () => document.removeEventListener("click", handleCtaClick, true);
+  }, []);
+
   const handleChange =
     (field: keyof FormState) =>
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -53,13 +164,26 @@ export function ContactForm({ language }: ContactFormProps) {
     event.preventDefault();
     setStatus("loading");
 
+    const cta = readLeadCta();
+    const utm = readLeadUtm();
+
     try {
       const response = await fetch("/api/lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formState),
+        body: JSON.stringify({
+          ...formState,
+          language,
+          source: "site_contact_form",
+          pageUrl: typeof window !== "undefined" ? window.location.href : "",
+          referrer: typeof document !== "undefined" ? document.referrer : "",
+          ctaLabel: cta?.label ?? "",
+          ctaHref: cta?.href ?? "",
+          ctaPage: cta?.page ?? "",
+          utm,
+        }),
       });
 
       if (!response.ok) {

@@ -46,6 +46,66 @@ function hasArg(name) {
   return process.argv.includes(name);
 }
 
+function getNumberArg(name) {
+  const value = getArgValue(name);
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : 0;
+}
+
+function splitList(value) {
+  return String(value || "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableStatus(status) {
+  return status === 429 || (status >= 500 && status <= 599);
+}
+
+function isRetryableFetchError(error) {
+  const code = error?.cause?.code || error?.code;
+  return ["ECONNRESET", "ETIMEDOUT", "ECONNREFUSED", "EAI_AGAIN"].includes(code);
+}
+
+function isMetaTestRow(row) {
+  if (process.env.SHEET_LEADS_SEND_TEST_LEADS === "1") {
+    return false;
+  }
+
+  const firstCellsAreMissing = !String(row[0] || "").trim() && !String(row[1] || "").trim();
+  const hasTestMarker = row.some((value) => {
+    const normalized = String(value || "").trim().toLowerCase();
+    return normalized === "test" || normalized === "тест";
+  });
+
+  return firstCellsAreMissing && hasTestMarker;
+}
+
+function getLeadId(row) {
+  const value = String(row[0] || "").trim();
+  return value.startsWith("l:") ? value : "";
+}
+
+function hasFilledCells(row) {
+  return row.some((value) => String(value || "").trim());
+}
+
+function seedProcessedLeadIds(rows, lastRow) {
+  return rows
+    .slice(0, lastRow)
+    .map(getLeadId)
+    .filter(Boolean);
+}
+
+function trimProcessedLeadIds(values) {
+  return Array.from(new Set(values)).slice(-1000);
+}
+
 function base64Url(value) {
   return Buffer.from(value)
     .toString("base64")
@@ -54,7 +114,77 @@ function base64Url(value) {
     .replace(/\//g, "_");
 }
 
+function stripPrefix(value, prefix) {
+  const text = String(value || "").trim();
+  return text.startsWith(prefix) ? text.slice(prefix.length) : text;
+}
+
+function formatFacebookLeadMessage(row) {
+  return [
+    "<b>Новый лид — Do.Marketing</b>",
+    "",
+    `<b>Имя:</b> ${escapeHtml(row[15])}`,
+    `<b>Телефон:</b> ${escapeHtml(stripPrefix(row[16], "p:"))}`,
+    `<b>Email:</b> ${escapeHtml(row[14])}`,
+    `<b>Сайт:</b> ${escapeHtml(row[12])}`,
+    `<b>Сфера:</b> ${escapeHtml(row[13])}`,
+    `<b>Источник:</b> ${escapeHtml(row[5])}`,
+  ].join("\n");
+}
+
+const SITE_LEAD_LANGUAGE_LABELS = {
+  ru: "Русский (ru)",
+  en: "English (en)",
+  et: "Eesti (et)",
+};
+
+function formatLeadLanguage(value) {
+  const code = String(value || "").trim().toLowerCase();
+  return SITE_LEAD_LANGUAGE_LABELS[code] || String(value || "").trim() || "-";
+}
+
+function formatLeadCta(label, page) {
+  const cleanLabel = String(label || "").trim();
+  const cleanPage = String(page || "").trim();
+
+  if (!cleanLabel && !cleanPage) {
+    return "Прямой переход к форме (без кнопки)";
+  }
+
+  const parts = [cleanLabel ? `«${cleanLabel}»` : "без подписи"];
+  if (cleanPage) {
+    parts.push(`на странице ${cleanPage}`);
+  }
+
+  return parts.join(" ");
+}
+
+function formatSiteLeadMessage(row) {
+  return [
+    "<b>Новый лид — Do.Marketing</b>",
+    "",
+    `<b>Имя:</b> ${escapeHtml(row[15] || "-")}`,
+    `<b>Телефон:</b> ${escapeHtml(stripPrefix(row[16] || row[4], "p:"))}`,
+    `<b>Email:</b> ${escapeHtml(row[14] || row[3])}`,
+    `<b>Сайт:</b> ${escapeHtml(row[12] || row[5])}`,
+    `<b>Сфера:</b> ${escapeHtml(row[13] || row[6])}`,
+    "",
+    `<b>Язык:</b> ${escapeHtml(formatLeadLanguage(row[2]))}`,
+    `<b>Страница (форма):</b> ${escapeHtml(row[7] || "-")}`,
+    `<b>Кнопка →:</b> ${escapeHtml(formatLeadCta(row[17], row[18]))}`,
+    "<b>Источник:</b> Site form",
+  ].join("\n");
+}
+
 function formatRowMessage(sheetName, rowNumber, row) {
+  if (sheetName === "Facebook_leads") {
+    return formatFacebookLeadMessage(row);
+  }
+
+  if (sheetName === "Site_leads") {
+    return formatSiteLeadMessage(row);
+  }
+
   const filledCells = row
     .map((value, index) => ({ index: index + 1, value: String(value || "").trim() }))
     .filter(({ value }) => value);
@@ -163,27 +293,145 @@ async function fetchSheetRows(spreadsheetId, sheetName) {
   const url = new URL(
     `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(range)}`,
   );
-  const response = await fetch(url, {
-    headers: { Authorization: `Bearer ${accessToken}` },
-  });
+  const attempts = Number(process.env.SHEET_LEADS_FETCH_RETRIES || 3);
 
-  if (!response.ok) {
-    throw new Error(`Google Sheets read failed: ${response.status} ${await response.text()}`);
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    let response;
+
+    try {
+      response = await fetch(url, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+    } catch (error) {
+      if (!isRetryableFetchError(error) || attempt === attempts) {
+        throw error;
+      }
+
+      const delayMs = 1000 * attempt;
+      console.warn(`Google Sheets read failed: ${error.cause?.code || error.code}; retrying in ${delayMs}ms`);
+      await sleep(delayMs);
+      continue;
+    }
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.values || [];
+    }
+
+    const responseText = await response.text();
+    if (!isRetryableStatus(response.status) || attempt === attempts) {
+      throw new Error(`Google Sheets read failed: ${response.status} ${responseText}`);
+    }
+
+    const delayMs = 1000 * attempt;
+    console.warn(`Google Sheets read failed: ${response.status}; retrying in ${delayMs}ms`);
+    await sleep(delayMs);
   }
 
-  const data = await response.json();
-  return data.values || [];
+  return [];
 }
 
-async function main() {
+async function writeState(statePath, state) {
+  await writeFile(statePath, JSON.stringify(state, null, 2));
+}
+
+function getSheetNames() {
+  const explicitSheet = getArgValue("--sheet");
+  if (explicitSheet) {
+    return [explicitSheet];
+  }
+
+  const configuredSheets = splitList(process.env.SHEET_LEADS_SHEET_NAMES);
+  if (configuredSheets.length) {
+    return Array.from(new Set(configuredSheets));
+  }
+
+  const defaultSheets = [
+    process.env.GOOGLE_SHEETS_ADS_SHEET_NAME ||
+    process.env.GOOGLE_SHEETS_SHEET_NAME ||
+    "лиды на рекламы 16.04.26",
+  ];
+
+  return Array.from(new Set(defaultSheets.filter(Boolean)));
+}
+
+async function syncSheet({ spreadsheetId, sheetName, statePath, dryRun }) {
+  const rows = await fetchSheetRows(spreadsheetId, sheetName);
+  const previewRow = getNumberArg("--preview-row");
+
+  if (previewRow) {
+    const row = rows[previewRow - 1] || [];
+    console.log(formatRowMessage(sheetName, previewRow, row));
+    return;
+  }
+
+  const state = existsSync(statePath)
+    ? JSON.parse(await readFile(statePath, "utf8"))
+    : {};
+  const sheetState = state[sheetName] || {};
+  const previousLastRow = Number(sheetState.lastRow || 0);
+  const processedLeadIds = new Set(
+    Array.isArray(sheetState.processedLeadIds)
+      ? sheetState.processedLeadIds
+      : seedProcessedLeadIds(rows, previousLastRow),
+  );
+
+  if (!previousLastRow) {
+    if (!dryRun) {
+      state[sheetName] = {
+        lastRow: rows.length,
+        processedLeadIds: trimProcessedLeadIds(seedProcessedLeadIds(rows, rows.length)),
+        initializedAt: new Date().toISOString(),
+      };
+      await writeState(statePath, state);
+    }
+    console.log(`Initialized ${sheetName} at row ${rows.length}`);
+    return;
+  }
+
+  for (const [index, row] of rows.entries()) {
+    const rowNumber = index + 1;
+    const leadId = getLeadId(row);
+    const hasStableId = Boolean(leadId);
+    const shouldSkip = isMetaTestRow(row);
+    const isNewRowWithoutId = !hasStableId && rowNumber > previousLastRow;
+
+    if (shouldSkip && (isNewRowWithoutId || dryRun)) {
+      console.log(`Skipped Meta test lead ${sheetName} row ${rowNumber}`);
+    }
+
+    if (
+      hasFilledCells(row) &&
+      !shouldSkip &&
+      (rowNumber > previousLastRow || (hasStableId && !processedLeadIds.has(leadId)))
+    ) {
+      if (!dryRun && !shouldSkip) {
+        await sendTelegram(formatRowMessage(sheetName, rowNumber, row));
+      }
+
+      if (hasStableId && !dryRun) {
+        processedLeadIds.add(leadId);
+      }
+
+      console.log(`Sent ${sheetName} row ${rowNumber}`);
+    }
+  }
+
+  if (!dryRun) {
+    state[sheetName] = {
+      lastRow: rows.length,
+      processedLeadIds: trimProcessedLeadIds([...processedLeadIds]),
+      updatedAt: new Date().toISOString(),
+    };
+    await writeState(statePath, state);
+  }
+}
+
+async function syncOnce() {
   loadEnvFile(envPath);
 
   const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID || process.env.LEADS_SPREADSHEET_ID;
-  const sheetName =
-    getArgValue("--sheet") ||
-    process.env.GOOGLE_SHEETS_ADS_SHEET_NAME ||
-    process.env.GOOGLE_SHEETS_SHEET_NAME ||
-    "лиды на рекламы 16.04.26";
+  const sheetNames = getSheetNames();
   const statePath = process.env.SHEET_LEADS_STATE_FILE || path.resolve(process.cwd(), ".sheet-leads-state.json");
   const dryRun = hasArg("--dry-run");
 
@@ -191,36 +439,35 @@ async function main() {
     throw new Error("Google Sheets env vars are missing: set GOOGLE_SHEETS_SPREADSHEET_ID or LEADS_SPREADSHEET_ID");
   }
 
-  const rows = await fetchSheetRows(spreadsheetId, sheetName);
-  const state = existsSync(statePath)
-    ? JSON.parse(await readFile(statePath, "utf8"))
-    : {};
-  const previousLastRow = Number(state[sheetName]?.lastRow || 0);
+  for (const sheetName of sheetNames) {
+    await syncSheet({ spreadsheetId, sheetName, statePath, dryRun });
+  }
+}
 
-  if (!previousLastRow) {
-    if (!dryRun) {
-      state[sheetName] = { lastRow: rows.length, initializedAt: new Date().toISOString() };
-      await writeFile(statePath, JSON.stringify(state, null, 2));
-    }
-    console.log(`Initialized ${sheetName} at row ${rows.length}`);
+async function main() {
+  loadEnvFile(envPath);
+
+  const poll = hasArg("--poll") || hasArg("--watch");
+  const intervalMs =
+    getNumberArg("--interval-ms") ||
+    Number(process.env.SHEET_LEADS_POLL_INTERVAL_MS || 0) ||
+    60_000;
+
+  if (!poll) {
+    await syncOnce();
     return;
   }
 
-  const newRows = rows.slice(previousLastRow);
+  console.log(`Polling Google Sheets every ${intervalMs}ms`);
 
-  for (const [index, row] of newRows.entries()) {
-    const rowNumber = previousLastRow + index + 1;
-    if (row.some((value) => String(value || "").trim())) {
-      if (!dryRun) {
-        await sendTelegram(formatRowMessage(sheetName, rowNumber, row));
-      }
-      console.log(`Sent ${sheetName} row ${rowNumber}`);
+  while (true) {
+    try {
+      await syncOnce();
+    } catch (error) {
+      console.error(error);
     }
-  }
 
-  if (!dryRun) {
-    state[sheetName] = { lastRow: rows.length, updatedAt: new Date().toISOString() };
-    await writeFile(statePath, JSON.stringify(state, null, 2));
+    await sleep(intervalMs);
   }
 }
 
