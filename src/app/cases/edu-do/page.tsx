@@ -285,7 +285,7 @@ export default function EduDoCasePage() {
           </div>
         </header>
 
-        <section className="grid gap-10 py-12 lg:grid-cols-[1fr_0.95fr] lg:items-end lg:py-16">
+        <section className="grid gap-10 py-12 lg:grid-cols-[1fr_0.95fr] lg:items-start lg:py-16">
           <div className="space-y-7">
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full border border-violet-300/30 bg-violet-400/10 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.24em] text-violet-100">
@@ -324,16 +324,16 @@ export default function EduDoCasePage() {
             </div>
           </div>
 
-          <div className="relative min-h-[34rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/60 p-6 shadow-[0_30px_90px_rgba(2,6,23,0.38)] sm:p-8">
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/60 p-6 shadow-[0_30px_90px_rgba(2,6,23,0.38)] sm:p-8">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.22),transparent_34%),linear-gradient(160deg,rgba(34,211,238,0.12),rgba(7,9,20,0.15))]" />
-            <div className="relative flex h-full min-h-[30rem] flex-col justify-between gap-8">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div className="space-y-3">
+            <div className="relative flex flex-col gap-6">
+              <div className="flex flex-col gap-4 border-b border-white/10 pb-6 sm:flex-row sm:items-start sm:justify-between">
+                <div className="space-y-2">
                   <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-violet-200">
                     Цифры кейса
                   </p>
-                  <h2 className="max-w-lg text-[34px] font-light leading-tight text-white sm:text-[42px]">
-                    Стабильный набор в спортивную школу
+                  <h2 className="text-[28px] font-light leading-tight text-white sm:text-[34px]">
+                    Ключевые показатели
                   </h2>
                 </div>
                 <div className="shrink-0 rounded-full border border-emerald-300/30 bg-emerald-300/10 px-4 py-2 text-sm font-semibold text-emerald-200">
@@ -343,14 +343,17 @@ export default function EduDoCasePage() {
 
               <div className="grid gap-3 sm:grid-cols-2">
                 {heroStats.map((item) => (
-                  <div key={item.label} className="rounded-[1.25rem] border border-white/10 bg-white/[0.055] p-5 backdrop-blur">
-                    <p className="text-[34px] font-semibold leading-none text-white">{item.value}</p>
-                    <p className="mt-3 text-sm leading-5 text-slate-400">{item.label}</p>
+                  <div
+                    key={item.label}
+                    className="flex min-h-[8.25rem] flex-col justify-between rounded-[1.1rem] border border-white/10 bg-white/[0.055] p-5 backdrop-blur"
+                  >
+                    <p className="text-[32px] font-semibold leading-none text-white">{item.value}</p>
+                    <p className="text-sm leading-5 text-slate-400">{item.label}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/45 p-5">
+              <div className="rounded-[1.1rem] border border-white/10 bg-slate-950/45 px-5 py-4">
                 <p className="text-sm leading-6 text-slate-300">
                   Результат подтвержден скринами из рекламного кабинета и
                   перепиской с клиентом: 401, 520 и 561 заявка в месяц.
