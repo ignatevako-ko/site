@@ -65,7 +65,7 @@ const ru: RomiContent = {
     ],
     economyBadge: "Экономика на клиента",
     economyValue: "€450 CAC → €90 000",
-    economyNote: "Около 200x по выручке. ROMI 2500% — от прибыли после себестоимости.",
+    economyNote: "≈200× по выручке. ROMI посчитан от прибыли после себестоимости.",
   },
   facts: [
     { label: "Ниша", value: "Комплексный ремонт жилых и коммерческих объектов" },
@@ -158,7 +158,7 @@ const en: RomiContent = {
     ],
     economyBadge: "Economics per client",
     economyValue: "€450 CAC → €90 000",
-    economyNote: "About 200x on revenue. ROMI 2500% — on profit after cost of goods.",
+    economyNote: "≈200× on revenue. ROMI is calculated on profit after cost of goods.",
   },
   facts: [
     { label: "Niche", value: "Full-service renovation of residential and commercial properties" },
@@ -251,7 +251,7 @@ const et: RomiContent = {
     ],
     economyBadge: "Ökonoomika kliendi kohta",
     economyValue: "€450 CAC → €90 000",
-    economyNote: "Umbes 200x käibe järgi. ROMI 2500% — kasumilt pärast omahinda.",
+    economyNote: "≈200× käibe järgi. ROMI on arvutatud kasumilt pärast omahinda.",
   },
   facts: [
     { label: "Nišš", value: "Elu- ja äripindade terviklik remont" },

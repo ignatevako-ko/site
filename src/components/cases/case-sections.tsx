@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { SectionLabel } from "@/components/section-label";
 
 /* ─────────────────────────  Общие токены кейсов  ───────────────────────── */
 
 export const caseHeroTitleClass =
-  "max-w-4xl text-[40px] font-light leading-[1.02] tracking-[-0.045em] text-white sm:text-[58px] lg:text-[72px]";
+  "max-w-3xl text-[32px] font-light leading-[1.07] tracking-[-0.03em] text-white sm:text-[40px] lg:text-[50px]";
 export const caseSectionTitleClass =
   "text-[32px] font-light leading-[1.05] tracking-[-0.04em] text-white sm:text-[46px]";
 export const casePrimaryButtonClass =
@@ -51,6 +52,52 @@ export function CaseHeroButtons({ primary, secondary }: { primary: CaseCta; seco
         {secondary.label}
       </Link>
     </div>
+  );
+}
+
+/**
+ * Эталонный hero-каркас страницы-кейса: слева — нарратив (бейджи, H1,
+ * описание, кнопки, опциональные мини-статы), справа — панель-результат (слот).
+ * Использовать на всех кейсах, чтобы hero был единым. Числа не дублировать:
+ * либо мини-статы слева, либо цифры в панели справа — но не одно и то же дважды.
+ */
+export function CaseHero({
+  badge,
+  category,
+  title,
+  description,
+  primaryCta,
+  secondaryCta,
+  stats,
+  panel,
+  align = "start",
+}: {
+  badge: string;
+  category: string;
+  title: string;
+  description: string;
+  primaryCta: CaseCta;
+  secondaryCta: CaseCta;
+  stats?: CaseStat[];
+  panel: ReactNode;
+  align?: "start" | "center" | "end";
+}) {
+  const alignClass =
+    align === "center" ? "lg:items-center" : align === "end" ? "lg:items-end" : "lg:items-start";
+
+  return (
+    <section className={`grid gap-10 py-10 lg:grid-cols-[1.02fr_0.98fr] ${alignClass} lg:py-14`}>
+      <div className="space-y-7">
+        <CaseHeroBadges badge={badge} category={category} />
+        <div className="space-y-5">
+          <h1 className={caseHeroTitleClass}>{title}</h1>
+          <p className="max-w-xl text-base leading-8 text-slate-300 sm:text-lg">{description}</p>
+        </div>
+        <CaseHeroButtons primary={primaryCta} secondary={secondaryCta} />
+        {stats && stats.length > 0 ? <CaseStatsGrid stats={stats} /> : null}
+      </div>
+      {panel}
+    </section>
   );
 }
 

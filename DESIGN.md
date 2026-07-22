@@ -94,6 +94,7 @@
 1. **Главная / лендинг** → компонент `LandingPage`, контент в `src/data/site-content.ts` (RU/EN/ET). Роут `[language]/page.tsx`.
 2. **Сервисная страница** (Meta Ads, Google Ads, SEO, SMM-услуга, аудит, разработка) → `ServicePageShell`. Тексты — `src/lib/service-pages.ts` или `src/lib/additional-service-pages.ts`. Роут — под `[language]/…` или через `additional-service-route`.
 3. **Кейс** (`src/app/cases/<slug>/`) → серверный `page.tsx` (только `metadata` + JSON-LD + `<XxxArticle/>`), клиентский `*-article.tsx` внутри `CaseChrome`, контент — `src/data/cases/<slug>.ts` как `Record<Language, …>`. Переключение языка — на месте (без смены URL), как на `/cases`.
+   - **Hero кейса — только через `CaseHero`** (`@/components/cases/case-sections`): слева нарратив (бейджи, H1, описание, кнопки, опциональные мини-статы), справа — панель-результат через проп `panel`. Эталон — `src/components/cases/romi-article.tsx`. Числа не дублировать (см. §8): один и тот же показатель показывается **один раз** — либо в мини-статах слева, либо в панели справа.
 4. **Прочие лендинги** — по возможности переиспользуй `ServicePageShell` или, минимум, `SiteHeader` + `PageBackground` + `SiteFooter` + токены выше.
 
 ---
@@ -142,3 +143,5 @@
 - ❌ `max-w-6xl` для основного контента.
 - ❌ Внешние ассеты (логотипы с чужих CDN, случайные iframe) вместо брендовых компонентов.
 - ❌ Одноязычная страница.
+- ❌ Огромный H1 (десктоп-размер > ~56px) — hero-заголовок должен быть читаемым, а не во весь экран.
+- ❌ Дублировать одни и те же цифры в нескольких блоках hero (например, и в 4 карточках слева, и в панели справа). Каждый показатель — один раз.
