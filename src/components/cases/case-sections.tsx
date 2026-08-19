@@ -26,6 +26,8 @@ export type CaseProofImage = { src: string; alt: string; ratio: string };
 export type CaseCard = { label: string; title: string; text: string };
 export type CaseCreativeImage = { src: string; alt: string };
 export type CaseCreativeVideo = { src: string; title: string };
+export type CaseTableColumn = { key: string; label: string; align?: "left" | "right" };
+export type CaseTableRow = Record<string, string>;
 
 /* ────────────────────────────  Секции кейса  ──────────────────────────── */
 
@@ -370,6 +372,100 @@ export function CaseNextStep({
         <Link href={cta.href} className={caseWhiteButtonClass}>
           {cta.label}
         </Link>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Таблица с разбивкой результатов (кампании, направления, потоки).
+ * Числа в таблице — источник правды кейса, поэтому дублировать их в hero не нужно.
+ */
+export function CaseTable({
+  id,
+  label,
+  title,
+  description,
+  columns,
+  rows,
+  total,
+  note,
+}: {
+  id?: string;
+  label: string;
+  title: string;
+  description?: string;
+  columns: CaseTableColumn[];
+  rows: CaseTableRow[];
+  total?: CaseTableRow;
+  note?: string;
+}) {
+  const cellAlign = (column: CaseTableColumn) =>
+    column.align === "right" ? "text-right" : "text-left";
+
+  return (
+    <section id={id} className="py-16">
+      <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="space-y-4">
+          <SectionLabel>{label}</SectionLabel>
+          <h2 className={caseSectionTitleClass}>{title}</h2>
+          {description ? (
+            <p className="text-base leading-7 text-slate-400">{description}</p>
+          ) : null}
+        </div>
+
+        <div className="space-y-4">
+          <div className="overflow-x-auto rounded-[1.5rem] border border-white/10 bg-white/[0.045]">
+            <table className="w-full min-w-[20rem] border-collapse text-left">
+              <thead>
+                <tr className="border-b border-white/10">
+                  {columns.map((column) => (
+                    <th
+                      key={column.key}
+                      scope="col"
+                      className={`px-4 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:px-5 ${cellAlign(column)}`}
+                    >
+                      {column.label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row) => (
+                  <tr key={row[columns[0].key]} className="border-b border-white/[0.07]">
+                    {columns.map((column, index) => (
+                      <td
+                        key={column.key}
+                        className={`px-4 py-4 text-sm leading-6 sm:px-5 ${cellAlign(column)} ${
+                          index === 0 ? "text-slate-300" : "font-semibold text-white"
+                        }`}
+                      >
+                        {row[column.key]}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+              {total ? (
+                <tfoot>
+                  <tr className="bg-violet-400/10">
+                    {columns.map((column, index) => (
+                      <td
+                        key={column.key}
+                        className={`px-4 py-4 text-sm font-semibold leading-6 sm:px-5 ${cellAlign(column)} ${
+                          index === 0 ? "text-violet-100" : "text-white"
+                        }`}
+                      >
+                        {total[column.key]}
+                      </td>
+                    ))}
+                  </tr>
+                </tfoot>
+              ) : null}
+            </table>
+          </div>
+          {note ? <p className="text-sm leading-6 text-slate-500">{note}</p> : null}
+        </div>
       </div>
     </section>
   );

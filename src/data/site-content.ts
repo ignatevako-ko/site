@@ -135,6 +135,14 @@ const casesRu: CaseStudy[] = [
     href: "/cases/edu-do",
   },
   {
+    title: "Профессиональные курсы Proffteh",
+    category: "Lead generation / professional courses",
+    result: "751 заявка по €1,48 при чеке курса €2 400",
+    summary:
+      "8 кампаний на 5 направлений: повар, бармен, швея, ИИ и digital-маркетинг. За €1 113 рекламного бюджета получили 751 заявку по средней цене €1,48. При стоимости курса €2 400 и конверсии в оплату 3% это ROAS около 4 700%.",
+    href: "/cases/proffteh",
+  },
+  {
     title: "Женская спортивная одежда",
     category: "E-commerce / worldwide sales",
     result: "ROAS до 15 в Black Friday",
@@ -198,6 +206,14 @@ const casesEn: CaseStudy[] = [
     href: "/cases/edu-do",
   },
   {
+    title: "Proffteh professional courses",
+    category: "Lead generation / professional courses",
+    result: "751 leads at €1.48 for a €2,400 course",
+    summary:
+      "8 campaigns across 5 programmes: chef, bartender, seamstress, AI and digital marketing. A €1,113 ad budget brought 751 leads at an average of €1.48. With a €2,400 course price and a 3% lead-to-payment rate that is a ROAS of about 4,700%.",
+    href: "/cases/proffteh",
+  },
+  {
     title: "Women’s Activewear Brand",
     category: "E-commerce / worldwide sales",
     result: "ROAS up to 15 during Black Friday",
@@ -259,6 +275,14 @@ const casesEt: CaseStudy[] = [
     summary:
       "Oleme projektiga töötanud 3 aastat ja toome stabiilselt vähemalt 370 päringut kuus. Parim kuu tõi 561 päringut hinnaga €3.4, keskmine hind on nüüd umbes €4 võrreldes varasema €20-60 päringu hinnaga.",
     href: "/cases/edu-do",
+  },
+  {
+    title: "Proffteh kutsekursused",
+    category: "Lead generation / professional courses",
+    result: "751 päringut hinnaga €1,48, kursus €2 400",
+    summary:
+      "8 kampaaniat 5 suunal: kokk, baarmen, õmbleja, AI ja digiturundus. €1 113 reklaamieelarve tõi 751 päringut keskmise hinnaga €1,48. Kursuse hinnaga €2 400 ja 3% konversiooniga makseks teeb see ROAS-i umbes 4 700%.",
+    href: "/cases/proffteh",
   },
   {
     title: "Naiste spordiriiete bränd",
