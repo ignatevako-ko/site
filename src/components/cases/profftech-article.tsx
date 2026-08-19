@@ -13,12 +13,12 @@ import {
   CaseTable,
   CaseThreeCards,
 } from "@/components/cases/case-sections";
-import { profftehContent, profftehCreativeImages } from "@/data/cases/proffteh";
+import { profftechContent, profftechCreativeImages } from "@/data/cases/profftech";
 import type { Language } from "@/data/site-content";
 
-export function ProfftehArticle() {
+export function ProfftechArticle() {
   const [language, setLanguage] = useState<Language>("ru");
-  const c = profftehContent[language];
+  const c = profftechContent[language];
 
   return (
     <CaseChrome language={language} onLanguageChange={setLanguage}>
@@ -102,7 +102,7 @@ export function ProfftehArticle() {
         label={c.creatives.label}
         title={c.creatives.title}
         description={c.creatives.description}
-        images={profftehCreativeImages.map((item) => ({
+        images={profftechCreativeImages.map((item) => ({
           src: item.src,
           alt: c.creatives.imageAlts[item.altKey],
         }))}

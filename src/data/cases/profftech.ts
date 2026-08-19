@@ -9,14 +9,14 @@ import type {
 import type { Language } from "@/data/site-content";
 
 /** Медиа — не зависит от языка. */
-export const profftehCreativeImages = [
-  { src: "/images/cases/proffteh/creative-marketing-light.png", altKey: 0 },
-  { src: "/images/cases/proffteh/creative-marketing-blue.png", altKey: 1 },
-  { src: "/images/cases/proffteh/creative-marketing-neon.png", altKey: 2 },
-  { src: "/images/cases/proffteh/creative-ai-job.png", altKey: 3 },
+export const profftechCreativeImages = [
+  { src: "/images/cases/profftech/creative-marketing-light.png", altKey: 0 },
+  { src: "/images/cases/profftech/creative-marketing-blue.png", altKey: 1 },
+  { src: "/images/cases/profftech/creative-marketing-neon.png", altKey: 2 },
+  { src: "/images/cases/profftech/creative-ai-job.png", altKey: 3 },
 ] as const;
 
-export type ProfftehContent = {
+export type ProfftechContent = {
   badge: string;
   category: string;
   heroTitle: string;
@@ -51,12 +51,12 @@ export type ProfftehContent = {
   nextStep: { label: string; title: string; text: string; cta: string };
 };
 
-const ru: ProfftehContent = {
+const ru: ProfftechContent = {
   badge: "Реальный кейс",
   category: "Professional courses / lead generation",
   heroTitle: "751 заявка на профессиональные курсы по €1,48",
   heroDescription:
-    "Proffteh — центр профессионального обучения в Таллинне. С апреля по сентябрь 2026 мы вели 8 рекламных кампаний на 5 направлений: повар, бармен, швея, искусственный интеллект и digital-маркетинг. За €1 113 рекламного бюджета получили 751 заявку — при стоимости курса €2 400.",
+    "Profftech — центр профессионального обучения в Таллинне. С апреля по сентябрь 2026 мы вели 8 рекламных кампаний на 5 направлений: повар, бармен, швея, искусственный интеллект и digital-маркетинг. За €1 113 рекламного бюджета получили 751 заявку — при стоимости курса €2 400.",
   primaryCta: { label: "Хочу также", href: "#contacts" },
   secondaryCta: { label: "Смотреть цифры", href: "#numbers" },
   heroStats: [
@@ -80,7 +80,7 @@ const ru: ProfftehContent = {
       "ROAS ≈4 700%, ROMI ≈4 600%, привлечение одного ученика ≈€49. Заявки и бюджет — фактические данные рекламного кабинета. Конверсию из заявки в оплату мы взяли консервативно: при 5% выручка составила бы ≈€88 800 и ROAS ≈8 000%.",
   },
   facts: [
-    { label: "Клиент", value: "Proffteh, центр профессионального обучения" },
+    { label: "Клиент", value: "Profftech, центр профессионального обучения" },
     { label: "География", value: "Таллинн, Эстония" },
     { label: "Направления", value: "Повар, бармен, швея, ИИ, digital-маркетинг" },
     { label: "Период", value: "Апрель — сентябрь 2026, наборы на потоки" },
@@ -157,10 +157,10 @@ const ru: ProfftehContent = {
     description:
       "Для набора на курс digital-маркетинга мы протестировали четыре макета с одинаковой сутью, но разной подачей: от спокойного светлого минимализма до провокации «AI заберёт работу маркетолога?». В каждом макете — город, дата старта потока и блок про обучение без оплаты.",
     imageAlts: [
-      "Светлый креатив Proffteh: курс Digital Marketing в новых реалиях, старт 14.09.26 в Таллинне",
-      "Синий креатив Proffteh: курс digital-маркетинга с блоком об обучении без оплаты",
-      "Неоновый креатив Proffteh: digital-маркетинг со знанием AI, SMM, Meta Ads, Google Ads и SEO",
-      "Чёрно-жёлтый креатив Proffteh с вопросом «AI заберёт работу маркетолога?»",
+      "Светлый креатив Profftech: курс Digital Marketing в новых реалиях, старт 14.09.26 в Таллинне",
+      "Синий креатив Profftech: курс digital-маркетинга с блоком об обучении без оплаты",
+      "Неоновый креатив Profftech: digital-маркетинг со знанием AI, SMM, Meta Ads, Google Ads и SEO",
+      "Чёрно-жёлтый креатив Profftech с вопросом «AI заберёт работу маркетолога?»",
     ],
   },
   faq: {
@@ -168,7 +168,7 @@ const ru: ProfftehContent = {
     title: "Частые вопросы по кейсу",
     items: [
       {
-        question: "Сколько заявок получил Proffteh и по какой цене?",
+        question: "Сколько заявок получил Profftech и по какой цене?",
         answer:
           "751 заявка за 8 кампаний с апреля по сентябрь 2026 при рекламном бюджете €1 113. Средняя цена заявки — €1,48, лучшая — €0,56 на курсах бармана, самая дорогая — €3,92 в первой тестовой кампании.",
       },
@@ -202,12 +202,12 @@ const ru: ProfftehContent = {
   },
 };
 
-const en: ProfftehContent = {
+const en: ProfftechContent = {
   badge: "Real case study",
   category: "Professional courses / lead generation",
   heroTitle: "751 leads for professional courses at €1.48 each",
   heroDescription:
-    "Proffteh is a professional training centre in Tallinn. Between April and September 2026 we ran 8 campaigns across 5 programmes: chef, bartender, seamstress, artificial intelligence and digital marketing. A €1,113 ad budget brought in 751 leads — for a course priced at €2,400.",
+    "Profftech is a professional training centre in Tallinn. Between April and September 2026 we ran 8 campaigns across 5 programmes: chef, bartender, seamstress, artificial intelligence and digital marketing. A €1,113 ad budget brought in 751 leads — for a course priced at €2,400.",
   primaryCta: { label: "I want this too", href: "#contacts" },
   secondaryCta: { label: "See the numbers", href: "#numbers" },
   heroStats: [
@@ -231,7 +231,7 @@ const en: ProfftehContent = {
       "ROAS ≈4,700%, ROMI ≈4,600%, cost per enrolled student ≈€49. Leads and spend are actual ad-account data. We took a deliberately conservative lead-to-payment rate: at 5% the revenue would be ≈€88,800 and ROAS ≈8,000%.",
   },
   facts: [
-    { label: "Client", value: "Proffteh, professional training centre" },
+    { label: "Client", value: "Profftech, professional training centre" },
     { label: "Geography", value: "Tallinn, Estonia" },
     { label: "Programmes", value: "Chef, bartender, seamstress, AI, digital marketing" },
     { label: "Period", value: "April — September 2026, intake by cohorts" },
@@ -308,10 +308,10 @@ const en: ProfftehContent = {
     description:
       "For the digital marketing intake we tested four layouts with identical substance but different delivery: from calm light minimalism to the provocation “Will AI take the marketer's job?”. Every layout carries the city, the cohort start date and the free-training block.",
     imageAlts: [
-      "Light Proffteh creative: Digital Marketing course in the new reality, starting 14.09.26 in Tallinn",
-      "Blue Proffteh creative: digital marketing course with the free-training block",
-      "Neon Proffteh creative: digital marketing with AI skills, SMM, Meta Ads, Google Ads and SEO",
-      "Black-and-yellow Proffteh creative asking “Will AI take the marketer's job?”",
+      "Light Profftech creative: Digital Marketing course in the new reality, starting 14.09.26 in Tallinn",
+      "Blue Profftech creative: digital marketing course with the free-training block",
+      "Neon Profftech creative: digital marketing with AI skills, SMM, Meta Ads, Google Ads and SEO",
+      "Black-and-yellow Profftech creative asking “Will AI take the marketer's job?”",
     ],
   },
   faq: {
@@ -319,7 +319,7 @@ const en: ProfftehContent = {
     title: "Frequently asked questions about the case",
     items: [
       {
-        question: "How many leads did Proffteh get and at what price?",
+        question: "How many leads did Profftech get and at what price?",
         answer:
           "751 leads across 8 campaigns from April to September 2026 on a €1,113 ad budget. The average cost per lead was €1.48, the best €0.56 on the bartender course, the highest €3.92 in the first test campaign.",
       },
@@ -353,12 +353,12 @@ const en: ProfftehContent = {
   },
 };
 
-const et: ProfftehContent = {
+const et: ProfftechContent = {
   badge: "Reaalne juhtum",
   category: "Professional courses / lead generation",
   heroTitle: "751 päringut kutsekursustele hinnaga €1,48",
   heroDescription:
-    "Proffteh on kutseõppekeskus Tallinnas. Aprillist septembrini 2026 juhtisime 8 reklaamikampaaniat 5 suunal: kokk, baarmen, õmbleja, tehisintellekt ja digiturundus. €1 113 reklaamieelarve tõi 751 päringut — kursuse hind on €2 400.",
+    "Profftech on kutseõppekeskus Tallinnas. Aprillist septembrini 2026 juhtisime 8 reklaamikampaaniat 5 suunal: kokk, baarmen, õmbleja, tehisintellekt ja digiturundus. €1 113 reklaamieelarve tõi 751 päringut — kursuse hind on €2 400.",
   primaryCta: { label: "Soovin sama", href: "#contacts" },
   secondaryCta: { label: "Vaata numbreid", href: "#numbers" },
   heroStats: [
@@ -382,7 +382,7 @@ const et: ProfftehContent = {
       "ROAS ≈4 700%, ROMI ≈4 600%, ühe õppija hankimine ≈€49. Päringud ja eelarve on reklaamikonto tegelikud andmed. Konversiooni päringust makseks võtsime teadlikult konservatiivselt: 5% korral oleks käive ≈€88 800 ja ROAS ≈8 000%.",
   },
   facts: [
-    { label: "Klient", value: "Proffteh, kutseõppekeskus" },
+    { label: "Klient", value: "Profftech, kutseõppekeskus" },
     { label: "Geograafia", value: "Tallinn, Eesti" },
     { label: "Suunad", value: "Kokk, baarmen, õmbleja, AI, digiturundus" },
     { label: "Periood", value: "Aprill — september 2026, vastuvõtt gruppidesse" },
@@ -459,10 +459,10 @@ const et: ProfftehContent = {
     description:
       "Digiturunduse grupi täitmiseks testisime nelja maketti, mille sisu on sama, aga esitus erinev: rahulikust heledast minimalismist kuni provokatsioonini „Kas AI võtab turundaja töö?”. Igal makettil on linn, grupi alguskuupäev ja tasuta õppe plokk.",
     imageAlts: [
-      "Proffteh hele kreatiiv: Digital Marketing kursus uues reaalsuses, algus 14.09.26 Tallinnas",
-      "Proffteh sinine kreatiiv: digiturunduse kursus koos tasuta õppe plokiga",
-      "Proffteh neoonkreatiiv: digiturundus AI oskustega, SMM, Meta Ads, Google Ads ja SEO",
-      "Proffteh must-kollane kreatiiv küsimusega „Kas AI võtab turundaja töö?”",
+      "Profftech hele kreatiiv: Digital Marketing kursus uues reaalsuses, algus 14.09.26 Tallinnas",
+      "Profftech sinine kreatiiv: digiturunduse kursus koos tasuta õppe plokiga",
+      "Profftech neoonkreatiiv: digiturundus AI oskustega, SMM, Meta Ads, Google Ads ja SEO",
+      "Profftech must-kollane kreatiiv küsimusega „Kas AI võtab turundaja töö?”",
     ],
   },
   faq: {
@@ -470,7 +470,7 @@ const et: ProfftehContent = {
     title: "Korduma kippuvad küsimused juhtumi kohta",
     items: [
       {
-        question: "Mitu päringut Proffteh sai ja millise hinnaga?",
+        question: "Mitu päringut Profftech sai ja millise hinnaga?",
         answer:
           "751 päringut 8 kampaaniaga aprillist septembrini 2026, reklaamieelarve €1 113. Keskmine päringu hind oli €1,48, parim €0,56 baarmeni kursusel, kõrgeim €3,92 esimeses testkampaanias.",
       },
@@ -504,7 +504,7 @@ const et: ProfftehContent = {
   },
 };
 
-export const profftehContent: Record<Language, ProfftehContent> = {
+export const profftechContent: Record<Language, ProfftechContent> = {
   ru,
   en,
   et,

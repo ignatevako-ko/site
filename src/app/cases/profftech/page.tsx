@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { ProfftehArticle } from "@/components/cases/proffteh-article";
+import { ProfftechArticle } from "@/components/cases/profftech-article";
 
-const pageUrl = "https://domarketing.ee/cases/proffteh";
+const pageUrl = "https://domarketing.ee/cases/profftech";
 
 const faqItems = [
   {
-    question: "Сколько заявок получил Proffteh и по какой цене?",
+    question: "Сколько заявок получил Profftech и по какой цене?",
     answer:
       "751 заявка за 8 кампаний с апреля по сентябрь 2026 при рекламном бюджете €1 113. Средняя цена заявки — €1,48, лучшая — €0,56 на курсах бармана, самая дорогая — €3,92 в первой тестовой кампании.",
   },
@@ -32,11 +32,11 @@ const faqItems = [
 ];
 
 export const metadata: Metadata = {
-  title: "Кейс Proffteh: 751 заявка на курсы по €1,48 | Do.Marketing",
+  title: "Кейс Profftech: 751 заявка на курсы по €1,48 | Do.Marketing",
   description:
-    "Кейс Do.Marketing для учебного центра Proffteh в Таллинне: 751 заявка на курсы по €1,48 за €1 113 бюджета и ROAS около 4 700% при чеке €2 400.",
+    "Кейс Do.Marketing для учебного центра Profftech в Таллинне: 751 заявка на курсы по €1,48 за €1 113 бюджета и ROAS около 4 700% при чеке €2 400.",
   keywords: [
-    "кейс Proffteh",
+    "кейс Profftech",
     "реклама курсов",
     "лидогенерация обучение",
     "Meta Ads для учебного центра",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     canonical: pageUrl,
   },
   openGraph: {
-    title: "Кейс Proffteh: 751 заявка на курсы по €1,48",
+    title: "Кейс Profftech: 751 заявка на курсы по €1,48",
     description:
       "8 кампаний на 5 направлений, 751 заявка за €1 113 бюджета и ROAS около 4 700% при стоимости курса €2 400.",
     url: pageUrl,
@@ -57,10 +57,10 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: "https://domarketing.ee/images/cases/proffteh/creative-marketing-neon.png",
+        url: "https://domarketing.ee/images/cases/profftech/creative-marketing-neon.png",
         width: 1080,
         height: 1920,
-        alt: "Креатив Proffteh для набора на курс digital-маркетинга",
+        alt: "Креатив Profftech для набора на курс digital-маркетинга",
       },
     ],
   },
@@ -77,14 +77,14 @@ const structuredData = {
         {
           "@type": "ListItem",
           position: 3,
-          name: "Proffteh: 751 заявка на курсы по €1,48",
+          name: "Profftech: 751 заявка на курсы по €1,48",
           item: pageUrl,
         },
       ],
     },
     {
       "@type": "Article",
-      headline: "Кейс Proffteh: 751 заявка на профессиональные курсы по €1,48",
+      headline: "Кейс Profftech: 751 заявка на профессиональные курсы по €1,48",
       description:
         "Как Do.Marketing выстроил набор на 5 направлений профессионального обучения: 8 кампаний, 751 заявка, средняя цена лида €1,48 и ROAS около 4 700%.",
       inLanguage: "ru",
@@ -109,14 +109,14 @@ const structuredData = {
   ],
 };
 
-export default function ProfftehCasePage() {
+export default function ProfftechCasePage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <ProfftehArticle />
+      <ProfftechArticle />
     </>
   );
 }
