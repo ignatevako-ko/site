@@ -26,6 +26,15 @@ export type CaseProofImage = { src: string; alt: string; ratio: string };
 export type CaseCard = { label: string; title: string; text: string };
 export type CaseCreativeImage = { src: string; alt: string };
 export type CaseCreativeVideo = { src: string; title: string };
+export type CaseHeroPanelContent = {
+  label: string;
+  title: string;
+  badge: string;
+  segments: Array<{ label: string; value: string }>;
+  economyBadge: string;
+  economyValue: string;
+  economyNote: string;
+};
 export type CaseTableColumn = { key: string; label: string; align?: "left" | "right" };
 export type CaseTableRow = Record<string, string>;
 
@@ -100,6 +109,52 @@ export function CaseHero({
       </div>
       {panel}
     </section>
+  );
+}
+
+/**
+ * Правая панель hero-блока кейса: лейбл, заголовок, бейдж, 3 сегмента и
+ * блок юнит-экономики. Единый вид для всех кейсов — не верстать заново.
+ */
+export function CaseHeroPanel({ panel }: { panel: CaseHeroPanelContent }) {
+  return (
+    <div className="glass-shell relative overflow-hidden rounded-[2rem] p-6 sm:p-7">
+      <div className="space-y-5">
+        <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
+          <div>
+            <p className="text-[12px] uppercase tracking-[0.28em] text-violet-200/90">
+              {panel.label}
+            </p>
+            <p className="mt-2 text-lg font-semibold text-white">{panel.title}</p>
+          </div>
+          <div className="shrink-0 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3.5 py-1.5 text-sm font-semibold text-emerald-200">
+            {panel.badge}
+          </div>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-3">
+          {panel.segments.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-[1.25rem] border border-white/10 bg-slate-900/70 p-4"
+            >
+              <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">{item.label}</p>
+              <p className="mt-2 text-[15px] font-semibold leading-snug text-white">{item.value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/50 p-5">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-violet-100/70">
+            {panel.economyBadge}
+          </p>
+          <p className="mt-3 text-[26px] font-light leading-none tracking-[-0.03em] text-white sm:text-[30px]">
+            {panel.economyValue}
+          </p>
+          <p className="mt-3 text-sm leading-6 text-slate-400">{panel.economyNote}</p>
+        </div>
+      </div>
+    </div>
   );
 }
 
