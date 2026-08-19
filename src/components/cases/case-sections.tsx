@@ -390,6 +390,8 @@ export function CaseTable({
   rows,
   total,
   note,
+  images,
+  imagesCaption,
 }: {
   id?: string;
   label: string;
@@ -399,6 +401,8 @@ export function CaseTable({
   rows: CaseTableRow[];
   total?: CaseTableRow;
   note?: string;
+  images?: CaseProofImage[];
+  imagesCaption?: string;
 }) {
   const cellAlign = (column: CaseTableColumn) =>
     column.align === "right" ? "text-right" : "text-left";
@@ -465,6 +469,24 @@ export function CaseTable({
             </table>
           </div>
           {note ? <p className="text-sm leading-6 text-slate-500">{note}</p> : null}
+
+          {images && images.length > 0 ? (
+            <div className="space-y-3 pt-2">
+              {imagesCaption ? (
+                <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">
+                  {imagesCaption}
+                </p>
+              ) : null}
+              {images.map((item) => (
+                <div
+                  key={item.src}
+                  className={`relative ${item.ratio} overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]`}
+                >
+                  <Image src={item.src} alt={item.alt} fill sizes="760px" className="object-cover" />
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

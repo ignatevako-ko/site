@@ -14,6 +14,8 @@ export const profftechCreativeImages = [
   { src: "/images/cases/profftech/creative-marketing-blue.png", altKey: 1 },
   { src: "/images/cases/profftech/creative-marketing-neon.png", altKey: 2 },
   { src: "/images/cases/profftech/creative-ai-job.png", altKey: 3 },
+  { src: "/images/cases/profftech/creative-chef-et.jpeg", altKey: 4 },
+  { src: "/images/cases/profftech/creative-chef-ru.jpeg", altKey: 5 },
 ] as const;
 
 export type ProfftechContent = {
@@ -153,9 +155,9 @@ const ru: ProfftechContent = {
   },
   creatives: {
     label: "Креативы",
-    title: "Один оффер — четыре визуальные подачи",
+    title: "Один оффер — разные подачи под каждое направление",
     description:
-      "Для набора на курс digital-маркетинга мы протестировали четыре макета с одинаковой сутью, но разной подачей: от спокойного светлого минимализма до провокации «AI заберёт работу маркетолога?». В каждом макете — город, дата старта потока и блок про обучение без оплаты.",
+      "Для digital-маркетинга протестировали четыре макета с одинаковой сутью, но разной подачей: от спокойного светлого минимализма до провокации «AI заберёт работу маркетолога?». Для курса повара сделали отдельную линейку под язык аудитории. В каждом макете — город, дата старта потока и блок про обучение без оплаты.",
     imageAlts: [
       "Светлый креатив Profftech: курс Digital Marketing в новых реалиях, старт 14.09.26 в Таллинне",
       "Синий креатив Profftech: курс digital-маркетинга с блоком об обучении без оплаты",
@@ -304,9 +306,9 @@ const en: ProfftechContent = {
   },
   creatives: {
     label: "Creatives",
-    title: "One offer, four visual takes",
+    title: "One offer, a different take per programme",
     description:
-      "For the digital marketing intake we tested four layouts with identical substance but different delivery: from calm light minimalism to the provocation “Will AI take the marketer's job?”. Every layout carries the city, the cohort start date and the free-training block.",
+      "For digital marketing we tested four layouts with identical substance but different delivery: from calm light minimalism to the provocation “Will AI take the marketer's job?”. The chef course got its own line-up in the audience's language. Every layout carries the city, the cohort start date and the free-training block.",
     imageAlts: [
       "Light Profftech creative: Digital Marketing course in the new reality, starting 14.09.26 in Tallinn",
       "Blue Profftech creative: digital marketing course with the free-training block",
@@ -455,14 +457,16 @@ const et: ProfftechContent = {
   },
   creatives: {
     label: "Kreatiivid",
-    title: "Üks pakkumine — neli visuaalset esitust",
+    title: "Üks pakkumine — iga suuna jaoks oma esitus",
     description:
-      "Digiturunduse grupi täitmiseks testisime nelja maketti, mille sisu on sama, aga esitus erinev: rahulikust heledast minimalismist kuni provokatsioonini „Kas AI võtab turundaja töö?”. Igal makettil on linn, grupi alguskuupäev ja tasuta õppe plokk.",
+      "Digiturunduse jaoks testisime nelja maketti, mille sisu on sama, aga esitus erinev: rahulikust heledast minimalismist kuni provokatsioonini „Kas AI võtab turundaja töö?”. Koka kursus sai oma maketid sihtrühma keeles. Igal makettil on linn, grupi alguskuupäev ja tasuta õppe plokk.",
     imageAlts: [
       "Profftech hele kreatiiv: Digital Marketing kursus uues reaalsuses, algus 14.09.26 Tallinnas",
       "Profftech sinine kreatiiv: digiturunduse kursus koos tasuta õppe plokiga",
       "Profftech neoonkreatiiv: digiturundus AI oskustega, SMM, Meta Ads, Google Ads ja SEO",
       "Profftech must-kollane kreatiiv küsimusega „Kas AI võtab turundaja töö?”",
+      "Profftechi eestikeelne kreatiiv: koka koolitus Tallinnas, algus 1. august, koolitus võib olla tasuta",
+      "Profftechi venekeelne kreatiiv: koka kursus Tallinnas, algus 01.08, koolitus võib olla tasuta",
     ],
   },
   faq: {
