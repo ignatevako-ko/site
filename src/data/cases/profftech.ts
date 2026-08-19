@@ -18,6 +18,11 @@ export const profftechCreativeImages = [
   { src: "/images/cases/profftech/creative-chef-ru.jpeg", altKey: 5 },
 ] as const;
 
+export const profftechTableImages = [
+  { src: "/images/cases/profftech/ads-campaigns-spend.png", ratio: "aspect-[1784/294]", altKey: 0 },
+  { src: "/images/cases/profftech/ads-campaigns-leads.png", ratio: "aspect-[1368/568]", altKey: 1 },
+] as const;
+
 export type ProfftechContent = {
   badge: string;
   category: string;
@@ -46,6 +51,8 @@ export type ProfftechContent = {
     rows: CaseTableRow[];
     total: CaseTableRow;
     note: string;
+    imagesCaption: string;
+    imageAlts: string[];
   };
   mechanics: { label: string; title: string; steps: string[] };
   creatives: { label: string; title: string; description: string; imageAlts: string[] };
@@ -140,6 +147,11 @@ const ru: ProfftechContent = {
     ],
     total: { campaign: "Итого", leads: "751", cpl: "€1,48" },
     note: "Курс повара — наглядная динамика обучения алгоритма и офферов: €3,92 в апреле, €1,09 в июне, €0,82 в сентябре. Кампания на digital-маркетинг на момент выгрузки ещё работала.",
+    imagesCaption: "Скриншоты из рекламного кабинета",
+    imageAlts: [
+      "Скриншот рекламного кабинета Meta: кампании на курс маркетинга и курс повара с числом заявок, ценой заявки и потраченным бюджетом",
+      "Скриншот рекламного кабинета Meta: кампании на курсы бармана, повара, швеи и по ИИ с числом заявок и ценой заявки",
+    ],
   },
   mechanics: {
     label: "Что сделали",
@@ -291,6 +303,11 @@ const en: ProfftechContent = {
     ],
     total: { campaign: "Total", leads: "751", cpl: "€1.48" },
     note: "The chef course shows how the algorithm and the offers learn over time: €3.92 in April, €1.09 in June, €0.82 in September. The digital marketing campaign was still running when the data was exported.",
+    imagesCaption: "Screenshots from the ad account",
+    imageAlts: [
+      "Meta ad-account screenshot: the marketing and chef course campaigns with lead counts, cost per lead and amount spent",
+      "Meta ad-account screenshot: the bartender, chef, seamstress and AI course campaigns with lead counts and cost per lead",
+    ],
   },
   mechanics: {
     label: "What we did",
@@ -442,6 +459,11 @@ const et: ProfftechContent = {
     ],
     total: { campaign: "Kokku", leads: "751", cpl: "€1,48" },
     note: "Koka kursus näitab hästi algoritmi ja pakkumiste õppimist: €3,92 aprillis, €1,09 juunis, €0,82 septembris. Digiturunduse kampaania oli andmete väljavõtte hetkel veel töös.",
+    imagesCaption: "Ekraanipildid reklaamikontolt",
+    imageAlts: [
+      "Meta reklaamikonto ekraanipilt: turunduse ja koka kursuse kampaaniad päringute arvu, päringu hinna ja kulutatud eelarvega",
+      "Meta reklaamikonto ekraanipilt: baarmeni, koka, õmbleja ja AI kursuse kampaaniad päringute arvu ja päringu hinnaga",
+    ],
   },
   mechanics: {
     label: "Mida me tegime",
