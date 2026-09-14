@@ -202,6 +202,8 @@ const liveTestimonialsCopy: Record<
         quote:
           "I have been working with the team for more than three years. They are the best! Believe me, it is very comfortable to work with them. They always hear you and help. Most importantly, they increased my sales. I am very grateful to them. They really know their craft.",
         image: "/images/testimonial-portrait.jpg",
+        poster: "/images/testimonial-portrait.jpg",
+        video: "/videos/testimonials/konstantin-edu-do.m4v",
       },
       {
         name: "Svetlana",
@@ -230,6 +232,8 @@ const liveTestimonialsCopy: Record<
         quote:
           "Olen nendega töötanud juba üle kolme aasta. Nad on parimad! Uskuge mind, nendega on väga mugav. Nad kuulavad teid alati ära ja aitavad. Kõige tähtsam on see, et nad suurendasid minu müüki. Olen neile väga tänulik. Nad tõesti tunnevad oma tööd.",
         image: "/images/testimonial-portrait.jpg",
+        poster: "/images/testimonial-portrait.jpg",
+        video: "/videos/testimonials/konstantin-edu-do.m4v",
       },
       {
         name: "Svetlana",
@@ -258,6 +262,8 @@ const liveTestimonialsCopy: Record<
         quote:
           "С ребятами я работаю уже более трёх лет. Это лучшие ребята! Поверьте, с ними очень комфортно. Они вас всегда услышат и помогут. А самое главное — они увеличили мои продажи. Я им очень благодарен. Ребята действительно знают своё дело.",
         image: "/images/testimonial-portrait.jpg",
+        poster: "/images/testimonial-portrait.jpg",
+        video: "/videos/testimonials/konstantin-edu-do.m4v",
       },
       {
         name: "Светлана",
