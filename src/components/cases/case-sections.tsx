@@ -25,7 +25,8 @@ export type CaseCta = { label: string; href: string };
 export type CaseProofImage = { src: string; alt: string; ratio: string };
 export type CaseCard = { label: string; title: string; text: string };
 export type CaseCreativeImage = { src: string; alt: string };
-export type CaseCreativeVideo = { src: string; title: string };
+export type CaseCreativeVideo = { src: string; title: string; poster?: string };
+export type CaseRelatedLink = { href: string; label: string; note: string };
 export type CaseHeroPanelContent = {
   label: string;
   title: string;
@@ -177,14 +178,14 @@ export function CaseStatsGrid({ stats }: { stats: CaseStat[] }) {
 export function CaseFacts({ facts }: { facts: CaseFact[] }) {
   const cols = facts.length === 5 ? "lg:grid-cols-5" : "lg:grid-cols-4";
   return (
-    <section className={`grid gap-5 border-y border-white/10 py-8 sm:grid-cols-2 ${cols}`}>
+    <dl className={`grid gap-5 border-y border-white/10 py-8 sm:grid-cols-2 ${cols}`}>
       {facts.map((item) => (
         <div key={item.label} className="space-y-2">
-          <p className="text-xs uppercase tracking-[0.24em] text-slate-500">{item.label}</p>
-          <p className="text-base leading-6 text-slate-100">{item.value}</p>
+          <dt className="text-xs uppercase tracking-[0.24em] text-slate-500">{item.label}</dt>
+          <dd className="text-base leading-6 text-slate-100">{item.value}</dd>
         </div>
       ))}
-    </section>
+    </dl>
   );
 }
 
@@ -249,6 +250,7 @@ export function CaseCreatives({
   images,
   videos,
   videoCols = 3,
+  compact = false,
 }: {
   label: string;
   title: string;
@@ -256,12 +258,17 @@ export function CaseCreatives({
   images?: CaseCreativeImage[];
   videos?: CaseCreativeVideo[];
   videoCols?: 3 | 4;
+  compact?: boolean;
 }) {
   const videoGridClass =
     videoCols === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-2 lg:grid-cols-3";
+  const compactMediaClass =
+    "flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 md:grid md:grid-cols-3 md:overflow-visible md:pb-0";
+  const compactItemClass =
+    "w-[72vw] max-w-[18rem] shrink-0 snap-start md:w-auto md:max-w-none";
 
   return (
-    <section className="py-10">
+    <section className={compact ? "py-8" : "py-10"}>
       <div className="max-w-3xl space-y-4">
         <SectionLabel>{label}</SectionLabel>
         <h2 className={caseSectionTitleClass}>{title}</h2>
@@ -269,14 +276,24 @@ export function CaseCreatives({
       </div>
 
       {images && images.length > 0 ? (
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          className={
+            compact ? `mt-6 ${compactMediaClass}` : "mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          }
+        >
           {images.map((item) => (
             <figure
               key={item.src}
-              className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]"
+              className={`${compact ? compactItemClass : ""} overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]`}
             >
               <div className="relative aspect-[9/16] bg-slate-950">
-                <Image src={item.src} alt={item.alt} fill sizes="360px" className="object-cover" />
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                  className="object-cover"
+                />
               </div>
             </figure>
           ))}
@@ -284,11 +301,11 @@ export function CaseCreatives({
       ) : null}
 
       {videos && videos.length > 0 ? (
-        <div className={`mt-5 grid gap-4 ${videoGridClass}`}>
+        <div className={compact ? `mt-4 ${compactMediaClass}` : `mt-5 grid gap-4 ${videoGridClass}`}>
           {videos.map((item) => (
             <figure
               key={item.src}
-              className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]"
+              className={`${compact ? compactItemClass : ""} overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]`}
             >
               <div className="relative aspect-[9/16] bg-slate-950">
                 <video
@@ -297,12 +314,15 @@ export function CaseCreatives({
                   playsInline
                   preload="metadata"
                   muted
+                  poster={item.poster}
                   aria-label={item.title}
                 >
                   <source src={item.src} type="video/mp4" />
                 </video>
               </div>
-              <figcaption className="min-h-16 px-4 py-3 text-sm leading-5 text-slate-300">
+              <figcaption
+                className={`${compact ? "" : "min-h-16"} px-4 py-3 text-sm leading-5 text-slate-300`}
+              >
                 {item.title}
               </figcaption>
             </figure>
@@ -380,11 +400,42 @@ export function CaseFaq({
   label,
   title,
   items,
+  compact = false,
 }: {
   label: string;
   title: string;
   items: CaseFaqItem[];
+  compact?: boolean;
 }) {
+  if (compact) {
+    return (
+      <section className="grid gap-8 py-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <CaseSectionHeading label={label} title={title} />
+        <div className="space-y-3">
+          {items.map((item) => (
+            <details
+              key={item.question}
+              className="group rounded-[1.25rem] border border-white/10 bg-white/[0.045]"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-base font-semibold text-white marker:content-none">
+                <span>{item.question}</span>
+                <span
+                  aria-hidden="true"
+                  className="text-2xl font-light text-violet-300 transition group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="border-t border-white/10 px-5 py-4 text-base leading-7 text-slate-400">
+                {item.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr]">
       <CaseSectionHeading label={label} title={title} />
@@ -399,6 +450,39 @@ export function CaseFaq({
           </article>
         ))}
       </div>
+    </section>
+  );
+}
+
+/**
+ * Контекстные ссылки с кейса на услуги и соседние кейсы.
+ * Без неё страница-кейс — тупик для краулера: весь ссылочный вес приходит и никуда не идёт.
+ */
+export function CaseRelated({
+  label,
+  title,
+  links,
+}: {
+  label: string;
+  title: string;
+  links: CaseRelatedLink[];
+}) {
+  return (
+    <section className="grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr]">
+      <CaseSectionHeading label={label} title={title} />
+      <ul className="grid gap-4 sm:grid-cols-2">
+        {links.map((item) => (
+          <li key={item.href}>
+            <Link
+              href={item.href}
+              className="flex h-full flex-col gap-2 rounded-[1.25rem] border border-white/10 bg-white/[0.045] p-5 transition hover:border-violet-300/40 hover:bg-white/[0.07]"
+            >
+              <span className="text-base font-semibold text-white">{item.label}</span>
+              <span className="text-sm leading-6 text-slate-400">{item.note}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
@@ -476,6 +560,7 @@ export function CaseTable({
         <div className="space-y-4">
           <div className="overflow-x-auto rounded-[1.5rem] border border-white/10 bg-white/[0.045]">
             <table className="w-full min-w-[20rem] border-collapse text-left">
+              <caption className="sr-only">{title}</caption>
               <thead>
                 <tr className="border-b border-white/10">
                   {columns.map((column) => (

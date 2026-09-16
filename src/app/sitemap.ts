@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return indexedRoutes.map((route) => ({
     url: absoluteUrl(route.path),
-    lastModified,
+    lastModified: route.lastModified ? new Date(route.lastModified) : lastModified,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));

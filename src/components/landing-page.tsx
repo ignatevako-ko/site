@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { BrandLogo } from "@/components/brand-logo";
 import { CreativeGallery, type CreativeGalleryItem } from "@/components/creative-gallery";
+import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { defaultLanguage } from "@/lib/locales";
@@ -24,6 +25,20 @@ const caseBackgrounds = [
   "from-[#17162d] via-[#2a1e43] to-[#443661]",
   "from-[#171f38] via-[#203057] to-[#22536b]",
   "from-[#1d1730] via-[#31214b] to-[#5b2d54]",
+] as const;
+
+/**
+ * 7 кейсов, которые показываем на главной, в нужном порядке.
+ * Остальные кейсы доступны только на /cases по ссылке «Смотреть еще».
+ */
+const featuredCaseHrefs = [
+  "/cases/romi-2500-construction",
+  "/cases/edu-do",
+  "/cases/profftech",
+  "/cases/womens-activewear",
+  "/cases/cosmetics-store",
+  "/cases/prime-tour",
+  "/cases/suvelaagrid",
 ] as const;
 
 const heroChartGrowth = [
@@ -464,11 +479,32 @@ const targetAudienceByLanguage: Record<
   },
 };
 
-const staticCreativeItems: CreativeGalleryItem[] = Array.from({ length: 7 }, (_, index) => ({
-  src: `/images/creative-examples/stories/story-${String(index + 1).padStart(2, "0")}.png`,
-  alt: `Static creative ${index + 1}`,
-  kind: "image",
-}));
+const digitalArtHouseCreativeItems: CreativeGalleryItem[] = [
+  {
+    src: "/images/cases/digital-art-house/van-gogh-en.webp",
+    alt: "Van Gogh immersive exhibition advertising creative",
+    kind: "image",
+  },
+  {
+    src: "/images/cases/digital-art-house/michelangelo-en-01.webp",
+    alt: "Michelangelo immersive exhibition advertising creative",
+    kind: "image",
+  },
+  {
+    src: "/images/cases/digital-art-house/van-gogh-michelangelo-1plus1-lv.webp",
+    alt: "Van Gogh and Michelangelo exhibition offer advertising creative",
+    kind: "image",
+  },
+];
+
+const staticCreativeItems: CreativeGalleryItem[] = [
+  ...digitalArtHouseCreativeItems,
+  ...Array.from({ length: 7 }, (_, index) => ({
+    src: `/images/creative-examples/stories/story-${String(index + 1).padStart(2, "0")}.png`,
+    alt: `Static creative ${index + 1}`,
+    kind: "image" as const,
+  })),
+];
 
 const videoCreativeItems: CreativeGalleryItem[] = [
   {
@@ -602,12 +638,7 @@ function CaseCard({
   const palette = caseBackgrounds[index % caseBackgrounds.length];
   const categoryParts = item.category.split("/").map((part) => part.trim());
   const normalizedCategory = item.category.toLowerCase();
-  const normalizedTitle = item.title.toLowerCase();
-  const isWideCase =
-    index === 0 ||
-    normalizedCategory.includes("psychotherapy") ||
-    normalizedCategory.includes("children camps") ||
-    normalizedTitle.includes("suvelaagrid");
+  const isWideCase = index === 0 || normalizedCategory.includes("children camps");
 
   const card = (
     <>
@@ -714,22 +745,12 @@ export function LandingPage({
   const liveTestimonials = useMemo(() => liveTestimonialsCopy[language], [language]);
   const creativeExamples = useMemo(() => creativeExamplesCopy[language], [language]);
   const casesForGrid = useMemo(() => {
-    const visibleCases = content.cases.filter((item) => {
-      const title = item.title.toLowerCase();
-      return !title.includes("sadhu") && !title.includes("гвоздестояния");
-    });
-    const featuredCase = visibleCases.find(
-      (item) => item.href === "/cases/romi-2500-construction",
-    );
+    // Локализованные кейсы могут жить под /en или /et — сравниваем по базовому слагу.
+    const baseHref = (href?: string) => href?.replace(/^\/(en|et)(?=\/)/, "") ?? "";
 
-    if (!featuredCase) {
-      return visibleCases;
-    }
-
-    return [
-      featuredCase,
-      ...visibleCases.filter((item) => item !== featuredCase),
-    ];
+    return featuredCaseHrefs
+      .map((href) => content.cases.find((item) => baseHref(item.href) === href))
+      .filter((item): item is CaseStudy => Boolean(item));
   }, [content.cases]);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
@@ -1147,6 +1168,70 @@ export function LandingPage({
                   </div>
                 </div>
               </article>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="certifications"
+          className="relative mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-20"
+        >
+          <BackgroundGlow className="left-[-8rem] top-6 h-[22rem] w-[22rem] bg-violet-300/9" />
+          <BackgroundGlow className="right-[-7rem] bottom-0 h-[20rem] w-[20rem] bg-amber-100/8" />
+
+          <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-12">
+            <div className="max-w-xl">
+              <SectionLabel>{content.certifications.eyebrow}</SectionLabel>
+              <h2 className="mt-5 text-[32px] font-light leading-[1.05] tracking-[-0.04em] text-white sm:text-[46px]">
+                {content.certifications.title}
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-300 sm:text-lg">
+                {content.certifications.description}
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {content.certifications.items.map((certification) => (
+                <article
+                  key={certification.issuer}
+                  className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.045] p-6 shadow-[0_24px_70px_rgba(2,6,23,0.25)] transition hover:-translate-y-1 hover:border-violet-300/30 hover:bg-white/[0.065] sm:p-7"
+                >
+                  <div
+                    aria-hidden="true"
+                    className="absolute -right-12 -top-14 h-36 w-36 rounded-full bg-violet-300/8 blur-2xl transition group-hover:bg-violet-300/12"
+                  />
+                  <div className="relative flex items-start justify-between gap-4">
+                    <div className="flex h-16 min-w-16 items-center justify-center rounded-[1.25rem] border border-slate-200 bg-white px-3 shadow-[0_14px_36px_rgba(2,6,23,0.2)]">
+                      <Image
+                        src={certification.logo}
+                        alt={certification.logoAlt}
+                        width={certification.logoAlt === "Meta" ? 100 : 52}
+                        height={certification.logoAlt === "Meta" ? 28 : 52}
+                        className={certification.logoAlt === "Meta" ? "h-auto w-[5.6rem]" : "h-12 w-12 object-contain"}
+                      />
+                    </div>
+                    <span className="max-w-[10rem] rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1.5 text-right text-[11px] font-medium leading-4 text-emerald-200">
+                      {content.certifications.programLabel}
+                    </span>
+                  </div>
+
+                  <div className="relative mt-8">
+                    <p className="text-sm font-medium text-violet-300">
+                      {certification.issuer}
+                    </p>
+                    <h3 className="mt-2 text-2xl font-light leading-tight tracking-[-0.035em] text-white">
+                      {certification.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-7 text-slate-300">
+                      {certification.description}
+                    </p>
+                  </div>
+
+                  <p className="relative mt-7 border-t border-white/10 pt-4 text-xs font-medium text-slate-400">
+                    {certification.scope}
+                  </p>
+                </article>
+              ))}
             </div>
           </div>
         </section>

@@ -64,15 +64,18 @@ const casesPageCopy: Record<
 function CaseCard({
   item,
   index,
+  total,
   badge,
 }: {
   item: CaseStudy;
   index: number;
+  total: number;
   badge: string;
 }) {
   const palette = caseBackgrounds[index % caseBackgrounds.length];
   const categoryParts = item.category.split("/").map((part) => part.trim());
-  const isWideCase = index === 0 || item.category.toLowerCase().includes("psychotherapy");
+  // Первая и последняя карточки — широкие, чтобы сетка не заканчивалась одиноким узким кейсом.
+  const isWideCase = index === 0 || index === total - 1;
   const card = (
     <>
       <div
@@ -185,7 +188,13 @@ export default function CasesPage() {
 
           <div className="mt-12 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
             {casesForGrid.map((item, index) => (
-              <CaseCard key={item.title} item={item} index={index} badge={copy.badge} />
+              <CaseCard
+                key={item.title}
+                item={item}
+                index={index}
+                total={casesForGrid.length}
+                badge={copy.badge}
+              />
             ))}
           </div>
         </section>
