@@ -25,7 +25,19 @@ export type CaseCta = { label: string; href: string };
 export type CaseProofImage = { src: string; alt: string; ratio: string };
 export type CaseCard = { label: string; title: string; text: string };
 export type CaseCreativeImage = { src: string; alt: string };
-export type CaseCreativeVideo = { src: string; title: string };
+export type CaseCreativeVideo = { src: string; title: string; poster?: string };
+export type CaseRelatedLink = { href: string; label: string; note: string };
+export type CaseHeroPanelContent = {
+  label: string;
+  title: string;
+  badge: string;
+  segments: Array<{ label: string; value: string }>;
+  economyBadge: string;
+  economyValue: string;
+  economyNote: string;
+};
+export type CaseTableColumn = { key: string; label: string; align?: "left" | "right" };
+export type CaseTableRow = Record<string, string>;
 
 /* ────────────────────────────  Секции кейса  ──────────────────────────── */
 
@@ -101,6 +113,52 @@ export function CaseHero({
   );
 }
 
+/**
+ * Правая панель hero-блока кейса: лейбл, заголовок, бейдж, 3 сегмента и
+ * блок юнит-экономики. Единый вид для всех кейсов — не верстать заново.
+ */
+export function CaseHeroPanel({ panel }: { panel: CaseHeroPanelContent }) {
+  return (
+    <div className="glass-shell relative overflow-hidden rounded-[2rem] p-6 sm:p-7">
+      <div className="space-y-5">
+        <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
+          <div>
+            <p className="text-[12px] uppercase tracking-[0.28em] text-violet-200/90">
+              {panel.label}
+            </p>
+            <p className="mt-2 text-lg font-semibold text-white">{panel.title}</p>
+          </div>
+          <div className="shrink-0 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3.5 py-1.5 text-sm font-semibold text-emerald-200">
+            {panel.badge}
+          </div>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-3">
+          {panel.segments.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-[1.25rem] border border-white/10 bg-slate-900/70 p-4"
+            >
+              <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">{item.label}</p>
+              <p className="mt-2 text-[15px] font-semibold leading-snug text-white">{item.value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/50 p-5">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-violet-100/70">
+            {panel.economyBadge}
+          </p>
+          <p className="mt-3 text-[26px] font-light leading-none tracking-[-0.03em] text-white sm:text-[30px]">
+            {panel.economyValue}
+          </p>
+          <p className="mt-3 text-sm leading-6 text-slate-400">{panel.economyNote}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function CaseStatsGrid({ stats }: { stats: CaseStat[] }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -120,14 +178,14 @@ export function CaseStatsGrid({ stats }: { stats: CaseStat[] }) {
 export function CaseFacts({ facts }: { facts: CaseFact[] }) {
   const cols = facts.length === 5 ? "lg:grid-cols-5" : "lg:grid-cols-4";
   return (
-    <section className={`grid gap-5 border-y border-white/10 py-8 sm:grid-cols-2 ${cols}`}>
+    <dl className={`grid gap-5 border-y border-white/10 py-8 sm:grid-cols-2 ${cols}`}>
       {facts.map((item) => (
         <div key={item.label} className="space-y-2">
-          <p className="text-xs uppercase tracking-[0.24em] text-slate-500">{item.label}</p>
-          <p className="text-base leading-6 text-slate-100">{item.value}</p>
+          <dt className="text-xs uppercase tracking-[0.24em] text-slate-500">{item.label}</dt>
+          <dd className="text-base leading-6 text-slate-100">{item.value}</dd>
         </div>
       ))}
-    </section>
+    </dl>
   );
 }
 
@@ -192,6 +250,7 @@ export function CaseCreatives({
   images,
   videos,
   videoCols = 3,
+  compact = false,
 }: {
   label: string;
   title: string;
@@ -199,12 +258,17 @@ export function CaseCreatives({
   images?: CaseCreativeImage[];
   videos?: CaseCreativeVideo[];
   videoCols?: 3 | 4;
+  compact?: boolean;
 }) {
   const videoGridClass =
     videoCols === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-2 lg:grid-cols-3";
+  const compactMediaClass =
+    "flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 md:grid md:grid-cols-3 md:overflow-visible md:pb-0";
+  const compactItemClass =
+    "w-[72vw] max-w-[18rem] shrink-0 snap-start md:w-auto md:max-w-none";
 
   return (
-    <section className="py-10">
+    <section className={compact ? "py-8" : "py-10"}>
       <div className="max-w-3xl space-y-4">
         <SectionLabel>{label}</SectionLabel>
         <h2 className={caseSectionTitleClass}>{title}</h2>
@@ -212,14 +276,24 @@ export function CaseCreatives({
       </div>
 
       {images && images.length > 0 ? (
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          className={
+            compact ? `mt-6 ${compactMediaClass}` : "mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          }
+        >
           {images.map((item) => (
             <figure
               key={item.src}
-              className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]"
+              className={`${compact ? compactItemClass : ""} overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]`}
             >
               <div className="relative aspect-[9/16] bg-slate-950">
-                <Image src={item.src} alt={item.alt} fill sizes="360px" className="object-cover" />
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                  className="object-cover"
+                />
               </div>
             </figure>
           ))}
@@ -227,11 +301,11 @@ export function CaseCreatives({
       ) : null}
 
       {videos && videos.length > 0 ? (
-        <div className={`mt-5 grid gap-4 ${videoGridClass}`}>
+        <div className={compact ? `mt-4 ${compactMediaClass}` : `mt-5 grid gap-4 ${videoGridClass}`}>
           {videos.map((item) => (
             <figure
               key={item.src}
-              className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]"
+              className={`${compact ? compactItemClass : ""} overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]`}
             >
               <div className="relative aspect-[9/16] bg-slate-950">
                 <video
@@ -240,12 +314,15 @@ export function CaseCreatives({
                   playsInline
                   preload="metadata"
                   muted
+                  poster={item.poster}
                   aria-label={item.title}
                 >
                   <source src={item.src} type="video/mp4" />
                 </video>
               </div>
-              <figcaption className="min-h-16 px-4 py-3 text-sm leading-5 text-slate-300">
+              <figcaption
+                className={`${compact ? "" : "min-h-16"} px-4 py-3 text-sm leading-5 text-slate-300`}
+              >
                 {item.title}
               </figcaption>
             </figure>
@@ -323,11 +400,42 @@ export function CaseFaq({
   label,
   title,
   items,
+  compact = false,
 }: {
   label: string;
   title: string;
   items: CaseFaqItem[];
+  compact?: boolean;
 }) {
+  if (compact) {
+    return (
+      <section className="grid gap-8 py-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <CaseSectionHeading label={label} title={title} />
+        <div className="space-y-3">
+          {items.map((item) => (
+            <details
+              key={item.question}
+              className="group rounded-[1.25rem] border border-white/10 bg-white/[0.045]"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-base font-semibold text-white marker:content-none">
+                <span>{item.question}</span>
+                <span
+                  aria-hidden="true"
+                  className="text-2xl font-light text-violet-300 transition group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="border-t border-white/10 px-5 py-4 text-base leading-7 text-slate-400">
+                {item.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr]">
       <CaseSectionHeading label={label} title={title} />
@@ -342,6 +450,39 @@ export function CaseFaq({
           </article>
         ))}
       </div>
+    </section>
+  );
+}
+
+/**
+ * Контекстные ссылки с кейса на услуги и соседние кейсы.
+ * Без неё страница-кейс — тупик для краулера: весь ссылочный вес приходит и никуда не идёт.
+ */
+export function CaseRelated({
+  label,
+  title,
+  links,
+}: {
+  label: string;
+  title: string;
+  links: CaseRelatedLink[];
+}) {
+  return (
+    <section className="grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr]">
+      <CaseSectionHeading label={label} title={title} />
+      <ul className="grid gap-4 sm:grid-cols-2">
+        {links.map((item) => (
+          <li key={item.href}>
+            <Link
+              href={item.href}
+              className="flex h-full flex-col gap-2 rounded-[1.25rem] border border-white/10 bg-white/[0.045] p-5 transition hover:border-violet-300/40 hover:bg-white/[0.07]"
+            >
+              <span className="text-base font-semibold text-white">{item.label}</span>
+              <span className="text-sm leading-6 text-slate-400">{item.note}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
@@ -370,6 +511,123 @@ export function CaseNextStep({
         <Link href={cta.href} className={caseWhiteButtonClass}>
           {cta.label}
         </Link>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Таблица с разбивкой результатов (кампании, направления, потоки).
+ * Числа в таблице — источник правды кейса, поэтому дублировать их в hero не нужно.
+ */
+export function CaseTable({
+  id,
+  label,
+  title,
+  description,
+  columns,
+  rows,
+  total,
+  note,
+  images,
+  imagesCaption,
+}: {
+  id?: string;
+  label: string;
+  title: string;
+  description?: string;
+  columns: CaseTableColumn[];
+  rows: CaseTableRow[];
+  total?: CaseTableRow;
+  note?: string;
+  images?: CaseProofImage[];
+  imagesCaption?: string;
+}) {
+  const cellAlign = (column: CaseTableColumn) =>
+    column.align === "right" ? "text-right" : "text-left";
+
+  return (
+    <section id={id} className="py-16">
+      <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="space-y-4">
+          <SectionLabel>{label}</SectionLabel>
+          <h2 className={caseSectionTitleClass}>{title}</h2>
+          {description ? (
+            <p className="text-base leading-7 text-slate-400">{description}</p>
+          ) : null}
+        </div>
+
+        <div className="space-y-4">
+          <div className="overflow-x-auto rounded-[1.5rem] border border-white/10 bg-white/[0.045]">
+            <table className="w-full min-w-[20rem] border-collapse text-left">
+              <caption className="sr-only">{title}</caption>
+              <thead>
+                <tr className="border-b border-white/10">
+                  {columns.map((column) => (
+                    <th
+                      key={column.key}
+                      scope="col"
+                      className={`px-4 py-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:px-5 ${cellAlign(column)}`}
+                    >
+                      {column.label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row) => (
+                  <tr key={row[columns[0].key]} className="border-b border-white/[0.07]">
+                    {columns.map((column, index) => (
+                      <td
+                        key={column.key}
+                        className={`px-4 py-4 text-sm leading-6 sm:px-5 ${cellAlign(column)} ${
+                          index === 0 ? "text-slate-300" : "font-semibold text-white"
+                        }`}
+                      >
+                        {row[column.key]}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+              {total ? (
+                <tfoot>
+                  <tr className="bg-violet-400/10">
+                    {columns.map((column, index) => (
+                      <td
+                        key={column.key}
+                        className={`px-4 py-4 text-sm font-semibold leading-6 sm:px-5 ${cellAlign(column)} ${
+                          index === 0 ? "text-violet-100" : "text-white"
+                        }`}
+                      >
+                        {total[column.key]}
+                      </td>
+                    ))}
+                  </tr>
+                </tfoot>
+              ) : null}
+            </table>
+          </div>
+          {note ? <p className="text-sm leading-6 text-slate-500">{note}</p> : null}
+
+          {images && images.length > 0 ? (
+            <div className="space-y-3 pt-2">
+              {imagesCaption ? (
+                <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">
+                  {imagesCaption}
+                </p>
+              ) : null}
+              {images.map((item) => (
+                <div
+                  key={item.src}
+                  className={`relative ${item.ratio} overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.045]`}
+                >
+                  <Image src={item.src} alt={item.alt} fill sizes="760px" className="object-cover" />
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </div>
     </section>
   );

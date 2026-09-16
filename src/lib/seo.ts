@@ -46,6 +46,8 @@ export type IndexedRoute = {
   path: string;
   changeFrequency: "daily" | "weekly" | "monthly" | "yearly";
   priority: number;
+  /** Дата публикации/последнего обновления страницы (YYYY-MM-DD). Без неё в sitemap попадёт дата сборки. */
+  lastModified?: string;
 };
 
 export const indexedRoutes: IndexedRoute[] = [
@@ -76,6 +78,37 @@ export const indexedRoutes: IndexedRoute[] = [
   { path: "/cases/romi-2500-construction", changeFrequency: "monthly", priority: 0.78 },
   { path: "/cases/suvelaagrid", changeFrequency: "monthly", priority: 0.78 },
   { path: "/cases/prime-tour", changeFrequency: "monthly", priority: 0.78 },
+  { path: "/cases/profftech", changeFrequency: "monthly", priority: 0.78 },
+  {
+    path: "/cases/digital-art-house",
+    changeFrequency: "monthly",
+    priority: 0.78,
+    lastModified: "2026-09-16",
+  },
+  {
+    path: "/cases/womens-activewear",
+    changeFrequency: "monthly",
+    priority: 0.76,
+    lastModified: "2026-08-19",
+  },
+  {
+    path: "/cases/cosmetics-store",
+    changeFrequency: "monthly",
+    priority: 0.76,
+    lastModified: "2026-08-19",
+  },
+  {
+    path: "/cases/iluproff",
+    changeFrequency: "monthly",
+    priority: 0.74,
+    lastModified: "2026-08-19",
+  },
+  {
+    path: "/cases/sadhu-boards",
+    changeFrequency: "monthly",
+    priority: 0.74,
+    lastModified: "2026-08-19",
+  },
   { path: "/en/cases/prime-tour", changeFrequency: "monthly", priority: 0.72 },
   { path: "/et/cases/prime-tour", changeFrequency: "monthly", priority: 0.72 },
   { path: "/kreo", changeFrequency: "monthly", priority: 0.55 },
@@ -465,4 +498,116 @@ export function buildServiceStructuredData({
     "@context": "https://schema.org",
     "@graph": graph,
   };
+}
+
+export type CaseEntity = { name: string; sameAs?: string };
+
+/**
+ * Структурные данные страницы-кейса: WebPage + ImageObject + Article +
+ * BreadcrumbList (+ FAQPage). Article ссылается на глобальный узел Organization,
+ * поэтому граф сайта остаётся связным.
+ */
+export function buildCaseStructuredData({
+  path,
+  headline,
+  description,
+  breadcrumbName,
+  datePublished,
+  dateModified,
+  image,
+  about = [],
+  mentions = [],
+  keywords = [],
+  areaServed,
+  inLanguage = "ru",
+  faq = [],
+}: {
+  path: string;
+  headline: string;
+  description: string;
+  breadcrumbName: string;
+  datePublished: string;
+  dateModified?: string;
+  image: string;
+  about?: CaseEntity[];
+  mentions?: CaseEntity[];
+  keywords?: string[];
+  areaServed?: string;
+  inLanguage?: Language;
+  faq?: FaqItem[];
+}) {
+  const url = absoluteUrl(path);
+  const imageUrl = absoluteUrl(image);
+  const toThing = (item: CaseEntity) => ({
+    "@type": "Thing",
+    name: item.name,
+    ...(item.sameAs ? { sameAs: item.sameAs } : {}),
+  });
+
+  const graph: Array<Record<string, unknown>> = [
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: headline,
+      description,
+      inLanguage,
+      availableLanguage: ["ru", "en", "et"],
+      breadcrumb: { "@id": `${url}#breadcrumb` },
+      primaryImageOfPage: { "@id": `${url}#image` },
+      isPartOf: { "@id": `${siteUrl}/#organization` },
+    },
+    {
+      "@type": "ImageObject",
+      "@id": `${url}#image`,
+      url: imageUrl,
+      contentUrl: imageUrl,
+      width: 1200,
+      height: 630,
+    },
+    {
+      "@type": "Article",
+      "@id": `${url}#article`,
+      headline,
+      description,
+      url,
+      inLanguage,
+      datePublished,
+      dateModified: dateModified ?? datePublished,
+      image: { "@id": `${url}#image` },
+      author: { "@id": `${siteUrl}/#organization` },
+      publisher: { "@id": `${siteUrl}/#organization` },
+      isPartOf: { "@id": `${url}#webpage` },
+      mainEntityOfPage: { "@id": `${url}#webpage` },
+      articleSection: "Кейсы",
+      about: about.map(toThing),
+      ...(mentions.length > 0 ? { mentions: mentions.map(toThing) } : {}),
+      ...(keywords.length > 0 ? { keywords: keywords.join(", ") } : {}),
+      ...(areaServed ? { spatialCoverage: { "@type": "Place", name: areaServed } } : {}),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Do.Marketing", item: absoluteUrl("/ru") },
+        { "@type": "ListItem", position: 2, name: "Кейсы", item: absoluteUrl("/cases") },
+        { "@type": "ListItem", position: 3, name: breadcrumbName, item: url },
+      ],
+    },
+  ];
+
+  if (faq.length > 0) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      inLanguage,
+      mainEntity: faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    });
+  }
+
+  return { "@context": "https://schema.org", "@graph": graph };
 }

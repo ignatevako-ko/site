@@ -58,6 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
+      lang="ru"
       suppressHydrationWarning
       className={`${onest.variable} h-full scroll-smooth antialiased`}
     >

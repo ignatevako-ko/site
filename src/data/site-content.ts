@@ -37,6 +37,23 @@ export type ClientLogo = {
   src: string;
 };
 
+export type Certification = {
+  issuer: string;
+  title: string;
+  description: string;
+  scope: string;
+  logo: string;
+  logoAlt: string;
+};
+
+export type CertificationsContent = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  programLabel: string;
+  items: Certification[];
+};
+
 export type AboutContent = {
   title: string;
   description: string;
@@ -89,6 +106,7 @@ export type SiteDictionary = {
   cases: CaseStudy[];
   services: Service[];
   clients: ClientLogo[];
+  certifications: CertificationsContent;
   about: AboutContent;
   contacts: ContactContent;
   footer: {
@@ -119,190 +137,250 @@ const clientLogos: ClientLogo[] = [
 
 const casesRu: CaseStudy[] = [
   {
-    title: "ROMI 2500% в строительных работах",
+    title: "ROMI 2500% на ремонте под ключ",
     category: "Lead generation / renovation & construction",
     result: "€450 за клиента при выручке около €90 000",
     summary:
-      "5,5 лет системно привлекали клиентов для компании комплексного ремонта: от дизайн-проекта и ремонтных работ до комплектации материалами и производства мебели. За 5 лет компания вышла из эконом-сегмента в элитный сегмент, сохранив поток заявок даже в низкий сезон.",
+      "5,5 лет системно привлекали клиентов для компании комплексного ремонта: от дизайн-проекта и ремонтных работ до комплектации материалами и производства мебели. Компания вышла из эконом-сегмента в элитный и сохранила поток заявок даже в низкий сезон.",
     href: "/cases/romi-2500-construction",
   },
   {
-    title: "Детские спортивные секции EDU.DO",
+    title: "561 заявка за месяц по €3,4 в детский спорт",
     category: "Lead generation / sports education",
-    result: "561 заявка за месяц по €3.4 за лида",
+    result: "цена лида упала с €20–60 до €4",
     summary:
-      "Работаем с проектом 3 года и стабильно приводим от 370 заявок каждый месяц. Максимум - 561 заявка за месяц по €3.4 за лид, средняя цена держится около €4, а до начала работы лид стоил €20-60.",
+      "Работаем с EDU.DO 3 года и стабильно приводим от 370 заявок каждый месяц на плавание, карате и ОФП. Рекордный месяц дал 561 заявку, средняя цена лида держится около €4, а до начала работы доходила до €60.",
     href: "/cases/edu-do",
   },
   {
-    title: "Женская спортивная одежда",
-    category: "E-commerce / worldwide sales",
-    result: "ROAS до 15 в Black Friday",
+    title: "751 заявка на курсы по €1,48",
+    category: "Lead generation / professional courses",
+    result: "ROAS около 4 700% при чеке курса €2 400",
     summary:
-      "До Черной пятницы реклама принесла $8 881 при бюджете $868 и ROAS 10. Во время Black Friday за 3 дня реклама дала $4 690 продаж при бюджете $311, ROAS 15 и цене клиента $10.",
+      "8 кампаний на 5 направлений: повар, бармен, швея, ИИ и digital-маркетинг. Рекламный бюджет €1 113 полностью окупается уже на первых оплатах: при конверсии в оплату 3% один ученик обходится примерно в €49.",
+    href: "/cases/profftech",
   },
   {
-    title: "Интернет-магазин косметики",
-    category: "Beauty retail / Estonia",
+    title: "ROAS 15 в Black Friday на женской спортивной одежде",
+    category: "E-commerce / worldwide sales",
+    result: "$10 за покупателя в пик распродажи",
+    summary:
+      "До Черной пятницы реклама принесла $8 881 продаж при бюджете $868. В три дня распродажи магазин заработал еще $4 690 при бюджете $311 — самая эффективная связка за весь период работы.",
+    href: "/cases/womens-activewear",
+  },
+  {
+    title: "ROAS 30 и 114 продаж косметики",
+    category: "E-commerce / beauty retail",
     result: "€8 387 выручки при бюджете €277",
     summary:
-      "Для магазина косметики кампания со скидкой 20% на Medic8 принесла 114 продаж. Стоимость продажи составила €2.43, средний чек €73.57, а ROAS достиг 30.23.",
+      "Для эстонского интернет-магазина косметики собрали кампанию вокруг одного оффера — скидки 20% на линейку Medic8. Продажа обошлась в €2.43 при среднем чеке €73.57, то есть реклама забирала около 3% выручки.",
+    href: "/cases/cosmetics-store",
   },
   {
-    title: "ROAS 3790%: €252 превратили в €9 560 за 2 недели",
+    title: "ROAS 3790%: €252 превратили в €9 560",
     category: "Travel / Estonia",
-    result: "8 купленных туров за 2 недели рекламы",
+    result: "8 купленных туров за 2 недели",
     summary:
       "Для Prime Tour настроили Meta Ads на авторский тур по Грузии и другие туристические направления для русско- и эстоноязычной аудитории. Кейс показывает финансовый результат через ROAS, выручку и стоимость купленного тура.",
     href: "/cases/prime-tour",
   },
   {
-    title: "Салон красоты ILUPROFF",
-    category: "Салон красоты / Estonia",
-    result: "34 клиента по €17.50",
-    summary:
-      "Продвижение SMAS-лифтинга с тестированием форматов, языков и сегментов позволило найти самую сильную связку. При бюджете €600 привлекли 34 клиента на маржинальную процедуру стоимостью €125-537.",
-  },
-  {
-    title: "Детские лагеря Suvelaagrid",
+    title: "565 лидов в месяц в детские лагеря",
     category: "Lead generation / children camps",
-    result: "от 565 лидов в месяц за 2,7 евро за лид",
+    result: "€2,7 за лид с апреля по август",
     summary:
-      "С апреля до середины августа ведем набор в дневной городской детский лагерь и выездные лагеря в Эстонии. Сначала трафик шел только на лид-форму, затем часть бюджета оставили на лиды, а часть перевели на прямую регистрацию на сайте. В результате проект получает от 565 лидов в месяц за 2,7 евро за лид.",
+      "С апреля до середины августа ведем набор в дневной городской лагерь и выездные лагеря в Эстонии. Сначала трафик шел только на лид-форму, затем часть бюджета перевели на прямую регистрацию на сайте — это дало и заявки, и оплаты.",
     href: "/cases/suvelaagrid",
   },
   {
-    title: "Магазин досок для гвоздестояния Sadhu Boards",
-    category: "E-commerce / Moldova",
-    result: "300-500 лидов ежемесячно",
+    title: "34 клиента по €17,50 на SMAS-лифтинг",
+    category: "Beauty services / Estonia",
+    result: "€600 бюджета на процедуру за €125–537",
     summary:
-      "Для магазина досок для гвоздестояния снизили цену лида в 15 раз и выстроили стабильный поток заявок. При бюджете €750 в месяц проект получает 300-500 лидов и 30-50 покупок ежемесячно.",
+      "Салон красоты ILUPROFF в Эстонии продвигал SMAS-лифтинг. Тестирование форматов, языков и сегментов позволило найти самую сильную связку и привлекать клиентов на маржинальную процедуру дешевле стоимости одного визита в 7–30 раз.",
+    href: "/cases/iluproff",
+  },
+  {
+    title: "Цена лида ниже в 15 раз: 300–500 лидов в месяц",
+    category: "E-commerce / Moldova",
+    result: "30–50 покупок в месяц при бюджете €750",
+    summary:
+      "Для магазина досок для гвоздестояния Sadhu Boards перестроили рекламу так, что лид стал дешевле в 15 раз. Проект получает стабильный поток заявок и покупок каждый месяц без роста бюджета.",
+    href: "/cases/sadhu-boards",
+  },
+  {
+    title: "ROAS 7,19 в Meta Ads для 5+ событий",
+    category: "Events / Meta Ads + Google Ads / Riga",
+    result: "фактический ROAS выше из-за офлайн-посетителей",
+    summary:
+      "Для Digital Art House в Риге параллельно ведем рекламу выставок, спектаклей, art dinner, комедии и живой музыки. Лучший ROAS в Meta Ads достиг 7,19, а отдельная кампания принесла 39 покупок по €6,56.",
+    href: "/cases/digital-art-house",
   },
 ];
 
 const casesEn: CaseStudy[] = [
   {
-    title: "2500% ROMI in renovation services",
+    title: "2500% ROMI in full-service renovation",
     category: "Lead generation / renovation & construction",
-    result: "€450 customer cost with about €90,000 revenue",
+    result: "€450 per client with about €90,000 revenue",
     summary:
-      "For 5.5 years we built a predictable acquisition system for a full-cycle renovation company: design projects, renovation works, material sourcing and custom furniture production. In 5 years the company moved from the economy segment to the premium segment while keeping client flow stable even in low season.",
+      "For 5.5 years we built a predictable acquisition system for a full-cycle renovation company: design projects, renovation works, material sourcing and custom furniture production. The company moved from the economy segment to the premium segment while keeping client flow stable even in low season.",
     href: "/cases/romi-2500-construction",
   },
   {
-    title: "EDU.DO Children’s Sports Programs",
+    title: "561 leads in a month at €3.4 in kids' sports",
     category: "Lead generation / sports education",
-    result: "561 leads in one month at €3.4 per lead",
+    result: "lead cost dropped from €20–60 to €4",
     summary:
-      "We have worked with the project for 3 years and consistently generate at least 370 leads every month. The best month brought 561 leads at €3.4 per lead, with the average cost now around €4 versus €20-60 before our work.",
+      "We have worked with EDU.DO for 3 years and consistently generate at least 370 leads every month for swimming, karate and general fitness. The record month brought 561 leads, and the average lead cost now holds around €4 versus up to €60 before our work.",
     href: "/cases/edu-do",
   },
   {
-    title: "Women’s Activewear Brand",
+    title: "751 course leads at €1.48",
+    category: "Lead generation / professional courses",
+    result: "about 4,700% ROAS at a €2,400 course price",
+    summary:
+      "8 campaigns across 5 programmes: chef, bartender, seamstress, AI and digital marketing. The €1,113 ad budget pays for itself on the first payments: at a 3% lead-to-payment rate one student costs about €49.",
+    href: "/cases/profftech",
+  },
+  {
+    title: "ROAS 15 on Black Friday for women's activewear",
     category: "E-commerce / worldwide sales",
-    result: "ROAS up to 15 during Black Friday",
+    result: "$10 per customer at the peak of the sale",
     summary:
-      "Before Black Friday, campaigns generated $8,881 in sales on an $868 budget with ROAS 10. During the 3-day Black Friday period, ads delivered $4,690 in sales on $311 spend, ROAS 15 and a $10 customer cost.",
+      "Before Black Friday, campaigns generated $8,881 in sales on an $868 budget. During the three sale days the store earned another $4,690 on $311 spend — the strongest combination of the whole engagement.",
+    href: "/cases/womens-activewear",
   },
   {
-    title: "Cosmetics E-commerce Store",
-    category: "Beauty retail / Estonia",
-    result: "€8,387 revenue on €277 spend",
+    title: "ROAS 30 and 114 cosmetics orders",
+    category: "E-commerce / beauty retail",
+    result: "€8,387 revenue on a €277 budget",
     summary:
-      "A focused campaign around a 20% Medic8 offer generated 114 sales for the online store. Cost per sale reached €2.43, average order value €73.57 and overall ROAS 30.23.",
+      "For an Estonian cosmetics store we built the campaign around a single offer — 20% off the Medic8 line. A sale cost €2.43 at an average order value of €73.57, so advertising took about 3% of revenue.",
+    href: "/cases/cosmetics-store",
   },
   {
-    title: "3790% ROAS for Prime Tour",
+    title: "3790% ROAS: €252 turned into €9,560",
     category: "Travel / Estonia",
-    result: "8 purchased tours in 2 weeks",
+    result: "8 tours purchased in 2 weeks",
     summary:
       "We set up Meta Ads for a custom tour through Georgia and other travel directions for Russian- and Estonian-speaking audiences. The case presents the financial result through ROAS, revenue and cost per purchased tour.",
     href: "/en/cases/prime-tour",
   },
   {
-    title: "ILUPROFF",
-    category: "Beauty services / Estonia",
-    result: "34 clients at €17.50 each",
-    summary:
-      "SMAS lifting campaigns tested multiple languages, segments and ad formats to identify the strongest combination. With a €600 budget, the project attracted 34 clients for a high-margin service priced at €125-537.",
-  },
-  {
-    title: "Suvelaagrid Children's Camps",
+    title: "565 leads a month for children's camps",
     category: "Lead generation / children camps",
-    result: "at least 565 leads per month at €2.7 per lead",
+    result: "€2.7 per lead from April to August",
     summary:
-      "From April to mid-August, we run enrollment for a daytime city camp and away camps across Estonia. We started with lead forms only, then split the budget between lead forms and direct website registrations. The project now receives at least 565 leads per month at €2.7 per lead.",
+      "From April to mid-August we run enrollment for a daytime city camp and away camps across Estonia. We started with lead forms only, then moved part of the budget to direct website registration — which brought both leads and payments.",
     href: "/cases/suvelaagrid",
   },
   {
-    title: "Sadhu Boards",
-    category: "E-commerce / Moldova",
-    result: "300-500 leads every month",
+    title: "34 clients at €17.50 for SMAS lifting",
+    category: "Beauty services / Estonia",
+    result: "€600 budget for a €125–537 procedure",
     summary:
-      "For the nail board brand, lead cost was reduced 15x while building a stable acquisition engine. On a €750 monthly budget the project now receives 300-500 leads and 30-50 purchases per month.",
+      "Estonian beauty salon ILUPROFF promoted SMAS lifting. Testing formats, languages and segments identified the strongest combination and brought clients to a high-margin procedure for 7–30 times less than a single visit is worth.",
+    href: "/cases/iluproff",
+  },
+  {
+    title: "15x cheaper leads: 300–500 leads a month",
+    category: "E-commerce / Moldova",
+    result: "30–50 purchases a month on a €750 budget",
+    summary:
+      "For the Sadhu Boards nail-board store we rebuilt the advertising so the lead became 15 times cheaper. The project now receives a steady flow of leads and purchases every month without increasing the budget.",
+    href: "/cases/sadhu-boards",
+  },
+  {
+    title: "7.19 Meta Ads ROAS across 5+ events",
+    category: "Events / Meta Ads + Google Ads / Riga",
+    result: "actual ROAS is higher because of walk-in visitors",
+    summary:
+      "For Digital Art House in Riga we run exhibitions, theatre, art dinners, comedy and live-music campaigns in parallel. The best Meta Ads ROAS reached 7.19, while one campaign generated 39 purchases at €6.56 each.",
+    href: "/cases/digital-art-house",
   },
 ];
 
 const casesEt: CaseStudy[] = [
   {
-    title: "2500% ROMI renoveerimistöödes",
+    title: "ROMI 2500% terviklikus remondis",
     category: "Lead generation / renovation & construction",
-    result: "€450 kliendi hind ja umbes €90 000 käivet",
+    result: "€450 kliendi kohta ja ligi €90 000 käivet",
     summary:
-      "5,5 aasta jooksul ehitasime tervikliku kliendihanke süsteemi täisteenust pakkuvale remondiettevõttele: sisekujundusprojektid, remonditööd, materjalide komplekteerimine ja eritellimusmööbli tootmine. 5 aastaga liikus ettevõte säästusegmendist premium-segmenti ning säilitas kliendivoo ka madalhooajal.",
+      "5,5 aasta jooksul ehitasime tervikliku kliendihanke süsteemi täisteenust pakkuvale remondiettevõttele: sisekujundusprojektid, remonditööd, materjalide komplekteerimine ja eritellimusmööbli tootmine. Ettevõte liikus säästusegmendist premium-segmenti ning säilitas kliendivoo ka madalhooajal.",
     href: "/cases/romi-2500-construction",
   },
   {
-    title: "EDU.DO laste spordiringid",
+    title: "561 päringut kuus hinnaga €3,4 lastespordis",
     category: "Lead generation / sports education",
-    result: "561 päringut kuus hinnaga €3.4",
+    result: "päringu hind langes €20–60 pealt €4-le",
     summary:
-      "Oleme projektiga töötanud 3 aastat ja toome stabiilselt vähemalt 370 päringut kuus. Parim kuu tõi 561 päringut hinnaga €3.4, keskmine hind on nüüd umbes €4 võrreldes varasema €20-60 päringu hinnaga.",
+      "Oleme EDU.DO-ga töötanud 3 aastat ja toome stabiilselt vähemalt 370 päringut kuus ujumisse, karatesse ja üldkehalisse ettevalmistusse. Rekordkuu tõi 561 päringut ning keskmine päringu hind püsib umbes €4 juures.",
     href: "/cases/edu-do",
   },
   {
-    title: "Naiste spordiriiete bränd",
-    category: "E-commerce / worldwide sales",
-    result: "ROAS kuni 15 Black Friday ajal",
+    title: "751 kursusepäringut hinnaga €1,48",
+    category: "Lead generation / professional courses",
+    result: "ROAS umbes 4 700% kursuse hinnaga €2 400",
     summary:
-      "Enne Black Fridayd tõi reklaam $8,881 müüki $868 eelarvega ja ROAS 10. Black Friday 3 päeva jooksul tõi kampaania $4,690 müüki $311 kuluga, ROAS 15 ning kliendi hind oli $10.",
+      "8 kampaaniat 5 suunal: kokk, baarmen, õmbleja, AI ja digiturundus. €1 113 reklaamieelarve tasub end ära juba esimeste maksetega: 3% konversiooniga makseks maksab üks õpilane umbes €49.",
+    href: "/cases/profftech",
   },
   {
-    title: "Kosmeetika e-pood",
-    category: "Beauty retail / Estonia",
+    title: "ROAS 15 Black Fridayl naiste spordiriietel",
+    category: "E-commerce / worldwide sales",
+    result: "$10 ostja kohta müügitipul",
+    summary:
+      "Enne Black Fridayd tõi reklaam $8 881 müüki $868 eelarvega. Kolme allahindluspäeva jooksul teenis pood veel $4 690 juurde $311 kuluga — see oli kogu koostöö tugevaim kombinatsioon.",
+    href: "/cases/womens-activewear",
+  },
+  {
+    title: "ROAS 30 ja 114 kosmeetikamüüki",
+    category: "E-commerce / beauty retail",
     result: "€8 387 käivet €277 eelarvega",
     summary:
-      "20% Medic8 pakkumisega kampaania tõi e-poele 114 müüki. Müügi hind oli €2.43, keskmine ost €73.57 ning kogu kampaania tasuvus ulatus 30.23-ni.",
+      "Eesti kosmeetika e-poe jaoks ehitasime kampaania ühe pakkumise ümber — 20% soodustus Medic8 tootesarjale. Müük maksis €2.43 keskmise ostukorviga €73.57, seega reklaam võttis umbes 3% käibest.",
+    href: "/cases/cosmetics-store",
   },
   {
-    title: "3790% ROAS Prime Tourile",
+    title: "ROAS 3790%: €252-st sai €9 560",
     category: "Travel / Estonia",
     result: "8 ostetud reisi 2 nädalaga",
     summary:
-      "Seadistasime Meta Ads reklaami Gruusia autorireisile ja teistele reisissuundadele vene- ja eestikeelsele sihtrühmale. Töö näitab finantstulemust ROAS-i, käibe ja ostetud reisi hinna kaudu.",
+      "Seadistasime Meta Ads reklaami Gruusia autorireisile ja teistele reisisuundadele vene- ja eestikeelsele sihtrühmale. Töö näitab finantstulemust ROAS-i, käibe ja ostetud reisi hinna kaudu.",
     href: "/et/cases/prime-tour",
   },
   {
-    title: "ILUPROFF",
-    category: "Beauty services / Estonia",
-    result: "34 klienti hinnaga €17.50",
-    summary:
-      "SMAS-liftingu kampaanias testiti erinevaid formaate, keeli ja sihtgruppe, et leida tugevaim kombinatsioon. €600 eelarvega toodi 34 klienti kõrge marginaaliga teenusele hinnaga €125-537.",
-  },
-  {
-    title: "Suvelaagrid laste laagrid",
+    title: "565 päringut kuus lastelaagritesse",
     category: "Lead generation / children camps",
-    result: "alates 565 päringust kuus hinnaga 2,7 eurot",
+    result: "€2,7 päringu kohta aprillist augustini",
     summary:
-      "Aprillist augusti keskpaigani juhime registreerimist linna päevalaagrisse ja väljasõidulaagritesse Eestis. Alustasime ainult lead-vormidega, seejärel jätsime osa eelarvest vormidele ja suunasime osa otse veebilehe registreerimisele. Projekt saab nüüd alates 565 päringust kuus hinnaga 2,7 eurot päringu kohta.",
+      "Aprillist augusti keskpaigani juhime registreerimist linna päevalaagrisse ja väljasõidulaagritesse Eestis. Alustasime ainult lead-vormidega, seejärel suunasime osa eelarvest otse veebilehe registreerimisele — see tõi nii päringuid kui ka makseid.",
     href: "/cases/suvelaagrid",
   },
   {
-    title: "Sadhu Boards",
-    category: "E-commerce / Moldova",
-    result: "300-500 leadi iga kuu",
+    title: "34 klienti hinnaga €17,50 SMAS-liftingule",
+    category: "Beauty services / Estonia",
+    result: "€600 eelarve protseduurile hinnaga €125–537",
     summary:
-      "Naelalaua brändi jaoks vähendati leadi hinda 15 korda ja ehitati stabiilne müügilehter. €750 kuueelarvega saab projekt nüüd 300-500 leadi ja 30-50 ostu kuus.",
+      "Eesti ilusalong ILUPROFF reklaamis SMAS-liftingut. Formaatide, keelte ja sihtgruppide testimine aitas leida tugevaima kombinatsiooni ja tuua kliente kõrge marginaaliga protseduurile 7–30 korda odavamalt kui ühe visiidi väärtus.",
+    href: "/cases/iluproff",
+  },
+  {
+    title: "15 korda odavam päring: 300–500 päringut kuus",
+    category: "E-commerce / Moldova",
+    result: "30–50 ostu kuus €750 eelarvega",
+    summary:
+      "Naelalaudade poe Sadhu Boards jaoks ehitasime reklaami ümber nii, et päring muutus 15 korda odavamaks. Projekt saab iga kuu stabiilse päringute ja ostude voo ilma eelarvet suurendamata.",
+    href: "/cases/sadhu-boards",
+  },
+  {
+    title: "Meta Adsi ROAS 7,19 ja 5+ sündmust",
+    category: "Sündmused / Meta Ads + Google Ads / Riia",
+    result: "tegelik ROAS on kohapealsete külastajate tõttu kõrgem",
+    summary:
+      "Digital Art House’i jaoks Riias reklaamime paralleelselt näitusi, teatrit, art dinner’eid, komöödiat ja elavat muusikat. Meta Adsi parim ROAS oli 7,19 ning üks kampaania tõi 39 ostu hinnaga €6,56.",
+    href: "/cases/digital-art-house",
   },
 ];
 
@@ -369,6 +447,33 @@ export const siteContent: Record<Language, SiteDictionary> = {
       },
     ],
     clients: clientLogos,
+    certifications: {
+      eyebrow: "Platform certifications",
+      title: "Expertise confirmed by Google and Meta programs",
+      description:
+        "Professional training in the advertising platforms we use every day to launch, measure and scale campaigns.",
+      programLabel: "Official certification program",
+      items: [
+        {
+          issuer: "Google Skillshop",
+          title: "Google Ads Certification",
+          description:
+            "Search campaign setup, bidding strategy and performance measurement in Google Ads.",
+          scope: "Search · Measurement · Optimisation",
+          logo: "/images/certifications/google-ads.webp",
+          logoAlt: "Google Ads",
+        },
+        {
+          issuer: "Meta Blueprint",
+          title: "Meta Ads Certification",
+          description:
+            "Media buying, campaign architecture and performance optimisation across Meta technologies.",
+          scope: "Media buying · Campaigns · Scaling",
+          logo: "/images/certifications/meta.svg",
+          logoAlt: "Meta",
+        },
+      ],
+    },
     about: {
       title: "11 years of attracting clients for businesses across 18 different industries",
       description:
@@ -475,6 +580,33 @@ export const siteContent: Record<Language, SiteDictionary> = {
       },
     ],
     clients: clientLogos,
+    certifications: {
+      eyebrow: "Platvormide sertifikaadid",
+      title: "Google'i ja Meta programmidega kinnitatud pädevus",
+      description:
+        "Professionaalne väljaõpe reklaamiplatvormidel, mida kasutame iga päev kampaaniate käivitamiseks, mõõtmiseks ja kasvatamiseks.",
+      programLabel: "Ametlik sertifitseerimisprogramm",
+      items: [
+        {
+          issuer: "Google Skillshop",
+          title: "Google Ads sertifikaat",
+          description:
+            "Otsingukampaaniate seadistus, pakkumisstrateegia ja tulemuste mõõtmine Google Adsis.",
+          scope: "Otsing · Mõõtmine · Optimeerimine",
+          logo: "/images/certifications/google-ads.webp",
+          logoAlt: "Google Ads",
+        },
+        {
+          issuer: "Meta Blueprint",
+          title: "Meta Ads sertifikaat",
+          description:
+            "Meediaost, kampaaniate struktuur ja tulemuste optimeerimine Meta tehnoloogiates.",
+          scope: "Meediaost · Kampaaniad · Kasvatamine",
+          logo: "/images/certifications/meta.svg",
+          logoAlt: "Meta",
+        },
+      ],
+    },
     about: {
       title: "11 aastat klientide toomist ettevõtetele 18 erinevas valdkonnas",
       description:
@@ -581,6 +713,33 @@ export const siteContent: Record<Language, SiteDictionary> = {
       },
     ],
     clients: clientLogos,
+    certifications: {
+      eyebrow: "Сертификации платформ",
+      title: "Экспертиза, подтверждённая программами Google и Meta",
+      description:
+        "Профессиональная подготовка по рекламным платформам, которые мы каждый день используем для запуска, аналитики и масштабирования кампаний.",
+      programLabel: "Официальная программа сертификации",
+      items: [
+        {
+          issuer: "Google Skillshop",
+          title: "Сертификация Google Ads",
+          description:
+            "Настройка поисковых кампаний, стратегии назначения ставок и оценка эффективности рекламы.",
+          scope: "Поиск · Аналитика · Оптимизация",
+          logo: "/images/certifications/google-ads.webp",
+          logoAlt: "Google Ads",
+        },
+        {
+          issuer: "Meta Blueprint",
+          title: "Сертификация Meta Ads",
+          description:
+            "Медиабаинг, архитектура кампаний и performance-оптимизация в технологиях Meta.",
+          scope: "Медиабаинг · Кампании · Масштабирование",
+          logo: "/images/certifications/meta.svg",
+          logoAlt: "Meta",
+        },
+      ],
+    },
     about: {
       title: "11 лет привлекаем клиентов для бизнеса в 18 различных сферах",
       description:
