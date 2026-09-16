@@ -50,11 +50,6 @@ export function DigitalArtHouseArticle() {
           </figcaption>
         </figure>
       </section>
-      <CaseMechanics
-        label={c.mechanics.label}
-        title={c.mechanics.title}
-        steps={c.mechanics.steps}
-      />
       <CaseCreatives
         label={c.creatives.label}
         title={c.creatives.title}
@@ -69,6 +64,11 @@ export function DigitalArtHouseArticle() {
           title: c.creatives.videoTitles[item.titleKey],
         }))}
         compact
+      />
+      <CaseMechanics
+        label={c.mechanics.label}
+        title={c.mechanics.title}
+        steps={c.mechanics.steps}
       />
       <CaseNextStep
         label={c.nextStep.label}
