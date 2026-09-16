@@ -497,13 +497,20 @@ const digitalArtHouseCreativeItems: CreativeGalleryItem[] = [
   },
 ];
 
-const staticCreativeItems: CreativeGalleryItem[] = [
-  ...digitalArtHouseCreativeItems,
-  ...Array.from({ length: 7 }, (_, index) => ({
+const originalStaticCreativeItems: CreativeGalleryItem[] = Array.from(
+  { length: 7 },
+  (_, index) => ({
     src: `/images/creative-examples/stories/story-${String(index + 1).padStart(2, "0")}.png`,
     alt: `Static creative ${index + 1}`,
-    kind: "image" as const,
-  })),
+    kind: "image",
+  }),
+);
+
+const staticCreativeItems: CreativeGalleryItem[] = [
+  ...originalStaticCreativeItems.slice(0, 6),
+  digitalArtHouseCreativeItems[0],
+  originalStaticCreativeItems[6],
+  ...digitalArtHouseCreativeItems.slice(1),
 ];
 
 const videoCreativeItems: CreativeGalleryItem[] = [
